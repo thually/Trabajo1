@@ -6,6 +6,8 @@ public class SistemaZoologico {
     public static Usuario usuarioActual = null;
     public static Scanner input = new Scanner(System.in);
     public static ArrayList<Usuario> usuarios = new ArrayList<>();
+    //...
+    //Todas las listas del resto de clases.
 
     public static void main(String[] args) {
         cargarUsuario();
@@ -32,6 +34,7 @@ public class SistemaZoologico {
         }
 
         //...continua el programa.
+        //Menu principal
     }
 
     public static void cargarUsuario(){}
