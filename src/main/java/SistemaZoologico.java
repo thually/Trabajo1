@@ -348,9 +348,9 @@ public class SistemaZoologico {
             case "1":
                 for (Habitat habitat : habitats) {
                     System.out.println(habitat);
-                }
+                } break;
             case "2":
-                //crearHabitat();
+                crearHabitat();
                 break;
             case "3":
                 //editarHabitat();
@@ -359,6 +359,29 @@ public class SistemaZoologico {
                 //eliminarHabitat();
                 break;
         }
+    }
+
+    public static void crearHabitat() {
+        System.out.print("Ingrese ID del nuevo habitat: ");
+        int nuevoID = input.nextInt();
+        for (Habitat habitat : habitats) {
+            if (habitat.id == nuevoID){
+                System.out.println("ERROR: Ya existe un habitat registrado con este ID.");
+                return;
+            }
+        }
+        System.out.print("Ingrese el tipo de nuevo habitat: ");
+        String nuevoSuelo = input.next();
+        System.out.print("Ingrese la vegetacion del nuevo habitat: ");
+        String nuevaVeg = input.next();
+        System.out.print("Ingrese el tipo de jaula nuevo habitat: ");
+        String nuevoJau = input.next();
+
+        Habitat nuevoHab = new Habitat(nuevoID, nuevoSuelo, nuevaVeg, nuevoJau);
+        habitats.add(nuevoHab);
+
+        System.out.println("\nMENSAJE: Nuevo habitat registrado con exito.\n" +
+                "IMPORTANTE: Si desea fijar las relaciones del nuevo habitat, debe ingresar a la opcion 'Editar' del menu anterior.");
     }
 
     public static void CRUDanimal(int opcion){
