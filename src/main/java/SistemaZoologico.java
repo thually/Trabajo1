@@ -12,7 +12,7 @@ public class SistemaZoologico {
     public static ArrayList<Animal> animales = new ArrayList<>();
     public static ArrayList<Bioma> biomas = new ArrayList<>();
     public static ArrayList<Habitat> habitats = new ArrayList<>();
-    public static ArrayList<Profesional> profenales = new ArrayList<>();
+    public static ArrayList<Profesional> profecionales = new ArrayList<>();
     public static ArrayList<Tecnico> tecnicos = new ArrayList<>();
     public static ArrayList<ZooAmigo> zooAmigos = new ArrayList<>();
     public static ArrayList<Zoologico> zoologicos = new ArrayList<>();
