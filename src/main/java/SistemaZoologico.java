@@ -181,35 +181,53 @@ public class SistemaZoologico {
             System.out.println("5. Tecnico.");
             System.out.println("6. Profesional.");
             System.out.println("7. ZooAmigo.");
-            System.out.println("0. Regresar a Menu Principal.");
-            String opcion = input.next();
+            System.out.println("0. Regresar a Menu Principal.\n");
+            int opcion = input.nextInt();
             System.out.println();
             switch (opcion){
-                case "1":
-                    //CRUDzoologico();
+                case 1:
+                    //CRUDzoologico(opcion);
                     break;
-                case "2":
-                    //CRUDbioma();
+                case 2:
+                    //CRUDbioma(opcion);
                     break;
-                case "3":
-                    //CRUDhabitat();
+                case 3:
+                    //CRUDhabitat(opcion);
                     break;
-                case "4":
-                    //CRUDanimal();
+                case 4:
+                    //CRUDanimal(opcion);
                     break;
-                case "5":
-                    //CRUDtecnico();
+                case 5:
+                    //CRUDtecnico(opcion);
                     break;
-                case "6":
-                    //CRUDprofesional();
+                case 6:
+                    //CRUDprofesional(opcion);
                     break;
-                case "7":
-                    //CRUDzooamigo();
+                case 7:
+                    //CRUDzooamigo(opcion);
                     break;
-                case "0":
+                case 0:
                     break label;
             }
             System.out.println("----------------------------------");
         }
+    }
+
+    public static String CRUDclases(int i){
+        int opcion = i - 1;
+        String accion = null;
+        String[] clases = new String[] {"Zoologico", "Bioma", "Habitat", "Animal", "Tecnico", "Profesional", "ZooAmigo"};
+
+        do {
+            System.out.println("\nIndique la accion que desea realizar:\n");
+            System.out.println("1. Ver " + clases[opcion]);
+            System.out.println("2. Crear " + clases[opcion]);
+            System.out.println("3. Editar " + clases[opcion]);
+            System.out.println("4. Eliminar " + clases[opcion] + "\n");
+
+            accion = input.next();
+        } while (!accion.equals("1") && !accion.equals("2") && !accion.equals("3") && !accion.equals("4"));
+
+        return accion;
     }
 }
