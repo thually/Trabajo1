@@ -12,7 +12,7 @@ public class SistemaZoologico {
     public static ArrayList<Animal> animales = new ArrayList<>();
     public static ArrayList<Bioma> biomas = new ArrayList<>();
     public static ArrayList<Habitat> habitats = new ArrayList<>();
-    public static ArrayList<Profesional> profecionales = new ArrayList<>();
+    public static ArrayList<Profesional> profesionales = new ArrayList<>();
     public static ArrayList<Tecnico> tecnicos = new ArrayList<>();
     public static ArrayList<ZooAmigo> zooAmigos = new ArrayList<>();
     public static ArrayList<Zoologico> zoologicos = new ArrayList<>();
@@ -363,6 +363,28 @@ public class SistemaZoologico {
 
     public static void CRUDanimal(int opcion){
         String accion = CRUDclases(opcion);
+        if (accion.equals("1") || accion.equals("3") || accion.equals("4")) {
+            if (animales.isEmpty()){
+                System.out.println("Aun no se encuentran animales registrados");
+                return;
+            }
+        }
+        switch (accion){
+            case "1":
+                for (Animal animal : animales) {
+                    System.out.println(animal);
+                }
+                break;
+            case "2":
+                crearZoologico();
+                break;
+            case "3":
+                //editarZoologico();
+                break;
+            case "4":
+                //eliminarZoologico();
+                break;
+        }
     }
 
     public static void CRUDtecnico(int opcion){
