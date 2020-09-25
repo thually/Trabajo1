@@ -20,6 +20,8 @@ public class SistemaZoologico {
 
     public static void main(String[] args) {
 
+        zoologicos.add(new Zoologico("123", "aaa","bbb","ccc"));
+
         cargarUsuario(); //Llama a metodo para cargar todos los usuarios registrados desde src/database/usuarios.json
         label: while (true) {
             System.out.println("----------------------------------");
@@ -325,7 +327,7 @@ public class SistemaZoologico {
         }
 
         input.nextLine();
-        System.out.println("NIT: "+ zoologico.nit);
+        System.out.println("\nNIT: "+ zoologico.nit);
         String nuevoNIT = input.nextLine();
         if (nuevoNIT.isEmpty()){}
         else zoologico.nit = nuevoNIT;
@@ -344,6 +346,8 @@ public class SistemaZoologico {
         String nuevoCiudad = input.nextLine();
         if (nuevoCiudad.isEmpty()){}
         else zoologico.ciudad = nuevoCiudad;
+
+        //Continua con editar relaciones...
 
 
         System.out.println("------------------------------------------");
