@@ -287,9 +287,6 @@ public class SistemaZoologico {
         System.out.println("\nMENSAJE: Nuevo zoologico registrado con exito.\n" +
                 "IMPORTANTE: Si desea fijar las relaciones del nuevo zoologico, debe ingresar a la opcion 'Editar' del menu anterior.");
 
-        for (Zoologico zoologico : zoologicos) {
-            System.out.println(zoologico);
-        }
     }
 
     public static void CRUDbioma(int opcion){
