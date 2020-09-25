@@ -34,7 +34,7 @@ public class Habitat {
 
     @Override
     public String toString() {
-        return "Habitat{" +
+        return "Habitat{ " +
                 "id=" + id +
                 ", Tipo de suelo ='" + tipoSuelo + '\'' +
                 ", vegetacion='" + vegetacion + '\'' +
@@ -42,6 +42,6 @@ public class Habitat {
                 ", Id de bioma asociados= " + bioma.id +
                 ", id de animales asociados= " + getAnimalId()+
                 ", cedula de tecnicos asociados= " + getTecnicosCedula()+
-                '}';
+                " }";
     }
 }

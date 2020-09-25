@@ -34,7 +34,7 @@ public class Bioma {
 
     @Override
     public String toString() {
-        return "Bioma{" +
+        return "Bioma{ " +
                 "id=" + id +
                 ", temperatura=" + temperatura +
                 ", humedad='" + humedad + '\'' +
@@ -42,6 +42,6 @@ public class Bioma {
                 ", NIT de zoologico asociados= " + zoologico.nit+
                 ", id de habitats asociados= " + getHabitatId()+
                 ", cedula de profesionales asociados= " + getProfesionalesCedula()+
-                '}';
+                " }";
     }
 }

@@ -181,6 +181,7 @@ public class SistemaZoologico {
             System.out.println("5. Tecnico.");
             System.out.println("6. Profesional.");
             System.out.println("7. ZooAmigo.");
+            System.out.println("0. Regresar a Menu Principal.");
 
             int opcion = input.nextInt();
             System.out.println();
@@ -235,9 +236,11 @@ public class SistemaZoologico {
 
     public static void CRUDzoologico(int opcion){
         String accion = CRUDclases(opcion);
-        if (zoologicos.isEmpty()){
-            System.out.println("Aun no se encuentran zoologicos registrados");
-            return;
+        if (accion.equals("1") || accion.equals("3") || accion.equals("4")) {
+            if (zoologicos.isEmpty()){
+                System.out.println("Aun no se encuentran zoologicos registrados");
+                return;
+            }
         }
         switch (accion){
             case "1":
@@ -246,7 +249,7 @@ public class SistemaZoologico {
                 }
                 break;
             case "2":
-                //crearZoologico();
+                crearZoologico();
                 break;
             case "3":
                 //editarZoologico();
@@ -257,11 +260,45 @@ public class SistemaZoologico {
         }
     }
 
+    public static void crearZoologico(){
+        System.out.print("Ingrese NIT del nuevo zoologico: ");
+        String nuevoNIT = input.next();
+        for (Zoologico zoologico : zoologicos) {
+            if (zoologico.nit.replace(".", "").equals(nuevoNIT.replace(".", ""))){
+                System.out.println("ERROR: Ya existe un zoologico registrado con este NIT.");
+                return;
+            }
+        }
+        System.out.print("Ingrese el nombre del nuevo zoologico: ");
+        String nuevoNombre = input.next();
+        System.out.print("Ingrese las siglas del nuevo zoologico: ");
+        String nuevoSiglas = input.next();
+        for (Zoologico zoologico : zoologicos) {
+            if (zoologico.siglas.equalsIgnoreCase(nuevoSiglas)){
+                System.out.println("ERROR: Ya existe un zoologico registrado con estas siglas.");
+                return;
+            }
+        }
+        System.out.print("Ingrese la ciudad del nuevo zoologico: ");
+        String nuevaCiudad = input.next();
+
+        Zoologico nuevoZoo = new Zoologico(nuevoNIT, nuevoNombre, nuevoSiglas, nuevaCiudad);
+        zoologicos.add(nuevoZoo);
+        System.out.println("\nMENSAJE: Nuevo zoologico registrado con exito.\n" +
+                "IMPORTANTE: Si desea fijar las relaciones del nuevo zoologico, debe ingresar a la opcion 'Editar' del menu anterior.");
+
+        for (Zoologico zoologico : zoologicos) {
+            System.out.println(zoologico);
+        }
+    }
+
     public static void CRUDbioma(int opcion){
         String accion = CRUDclases(opcion);
-        if (biomas.isEmpty()){
-            System.out.println("Aun no se encuentran biomas registrados");
-            return;
+        if (accion.equals("1") || accion.equals("3") || accion.equals("4")) {
+            if (biomas.isEmpty()) {
+                System.out.println("Aun no se encuentran biomas registrados");
+                return;
+            }
         }
         switch (accion){
             case "1":
@@ -282,9 +319,11 @@ public class SistemaZoologico {
 
     public static void CRUDhabitat(int opcion){
         String accion = CRUDclases(opcion);
-        if (habitats.isEmpty()){
-            System.out.println("Aun no se encuentran habitats registrados");
-            return;
+        if (accion.equals("1") || accion.equals("3") || accion.equals("4")) {
+            if (habitats.isEmpty()) {
+                System.out.println("Aun no se encuentran habitats registrados");
+                return;
+            }
         }
         switch (accion){
             case "1":
