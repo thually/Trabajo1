@@ -186,25 +186,25 @@ public class SistemaZoologico {
             System.out.println();
             switch (opcion){
                 case 1:
-                    //CRUDzoologico(opcion);
+                    CRUDzoologico(opcion);
                     break;
                 case 2:
-                    //CRUDbioma(opcion);
+                    CRUDbioma(opcion);
                     break;
                 case 3:
-                    //CRUDhabitat(opcion);
+                    CRUDhabitat(opcion);
                     break;
                 case 4:
-                    //CRUDanimal(opcion);
+                    CRUDanimal(opcion);
                     break;
                 case 5:
-                    //CRUDtecnico(opcion);
+                    CRUDtecnico(opcion);
                     break;
                 case 6:
-                    //CRUDprofesional(opcion);
+                    CRUDprofesional(opcion);
                     break;
                 case 7:
-                    //CRUDzooamigo(opcion);
+                    CRUDzooamigo(opcion);
                     break;
                 case 0:
                     break label;
@@ -219,6 +219,7 @@ public class SistemaZoologico {
         String[] clases = new String[] {"Zoologico", "Bioma", "Habitat", "Animal", "Tecnico", "Profesional", "ZooAmigo"};
 
         do {
+            System.out.println("-----------------------------------------");
             System.out.println("\nIndique la accion que desea realizar:\n");
             System.out.println("1. Ver " + clases[opcion]);
             System.out.println("2. Crear " + clases[opcion]);
@@ -226,8 +227,37 @@ public class SistemaZoologico {
             System.out.println("4. Eliminar " + clases[opcion] + "\n");
 
             accion = input.next();
+            System.out.println("----------------------------------");
         } while (!accion.equals("1") && !accion.equals("2") && !accion.equals("3") && !accion.equals("4"));
 
         return accion;
+    }
+
+    public static void CRUDzoologico(int opcion){
+        String accion = CRUDclases(opcion);
+    }
+
+    public static void CRUDbioma(int opcion){
+        String accion = CRUDclases(opcion);
+    }
+
+    public static void CRUDhabitat(int opcion){
+        String accion = CRUDclases(opcion);
+    }
+
+    public static void CRUDanimal(int opcion){
+        String accion = CRUDclases(opcion);
+    }
+
+    public static void CRUDtecnico(int opcion){
+        String accion = CRUDclases(opcion);
+    }
+
+    public static void CRUDprofesional(int opcion){
+        String accion = CRUDclases(opcion);
+    }
+
+    public static void CRUDzooamigo(int opcion){
+        String accion = CRUDclases(opcion);
     }
 }
