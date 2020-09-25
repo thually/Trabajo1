@@ -578,6 +578,26 @@ public class SistemaZoologico {
     }
 
     public static void crearZooAmigo(){
-        System.out.println();
+        System.out.println("Ingrese la cedula del ZooAmigo: ");
+        int cedula = input.nextInt();
+        if (cedula<0){
+            System.out.println("La cedula es incorrecta");
+            return;
+        }
+        for (ZooAmigo zooAmigo :
+                zooAmigos) {
+            if (zooAmigo.cedula==cedula) {
+                System.out.println("La cedula ya existe en el sistema");
+                return;
+            }
+        }
+        System.out.println("Ingrese el nombre del ZooAmigo");
+        String nombre = input.next();
+        System.out.println("Ingrese el telefono del ZooAmigo");
+        String telefono = input.next();
+        ZooAmigo zooAmigo = new ZooAmigo(cedula,nombre,telefono);
+        zooAmigos.add(zooAmigo);
+        System.out.println("\nMENSAJE: Nuevo ZooAmigo registrado con exito.\n" +
+                "IMPORTANTE: Si desea fijar las relaciones del nuevo ZooAmigo, debe ingresar a la opcion 'Editar' del menu anterior.");
     }
 }
