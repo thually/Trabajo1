@@ -286,7 +286,6 @@ public class SistemaZoologico {
         zoologicos.add(nuevoZoo);
         System.out.println("\nMENSAJE: Nuevo zoologico registrado con exito.\n" +
                 "IMPORTANTE: Si desea fijar las relaciones del nuevo zoologico, debe ingresar a la opcion 'Editar' del menu anterior.");
-
     }
 
     public static void CRUDbioma(int opcion){
@@ -301,9 +300,9 @@ public class SistemaZoologico {
             case "1":
                 for (Bioma  bioma : biomas) {
                     System.out.println(bioma);
-                }
+                } break;
             case "2":
-                //crearBioma();
+                crearBioma();
                 break;
             case "3":
                 //editarBioma();
@@ -312,6 +311,29 @@ public class SistemaZoologico {
                 //eliminarBioma();
                 break;
         }
+    }
+
+    public static void crearBioma(){
+        System.out.print("Ingrese ID del nuevo bioma: ");
+        int nuevoID = input.nextInt();
+        for (Bioma bioma : biomas) {
+            if (bioma.id == nuevoID){
+                System.out.println("ERROR: Ya existe un bioma registrado con este ID.");
+                return;
+            }
+        }
+        System.out.print("Ingrese la temperatura del nuevo bioma en C°: ");
+        double nuevaTemp = input.nextDouble();
+        System.out.print("Ingrese la humedad del nuevo bioma: ");
+        String nuevaHum = input.next();
+        System.out.print("Ingrese el tipo del nuevo bioma: ");
+        String nuevoTipo = input.next();
+
+        Bioma nuevoBio = new Bioma(nuevoID, nuevaTemp, nuevaHum, nuevoTipo);
+        biomas.add(nuevoBio);
+
+        System.out.println("\nMENSAJE: Nuevo bioma registrado con exito.\n" +
+                "IMPORTANTE: Si desea fijar las relaciones del nuevo bioma, debe ingresar a la opcion 'Editar' del menu anterior.");
     }
 
     public static void CRUDhabitat(int opcion){
