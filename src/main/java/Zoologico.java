@@ -6,8 +6,8 @@ public class Zoologico {
     String siglas;
     String ciudad;
     Bioma bioma;
-    ArrayList<Profesional> profesional;
-    ArrayList<ZooAmigo> zooAmigo;
+    ArrayList<Profesional> profesional = new ArrayList<>();
+    ArrayList<ZooAmigo> zooAmigo = new ArrayList<>();
 
     public Zoologico(int nit, String nombre, String siglas, String ciudad) {
         this.nit = nit;

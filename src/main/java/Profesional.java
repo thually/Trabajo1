@@ -5,8 +5,8 @@ public class Profesional {
     String area; //Tipo de profesional, ej: Veterinario, Administración
     String horaInicio;
     String horaSalida;
-    ArrayList<Bioma> bioma;
-    Zoologico zoologico;
+    ArrayList<Bioma> bioma = new ArrayList<>();
+    Zoologico zoologico ;
 
     public Profesional(int cedula, String area) {
         this.cedula = cedula;

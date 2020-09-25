@@ -4,7 +4,7 @@ public class ZooAmigo {
     int cedula;
     String nombre;
     String telefono;
-    ArrayList<Animal> animal;
+    ArrayList<Animal> animal = new ArrayList<>();
     Zoologico zoologico;
 
     public ZooAmigo(int cedula, String nombre, String telefono) {

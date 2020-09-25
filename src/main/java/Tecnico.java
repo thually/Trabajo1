@@ -5,7 +5,7 @@ public class Tecnico {
     String area; //Tipo de trabajo, Guarda, Aseo, etc
     String horaInicio;
     String horaSalida;
-    ArrayList<Habitat> habitat;
+    ArrayList<Habitat> habitat = new ArrayList<>();
     Zoologico zoologico;
 
     public Tecnico(int cedula, String area, String horaInicio, String horaSalida) {
