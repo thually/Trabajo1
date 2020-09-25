@@ -20,8 +20,6 @@ public class SistemaZoologico {
 
     public static void main(String[] args) {
 
-        zoologicos.add(new Zoologico("123", "aaa","bbb","ccc"));
-
         cargarUsuario(); //Llama a metodo para cargar todos los usuarios registrados desde src/database/usuarios.json
         label: while (true) {
             System.out.println("----------------------------------");
