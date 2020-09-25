@@ -376,23 +376,109 @@ public class SistemaZoologico {
                 }
                 break;
             case "2":
-                crearZoologico();
+                crearAnimal();
                 break;
             case "3":
-                //editarZoologico();
+                //editarAnimal();
                 break;
             case "4":
-                //eliminarZoologico();
+                //eliminarAnimal();
                 break;
         }
+    }
+    public static void crearAnimal(){
+        System.out.println("Ingrese un ID");
+        int id = input.nextInt();
+        if (id<0){
+            System.out.println("El ID es incorrecto");
+            return;
+        }
+        System.out.println("Ingrese la especie: Ej: Leon,Foca,etc");
+        String especie = input.next();
+        System.out.println("Ingrese el nivel de agresiviad: Del 1 al 5");
+        int agresividad = input.nextInt();
+        if (agresividad<1 || 5<agresividad){
+            System.out.println("Nivel de agresividad invalido");
+            return;
+        }
+        System.out.println("Ingrese la alimentación del animal: Carnivoro, Hervivoro, Omnivoro");
+        String alimentacion = input.next();
+        Animal animalNuevo = new Animal(id,especie,agresividad,alimentacion);
+        animales.add(animalNuevo);
+        System.out.println("El animal se ha agregado correctamente");
     }
 
     public static void CRUDtecnico(int opcion){
         String accion = CRUDclases(opcion);
+        if (accion.equals("1") || accion.equals("3") || accion.equals("4")) {
+            if (tecnicos.isEmpty()){
+                System.out.println("Aun no se encuentran tecnicos registrados");
+                return;
+            }
+        }
+        switch (accion){
+            case "1":
+                for (Tecnico tecnico : tecnicos) {
+                    System.out.println(tecnico);
+                }
+                break;
+            case "2":
+                crearTecnico();
+                break;
+            case "3":
+                //editarTecnico();
+                break;
+            case "4":
+                //eliminarTecnico();
+                break;
+        }
+    }
+
+    public static void crearTecnico(){
+        System.out.println("Ingrese la cedula del tecnico: ");
+        int cedula = input.nextInt();
+        if (cedula<0){
+            System.out.println("La cedula es incorrecta");
+            return;
+        }
+        System.out.println("Ingrese el area de trabajo: Aseo, Vigilante, Guia");
+        String area = input.next();
+        System.out.println("Ingrese la hora de entrada del tecnico: ej: 08:30");
+        String horaInicio = input.next();
+        System.out.println("Ingrese la hora de salida del tecnico: ej: 18:45");
+        String horaSalida = input.next();
+        Tecnico tecnico = new Tecnico(cedula,area,horaInicio,horaSalida);
+        tecnicos.add(tecnico);
     }
 
     public static void CRUDprofesional(int opcion){
         String accion = CRUDclases(opcion);
+        if (accion.equals("1") || accion.equals("3") || accion.equals("4")) {
+            if (profesionales.isEmpty()){
+                System.out.println("Aun no se encuentran profesionales registrados");
+                return;
+            }
+        }
+        switch (accion){
+            case "1":
+                for (Profesional profesional : profesionales) {
+                    System.out.println(profesional);
+                }
+                break;
+            case "2":
+                crearProfesional();
+                break;
+            case "3":
+                //editarProfesional();
+                break;
+            case "4":
+                //eliminarProfesional();
+                break;
+        }
+    }
+
+    public static void crearProfesional(){
+        System.out.println("as");
     }
 
     public static void CRUDzooamigo(int opcion){
