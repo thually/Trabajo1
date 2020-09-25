@@ -5,7 +5,7 @@ public class Tecnico {
     String area; //Tipo de trabajo, Guarda, Aseo, etc
     String horaInicio;
     String horaSalida;
-    ArrayList<Habitat> habitat = new ArrayList<>();
+    ArrayList<Habitat> habitats = new ArrayList<>();
     Zoologico zoologico;
 
     public Tecnico(int cedula, String area, String horaInicio, String horaSalida) {
@@ -15,6 +15,14 @@ public class Tecnico {
         this.horaSalida = horaSalida;
     }
 
+    public String getHabitatsId(){
+        ArrayList<Integer> idHabitats = new ArrayList<>();
+        for (Habitat habitat : habitats) {
+            idHabitats.add(habitat.id);
+        }
+        return idHabitats.toString();
+    }
+
     @Override
     public String toString() {
         return "Tecnico{" +
@@ -22,6 +30,8 @@ public class Tecnico {
                 ", area='" + area + '\'' +
                 ", horaInicio='" + horaInicio + '\'' +
                 ", horaSalida='" + horaSalida + '\'' +
+                ", ID Habitats asociados= " + getHabitatsId() +
+                ", NIT del Zoologico= " + zoologico.nit +
                 '}';
     }
 }

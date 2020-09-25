@@ -20,6 +20,8 @@ public class Animal {
                 ", especie='" + especie + '\'' +
                 ", nivelAgresividad=" + nivelAgresividad +
                 ", alimentacion='" + alimentacion + '\'' +
+                ", ID del habitat= " + habitat.id +
+                ", Cedula del ZooAmigo= " + zooAmigo.cedula +
                 '}';
     }
 }

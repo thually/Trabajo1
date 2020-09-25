@@ -4,7 +4,7 @@ public class ZooAmigo {
     int cedula;
     String nombre;
     String telefono;
-    ArrayList<Animal> animal = new ArrayList<>();
+    ArrayList<Animal> animals = new ArrayList<>();
     Zoologico zoologico;
 
     public ZooAmigo(int cedula, String nombre, String telefono) {
@@ -13,12 +13,22 @@ public class ZooAmigo {
         this.telefono = telefono;
     }
 
+    public String getAnimalID(){
+        ArrayList<Integer> idAnimals = new ArrayList<>();
+        for (Animal animal : animals) {
+            idAnimals.add(animal.id);
+        }
+        return idAnimals.toString();
+    }
+
     @Override
     public String toString() {
         return "ZooAmigo{" +
                 "cedula=" + cedula +
                 ", nombre='" + nombre + '\'' +
                 ", telefono='" + telefono + '\'' +
+                ", ID de Animales asociados= " + getAnimalID() +
+                ", NIT del Zoologico asociado= " + zoologico.nit +
                 '}';
     }
 }

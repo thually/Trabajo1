@@ -5,7 +5,7 @@ public class Profesional {
     String area; //Tipo de profesional, ej: Veterinario, Administración
     String horaInicio;
     String horaSalida;
-    ArrayList<Bioma> bioma = new ArrayList<>();
+    ArrayList<Bioma> biomas = new ArrayList<>();
     Zoologico zoologico ;
 
     public Profesional(int cedula, String area, String horaInicio, String horaSalida) {
@@ -15,6 +15,14 @@ public class Profesional {
         this.horaSalida = horaSalida;
     }
 
+    public String getBiomaID(){
+        ArrayList<Integer> idBiomas = new ArrayList<>();
+        for (Bioma bioma : biomas) {
+            idBiomas.add(bioma.id);
+        }
+        return idBiomas.toString();
+    }
+
     @Override
     public String toString() {
         return "Profesional{" +
@@ -22,6 +30,8 @@ public class Profesional {
                 ", area='" + area + '\'' +
                 ", horaInicio='" + horaInicio + '\'' +
                 ", horaSalida='" + horaSalida + '\'' +
+                ", ID de biomas asociados= " + getBiomaID() +
+                ", ID del zoologico asociado= " + zoologico.nit +
                 '}';
     }
 }

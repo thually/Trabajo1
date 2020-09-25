@@ -340,21 +340,30 @@ public class SistemaZoologico {
         System.out.println("Ciudad: "+ zoologico.ciudad);
         String nuevoCiudad = input.nextLine();
 
-        System.out.print("Desea guardar?: ");
-        switch (input.next()){
-            case "Y":
-                if (nuevoNIT.isEmpty()){}
-                else zoologico.nit = nuevoNIT;
-                if (nuevoNombre.isEmpty()){}
-                else zoologico.nombre = nuevoNombre;
-                if (nuevoSiglas.isEmpty()){}
-                else zoologico.siglas = nuevoSiglas;
-                if (nuevoCiudad.isEmpty()){}
-                else zoologico.ciudad = nuevoCiudad;
-            case "N":
-                break;
-        }
 
+        while (true){
+            System.out.print("Desea guardar?:[Y/N] ");
+            String option = input.next();
+            if (option.equalsIgnoreCase("Y") || option.equalsIgnoreCase("N")){
+                switch (option.toUpperCase()){
+                    case "Y":
+                        if (nuevoNIT.isEmpty()){}
+                        else zoologico.nit = nuevoNIT;
+                        if (nuevoNombre.isEmpty()){}
+                        else zoologico.nombre = nuevoNombre;
+                        if (nuevoSiglas.isEmpty()){}
+                        else zoologico.siglas = nuevoSiglas;
+                        if (nuevoCiudad.isEmpty()){}
+                        else zoologico.ciudad = nuevoCiudad;
+                    case "N":
+                        break;
+                }
+                break;
+            }
+            else {
+                System.out.println("Respuesta invalida");
+            }
+        }
         //Continua con editar relaciones...
 
 
