@@ -5,9 +5,9 @@ public class Habitat {
     String tipoSuelo; // Tierra, nevado, desertico, etc.
     String vegetacion; // Abundante, sin vegetacion, etc
     String tipoJaula; // Aviario, barrotes, malla, etc
-    ArrayList<Animal> animal = new ArrayList<>();
+    ArrayList<Animal> animales = new ArrayList<>();
     Bioma bioma;
-    ArrayList<Tecnico> tecnico = new ArrayList<>();
+    ArrayList<Tecnico> tecnicos = new ArrayList<>();
 
     public Habitat(int id, String tipoSuelo, String vegetacion, String tipoJaula) {
         this.id = id;
@@ -16,13 +16,32 @@ public class Habitat {
         this.tipoJaula = tipoJaula;
     }
 
+    public String getTecnicosCedula(){
+        ArrayList<Integer> cedulaTecnicos = new ArrayList<>();
+        for (Tecnico tecnico : tecnicos) {
+            cedulaTecnicos.add(tecnico.cedula);
+        }
+        return cedulaTecnicos.toString();
+    }
+
+    public String getAnimalId(){
+        ArrayList<Integer> idAnimal = new ArrayList<>();
+        for (Animal animal : animales) {
+            idAnimal.add(animal.id);
+        }
+        return idAnimal.toString();
+    }
+
     @Override
     public String toString() {
         return "Habitat{" +
                 "id=" + id +
-                ", tipoSuelo='" + tipoSuelo + '\'' +
+                ", Tipo de suelo ='" + tipoSuelo + '\'' +
                 ", vegetacion='" + vegetacion + '\'' +
-                ", tipoJaula='" + tipoJaula + '\'' +
+                ", Tipo de jaula ='" + tipoJaula + '\'' +
+                ", Id de bioma asociados= " + bioma.id +
+                ", id de animales asociados= " + getAnimalId()+
+                ", cedula de tecnicos asociados= " + getTecnicosCedula()+
                 '}';
     }
 }

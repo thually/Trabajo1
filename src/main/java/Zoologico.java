@@ -24,7 +24,7 @@ public class Zoologico {
         return idBiomas.toString();
     }
 
-    public String getProfecionalesCedula(){
+    public String getProfesionalesCedula(){
         ArrayList<Integer> cedulaProfecional = new ArrayList<>();
         for (Profesional profesional : profesionales) {
             cedulaProfecional.add(profesional.cedula);
@@ -47,9 +47,10 @@ public class Zoologico {
                 ", nombre='" + nombre + '\'' +
                 ", siglas='" + siglas + '\'' +
                 ", ciudad='" + ciudad + '\'' +
-                "id de biomas asociados= " + getBiomasId()+
-                "cedula de profesionales asociados= " + getProfecionalesCedula()+
-                "cedula de ZooAmigos asociados= " + getZooAmigoCedula()+
+                ", id de biomas asociados= " + getBiomasId()+
+                ", cedula de profesionales asociados= " + getProfesionalesCedula()+
+                ", cedula de ZooAmigos asociados= " + getZooAmigoCedula()+
+
                 ']';
     }
 }
