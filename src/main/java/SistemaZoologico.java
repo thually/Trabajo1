@@ -57,7 +57,7 @@ public class SistemaZoologico {
             System.out.println();
             switch (opcion){
                 case "1":
-                    //administra();
+                    administrar();
                     break;
                 case "2":
                     //busqueda();
@@ -168,6 +168,48 @@ public class SistemaZoologico {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    public static void administrar(){
+        label: while (true) {
+            System.out.println("----------------------------------");
+            System.out.println("Por favor, selecione la clase que desea administar: \n");
+            System.out.println("1. Zoologicos.");
+            System.out.println("2. Bioma.");
+            System.out.println("3. Habitat");
+            System.out.println("4. Animal.");
+            System.out.println("5. Tecnico.");
+            System.out.println("6. Profesional.");
+            System.out.println("7. ZooAmigo.");
+            System.out.println("0. Regresar a Menu Principal.");
+            String opcion = input.next();
+            System.out.println();
+            switch (opcion){
+                case "1":
+                    //CRUDzoologico();
+                    break;
+                case "2":
+                    //CRUDbioma();
+                    break;
+                case "3":
+                    //CRUDhabitat();
+                    break;
+                case "4":
+                    //CRUDanimal();
+                    break;
+                case "5":
+                    //CRUDtecnico();
+                    break;
+                case "6":
+                    //CRUDprofesional();
+                    break;
+                case "7":
+                    //CRUDzooamigo();
+                    break;
+                case "0":
+                    break label;
+            }
+            System.out.println("----------------------------------");
+        }
     }
 }
