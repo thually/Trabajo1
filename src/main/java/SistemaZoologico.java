@@ -291,9 +291,9 @@ public class SistemaZoologico {
     }
 
     public static void editarZoologico(){
-
-        String opcion;
-        do {
+        Zoologico zoologico = null;
+        while (true) {
+            String opcion;
             System.out.println("------------------------------------------");
             System.out.println("Estas son las claves unicas del zoologico: \n");
             System.out.println("1. Seleccionar por NIT");
@@ -301,30 +301,28 @@ public class SistemaZoologico {
             opcion = input.next();
             if (!opcion.equals("1") && !opcion.equals("2")){
                 System.out.println("Opcion invalida");
+                return;
             }
-        } while (!opcion.equals("1") && !opcion.equals("2"));
-
-        Zoologico zoologico = null;
-        if (opcion.equals("1")){
-            System.out.print("Ingrese NIT: ");
-            String opcion2 = input.next();
-            for (Zoologico zoo : zoologicos){
-                if (zoo.nit.replace(".", "").equals(opcion2.replace(".", ""))){
-                    zoologico = zoo;
+            if (opcion.equals("1")){
+                System.out.print("Ingrese NIT: ");
+                String opcion2 = input.next();
+                for (Zoologico zoo : zoologicos){
+                    if (zoo.nit.replace(".", "").equals(opcion2.replace(".", ""))){
+                        zoologico = zoo;
+                    }
+                }
+            } else {
+                System.out.print("Ingrese siglas: ");
+                String opcion2 = input.next();
+                for (Zoologico zoo : zoologicos){
+                    if (zoo.siglas.equalsIgnoreCase(opcion2)){
+                        zoologico = zoo;
+                    }
                 }
             }
-        } else {
-            System.out.print("Ingrese siglas: ");
-            String opcion2 = input.next();
-            for (Zoologico zoo : zoologicos){
-                if (zoo.siglas.equalsIgnoreCase(opcion2)){
-                    zoologico = zoo;
-                }
-            }
-        }
-        if (zoologico == null){
-            System.out.println("No se encontro zoologico con estas especificaciones.");
-            return;
+            if (zoologico == null){
+                System.out.println("No se encontro zoologico con estas especificaciones.");
+            } else break;
         }
 
         input.nextLine();
