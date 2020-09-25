@@ -6,8 +6,8 @@ public class Bioma {
     String humedad; // Se utiliza una descripcion, seco, arido, etc
     String tipo;
     Zoologico zoologico;
-    ArrayList<Profesional> profesional;
-    ArrayList<Habitat> habitat;
+    ArrayList<Profesional> profesional = new ArrayList<>();
+    ArrayList<Habitat> habitat = new ArrayList<>();
 
     public Bioma(int id, Double temperatura, String humedad, String tipo) {
         this.id = id;
