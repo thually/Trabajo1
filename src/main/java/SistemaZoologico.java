@@ -235,12 +235,12 @@ public class SistemaZoologico {
 
     public static void CRUDzoologico(int opcion){
         String accion = CRUDclases(opcion);
+        if (zoologicos.isEmpty()){
+            System.out.println("Aun no se encuentran zoologicos registrados");
+            return;
+        }
         switch (accion){
             case "1":
-                if (zoologicos.isEmpty()){
-                    System.out.println("Aun no se encuentran zoologicos registrados");
-                    break;
-                }
                 for (Zoologico zoologico : zoologicos) {
                     System.out.println(zoologico);
                 }
@@ -259,12 +259,12 @@ public class SistemaZoologico {
 
     public static void CRUDbioma(int opcion){
         String accion = CRUDclases(opcion);
+        if (biomas.isEmpty()){
+            System.out.println("Aun no se encuentran biomas registrados");
+            return;
+        }
         switch (accion){
             case "1":
-                if (biomas.isEmpty()){
-                    System.out.println("Aun no se encuentran biomas registrados");
-                    break;
-                }
                 for (Bioma  bioma : biomas) {
                     System.out.println(bioma);
                 }
@@ -282,12 +282,12 @@ public class SistemaZoologico {
 
     public static void CRUDhabitat(int opcion){
         String accion = CRUDclases(opcion);
+        if (habitats.isEmpty()){
+            System.out.println("Aun no se encuentran habitats registrados");
+            return;
+        }
         switch (accion){
             case "1":
-                if (habitats.isEmpty()){
-                    System.out.println("Aun no se encuentran habitats registrados");
-                    break;
-                }
                 for (Habitat habitat : habitats) {
                     System.out.println(habitat);
                 }
