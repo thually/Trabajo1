@@ -8,9 +8,11 @@ public class Profesional {
     ArrayList<Bioma> bioma = new ArrayList<>();
     Zoologico zoologico ;
 
-    public Profesional(int cedula, String area) {
+    public Profesional(int cedula, String area, String horaInicio, String horaSalida) {
         this.cedula = cedula;
         this.area = area;
+        this.horaInicio = horaInicio;
+        this.horaSalida = horaSalida;
     }
 
     @Override

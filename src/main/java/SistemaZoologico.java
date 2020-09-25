@@ -410,8 +410,23 @@ public class SistemaZoologico {
         }
     }
     public static void crearAnimal(){
-        System.out.println("Ingrese un ID");
+        System.out.println("            _   _\n" +
+                "           (.)_(.)\n" +
+                "        _ (   _   ) _\n" +
+                "       / \\/`-----'\\/ \\\n" +
+                "     __\\ ( (     ) ) /__\n" +
+                "     )   /\\ \\._./ /\\   (\n" +
+                "      )_/ /|\\   /|\\ \\_(");
+        System.out.println();
+        System.out.println("ERROR: Ya existe un animal registrado con este ID.");
         int id = input.nextInt();
+        for (Animal animal :
+                animales) {
+            if (animal.id==id){
+                System.out.println("El ID ya existe en el sistema");
+                return;
+            }
+        }
         if (id<0){
             System.out.println("El ID es incorrecto");
             return;
@@ -428,7 +443,8 @@ public class SistemaZoologico {
         String alimentacion = input.next();
         Animal animalNuevo = new Animal(id,especie,agresividad,alimentacion);
         animales.add(animalNuevo);
-        System.out.println("El animal se ha agregado correctamente");
+        System.out.println("\nMENSAJE: Nuevo animal registrado con exito.\n" +
+                "IMPORTANTE: Si desea fijar las relaciones del nuevo animal, debe ingresar a la opcion 'Editar' del menu anterior.");
     }
 
     public static void CRUDtecnico(int opcion){
@@ -464,6 +480,13 @@ public class SistemaZoologico {
             System.out.println("La cedula es incorrecta");
             return;
         }
+        for (Tecnico tecnico :
+                tecnicos) {
+            if (tecnico.cedula==cedula){
+                System.out.println("La cedula ya existe en el sistema");
+                return;
+            }
+        }
         System.out.println("Ingrese el area de trabajo: Aseo, Vigilante, Guia");
         String area = input.next();
         System.out.println("Ingrese la hora de entrada del tecnico: ej: 08:30");
@@ -472,6 +495,8 @@ public class SistemaZoologico {
         String horaSalida = input.next();
         Tecnico tecnico = new Tecnico(cedula,area,horaInicio,horaSalida);
         tecnicos.add(tecnico);
+        System.out.println("\nMENSAJE: Nuevo tecnico registrado con exito.\n" +
+                "IMPORTANTE: Si desea fijar las relaciones del nuevo tecnico, debe ingresar a la opcion 'Editar' del menu anterior.");
     }
 
     public static void CRUDprofesional(int opcion){
@@ -501,10 +526,58 @@ public class SistemaZoologico {
     }
 
     public static void crearProfesional(){
-        System.out.println("as");
+        System.out.println("Ingrese la cedula del profesional: ");
+        int cedula = input.nextInt();
+        if (cedula<0){
+            System.out.println("La cedula es incorrecta");
+            return;
+        }
+        for (Profesional profesional :
+                profesionales) {
+            if (profesional.cedula==cedula){
+                System.out.println("La cedula ya existe en el sistema");
+                return;
+            }
+        }
+        System.out.println("Ingrese el area del profesional: Ej: Veterinaria, Administración");
+        String area = input.next();
+        System.out.println("Ingrese la hora de entrada del profesional: Ej: 09:10");
+        String horaInicio = input.next();
+        System.out.println("Ingrese la hora de salida del profesional: Ej: 19:21");
+        String horaSalida = input.next();
+        Profesional profesionalNuevo = new Profesional(cedula,area,horaInicio,horaSalida);
+        profesionales.add(profesionalNuevo);
+        System.out.println("\nMENSAJE: Nuevo profesional registrado con exito.\n" +
+                "IMPORTANTE: Si desea fijar las relaciones del nuevo profesional, debe ingresar a la opcion 'Editar' del menu anterior.");
     }
 
     public static void CRUDzooamigo(int opcion){
         String accion = CRUDclases(opcion);
+        if (accion.equals("1") || accion.equals("3") || accion.equals("4")) {
+            if (zooAmigos.isEmpty()){
+                System.out.println("Aun no se encuentran zooAmigos registrados");
+                return;
+            }
+        }
+        switch (accion){
+            case "1":
+                for (ZooAmigo zooAmigo : zooAmigos) {
+                    System.out.println(zooAmigo);
+                }
+                break;
+            case "2":
+                crearZooAmigo();
+                break;
+            case "3":
+                //editarProfesional();
+                break;
+            case "4":
+                //eliminarProfesional();
+                break;
+        }
+    }
+
+    public static void crearZooAmigo(){
+        System.out.println();
     }
 }
