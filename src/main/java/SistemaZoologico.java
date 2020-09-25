@@ -181,7 +181,7 @@ public class SistemaZoologico {
             System.out.println("5. Tecnico.");
             System.out.println("6. Profesional.");
             System.out.println("7. ZooAmigo.");
-            System.out.println("0. Regresar a Menu Principal.\n");
+
             int opcion = input.nextInt();
             System.out.println();
             switch (opcion){
@@ -215,7 +215,7 @@ public class SistemaZoologico {
 
     public static String CRUDclases(int i){
         int opcion = i - 1;
-        String accion = null;
+        String accion;
         String[] clases = new String[] {"Zoologico", "Bioma", "Habitat", "Animal", "Tecnico", "Profesional", "ZooAmigo"};
 
         do {
@@ -235,14 +235,58 @@ public class SistemaZoologico {
 
     public static void CRUDzoologico(int opcion){
         String accion = CRUDclases(opcion);
+        switch (accion){
+            case "1":
+                for (Zoologico zoologico : zoologicos) {
+                    System.out.println(zoologico);
+                }
+                break;
+            case "2":
+                //crearZoologico();
+                break;
+            case "3":
+                //editarZoologico();
+                break;
+            case "4":
+                //eliminarZoologico();
+                break;
+        }
     }
 
     public static void CRUDbioma(int opcion){
         String accion = CRUDclases(opcion);
+        switch (accion){
+            case "1":
+                //verBioma();
+                break;
+            case "2":
+                //crearBioma();
+                break;
+            case "3":
+                //editarBioma();
+                break;
+            case "4":
+                //eliminarBioma();
+                break;
+        }
     }
 
     public static void CRUDhabitat(int opcion){
         String accion = CRUDclases(opcion);
+        switch (accion){
+            case "1":
+                //verHabitat();
+                break;
+            case "2":
+                //crearHabitat();
+                break;
+            case "3":
+                //editarHabitat();
+                break;
+            case "4":
+                //eliminarHabitat();
+                break;
+        }
     }
 
     public static void CRUDanimal(int opcion){
