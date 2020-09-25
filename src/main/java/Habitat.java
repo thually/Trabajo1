@@ -39,7 +39,7 @@ public class Habitat {
                 ", Tipo de suelo ='" + tipoSuelo + '\'' +
                 ", vegetacion='" + vegetacion + '\'' +
                 ", Tipo de jaula ='" + tipoJaula + '\'' +
-                ", Id de bioma asociados= " + bioma.id +
+                ", Id de bioma asociados= " + ((bioma == null) ? "N/A" : bioma.id) +
                 ", id de animales asociados= " + getAnimalId()+
                 ", cedula de tecnicos asociados= " + getTecnicosCedula()+
                 " }";
