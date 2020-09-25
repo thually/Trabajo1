@@ -292,15 +292,18 @@ public class SistemaZoologico {
 
     public static void editarZoologico(){
 
-        System.out.println("------------------------------------------");
-        System.out.println("Estas son las claves unicas del zoologico: \n");
-        System.out.println("1. Seleccionar por NIT");
-        System.out.println("2. Seleccionar por Siglas\n");
-        String opcion = input.next();
-        if (!opcion.equals("1") && !opcion.equals("2")){
-            System.out.println("Opcion invalidad");
-            return;
-        }
+        String opcion;
+        do {
+            System.out.println("------------------------------------------");
+            System.out.println("Estas son las claves unicas del zoologico: \n");
+            System.out.println("1. Seleccionar por NIT");
+            System.out.println("2. Seleccionar por Siglas\n");
+            opcion = input.next();
+            if (!opcion.equals("1") && !opcion.equals("2")){
+                System.out.println("Opcion invalida");
+            }
+        } while (!opcion.equals("1") && !opcion.equals("2"));
+
         Zoologico zoologico = null;
         if (opcion.equals("1")){
             System.out.print("Ingrese NIT: ");
@@ -327,23 +330,30 @@ public class SistemaZoologico {
         input.nextLine();
         System.out.println("\nNIT: "+ zoologico.nit);
         String nuevoNIT = input.nextLine();
-        if (nuevoNIT.isEmpty()){}
-        else zoologico.nit = nuevoNIT;
 
         System.out.println("Nombre: "+ zoologico.nombre);
         String nuevoNombre = input.nextLine();
-        if (nuevoNombre.isEmpty()){}
-        else zoologico.nombre = nuevoNombre;
 
         System.out.println("Siglas: "+ zoologico.siglas);
         String nuevoSiglas = input.nextLine();
-        if (nuevoSiglas.isEmpty()){}
-        else zoologico.siglas = nuevoSiglas;
 
         System.out.println("Ciudad: "+ zoologico.ciudad);
         String nuevoCiudad = input.nextLine();
-        if (nuevoCiudad.isEmpty()){}
-        else zoologico.ciudad = nuevoCiudad;
+
+        System.out.print("Desea guardar?: ");
+        switch (input.next()){
+            case "Y":
+                if (nuevoNIT.isEmpty()){}
+                else zoologico.nit = nuevoNIT;
+                if (nuevoNombre.isEmpty()){}
+                else zoologico.nombre = nuevoNombre;
+                if (nuevoSiglas.isEmpty()){}
+                else zoologico.siglas = nuevoSiglas;
+                if (nuevoCiudad.isEmpty()){}
+                else zoologico.ciudad = nuevoCiudad;
+            case "N":
+                break;
+        }
 
         //Continua con editar relaciones...
 
