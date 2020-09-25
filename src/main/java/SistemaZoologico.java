@@ -569,10 +569,10 @@ public class SistemaZoologico {
                 crearZooAmigo();
                 break;
             case "3":
-                //editarZooAmigo();
+                //editarProfesional();
                 break;
             case "4":
-                //eliminarZooAmigo();
+                //eliminarProfesional();
                 break;
         }
     }
