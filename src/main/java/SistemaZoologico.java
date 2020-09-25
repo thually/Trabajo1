@@ -5,6 +5,7 @@ import java.util.*;
 import java.io.*;
 
 public class SistemaZoologico {
+
     public static Usuario usuarioActual = null;
     public static Scanner input = new Scanner(System.in);
     public static ArrayList<Usuario> usuarios = new ArrayList<>();
@@ -323,30 +324,27 @@ public class SistemaZoologico {
             return;
         }
 
+        input.nextLine();
         System.out.println("NIT: "+ zoologico.nit);
         String nuevoNIT = input.nextLine();
-        if (!nuevoNIT.equals("")){
-            zoologico.nit = nuevoNIT;
-        }
-        input.nextLine();
+        if (nuevoNIT.isEmpty()){}
+        else zoologico.nit = nuevoNIT;
+
         System.out.println("Nombre: "+ zoologico.nombre);
         String nuevoNombre = input.nextLine();
-        if (!nuevoNombre.equals("")){
-            zoologico.nombre = nuevoNombre;
-        }
-        input.nextLine();
+        if (nuevoNombre.isEmpty()){}
+        else zoologico.nombre = nuevoNombre;
+
         System.out.println("Siglas: "+ zoologico.siglas);
         String nuevoSiglas = input.nextLine();
-        if (!nuevoSiglas.equals("")){
-            zoologico.siglas = nuevoSiglas;
-        }
-        input.nextLine();
-        System.out.println("Ciudad: "+ zoologico.siglas);
+        if (nuevoSiglas.isEmpty()){}
+        else zoologico.siglas = nuevoSiglas;
+
+        System.out.println("Ciudad: "+ zoologico.ciudad);
         String nuevoCiudad = input.nextLine();
-        if (!nuevoCiudad.equals("")){
-            zoologico.ciudad = nuevoCiudad;
-        }
-        input.nextLine();
+        if (nuevoCiudad.isEmpty()){}
+        else zoologico.ciudad = nuevoCiudad;
+
 
         System.out.println("------------------------------------------");
     }
