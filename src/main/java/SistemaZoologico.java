@@ -1,4 +1,6 @@
 import org.json.simple.*;
+import org.json.simple.parser.*;
+
 import java.util.*;
 import java.io.*;
 
@@ -10,7 +12,7 @@ public class SistemaZoologico {
     //Todas las listas del resto de clases.
 
     public static void main(String[] args) {
-        cargarUsuario();
+        cargarUsuario(); //Llama a metodo para cargar todos los usuarios registrados desde src/database/usuarios.json
         label: while (true) {
             System.out.println("----------------------------------");
             System.out.println("Este es el sistema de Zoologicos. \nPor favor, selecione alguna de las siguientes opciones: ");
@@ -37,7 +39,32 @@ public class SistemaZoologico {
         //Menu principal
     }
 
-    public static void cargarUsuario(){}
+    public static void cargarUsuario(){
+        File newFile = new File("src/database/usuarios.json");
+        if (newFile.length() == 0) {
+            System.out.println("MENSAJE: aún no hay ningún usuario registrado\n"); //Revisa si el archico usuarios.json esta vacio
+            return;
+        }
+
+        JSONParser jsonParser = new JSONParser();
+
+        try (FileReader reader = new FileReader("src/database/usuarios.json")) {
+            Object obj = jsonParser.parse(reader);
+
+            JSONArray usuariosJava = (JSONArray) obj; // lee el JSONArray del archivo
+            usuariosJava.forEach(usu -> parseUsuarioObj( (JSONObject) usu)); //por cada usuarioJSON del JSONArray, lo comvierte a JAVAusuario y lo agrega a la lista de usuarios
+
+
+
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void parseUsuarioObj( JSONObject jsonObject){
+        Usuario nuevoUsu = new Usuario(jsonObject);
+        usuarios.add(nuevoUsu);
+    }
 
     public static void ingresar(){
         label: while (true){
@@ -47,7 +74,7 @@ public class SistemaZoologico {
             System.out.println("Por favor ingrese su contrasenna:");
             String contrasenna = input.next();
 
-            for (Usuario usuario : usuarios) {
+            for (Usuario usuario : usuarios) { //Evalua si el documento o correo ingresados coincide con la contrasenna
                 if (usuario.Documento.equals(id) || usuario.Correo.equals(id)){
                     if (usuario.Contrasenna.equals(contrasenna)){
                         usuarioActual = usuario;
@@ -80,22 +107,24 @@ public class SistemaZoologico {
         String contra = input.next();
 
         for (Usuario usuario : usuarios) {
-            if (usuario.Documento.equals(documento) || usuario.Correo.equals(correo)){
+            if (usuario.Documento.equals(documento) || usuario.Correo.equals(correo)){ //Evalua si ya existe un usuario registrado con el documento o correo ingresados
                 System.out.println("\nERROR: ya existe un usuario con este documento o correo");
                 return;
             }
         }
 
         Usuario nuevoUsuario = new Usuario(documento, nombre, apellido, correo, contra);
-        usuarios.add(nuevoUsuario);
+        usuarios.add(nuevoUsuario); //adiciona el nuevo usuario a la lista de usuarios
+        System.out.println("\nNuevo registro realizado exitosamente.");
 
-        JSONArray usuariosJSON = new JSONArray();
+
+        JSONArray usuariosJSON = new JSONArray(); //Crea un JSONArray y usando el metodo para pasar de usuarioJAVA a usuario JSON los adiciona a un dicho array
         for (Usuario usuario : usuarios) {
             usuariosJSON.add(usuario.toJSONObj());
         }
         try (FileWriter file = new FileWriter("src/database/usuarios.json")) {
 
-            file.write(usuariosJSON.toJSONString());
+            file.write(usuariosJSON.toJSONString()); //guarda el JSONArray con los JSONusuarios en la carpeta del pc
             file.flush();
 
         } catch (IOException e) {
@@ -103,5 +132,4 @@ public class SistemaZoologico {
         }
 
     }
-
 }
