@@ -8,8 +8,14 @@ public class SistemaZoologico {
     public static Usuario usuarioActual = null;
     public static Scanner input = new Scanner(System.in);
     public static ArrayList<Usuario> usuarios = new ArrayList<>();
-    //...
-    //Todas las listas del resto de clases.
+
+    public static ArrayList<Animal> animales = new ArrayList<>();
+    public static ArrayList<Bioma> biomas = new ArrayList<>();
+    public static ArrayList<Habitat> habitats = new ArrayList<>();
+    public static ArrayList<Profesional> profenales = new ArrayList<>();
+    public static ArrayList<Tecnico> tecnicos = new ArrayList<>();
+    public static ArrayList<ZooAmigo> zooAmigos = new ArrayList<>();
+    public static ArrayList<Zoologico> zoologicos = new ArrayList<>();
 
     public static void main(String[] args) {
         cargarUsuario(); //Llama a metodo para cargar todos los usuarios registrados desde src/database/usuarios.json
@@ -32,11 +38,43 @@ public class SistemaZoologico {
                     registrar(); //Una vez se registre, se vuelve a preguntar si desea ingresar.
                     break;
             }
-            System.out.println("----------------------------------");
+            System.out.println("----------------------------------\n");
         }
 
         //...continua el programa.
         //Menu principal
+
+        System.out.println("\nBienvenido, "+ usuarioActual.Nombre+ "...");
+        label: while (true) {
+            System.out.println("----------------------------------");
+            System.out.println("Este es el Menu Principal. \nPor favor, selecione alguna de las siguientes opciones: \n");
+            System.out.println("1. Administrar.");
+            System.out.println("2. Busqueda.");
+            System.out.println("3. Diagnostico de inconsistencias.");
+            System.out.println("4. Guardar.");
+            System.out.println("0. Salir y cancelar.");
+            String opcion = input.next();
+            System.out.println();
+            switch (opcion){
+                case "1":
+                    //administra();
+                    break;
+                case "2":
+                    //busqueda();
+                    break;
+                case "3":
+                    //diagnostico();
+                    break;
+                case "4":
+                    //guardar();
+                    break;
+                case "0":
+                    //salircancelar();
+                    break label;
+            }
+            System.out.println("----------------------------------");
+        }
+
     }
 
     public static void cargarUsuario(){
@@ -52,7 +90,7 @@ public class SistemaZoologico {
             Object obj = jsonParser.parse(reader);
 
             JSONArray usuariosJava = (JSONArray) obj; // lee el JSONArray del archivo
-            usuariosJava.forEach(usu -> parseUsuarioObj( (JSONObject) usu)); //por cada usuarioJSON del JSONArray, lo comvierte a JAVAusuario y lo agrega a la lista de usuarios
+            usuariosJava.forEach(usu -> parseUsuarioObj( (JSONObject) usu)); //por cada usuarioJSON del JSONArray, lo convierte a JAVAusuario y lo agrega a la lista de usuarios
 
 
 
