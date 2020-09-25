@@ -18,6 +18,7 @@ public class SistemaZoologico {
     public static ArrayList<Zoologico> zoologicos = new ArrayList<>();
 
     public static void main(String[] args) {
+
         cargarUsuario(); //Llama a metodo para cargar todos los usuarios registrados desde src/database/usuarios.json
         label: while (true) {
             System.out.println("----------------------------------");
@@ -106,7 +107,7 @@ public class SistemaZoologico {
 
     public static void ingresar(){
         label: while (true){
-            System.out.println("-------------------------");
+            System.out.println("-------------------------------------");
             System.out.println("Por favor ingrese documento o correo:");
             String id = input.next();
             System.out.println("Por favor ingrese su contrasenna:");
@@ -172,7 +173,7 @@ public class SistemaZoologico {
 
     public static void administrar(){
         label: while (true) {
-            System.out.println("----------------------------------");
+            System.out.println("--------------------------------------------------");
             System.out.println("Por favor, selecione la clase que desea administar: \n");
             System.out.println("1. Zoologicos.");
             System.out.println("2. Bioma.");
@@ -252,7 +253,7 @@ public class SistemaZoologico {
                 crearZoologico();
                 break;
             case "3":
-                //editarZoologico();
+                editarZoologico();
                 break;
             case "4":
                 //eliminarZoologico();
@@ -286,6 +287,68 @@ public class SistemaZoologico {
         zoologicos.add(nuevoZoo);
         System.out.println("\nMENSAJE: Nuevo zoologico registrado con exito.\n" +
                 "IMPORTANTE: Si desea fijar las relaciones del nuevo zoologico, debe ingresar a la opcion 'Editar' del menu anterior.");
+    }
+
+    public static void editarZoologico(){
+
+        System.out.println("------------------------------------------");
+        System.out.println("Estas son las claves unicas del zoologico: \n");
+        System.out.println("1. Seleccionar por NIT");
+        System.out.println("2. Seleccionar por Siglas\n");
+        String opcion = input.next();
+        if (!opcion.equals("1") && !opcion.equals("2")){
+            System.out.println("Opcion invalidad");
+            return;
+        }
+        Zoologico zoologico = null;
+        if (opcion.equals("1")){
+            System.out.print("Ingrese NIT: ");
+            String opcion2 = input.next();
+            for (Zoologico zoo : zoologicos){
+                if (zoo.nit.replace(".", "").equals(opcion2.replace(".", ""))){
+                    zoologico = zoo;
+                }
+            }
+        } else {
+            System.out.print("Ingrese siglas: ");
+            String opcion2 = input.next();
+            for (Zoologico zoo : zoologicos){
+                if (zoo.siglas.equalsIgnoreCase(opcion2)){
+                    zoologico = zoo;
+                }
+            }
+        }
+        if (zoologico == null){
+            System.out.println("No se encontro zoologico con estas especificaciones.");
+            return;
+        }
+
+        System.out.println("NIT: "+ zoologico.nit);
+        String nuevoNIT = input.nextLine();
+        if (!nuevoNIT.equals("")){
+            zoologico.nit = nuevoNIT;
+        }
+        input.nextLine();
+        System.out.println("Nombre: "+ zoologico.nombre);
+        String nuevoNombre = input.nextLine();
+        if (!nuevoNombre.equals("")){
+            zoologico.nombre = nuevoNombre;
+        }
+        input.nextLine();
+        System.out.println("Siglas: "+ zoologico.siglas);
+        String nuevoSiglas = input.nextLine();
+        if (!nuevoSiglas.equals("")){
+            zoologico.siglas = nuevoSiglas;
+        }
+        input.nextLine();
+        System.out.println("Ciudad: "+ zoologico.siglas);
+        String nuevoCiudad = input.nextLine();
+        if (!nuevoCiudad.equals("")){
+            zoologico.ciudad = nuevoCiudad;
+        }
+        input.nextLine();
+
+        System.out.println("------------------------------------------");
     }
 
     public static void CRUDbioma(int opcion){
