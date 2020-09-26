@@ -16,6 +16,21 @@ public class Bioma {
         this.tipo = tipo;
     }
 
+    public void setZoo(Zoologico nuevoZoo, Bioma bioma){
+        this.zoologico = nuevoZoo;
+        nuevoZoo.biomas.add(bioma);
+    }
+
+    public void setProfesional(Profesional nuevoPro, Bioma bioma){
+        profesionales.add(nuevoPro);
+        nuevoPro.biomas.add(bioma);
+    }
+
+    public void setHabitat(Habitat habitat, Bioma bioma){
+        bioma.habitats.add(habitat);
+        habitat.bioma = bioma;
+    }
+
     public String getProfesionalesCedula(){
         ArrayList<Integer> cedulaProfecional = new ArrayList<>();
         for (Profesional profesional : profesionales) {

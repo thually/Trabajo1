@@ -7,7 +7,7 @@ public class Zoologico {
     String ciudad;
     ArrayList<Bioma> biomas = new ArrayList<>();
     ArrayList<Profesional> profesionales = new ArrayList<>();
-    ArrayList<ZooAmigo> zooAmigo = new ArrayList<>();
+    ArrayList<ZooAmigo> zooAmigos = new ArrayList<>();
 
 
     public Zoologico(String nit, String nombre, String siglas, String ciudad) {
@@ -25,6 +25,11 @@ public class Zoologico {
     public void setProfesional(Profesional nuevoPro, Zoologico zoologico){
         profesionales.add(nuevoPro);
         nuevoPro.zoologico = zoologico;
+    }
+
+    public void setZooAmigo(ZooAmigo nuevoZA, Zoologico zoologico){
+        zooAmigos.add(nuevoZA);
+        nuevoZA.zoologico = zoologico;
     }
 
     public String getBiomasId(){
@@ -45,7 +50,7 @@ public class Zoologico {
 
     public String getZooAmigoCedula(){
         ArrayList<Integer> cedulaZooAmigo = new ArrayList<>();
-        for (ZooAmigo zooAmigo : zooAmigo) {
+        for (ZooAmigo zooAmigo : zooAmigos) {
             cedulaZooAmigo.add(zooAmigo.cedula);
         }
         return cedulaZooAmigo.toString();
