@@ -686,7 +686,7 @@ public class SistemaZoologico {
                         } else break;
                     }
                     Animal.setHabitats(habitatNuevo, animal);
-                    System.out.println("\n MENSAJE: Zoologico y bioma relacionados correctamente");
+                    System.out.println("\n MENSAJE: Animal y habitat se han relacionado correctamente");
                     break;
                 case 2:
                     //relaciones profesionales;

@@ -13,8 +13,8 @@ public class Animal {
         this.alimentacion = alimentacion;
     }
     public static void setHabitats(Habitat nuevoHabitat, Animal animal){
-        animal.habitat = nuevoHabitat;
         nuevoHabitat.animales.add(animal);
+        animal.habitat = nuevoHabitat;
     }
 
     @Override
