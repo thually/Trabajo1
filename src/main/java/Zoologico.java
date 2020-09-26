@@ -22,6 +22,11 @@ public class Zoologico {
         nuevoBio.zoologico = zoologico;
     }
 
+    public void setProfesional(Profesional nuevoPro, Zoologico zoologico){
+        profesionales.add(nuevoPro);
+        nuevoPro.zoologico = zoologico;
+    }
+
     public String getBiomasId(){
         ArrayList<Integer> idBiomas = new ArrayList<>();
         for (Bioma bioma : biomas) {

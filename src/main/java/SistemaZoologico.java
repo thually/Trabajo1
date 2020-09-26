@@ -409,9 +409,34 @@ public class SistemaZoologico {
                     zoologico.setBiomas(biomaNuevo, zoologico);
                     System.out.println("\n MENSAJE: Zoologico y bioma relacionados correctamente");
                     break;
+
                 case 2:
-                    //relaciones profesionales;
+                    if (profesionales.isEmpty()){
+                        System.out.println("Aun no hay profesionales registrados");
+                        return;
+                    }
+                    System.out.println("\nEstos son los profesionales disponibles:\n");
+                    for (Profesional profesional : profesionales) {
+                        System.out.println(profesional);
+                    }
+                    Profesional proNuevo = null;
+                    while (true){
+                        System.out.print("\nIngrese la cedula del profesional con el que quiere asociar este zoologico [Solo el numero, sin expacios ni puntos]: ");
+                        int cedula = input.nextInt();
+                        for (Profesional profesional : profesionales){
+                            if (profesional.cedula == cedula) {
+                                proNuevo = profesional;
+                                break;
+                            }
+                        }
+                        if (proNuevo == null){
+                            System.out.println("\nLa cedula no coincide con ningun profesionak");
+                        } else break;
+                    }
+                    zoologico.setProfesional(proNuevo, zoologico);
+                    System.out.println("\n MENSAJE: Zoologico y profesional relacionados correctamente");
                     break;
+
                 case 3:
                     //relaciones zooamigos;
                     break;
