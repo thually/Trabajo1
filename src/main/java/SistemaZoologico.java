@@ -9,10 +9,9 @@ public class SistemaZoologico {
     public static Usuario usuarioActual = null;
     public static Scanner input = new Scanner(System.in);
     public static ArrayList<Usuario> usuarios = new ArrayList<>();
-
+    public static ArrayList<Habitat> habitats = new ArrayList<>();
     public static ArrayList<Animal> animales = new ArrayList<>();
     public static ArrayList<Bioma> biomas = new ArrayList<>();
-    public static ArrayList<Habitat> habitats = new ArrayList<>();
     public static ArrayList<Profesional> profesionales = new ArrayList<>();
     public static ArrayList<Tecnico> tecnicos = new ArrayList<>();
     public static ArrayList<ZooAmigo> zooAmigos = new ArrayList<>();
@@ -538,10 +537,10 @@ public class SistemaZoologico {
                 crearAnimal();
                 break;
             case "3":
-                //editarAnimal();
+                editarAnimal();
                 break;
             case "4":
-                //eliminarAnimal();
+                eliminarAnimal();
                 break;
         }
     }
@@ -554,12 +553,16 @@ public class SistemaZoologico {
                 "     )   /\\ \\._./ /\\   (\n" +
                 "      )_/ /|\\   /|\\ \\_(");
         System.out.println();
-        System.out.println("ERROR: Ya existe un animal registrado con este ID.");
+        System.out.println("Ingrese el ID: ");
         int id = input.nextInt();
+        if (id<0){
+            System.out.println("ID Invalido");
+            return;
+        }
         for (Animal animal :
                 animales) {
             if (animal.id==id){
-                System.out.println("El ID ya existe en el sistema");
+                System.out.println("ERROR: Ya existe un animal registrado con este ID.");
                 return;
             }
         }
@@ -582,6 +585,147 @@ public class SistemaZoologico {
         System.out.println("\nMENSAJE: Nuevo animal registrado con exito.\n" +
                 "IMPORTANTE: Si desea fijar las relaciones del nuevo animal, debe ingresar a la opcion 'Editar' del menu anterior.");
     }
+    public static void editarAnimal() {
+        Animal animal = null;
+
+        while (true) {
+            System.out.println("------------------------------------------");
+            System.out.println("Ingrese el ID del animal que desea editar: ");
+            int id = input.nextInt();
+            if (id < 0) {
+                System.out.println("Opcion invalida");
+                return;
+            }
+            for (Animal animalT :
+                    animales) {
+                if (animalT.id == id) {
+                    animal = animalT;
+                }
+            }
+            if (animal == null) {
+                System.out.println("No se encontro un animal con el ID ingresado");
+            } else break;
+        }
+        input.nextLine();
+        System.out.println("\nID: " + animal.id);
+        String nuevoID = input.nextLine();
+
+        System.out.println("Nombre: " + animal.especie);
+        String nuevoEspecie = input.nextLine();
+
+        System.out.println("Nivel de agresividad: " + animal.nivelAgresividad);
+        String nuevonivelAgresividad = input.nextLine();
+
+        System.out.println("Alimentacion: " + animal.alimentacion);
+        String nuevoAlimentacion = input.nextLine();
+
+        while (true) {
+            System.out.print("Desea guardar?:[Y/N] ");
+            String option = input.next();
+            if (option.equalsIgnoreCase("Y") || option.equalsIgnoreCase("N")) {
+                switch (option.toUpperCase()) {
+                    case "Y":
+                        if (nuevoID.isEmpty()) {
+                        } else animal.id = Integer.parseInt(nuevoID);
+                        if (nuevoEspecie.isEmpty()) {
+                        } else animal.especie = nuevoEspecie;
+                        if (nuevonivelAgresividad.isEmpty()) {
+                        } else animal.nivelAgresividad = Integer.parseInt(nuevonivelAgresividad);
+                        if (nuevoAlimentacion.isEmpty()) {
+                        } else animal.alimentacion = nuevoAlimentacion;
+                    case "N":
+                        break;
+                }
+                break;
+            } else {
+                System.out.println("Respuesta invalida");
+            }
+        }
+        //Continua con editar relaciones...
+        while (true) {
+            System.out.print("\nDesea editar las relaciones de este animal? [Y/N] : ");
+            String option = input.next();
+            if (option.equalsIgnoreCase("Y") || option.equalsIgnoreCase("N")) {
+                if ("Y".equals(option.toUpperCase())) {
+                    break;
+                } else return;
+            }
+            System.out.println("Opcion invalida");
+        }
+
+        label: while (true) {
+            System.out.println("\nPor favor, selecione la relacion que desea editar: \n");
+            System.out.println("1. Animal - Habitat");
+            System.out.println("2. Animal - ZooAmigo.");
+            System.out.println("0. Regresar a Menu Administrar.");
+
+            int opcion = input.nextInt();
+            System.out.println();
+            switch (opcion){
+                case 1:
+                    if (habitats.isEmpty()){
+                        System.out.println("Aun no hay habitat registrados");
+                        return;
+                    }
+                    System.out.println("\nEstos son los habitats disponibles:\n");
+                    for (Habitat habitat : habitats) {
+                        System.out.println(habitat);
+                    }
+                    Habitat habitatNuevo = null;
+                    while (true){
+                        System.out.print("\nIngrese el ID del habitat con el que quiere asociar este zoologico: ");
+                        int id = input.nextInt();
+                        for (Habitat habitat : habitats){
+                            if (habitat.id == id){
+                                habitatNuevo = habitat;
+                                break;
+                            }
+                        }
+                        if (habitatNuevo == null){
+                            System.out.println("\nID no coincide con ningun habitat");
+                        } else break;
+                    }
+                    Animal.setHabitats(habitatNuevo, animal);
+                    System.out.println("\n MENSAJE: Zoologico y bioma relacionados correctamente");
+                    break;
+                case 2:
+                    //relaciones profesionales;
+                    break;
+                case 0:
+                    break label;
+            }
+        }
+
+        System.out.println("------------------------------------------");
+
+
+        System.out.println("------------------------------------------");
+
+    }
+
+    public static void eliminarAnimal() {
+        System.out.println("Ingrese el ID del animal que desea eliminar: ");
+        int id = input.nextInt();
+        if (id<0){
+            System.out.println("ID invalido");
+            return;
+        }
+        Boolean eliminar = animales.removeIf(animal -> animal.id == id); // Elimina el animal por ID, devuelve True o False
+        if (eliminar==false){
+            System.out.println("ERROR: El animal no se encuentra registrado");
+            return;
+        }
+        for (Habitat habitat :
+                habitats) {
+            habitat.animales.removeIf(animal -> animal.id == id); //Elimando la relación con Habitat
+        }
+        for (ZooAmigo zooAmigo :
+                zooAmigos) {
+            zooAmigo.animales.removeIf(animal -> animal.id == id); //Elimando la relación con ZooAmigo
+        }
+        System.out.println("El animal se ha eliminado correctamente");
+    }
+
 
     public static void CRUDtecnico(int opcion){
         String accion = CRUDclases(opcion);

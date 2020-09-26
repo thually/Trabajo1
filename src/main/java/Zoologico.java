@@ -9,6 +9,7 @@ public class Zoologico {
     ArrayList<Profesional> profesionales = new ArrayList<>();
     ArrayList<ZooAmigo> zooAmigo = new ArrayList<>();
 
+
     public Zoologico(String nit, String nombre, String siglas, String ciudad) {
         this.nit = nit;
         this.nombre = nombre;

@@ -6,7 +6,6 @@ public class Tecnico {
     String horaInicio;
     String horaSalida;
     ArrayList<Habitat> habitats = new ArrayList<>();
-    Zoologico zoologico;
 
     public Tecnico(int cedula, String area, String horaInicio, String horaSalida) {
         this.cedula = cedula;
@@ -31,7 +30,6 @@ public class Tecnico {
                 ", horaInicio='" + horaInicio + '\'' +
                 ", horaSalida='" + horaSalida + '\'' +
                 ", ID Habitats asociados= " + getHabitatsId() +
-                ", NIT del Zoologico= " + zoologico.nit +
                 '}';
     }
 }

@@ -31,7 +31,7 @@ public class Profesional {
                 ", horaInicio='" + horaInicio + '\'' +
                 ", horaSalida='" + horaSalida + '\'' +
                 ", ID de biomas asociados= " + getBiomaID() +
-                ", ID del zoologico asociado= " + zoologico.nit +
+                ", ID del zoologico asociado= " + ((zoologico == null) ? "N/A" : zoologico.nit) +
                 '}';
     }
 }

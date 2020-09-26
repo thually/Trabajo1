@@ -12,6 +12,10 @@ public class Animal {
         this.nivelAgresividad = nivelAgresividad;
         this.alimentacion = alimentacion;
     }
+    public static void setHabitats(Habitat nuevoHabitat, Animal animal){
+        animal.habitat = nuevoHabitat;
+        nuevoHabitat.animales.add(animal);
+    }
 
     @Override
     public String toString() {
@@ -20,8 +24,9 @@ public class Animal {
                 ", especie='" + especie + '\'' +
                 ", nivelAgresividad=" + nivelAgresividad +
                 ", alimentacion='" + alimentacion + '\'' +
-                ", ID del habitat= " + habitat.id +
-                ", Cedula del ZooAmigo= " + zooAmigo.cedula +
+                ", ID del habitat= " + ((habitat == null) ? "N/A" : habitat.id) +
+                ", Cedula del ZooAmigo= " + ((zooAmigo == null) ? "N/A" : zooAmigo.cedula) +
                 '}';
     }
+
 }
