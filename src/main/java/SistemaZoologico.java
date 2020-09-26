@@ -439,6 +439,11 @@ public class SistemaZoologico {
                             System.out.println("\nLa cedula no coincide con ningun profesionak");
                         } else break;
                     }
+
+                    for (Zoologico zoo : zoologicos) {
+                        Profesional finalProNuevo = proNuevo;
+                        zoo.profesionales.removeIf(pro -> (pro.cedula == finalProNuevo.cedula));
+                    }
                     zoologico.setProfesional(proNuevo, zoologico);
                     System.out.println("\nMENSAJE: Zoologico y profesional relacionados correctamente");
                     break;
@@ -465,6 +470,11 @@ public class SistemaZoologico {
                         if (nuevoZooAmigo == null){
                             System.out.println("\nLa cedula no coincide con ningun ZooAmigo");
                         } else break;
+                    }
+
+                    for (Zoologico zoo : zoologicos) {
+                        ZooAmigo finalZANuevo = nuevoZooAmigo;
+                        zoo.zooAmigos.removeIf(za -> (za.cedula == finalZANuevo.cedula));
                     }
                     zoologico.setZooAmigo(nuevoZooAmigo, zoologico);
                     System.out.println("\nMENSAJE: Zoologico y zooAmigo relacionados correctamente");
@@ -628,6 +638,11 @@ public class SistemaZoologico {
                             System.out.println("\nNIT no coincide con ningun zoologico");
                         } else break;
                     }
+
+                    for (Zoologico zoo : zoologicos) {
+                        Bioma finalBiomaNuevo = bioma;
+                        zoo.biomas.removeIf(bio -> (bio.id == finalBiomaNuevo.id));
+                    }
                     bioma.setZoo(ZooNuevo, bioma);
                     System.out.println("\nMENSAJE: Bioma y zoologico relacionados correctamente");
                     break;
@@ -655,6 +670,12 @@ public class SistemaZoologico {
                             System.out.println("\nLa cedula no coincide con ningun profesionak");
                         } else break;
                     }
+
+                    Profesional finalProNuevo = proNuevo;
+                    bioma.profesionales.removeIf(pro -> (pro.cedula == finalProNuevo.cedula));
+                    Bioma finalBioma = bioma;
+                    proNuevo.biomas.removeIf(bio -> (bio.id == finalBioma.id));
+
                     bioma.setProfesional(proNuevo, bioma);
                     System.out.println("\nMENSAJE: Bioma y profesional relacionados correctamente");
                     break;
