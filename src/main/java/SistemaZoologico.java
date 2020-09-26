@@ -703,6 +703,11 @@ public class SistemaZoologico {
                             System.out.println("\nEl ID no coincide con ningun habitat");
                         } else break;
                     }
+
+                    for (Bioma bio : biomas) {
+                        Habitat finalHabNuevo = nuevoHabitat;
+                        bio.habitats.removeIf(hab -> (hab.id == finalHabNuevo.id));
+                    }
                     bioma.setHabitat(nuevoHabitat, bioma);
                     System.out.println("\nMENSAJE: Bioma y habitat relacionados correctamente");
                     break;
