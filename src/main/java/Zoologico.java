@@ -16,6 +16,11 @@ public class Zoologico {
         this.ciudad = ciudad;
     }
 
+    public void setBiomas(Bioma nuevoBio, Zoologico zoologico){
+        biomas.add(nuevoBio);
+        nuevoBio.zoologico = zoologico;
+    }
+
     public String getBiomasId(){
         ArrayList<Integer> idBiomas = new ArrayList<>();
         for (Bioma bioma : biomas) {

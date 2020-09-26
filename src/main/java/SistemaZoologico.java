@@ -359,11 +359,65 @@ public class SistemaZoologico {
                 break;
             }
             else {
-                System.out.println("Respuesta invalida");
+                System.out.println("Opcion invalida\n");
             }
         }
         //Continua con editar relaciones...
+        while (true) {
+            System.out.print("\nDesea editar las relaciones de este zoologico? [Y/N] : ");
+            String option = input.next();
+            if (option.equalsIgnoreCase("Y") || option.equalsIgnoreCase("N")) {
+                if ("Y".equals(option.toUpperCase())) {
+                    break;
+                } else return;
+            }
+            System.out.println("Opcion invalida");
+        }
+        label: while (true) {
+            System.out.println("\nPor favor, selecione la relacion que desea editar: \n");
+            System.out.println("1. Zoologico - Biomas.");
+            System.out.println("2. Zoologico - Profesionales.");
+            System.out.println("3. Zoologico - ZooAmigo.");
+            System.out.println("0. Regresar a Menu Administrar.");
 
+            int opcion = input.nextInt();
+            System.out.println();
+            switch (opcion){
+                case 1:
+                    if (biomas.isEmpty()){
+                        System.out.println("Aun no hay biomas registrados");
+                        return;
+                    }
+                    System.out.println("\nEstos son los biomas disponibles:\n");
+                    for (Bioma bioma : biomas) {
+                        System.out.println(bioma);
+                    }
+                    Bioma biomaNuevo = null;
+                    while (true){
+                        System.out.print("\nIngrese el ID del bioma con el que quiere relacionar este zoologico: ");
+                        int id = input.nextInt();
+                        for (Bioma bioma : biomas){
+                            if (bioma.id == id){
+                                biomaNuevo = bioma;
+                                break;
+                            }
+                        }
+                        if (biomaNuevo == null){
+                            System.out.println("\nID no coincide con ningun bioma");
+                        } else break;
+                    }
+                    zoologico.setBiomas(biomaNuevo, zoologico);
+                    break;
+                case 2:
+                    //relaciones profesionales;
+                    break;
+                case 3:
+                    //relaciones zooamigos;
+                    break;
+                case 0:
+                    break label;
+            }
+        }
 
         System.out.println("------------------------------------------");
     }
