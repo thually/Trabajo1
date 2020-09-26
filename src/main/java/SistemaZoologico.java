@@ -373,6 +373,7 @@ public class SistemaZoologico {
             }
             System.out.println("Opcion invalida");
         }
+
         label: while (true) {
             System.out.println("\nPor favor, selecione la relacion que desea editar: \n");
             System.out.println("1. Zoologico - Biomas.");
@@ -394,7 +395,7 @@ public class SistemaZoologico {
                     }
                     Bioma biomaNuevo = null;
                     while (true){
-                        System.out.print("\nIngrese el ID del bioma con el que quiere relacionar este zoologico: ");
+                        System.out.print("\nIngrese el ID del bioma con el que quiere asociar este zoologico: ");
                         int id = input.nextInt();
                         for (Bioma bioma : biomas){
                             if (bioma.id == id){
@@ -407,6 +408,7 @@ public class SistemaZoologico {
                         } else break;
                     }
                     zoologico.setBiomas(biomaNuevo, zoologico);
+                    System.out.println("\n MENSAJE: Zoologico y bioma relacionados correctamente");
                     break;
                 case 2:
                     //relaciones profesionales;
