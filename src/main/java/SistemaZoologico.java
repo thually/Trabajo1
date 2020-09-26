@@ -761,6 +761,10 @@ public class SistemaZoologico {
                 "IMPORTANTE: Si desea fijar las relaciones del nuevo habitat, debe ingresar a la opcion 'Editar' del menu anterior.");
     }
 
+    ////////////////////////////////////////////////
+    ///////////////////////////////////////////////
+    ///////////////////////////////////////////////
+
     public static void CRUDanimal(int opcion){
         String accion = CRUDclases(opcion);
         if (accion.equals("1") || accion.equals("3") || accion.equals("4")) {
@@ -915,7 +919,7 @@ public class SistemaZoologico {
                     }
                     Habitat habitatNuevo = null;
                     while (true){
-                        System.out.print("\nIngrese el ID del habitat con el que quiere asociar este zoologico: ");
+                        System.out.print("\nIngrese el ID del habitat con el que quiere asociar este animal: ");
                         int id = input.nextInt();
                         for (Habitat habitat : habitats){
                             if (habitat.id == id){
@@ -932,7 +936,31 @@ public class SistemaZoologico {
 
                     break;
                 case 2:
-                    //relaciones ZooAmigo
+                    if (zooAmigos.isEmpty()){
+                        System.out.println("Aun no hay zooAmigos registrados");
+                        return;
+                    }
+                    System.out.println("\nEstos son los ZooAmigos disponibles:\n");
+                    for (ZooAmigo zooAmigo : zooAmigos) {
+                        System.out.println(zooAmigo);
+                    }
+                    ZooAmigo zooAmigoNuevo = null;
+                    while (true){
+                        System.out.print("\nIngrese la cedula del zoooAmigo con el que quiere asociar este animal: ");
+                        int cedula = input.nextInt();
+                        for (ZooAmigo zooAmigo : zooAmigos){
+                            if (zooAmigo.cedula == cedula){
+                                zooAmigoNuevo = zooAmigo;
+                                break;
+                            }
+                        }
+                        if (zooAmigoNuevo == null){
+                            System.out.println("\nID no coincide con ningun habitat");
+                        } else break;
+                    }
+                    Animal.setZooAmigo(zooAmigoNuevo, animal);
+                    System.out.println("\n MENSAJE: Animal y ZooAmigo se han relacionado correctamente");
+
                     break;
                 case 0:
                     break label;
@@ -945,7 +973,6 @@ public class SistemaZoologico {
         System.out.println("------------------------------------------");
 
     }
-
     public static void eliminarAnimal() {
         System.out.println("Ingrese el ID del animal que desea eliminar: ");
         int id = input.nextInt();
@@ -988,14 +1015,13 @@ public class SistemaZoologico {
                 crearTecnico();
                 break;
             case "3":
-                //editarTecnico();
+                editarTecnico();
                 break;
             case "4":
-                //eliminarTecnico();
+                eliminarTecnico();
                 break;
         }
     }
-
     public static void crearTecnico(){
         System.out.println("Ingrese la cedula del tecnico: ");
         int cedula = input.nextInt();
@@ -1021,6 +1047,138 @@ public class SistemaZoologico {
         System.out.println("\nMENSAJE: Nuevo tecnico registrado con exito.\n" +
                 "IMPORTANTE: Si desea fijar las relaciones del nuevo tecnico, debe ingresar a la opcion 'Editar' del menu anterior.");
     }
+    public static void  editarTecnico(){
+        Tecnico tecnico = null;
+
+        while (true) {
+            System.out.println("------------------------------------------");
+            System.out.println("Ingrese el ID del animal que desea editar: ");
+            int cedula = input.nextInt();
+            if (cedula < 0) {
+                System.out.println("Opcion invalida");
+                return;
+            }
+            for (Tecnico tecnico1 :
+                    tecnicos) {
+                if (tecnico1.cedula == cedula) {
+                    tecnico = tecnico1;
+                }
+            }
+            if (tecnico == null) {
+                System.out.println("No se encontro un animal con el ID ingresado");
+            } else break;
+        }
+        input.nextLine();
+        System.out.println("\nCedula: " + tecnico.cedula);
+        String nuevoCedula = input.nextLine();
+
+        System.out.println("Area : " + tecnico.area);
+        String nuevoArea = input.nextLine();
+
+        System.out.println("Hora Inicio: " + tecnico.horaInicio);
+        String nuevoHoraInicio = input.nextLine();
+
+        System.out.println("Hora Salida: " + tecnico.horaSalida);
+        String nuevoHoraSalida = input.nextLine();
+
+        while (true) {
+            System.out.print("Desea guardar?:[Y/N] ");
+            String option = input.next();
+            if (option.equalsIgnoreCase("Y") || option.equalsIgnoreCase("N")) {
+                switch (option.toUpperCase()) {
+                    case "Y":
+                        if (nuevoCedula.isEmpty()) {
+                        } else tecnico.cedula = Integer.parseInt(nuevoCedula);
+                        if (nuevoArea.isEmpty()) {
+                        } else tecnico.area = nuevoArea;
+                        if (nuevoHoraInicio.isEmpty()) {
+                        } else tecnico.horaInicio = nuevoHoraInicio;
+                        if (nuevoHoraSalida.isEmpty()) {
+                        } else tecnico.horaSalida = nuevoHoraSalida;
+                    case "N":
+                        break;
+                }
+                break;
+            } else {
+                System.out.println("Respuesta invalida");
+            }
+        }
+        //Continua con editar relaciones...
+        while (true) {
+            System.out.print("\nDesea editar las relaciones de este tecnico? [Y/N] : ");
+            String option = input.next();
+            if (option.equalsIgnoreCase("Y") || option.equalsIgnoreCase("N")) {
+                if ("Y".equals(option.toUpperCase())) {
+                    break;
+                } else return;
+            }
+            System.out.println("Opcion invalida");
+        }
+
+        label: while (true) {
+            System.out.println("\nPor favor, selecione la relacion que desea editar: \n");
+            System.out.println("1. Tecnico - Habitat");
+            System.out.println("0. Regresar a Menu Administrar.");
+
+            int opcion = input.nextInt();
+            System.out.println();
+            switch (opcion){
+                case 1:
+                    if (habitats.isEmpty()){
+                        System.out.println("Aun no hay habitat registrados");
+                        return;
+                    }
+                    System.out.println("\nEstos son los habitats disponibles:\n");
+                    for (Habitat habitat : habitats) {
+                        System.out.println(habitat);
+                    }
+                    Habitat habitatNuevo = null;
+                    while (true){
+                        System.out.print("\nIngrese el ID del habitat con el que quiere asociar este tecnico: ");
+                        int id = input.nextInt();
+                        for (Habitat habitat : habitats){
+                            if (habitat.id == id){
+                                habitatNuevo = habitat;
+                                break;
+                            }
+                        }
+                        if (habitatNuevo == null){
+                            System.out.println("\nID no coincide con ningun habitat");
+                        } else break;
+                    }
+                    Tecnico.setHabitats(habitatNuevo, tecnico);
+                    System.out.println("\n MENSAJE: Animal y habitat se han relacionado correctamente");
+
+                    break;
+                case 0:
+                    break label;
+            }
+        }
+
+        System.out.println("------------------------------------------");
+
+
+        System.out.println("------------------------------------------");
+    }
+    public static void eliminarTecnico(){
+        System.out.println("Ingrese la cedula del tecnico que desea eliminar: ");
+        int cedula = input.nextInt();
+        if (cedula<0){
+            System.out.println("Cedula invalida");
+            return;
+        }
+        boolean eliminar = tecnicos.removeIf(tecnico ->  tecnico.cedula== cedula); // Elimina el animal por ID, devuelve True o False
+        if (!eliminar){
+            System.out.println("ERROR: El Tecnico no se encuentra registrado");
+            return;
+        }
+        for (Habitat habitat :
+                habitats) {
+            habitat.tecnicos.removeIf(tecnico ->  tecnico.cedula== cedula); //Elimando la relación con Habitat
+        }
+        System.out.println("El tecnico se ha eliminado correctamente");
+    }
+
 
     public static void CRUDprofesional(int opcion){
         String accion = CRUDclases(opcion);
@@ -1040,14 +1198,13 @@ public class SistemaZoologico {
                 crearProfesional();
                 break;
             case "3":
-                //editarProfesional();
+                editarProfesional();
                 break;
             case "4":
-                //eliminarProfesional();
+                eliminarProfesional();
                 break;
         }
     }
-
     public static void crearProfesional(){
         System.out.println("Ingrese la cedula del profesional: ");
         int cedula = input.nextInt();
@@ -1073,6 +1230,143 @@ public class SistemaZoologico {
         System.out.println("\nMENSAJE: Nuevo profesional registrado con exito.\n" +
                 "IMPORTANTE: Si desea fijar las relaciones del nuevo profesional, debe ingresar a la opcion 'Editar' del menu anterior.");
     }
+    public static void editarProfesional(){
+        Profesional profesional = null;
+
+        while (true) {
+            System.out.println("------------------------------------------");
+            System.out.println("Ingrese la cedula del profesional que desea editar: ");
+            int cedula = input.nextInt();
+            if (cedula < 0) {
+                System.out.println("Opcion invalida");
+                return;
+            }
+            for (Profesional profesional1 :
+                    profesionales) {
+                if (profesional1.cedula == cedula) {
+                    profesional = profesional1;
+                }
+            }
+            if (profesional == null) {
+                System.out.println("No se encontro un animal con el ID ingresado");
+            } else break;
+        }
+        input.nextLine();
+        System.out.println("\nCedula: " + profesional.cedula);
+        String nuevoCedula = input.nextLine();
+
+        System.out.println("Area : " + profesional.area);
+        String nuevoArea = input.nextLine();
+
+        System.out.println("Hora Inicio: " + profesional.horaInicio);
+        String nuevoHoraInicio = input.nextLine();
+
+        System.out.println("Hora Salida: " + profesional.horaSalida);
+        String nuevoHoraSalida = input.nextLine();
+
+        while (true) {
+            System.out.print("Desea guardar?:[Y/N] ");
+            String option = input.next();
+            if (option.equalsIgnoreCase("Y") || option.equalsIgnoreCase("N")) {
+                switch (option.toUpperCase()) {
+                    case "Y":
+                        if (nuevoCedula.isEmpty()) {
+                        } else profesional.cedula = Integer.parseInt(nuevoCedula);
+                        if (nuevoArea.isEmpty()) {
+                        } else profesional.area = nuevoArea;
+                        if (nuevoHoraInicio.isEmpty()) {
+                        } else profesional.horaInicio = nuevoHoraInicio;
+                        if (nuevoHoraSalida.isEmpty()) {
+                        } else profesional.horaSalida = nuevoHoraSalida;
+                    case "N":
+                        break;
+                }
+                break;
+            } else {
+                System.out.println("Respuesta invalida");
+            }
+        }
+        //Continua con editar relaciones...
+        while (true) {
+            System.out.print("\nDesea editar las relaciones de este profesional? [Y/N] : ");
+            String option = input.next();
+            if (option.equalsIgnoreCase("Y") || option.equalsIgnoreCase("N")) {
+                if ("Y".equals(option.toUpperCase())) {
+                    break;
+                } else return;
+            }
+            System.out.println("Opcion invalida");
+        }
+
+        label: while (true) {
+            System.out.println("\nPor favor, selecione la relacion que desea editar: \n");
+            System.out.println("1. Profesional - bioma");
+            System.out.println("2. Profesional - Zoologico");
+            System.out.println("0. Regresar a Menu Administrar.");
+
+            int opcion = input.nextInt();
+            System.out.println();
+            switch (opcion){
+                case 1:
+                    if (biomas.isEmpty()){
+                        System.out.println("Aun no hay biomas registrados");
+                        return;
+                    }
+                    System.out.println("\nEstos son los biomas disponibles:\n");
+                    for (Bioma bioma : biomas) {
+                        System.out.println(bioma);
+                    }
+                    Bioma biomaNuevo = null;
+                    while (true){
+                        System.out.print("\nIngrese el ID del bioma con el que quiere asociar este tecnico: ");
+                        int id = input.nextInt();
+                        for (Bioma bioma : biomas){
+                            if (bioma.id == id){
+                                biomaNuevo = bioma;
+                                break;
+                            }
+                        }
+                        if (biomaNuevo == null){
+                            System.out.println("\nID no coincide con ningun bioma");
+                        } else break;
+                    }
+                    Profesional.setBiomas(biomaNuevo, profesional);
+                    System.out.println("\n MENSAJE: Animal y habitat se han relacionado correctamente");
+
+                    break;
+                case 0:
+                    break label;
+            }
+        }
+
+        System.out.println("------------------------------------------");
+
+
+        System.out.println("------------------------------------------");
+    }
+    public static void  eliminarProfesional(){
+        System.out.println("Ingrese la cedula del profesional que desea eliminar: ");
+        int cedula = input.nextInt();
+        if (cedula<0){
+            System.out.println("Cedula invalida");
+            return;
+        }
+        boolean eliminar = profesionales.removeIf(profesional ->  profesional.cedula== cedula); // Elimina el profesional por cedula, devuelve True o False
+        if (!eliminar){
+            System.out.println("ERROR: El Tecnico no se encuentra registrado");
+            return;
+        }
+        for (Bioma bioma :
+                biomas) {
+            bioma.profesionales.removeIf(profesional ->  profesional.cedula== cedula); //Elimando la relación con Bioma
+        }
+        for (Zoologico zoologico :
+                zoologicos) {
+            zoologico.profesionales.removeIf(profesional ->  profesional.cedula== cedula); //Elimando la relación con Bioma
+        }
+        System.out.println("El profesional se ha eliminado correctamente");
+    }
+
 
     public static void CRUDzooamigo(int opcion){
         String accion = CRUDclases(opcion);
@@ -1092,14 +1386,13 @@ public class SistemaZoologico {
                 crearZooAmigo();
                 break;
             case "3":
-                //editarZooAmigo();
+                editarZooAmigo();
                 break;
             case "4":
-                //eliminarZooAmigo();
+                eliminarZooAmigo();
                 break;
         }
     }
-
     public static void crearZooAmigo(){
         System.out.println("Ingrese la cedula del ZooAmigo: ");
         int cedula = input.nextInt();
@@ -1122,5 +1415,184 @@ public class SistemaZoologico {
         zooAmigos.add(zooAmigo);
         System.out.println("\nMENSAJE: Nuevo ZooAmigo registrado con exito.\n" +
                 "IMPORTANTE: Si desea fijar las relaciones del nuevo ZooAmigo, debe ingresar a la opcion 'Editar' del menu anterior.");
+    }
+    public static void editarZooAmigo(){
+        ZooAmigo zooAmigo = null;
+
+        while (true) {
+            System.out.println("------------------------------------------");
+            System.out.println("Ingrese la cedula del zooAmigo que desea editar: ");
+            int cedula = input.nextInt();
+            if (cedula < 0) {
+                System.out.println("Opcion invalida");
+                return;
+            }
+            for (ZooAmigo zooAmigo1 :
+                    zooAmigos) {
+                if (zooAmigo1.cedula == cedula) {
+                    zooAmigo = zooAmigo1;
+                }
+            }
+            if (zooAmigo == null) {
+                System.out.println("No se encontro un ZooAmigo con el ID ingresado");
+            } else break;
+        }
+        input.nextLine();
+        System.out.println("\nCedula: " + zooAmigo.cedula);
+        String nuevoCedula = input.nextLine();
+
+        System.out.println("Nombre : " + zooAmigo.nombre);
+        String nuevoNombre = input.nextLine();
+
+        System.out.println("Telefono : " + zooAmigo.telefono);
+        String nuevoTelefono = input.nextLine();
+
+        while (true) {
+            System.out.print("Desea guardar?:[Y/N] ");
+            String option = input.next();
+            if (option.equalsIgnoreCase("Y") || option.equalsIgnoreCase("N")) {
+                switch (option.toUpperCase()) {
+                    case "Y":
+                        if (nuevoCedula.isEmpty()) {
+                        } else zooAmigo.cedula = Integer.parseInt(nuevoCedula);
+                        if (nuevoNombre.isEmpty()) {
+                        } else zooAmigo.nombre = nuevoNombre;
+                        if (nuevoTelefono.isEmpty()) {
+                        } else zooAmigo.telefono = nuevoTelefono;
+                    case "N":
+                        break;
+                }
+                break;
+            } else {
+                System.out.println("Respuesta invalida");
+            }
+        }
+        //Continua con editar relaciones...
+        while (true) {
+            System.out.print("\nDesea editar las relaciones de este ZooAmigo? [Y/N] : ");
+            String option = input.next();
+            if (option.equalsIgnoreCase("Y") || option.equalsIgnoreCase("N")) {
+                if ("Y".equals(option.toUpperCase())) {
+                    break;
+                } else return;
+            }
+            System.out.println("Opcion invalida");
+        }
+
+        label: while (true) {
+            System.out.println("\nPor favor, selecione la relacion que desea editar: \n");
+            System.out.println("1. ZooAmigo - Animal");
+            System.out.println("2. ZooAmigo - Zoologico");
+            System.out.println("0. Regresar a Menu Administrar.");
+
+            int opcion = input.nextInt();
+            System.out.println();
+            switch (opcion){
+                case 1:
+                    if (animales.isEmpty()){
+                        System.out.println("Aun no hay animales registrados");
+                        return;
+                    }
+                    System.out.println("\nEstos son los animales disponibles:\n");
+                    for (Animal animal : animales) {
+                        System.out.println(animal);
+                    }
+                    Animal animalNuevo = null;
+                    while (true){
+                        System.out.print("\nIngrese el ID del animal con el que quiere asociar este ZooAmigo: ");
+                        int id = input.nextInt();
+                        for (Animal animal : animales){
+                            if (animal.id == id){
+                                animalNuevo = animal;
+                                break;
+                            }
+                        }
+                        if (animalNuevo == null){
+                            System.out.println("\nID no coincide con ningun bioma");
+                        } else break;
+                    }
+                    zooAmigo.setAnimal(animalNuevo, zooAmigo);
+                    System.out.println("\n MENSAJE: ZooAmigo y Animal se han relacionado correctamente");
+
+                    break;
+                case 2:
+                    if (zoologicos.isEmpty()){
+                        System.out.println("Aun no hay Zoologicos registrados");
+                        return;
+                    }
+                    System.out.println("\nEstos son los zoologicos disponibles:\n");
+                    for (Zoologico zoologico : zoologicos) {
+                        System.out.println(zoologico);
+                    }
+                    Zoologico zoologico = null;
+                    while (true) {
+                        String option;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Estas son las claves unicas del zoologico: \n");
+                        System.out.println("1. Seleccionar por NIT");
+                        System.out.println("2. Seleccionar por Siglas\n");
+                        option = input.next();
+                        if (!option.equals("1") && !option.equals("2")){
+                            System.out.println("Opcion invalida");
+                            return;
+                        }
+                        if (option.equals("1")){
+                            System.out.print("Ingrese NIT: ");
+                            String opcion2 = input.next();
+                            for (Zoologico zoo : zoologicos){
+                                if (zoo.nit.replace(".", "").equals(opcion2.replace(".", ""))){
+                                    zoologico = zoo;
+                                }
+                            }
+                        } else {
+                            System.out.print("Ingrese siglas: ");
+                            String opcion2 = input.next();
+                            for (Zoologico zoo : zoologicos){
+                                if (zoo.siglas.equalsIgnoreCase(opcion2)){
+                                    zoologico = zoo;
+                                }
+                            }
+                        }
+                        if (zoologico == null){
+                            System.out.println("No se encontro zoologico con estas especificaciones.");
+                        } else break;
+                    }
+                    zooAmigo.setZoologico(zoologico, zooAmigo);
+                    System.out.println("\n MENSAJE: ZooAmigo y Zoologico se han relacionado correctamente");
+
+                    break;
+                case 0:
+                    break label;
+            }
+        }
+
+        System.out.println("------------------------------------------");
+
+
+        System.out.println("------------------------------------------");
+    }
+    public static void eliminarZooAmigo(){
+        System.out.println("Ingrese la cedula del ZooAmigo que desea eliminar: ");
+        int cedula = input.nextInt();
+        if (cedula<0){
+            System.out.println("Cedula invalida");
+            return;
+        }
+        boolean eliminar = zooAmigos.removeIf(zooAmigo ->  zooAmigo.cedula== cedula); // Elimina el profesional por cedula, devuelve True o False
+        if (!eliminar){
+            System.out.println("ERROR: El ZooAmigo no se encuentra registrado");
+            return;
+        }
+        for (Animal animal :
+                animales) {
+            if (animal.zooAmigo.cedula==cedula) {
+                animal.zooAmigo=null;
+            }
+        }
+        for (Zoologico zoologico :
+                zoologicos) {
+            zoologico.zooAmigos.removeIf(zooAmigo->  zooAmigo.cedula== cedula); //Elimando la relación con Bioma
+        }
+        System.out.println("El ZooAmigo se ha eliminado correctamente");
     }
 }

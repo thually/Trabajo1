@@ -22,6 +22,11 @@ public class Tecnico {
         return idHabitats.toString();
     }
 
+    public static void setHabitats(Habitat nuevoHabitat, Tecnico tecnico){
+        nuevoHabitat.tecnicos.add(tecnico);
+        tecnico.habitats.add(nuevoHabitat);
+    }
+
     @Override
     public String toString() {
         return "Tecnico{" +

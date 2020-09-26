@@ -31,4 +31,14 @@ public class ZooAmigo {
                 ", NIT del Zoologico asociado= " + ((zoologico == null) ? "N/A" : zoologico.nit) +
                 '}';
     }
+
+    public void setAnimal(Animal animalNuevo, ZooAmigo zooAmigo) {
+        animales.add(animalNuevo);
+        animalNuevo.zooAmigo=zooAmigo;
+    }
+
+    public void setZoologico(Zoologico zoologico, ZooAmigo zooAmigo) {
+        zoologico.zooAmigos.add(zooAmigo);
+        this.zoologico = zoologico;
+    }
 }

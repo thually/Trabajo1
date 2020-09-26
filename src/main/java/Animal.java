@@ -17,6 +17,11 @@ public class Animal {
         animal.habitat = nuevoHabitat;
     }
 
+    public static void setZooAmigo(ZooAmigo nuevoZooAmigo, Animal animal){
+       nuevoZooAmigo.animales.add(animal);
+        animal.zooAmigo = nuevoZooAmigo;
+    }
+
     @Override
     public String toString() {
         return "Animal{" +

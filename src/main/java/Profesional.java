@@ -23,6 +23,11 @@ public class Profesional {
         return idBiomas.toString();
     }
 
+    public static void setBiomas(Bioma nuevoBio, Profesional profesional){
+        profesional.biomas.add(nuevoBio);
+        nuevoBio.profesionales.add(profesional);
+    }
+
     @Override
     public String toString() {
         return "Profesional{" +
