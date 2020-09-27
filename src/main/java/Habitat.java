@@ -16,6 +16,21 @@ public class Habitat {
         this.tipoJaula = tipoJaula;
     }
 
+    public void setBioma(Bioma nuevoBio, Habitat habitat){
+        this.bioma = nuevoBio;
+        nuevoBio.habitats.add(habitat);
+    }
+
+    public void setTecnico(Tecnico nuevoTec, Habitat habitat){
+        tecnicos.add(nuevoTec);
+        nuevoTec.habitats.add(habitat);
+    }
+
+    public void setAni(Animal ani, Habitat habitat){
+        habitat.animales.add(ani);
+        ani.habitat = habitat;
+    }
+
     public String getTecnicosCedula(){
         ArrayList<Integer> cedulaTecnicos = new ArrayList<>();
         for (Tecnico tecnico : tecnicos) {
