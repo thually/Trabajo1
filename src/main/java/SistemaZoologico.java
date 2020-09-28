@@ -544,6 +544,24 @@ public class SistemaZoologico {
                 System.out.println("No se encontro zoologico con estas especificaciones.");
             } else break;
         }
+
+        while (true){
+            System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+            String option = input.next();
+            if (option.equalsIgnoreCase("Y") || option.equalsIgnoreCase("N")){
+                switch (option.toUpperCase()){
+                    case "Y":
+                        break;
+                    case "N":
+                        return;
+                }
+                break;
+            }
+            else {
+                System.out.println("Opcion invalida\n");
+            }
+        }
+
         for (Profesional profesional : profesionales) {
             if (profesional.zoologico.nit.replace(".", "").equals(zoologico.nit.replace(".", ""))) {
                 profesional.zoologico = null;
@@ -584,7 +602,7 @@ public class SistemaZoologico {
                 editarBioma();
                 break;
             case "4":
-                //eliminarBioma();
+                eliminarBioma();
                 break;
         }
     }
@@ -801,6 +819,69 @@ public class SistemaZoologico {
         System.out.println("------------------------------------------");
     }
 
+    public static void eliminarBioma() {
+        Bioma bioma = null;
+        while (true) {
+            String opcion;
+            System.out.println("------------------------------------------");
+            System.out.println("Estas son las claves unicas del bioma: \n");
+            System.out.println("1. Seleccionar por ID\n");
+            opcion = input.next();
+            if (!opcion.equals("1")){
+                System.out.println("Opcion invalida");
+                return;
+            }
+            if (opcion.equals("1")){
+                System.out.print("Ingrese ID: ");
+                int id = input.nextInt();
+                for (Bioma bio : biomas){
+                    if (bio.id == id){
+                        bioma = bio;
+                    }
+                }
+            }
+            if (bioma == null){
+                System.out.println("No se encontro bioma con estas especificaciones.");
+            } else break;
+        }
+
+        while (true){
+            System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+            String option = input.next();
+            if (option.equalsIgnoreCase("Y") || option.equalsIgnoreCase("N")){
+                switch (option.toUpperCase()){
+                    case "Y":
+                        break;
+                    case "N":
+                        return;
+                }
+                break;
+            }
+            else {
+                System.out.println("Opcion invalida\n");
+            }
+        }
+
+        for (Zoologico zoologico : zoologicos) {
+            Bioma finalBioma = bioma;
+            zoologico.biomas.removeIf(bio -> bio.id == finalBioma.id);
+
+        }
+        for (Profesional profesional : profesionales) {
+            Bioma finalBioma = bioma;
+            profesional.biomas.removeIf(bio -> bio.id == finalBioma.id);
+
+        }
+        for (Habitat habitat : habitats) {
+            if (habitat.bioma.id == bioma.id) {
+                habitat.bioma = null;
+            }
+        }
+        biomas.remove(bioma);
+
+        System.out.println("El bioma se ha eliminado correctamente");
+    }
+
     public static void CRUDhabitat(int opcion){
         String accion = CRUDclases(opcion);
         if (accion.equals("1") || accion.equals("3") || accion.equals("4")) {
@@ -821,7 +902,7 @@ public class SistemaZoologico {
                 editarHabitat();
                 break;
             case "4":
-                //eliminarHabitat();
+                eliminarHabitat();
                 break;
         }
     }
@@ -1034,6 +1115,69 @@ public class SistemaZoologico {
             }
         }
         System.out.println("------------------------------------------");
+    }
+
+    public static void eliminarHabitat() {
+        Habitat habitat = null;
+        while (true) {
+            String opcion;
+            System.out.println("------------------------------------------");
+            System.out.println("Estas son las claves unicas del habitat: \n");
+            System.out.println("1. Seleccionar por ID\n");
+            opcion = input.next();
+            if (!opcion.equals("1")){
+                System.out.println("Opcion invalida");
+                return;
+            }
+            if (opcion.equals("1")){
+                System.out.print("Ingrese ID: ");
+                int id = input.nextInt();
+                for (Habitat hab : habitats){
+                    if (hab.id == id){
+                        habitat = hab;
+                    }
+                }
+            }
+            if (habitat == null){
+                System.out.println("No se encontro habitat con estas especificaciones.");
+            } else break;
+        }
+
+        while (true){
+            System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+            String option = input.next();
+            if (option.equalsIgnoreCase("Y") || option.equalsIgnoreCase("N")){
+                switch (option.toUpperCase()){
+                    case "Y":
+                        break;
+                    case "N":
+                        return;
+                }
+                break;
+            }
+            else {
+                System.out.println("Opcion invalida\n");
+            }
+        }
+
+        for (Bioma bioma : biomas) {
+            Habitat finalHab = habitat;
+            bioma.habitats.removeIf(hab -> hab.id == finalHab.id);
+
+        }
+        for (Tecnico tecnico : tecnicos) {
+            Habitat finalHab = habitat;
+            tecnico.habitats.removeIf(hab -> hab.id == finalHab.id);
+
+        }
+        for (Animal animal : animales) {
+            if (animal.habitat.id == habitat.id) {
+                animal.habitat = null;
+            }
+        }
+        habitats.remove(habitat);
+
+        System.out.println("El habitat se ha eliminado correctamente");
     }
 
     ////////////////////////////////////////////////
