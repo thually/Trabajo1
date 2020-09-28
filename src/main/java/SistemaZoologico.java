@@ -2160,7 +2160,7 @@ public class SistemaZoologico {
 
                         for (Animal animal :
                                 animales) {
-                            if (animal.zooAmigo.cedula==cedula && animal.zooAmigo!=null) {
+                            if (animal.zooAmigo!=null && animal.zooAmigo.cedula==cedula  ) {
                                 animal.zooAmigo=null;
                             }
                         }
