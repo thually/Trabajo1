@@ -560,7 +560,10 @@ public class SistemaZoologico {
         }
 
         input.nextLine();
-        System.out.println("\nTemperatura: "+ bioma.temperatura);
+        System.out.println("\nID: "+ bioma.id);
+        String nuevoID1 = input.nextLine();
+
+        System.out.println("Temperatura: "+ bioma.temperatura);
         String nuevaTemp1 = input.nextLine();
 
         System.out.println("Humedad: "+ bioma.humedad);
@@ -575,10 +578,13 @@ public class SistemaZoologico {
             if (option.equalsIgnoreCase("Y") || option.equalsIgnoreCase("N")){
                 switch (option.toUpperCase()){
                     case "Y":
+                        if (nuevoID1.isEmpty()){}
+                        else {
+                            bioma.id = Integer.parseInt(nuevoID1);
+                        }
                         if (nuevaTemp1.isEmpty()){}
                         else {
-                            Double nuevaTemp2 = Double.parseDouble(nuevaTemp1);
-                            bioma.temperatura = nuevaTemp2;
+                            bioma.temperatura = Double.parseDouble(nuevaTemp1);
                         }
                         if (nuevoHume.isEmpty()){}
                         else bioma.humedad = nuevoHume;
@@ -735,7 +741,7 @@ public class SistemaZoologico {
                 crearHabitat();
                 break;
             case "3":
-                //editarHabitat();
+                editarHabitat();
                 break;
             case "4":
                 //eliminarHabitat();
@@ -764,6 +770,193 @@ public class SistemaZoologico {
 
         System.out.println("\nMENSAJE: Nuevo habitat registrado con exito.\n" +
                 "IMPORTANTE: Si desea fijar las relaciones del nuevo habitat, debe ingresar a la opcion 'Editar' del menu anterior.");
+    }
+
+    public static void editarHabitat() {
+        Habitat habitat = null;
+        while (true) {
+            String opcion;
+            System.out.println("------------------------------------------");
+            System.out.println("Esta es la clave unica del habitat: \n");
+            System.out.println("1. Seleccionar por ID\n");
+            opcion = input.next();
+            if (!opcion.equals("1")){
+                System.out.println("Opcion invalida");
+                return;
+            }
+            System.out.print("Ingrese ID: ");
+            int idHab = input.nextInt();
+            for (Habitat hab : habitats){
+                if (hab.id == idHab){
+                    habitat = hab;
+                }
+            }
+            if (habitat == null){
+                System.out.println("No se encontro habitat con estas especificaciones.");
+            } else break;
+        }
+
+        input.nextLine();
+        System.out.println("\nID: "+ habitat.id);
+        String nuevoID1 = input.nextLine();
+
+        System.out.println("Tipo de suelo: "+ habitat.tipoSuelo);
+        String nuevoSuelo = input.nextLine();
+
+        System.out.println("Vegetacion: "+ habitat.vegetacion);
+        String nuevaVege = input.nextLine();
+
+        System.out.println("Tipo de jaula: "+ habitat.tipoJaula);
+        String nuevaJau = input.nextLine();
+
+        while (true){
+            System.out.print("Desea guardar?:[Y/N] ");
+            String option = input.next();
+            if (option.equalsIgnoreCase("Y") || option.equalsIgnoreCase("N")){
+                switch (option.toUpperCase()){
+                    case "Y":
+                        if (nuevoID1.isEmpty()){}
+                        else {
+                            habitat.id = Integer.parseInt(nuevoID1);
+                        }
+                        if (nuevoSuelo.isEmpty()){}
+                        else habitat.tipoSuelo = nuevoSuelo;
+                        if (nuevaVege.isEmpty()){}
+                        else habitat.vegetacion = nuevaVege;
+                        if (nuevaJau.isEmpty()){}
+                        else habitat.tipoSuelo = nuevaJau;
+                    case "N":
+                        break;
+                }
+                break;
+            }
+            else {
+                System.out.println("Opcion invalida\n");
+            }
+        }
+        //Continua con editar relaciones...
+        while (true) {
+            System.out.print("\nDesea editar las relaciones de este habitat? [Y/N] : ");
+            String option = input.next();
+            if (option.equalsIgnoreCase("Y") || option.equalsIgnoreCase("N")) {
+                if ("Y".equals(option.toUpperCase())) {
+                    break;
+                } else return;
+            }
+            System.out.println("Opcion invalida");
+        }
+
+        label: while (true) {
+            System.out.println("\nPor favor, selecione la relacion que desea editar: \n");
+            System.out.println("1. Habitat - Bioma.");
+            System.out.println("2. Habitat - Tecnico.");
+            System.out.println("3. Habitat - Animal.");
+            System.out.println("0. Regresar a Menu Administrar.");
+
+            int opcion = input.nextInt();
+            System.out.println();
+            switch (opcion){
+                case 1:
+                    if (biomas.isEmpty()){
+                        System.out.println("Aun no hay biomas registrados");
+                        return;
+                    }
+                    System.out.println("\nEstos son los biomas disponibles:\n");
+                    for (Bioma bio : biomas) {
+                        System.out.println(bio);
+                    }
+                    Bioma BioNuevo = null;
+                    while (true){
+                        System.out.print("\nIngrese el ID del bioma con el que quiere asociar este bioma: ");
+                        int id = input.nextInt();
+                        for (Bioma bio : biomas){
+                            if (bio.id == id){
+                                BioNuevo = bio;
+                                break;
+                            }
+                        }
+                        if (BioNuevo == null){
+                            System.out.println("\nID no coincide con ningun bioma");
+                        } else break;
+                    }
+
+                    for (Bioma bio : biomas) {
+                        Habitat finalHabNuevo = habitat;
+                        bio.habitats.removeIf(hab -> (hab.id == finalHabNuevo.id));
+                    }
+                    habitat.setBioma(BioNuevo, habitat);
+                    System.out.println("\nMENSAJE: Habitat y bioma relacionados correctamente");
+                    break;
+
+                case 2:
+                    if (tecnicos.isEmpty()){
+                        System.out.println("Aun no hay tecnicos registrados");
+                        return;
+                    }
+                    System.out.println("\nEstos son los tecnicos disponibles:\n");
+                    for (Tecnico tecnico : tecnicos) {
+                        System.out.println(tecnico);
+                    }
+                    Tecnico tecNuevo = null;
+                    while (true){
+                        System.out.print("\nIngrese la cedula del tecnico con el que quiere asociar este tecnico [Solo el numero, sin espacios ni puntos]: ");
+                        int cedula = input.nextInt();
+                        for (Tecnico tec : tecnicos){
+                            if (tec.cedula == cedula) {
+                                tecNuevo = tec;
+                                break;
+                            }
+                        }
+                        if (tecNuevo == null){
+                            System.out.println("\nLa cedula no coincide con ningun tecnico");
+                        } else break;
+                    }
+
+                    Tecnico finalTecNuevo = tecNuevo;
+                    habitat.tecnicos.removeIf(tec -> (tec.cedula == finalTecNuevo.cedula));
+                    Habitat finalHabitat = habitat;
+                    tecNuevo.habitats.removeIf(hab -> (hab.id == finalHabitat.id));
+
+                    habitat.setTecnico(tecNuevo, habitat);
+                    System.out.println("\nMENSAJE: Habitat y tecnico relacionados correctamente");
+                    break;
+
+                case 3:
+                    if (animales.isEmpty()){
+                        System.out.println("Aun no hay animales registrados");
+                        return;
+                    }
+                    System.out.println("\nEstos son los animales disponibles:\n");
+                    for (Animal animal : animales) {
+                        System.out.println(animal);
+                    }
+                    Animal nuevoAnimal = null;
+                    while (true){
+                        System.out.print("\nIngrese el ID del animal con el que quiere asociar este habitat: ");
+                        int IDAni = input.nextInt();
+                        for (Animal animal : animales){
+                            if (animal.id == IDAni) {
+                                nuevoAnimal = animal;
+                                break;
+                            }
+                        }
+                        if (nuevoAnimal == null){
+                            System.out.println("\nEl ID no coincide con ningun animal");
+                        } else break;
+                    }
+
+                    for (Habitat hab : habitats) {
+                        Animal finalAniNuevo = nuevoAnimal;
+                        hab.animales.removeIf(ani -> (ani.id == finalAniNuevo.id));
+                    }
+                    habitat.setAni(nuevoAnimal, habitat);
+                    System.out.println("\nMENSAJE: Habitat y animal relacionados correctamente");
+                    break;
+                case 0:
+                    break label;
+            }
+        }
+        System.out.println("------------------------------------------");
     }
 
     ////////////////////////////////////////////////
