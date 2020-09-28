@@ -936,6 +936,10 @@ public class SistemaZoologico {
                             System.out.println("\nID no coincide con ningun habitat");
                         } else break;
                     }
+                    if (habitatNuevo.animales.contains(animal)){
+                        System.out.println("\n El Animal ya se encuentra asociado con este Habitat");
+                        return;
+                    }
                     Animal.setHabitats(habitatNuevo, animal);
                     System.out.println("\n MENSAJE: Animal y habitat se han relacionado correctamente");
 
@@ -963,6 +967,11 @@ public class SistemaZoologico {
                             System.out.println("\nID no coincide con ningun habitat");
                         } else break;
                     }
+                    if (zooAmigoNuevo.animales.contains(animal)){
+                        System.out.println("Este ZooAmigo ya está relacionado con este animal");
+                        return;
+                    }
+
                     Animal.setZooAmigo(zooAmigoNuevo, animal);
                     System.out.println("\n MENSAJE: Animal y ZooAmigo se han relacionado correctamente");
 
@@ -1151,6 +1160,13 @@ public class SistemaZoologico {
                             System.out.println("\nID no coincide con ningun habitat");
                         } else break;
                     }
+
+
+                    if (habitatNuevo.tecnicos.contains(tecnico)) {
+                        System.out.println("El habitat y el tecnico ya están relacionados");
+                        return;
+                    }
+
                     Tecnico.setHabitats(habitatNuevo, tecnico);
                     System.out.println("\n MENSAJE: Animal y habitat se han relacionado correctamente");
 
@@ -1335,8 +1351,12 @@ public class SistemaZoologico {
                             System.out.println("\nID no coincide con ningun bioma");
                         } else break;
                     }
+                    if (biomaNuevo.profesionales.contains(profesional)){
+                        System.out.println("El Bioma y el Profesional ya están relacionados");
+                        return;
+                    }
                     Profesional.setBiomas(biomaNuevo, profesional);
-                    System.out.println("\n MENSAJE: Animal y habitat se han relacionado correctamente");
+                    System.out.println("\n MENSAJE: Bioma y el Profesional se han relacionado correctamente");
 
                     break;
                 case 0:
