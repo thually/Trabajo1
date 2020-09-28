@@ -19,6 +19,29 @@ public class SistemaZoologico {
 
     public static void main(String[] args) {
 
+        Zoologico zoo1 = new Zoologico("1", "aaaa", "bbbb", "pppp"); zoologicos.add(zoo1);
+        Zoologico zoo2 = new Zoologico("2", "aaaa", "bbbb", "pppp"); zoologicos.add(zoo2);
+        Zoologico zoo3 = new Zoologico("3", "aaaa", "bbbb", "pppp"); zoologicos.add(zoo3);
+        Habitat hab1 = new Habitat(10, "rrrr", "oooo", "wwww"); habitats.add(hab1);
+        Habitat hab2 = new Habitat(11, "rrrr", "oooo", "wwww"); habitats.add(hab2);
+        Habitat hab3 = new Habitat(12, "rrrr", "oooo", "wwww"); habitats.add(hab3);
+        Profesional pro1 = new Profesional(101, "xxx", "1100", "2000"); profesionales.add(pro1);
+        Profesional pro2 = new Profesional(102, "xxx", "1100", "2000"); profesionales.add(pro2);
+        Profesional pro3 = new Profesional(103, "xxx", "1100", "2000"); profesionales.add(pro3);
+        Bioma bio1 = new Bioma(20, 312.321, "eeee", "YYYY"); biomas.add(bio1);
+        Bioma bio2 = new Bioma(21, 312.321, "eeee", "YYYY"); biomas.add(bio2);
+        Bioma bio3 = new Bioma(22, 312.321, "eeee", "YYYY"); biomas.add(bio3);
+        Tecnico tec1 = new Tecnico(201, "xxx", "1100", "2000"); tecnicos.add(tec1);
+        Tecnico tec2 = new Tecnico(202, "xxx", "1100", "2000"); tecnicos.add(tec2);
+        Tecnico tec3 = new Tecnico(203, "xxx", "1100", "2000"); tecnicos.add(tec3);
+        Animal ani1 = new Animal(30, "vvvv", 4, "uuuuu"); animales.add(ani1);
+        Animal ani2 = new Animal(31, "vvvv", 4, "uuuuu"); animales.add(ani2);
+        Animal ani3 = new Animal(32, "vvvv", 4, "uuuuu"); animales.add(ani3);
+        ZooAmigo zooA1 = new ZooAmigo(40, "qqqq","133121"); zooAmigos.add(zooA1);
+        ZooAmigo zooA2 = new ZooAmigo(40, "qqqq","133121"); zooAmigos.add(zooA2);
+        ZooAmigo zooA3 = new ZooAmigo(40, "qqqq","133121"); zooAmigos.add(zooA3);
+
+
         cargarUsuario(); //Llama a metodo para cargar todos los usuarios registrados desde src/database/usuarios.json
         label: while (true) {
             System.out.println("----------------------------------");
