@@ -940,6 +940,10 @@ public class SistemaZoologico {
                         System.out.println("\n El Animal ya se encuentra asociado con este Habitat");
                         return;
                     }
+                    for (Habitat habitat :
+                            habitats) {
+                        habitat.animales.remove(animal);
+                    }
                     Animal.setHabitats(habitatNuevo, animal);
                     System.out.println("\n MENSAJE: Animal y habitat se han relacionado correctamente");
 
@@ -970,6 +974,10 @@ public class SistemaZoologico {
                     if (zooAmigoNuevo.animales.contains(animal)){
                         System.out.println("Este ZooAmigo ya está relacionado con este animal");
                         return;
+                    }
+                    for (ZooAmigo zooAmigo :
+                            zooAmigos) {
+                        zooAmigo.animales.remove(animal);
                     }
 
                     Animal.setZooAmigo(zooAmigoNuevo, animal);
@@ -1061,7 +1069,7 @@ public class SistemaZoologico {
         System.out.println("\nMENSAJE: Nuevo tecnico registrado con exito.\n" +
                 "IMPORTANTE: Si desea fijar las relaciones del nuevo tecnico, debe ingresar a la opcion 'Editar' del menu anterior.");
     }
-    public static void  editarTecnico(){
+    public static void editarTecnico(){
         Tecnico tecnico = null;
 
         while (true) {
@@ -1162,10 +1170,12 @@ public class SistemaZoologico {
                     }
 
 
-                    if (habitatNuevo.tecnicos.contains(tecnico)) {
-                        System.out.println("El habitat y el tecnico ya están relacionados");
-                        return;
-                    }
+                    Habitat finalHabitatNuevo = habitatNuevo;
+                    tecnico.habitats.removeIf(habitat -> habitat.id== finalHabitatNuevo.id);
+
+                    Tecnico finalTecnico = tecnico;
+                    habitatNuevo.tecnicos.removeIf(tecnico1 -> tecnico1.cedula == finalTecnico.cedula);
+
 
                     Tecnico.setHabitats(habitatNuevo, tecnico);
                     System.out.println("\n MENSAJE: Animal y habitat se han relacionado correctamente");
@@ -1358,6 +1368,13 @@ public class SistemaZoologico {
                     Profesional.setBiomas(biomaNuevo, profesional);
                     System.out.println("\n MENSAJE: Bioma y el Profesional se han relacionado correctamente");
 
+                    Bioma finalBiomaNuevo = biomaNuevo;
+                    profesional.biomas.removeIf(bioma -> bioma.id== finalBiomaNuevo.id);
+
+
+                    Profesional finalProfesional = profesional;
+                    biomaNuevo.profesionales.removeIf(profesional1 -> profesional1.cedula == finalProfesional.cedula);
+
                     break;
                 case 0:
                     break label;
@@ -1533,8 +1550,13 @@ public class SistemaZoologico {
                             }
                         }
                         if (animalNuevo == null){
-                            System.out.println("\nID no coincide con ningun bioma");
+                            System.out.println("\nID no coincide con ningun Animal");
                         } else break;
+                    }
+
+                    for (Animal animal1 :
+                            animales) {
+                        animal1.zooAmigo=null;
                     }
                     zooAmigo.setAnimal(animalNuevo, zooAmigo);
                     System.out.println("\n MENSAJE: ZooAmigo y Animal se han relacionado correctamente");
@@ -1581,6 +1603,12 @@ public class SistemaZoologico {
                         if (zoologico == null){
                             System.out.println("No se encontro zoologico con estas especificaciones.");
                         } else break;
+                    }
+                    for (Zoologico zoo :
+                            zoologicos) {
+                        if (zoo.zooAmigos.contains(zooAmigo)) {
+                            zoo.zooAmigos.remove(zooAmigo);
+                        }
                     }
                     zooAmigo.setZoologico(zoologico, zooAmigo);
                     System.out.println("\n MENSAJE: ZooAmigo y Zoologico se han relacionado correctamente");
