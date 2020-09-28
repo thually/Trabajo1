@@ -279,7 +279,7 @@ public class SistemaZoologico {
                 editarZoologico();
                 break;
             case "4":
-                //eliminarZoologico();
+                eliminarZoologico();
                 break;
         }
     }
@@ -508,6 +508,60 @@ public class SistemaZoologico {
         }
 
         System.out.println("------------------------------------------");
+    }
+
+    public static void eliminarZoologico() {
+        Zoologico zoologico = null;
+        while (true) {
+            String opcion;
+            System.out.println("------------------------------------------");
+            System.out.println("Estas son las claves unicas del zoologico: \n");
+            System.out.println("1. Seleccionar por NIT");
+            System.out.println("2. Seleccionar por Siglas\n");
+            opcion = input.next();
+            if (!opcion.equals("1") && !opcion.equals("2")){
+                System.out.println("Opcion invalida");
+                return;
+            }
+            if (opcion.equals("1")){
+                System.out.print("Ingrese NIT: ");
+                String opcion2 = input.next();
+                for (Zoologico zoo : zoologicos){
+                    if (zoo.nit.replace(".", "").equals(opcion2.replace(".", ""))){
+                        zoologico = zoo;
+                    }
+                }
+            } else {
+                System.out.print("Ingrese siglas: ");
+                String opcion2 = input.next();
+                for (Zoologico zoo : zoologicos){
+                    if (zoo.siglas.equalsIgnoreCase(opcion2)){
+                        zoologico = zoo;
+                    }
+                }
+            }
+            if (zoologico == null){
+                System.out.println("No se encontro zoologico con estas especificaciones.");
+            } else break;
+        }
+        for (Profesional profesional : profesionales) {
+            if (profesional.zoologico.nit.replace(".", "").equals(zoologico.nit.replace(".", ""))) {
+                profesional.zoologico = null;
+            }
+        }
+        for (ZooAmigo zooAmigo : zooAmigos) {
+            if (zooAmigo.zoologico.nit.replace(".", "").equals(zoologico.nit.replace(".", ""))) {
+                zooAmigo.zoologico = null;
+            }
+        }
+        for (Bioma bioma : biomas) {
+            if (bioma.zoologico.nit.replace(".", "").equals(zoologico.nit.replace(".", ""))) {
+                bioma.zoologico = null;
+            }
+        }
+        zoologicos.remove(zoologico);
+
+        System.out.println("El zoologico se ha eliminado correctamente");
     }
 
     public static void CRUDbioma(int opcion){
