@@ -1416,20 +1416,37 @@ public class SistemaZoologico {
             System.out.println("ID invalido");
             return;
         }
-        Boolean eliminar = animales.removeIf(animal -> animal.id == id); // Elimina el animal por ID, devuelve True o False
-        if (eliminar==false){
-            System.out.println("ERROR: El animal no se encuentra registrado");
-            return;
+        while (true){
+            System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+            String option = input.next();
+            if (option.equalsIgnoreCase("Y") || option.equalsIgnoreCase("N")){
+                switch (option.toUpperCase()){
+                    case "Y":
+                        Boolean eliminar = animales.removeIf(animal -> animal.id == id); // Elimina el animal por ID, devuelve True o False
+
+                        if (eliminar==false){
+                            System.out.println("ERROR: El animal no se encuentra registrado");
+                            return;
+                        }
+                        for (Habitat habitat :
+                                habitats) {
+                            habitat.animales.removeIf(animal -> animal.id == id); //Elimando la relación con Habitat
+                        }
+                        for (ZooAmigo zooAmigo :
+                                zooAmigos) {
+                            zooAmigo.animales.removeIf(animal -> animal.id == id); //Elimando la relación con ZooAmigo
+                        }
+                        System.out.println("El animal se ha eliminado correctamente");
+                        break;
+                    case "N":
+                        return;
+                }
+                break;
+            }
+            else {
+                System.out.println("Opcion invalida\n");
+            }
         }
-        for (Habitat habitat :
-                habitats) {
-            habitat.animales.removeIf(animal -> animal.id == id); //Elimando la relación con Habitat
-        }
-        for (ZooAmigo zooAmigo :
-                zooAmigos) {
-            zooAmigo.animales.removeIf(animal -> animal.id == id); //Elimando la relación con ZooAmigo
-        }
-        System.out.println("El animal se ha eliminado correctamente");
     }
 
 
@@ -1612,16 +1629,33 @@ public class SistemaZoologico {
             System.out.println("Cedula invalida");
             return;
         }
-        boolean eliminar = tecnicos.removeIf(tecnico ->  tecnico.cedula== cedula); // Elimina el animal por ID, devuelve True o False
-        if (!eliminar){
-            System.out.println("ERROR: El Tecnico no se encuentra registrado");
-            return;
+        while (true){
+            System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+            String option = input.next();
+            if (option.equalsIgnoreCase("Y") || option.equalsIgnoreCase("N")){
+                switch (option.toUpperCase()){
+                    case "Y":
+                        boolean eliminar = tecnicos.removeIf(tecnico ->  tecnico.cedula== cedula); // Elimina el animal por ID, devuelve True o False
+                        if (!eliminar){
+                            System.out.println("ERROR: El Tecnico no se encuentra registrado");
+                            return;
+                        }
+                        for (Habitat habitat :
+                                habitats) {
+                            habitat.tecnicos.removeIf(tecnico ->  tecnico.cedula== cedula); //Elimando la relación con Habitat
+                        }
+                        System.out.println("El tecnico se ha eliminado correctamente");
+                        break;
+                    case "N":
+                        return;
+                }
+                break;
+            }
+            else {
+                System.out.println("Opcion invalida\n");
+            }
         }
-        for (Habitat habitat :
-                habitats) {
-            habitat.tecnicos.removeIf(tecnico ->  tecnico.cedula== cedula); //Elimando la relación con Habitat
-        }
-        System.out.println("El tecnico se ha eliminado correctamente");
+
     }
 
 
@@ -1857,20 +1891,37 @@ public class SistemaZoologico {
             System.out.println("Cedula invalida");
             return;
         }
-        boolean eliminar = profesionales.removeIf(profesional ->  profesional.cedula== cedula); // Elimina el profesional por cedula, devuelve True o False
-        if (!eliminar){
-            System.out.println("ERROR: El Tecnico no se encuentra registrado");
-            return;
+        while (true){
+            System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+            String option = input.next();
+            if (option.equalsIgnoreCase("Y") || option.equalsIgnoreCase("N")){
+                switch (option.toUpperCase()){
+                    case "Y":
+                        boolean eliminar = profesionales.removeIf(profesional ->  profesional.cedula== cedula); // Elimina el profesional por cedula, devuelve True o False
+                        if (!eliminar){
+                            System.out.println("ERROR: El Tecnico no se encuentra registrado");
+                            return;
+                        }
+                        for (Bioma bioma :
+                                biomas) {
+                            bioma.profesionales.removeIf(profesional ->  profesional.cedula== cedula); //Elimando la relación con Bioma
+                        }
+                        for (Zoologico zoologico :
+                                zoologicos) {
+                            zoologico.profesionales.removeIf(profesional ->  profesional.cedula== cedula); //Elimando la relación con Bioma
+                        }
+                        System.out.println("El profesional se ha eliminado correctamente");
+                        break;
+                    case "N":
+                        return;
+                }
+                break;
+            }
+            else {
+                System.out.println("Opcion invalida\n");
+            }
         }
-        for (Bioma bioma :
-                biomas) {
-            bioma.profesionales.removeIf(profesional ->  profesional.cedula== cedula); //Elimando la relación con Bioma
-        }
-        for (Zoologico zoologico :
-                zoologicos) {
-            zoologico.profesionales.removeIf(profesional ->  profesional.cedula== cedula); //Elimando la relación con Bioma
-        }
-        System.out.println("El profesional se ha eliminado correctamente");
+
     }
 
 
@@ -2095,21 +2146,37 @@ public class SistemaZoologico {
             System.out.println("Cedula invalida");
             return;
         }
-        boolean eliminar = zooAmigos.removeIf(zooAmigo ->  zooAmigo.cedula== cedula); // Elimina el profesional por cedula, devuelve True o False
-        if (!eliminar){
-            System.out.println("ERROR: El ZooAmigo no se encuentra registrado");
-            return;
-        }
-        for (Animal animal :
-                animales) {
-            if (animal.zooAmigo.cedula==cedula) {
-                animal.zooAmigo=null;
+        while (true){
+            System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+            String option = input.next();
+            if (option.equalsIgnoreCase("Y") || option.equalsIgnoreCase("N")){
+                switch (option.toUpperCase()){
+                    case "Y":
+                        boolean eliminar = zooAmigos.removeIf(zooAmigo ->  zooAmigo.cedula== cedula); // Elimina el profesional por cedula, devuelve True o False
+                        if (!eliminar){
+                            System.out.println("ERROR: El ZooAmigo no se encuentra registrado");
+                            return;
+                        }
+                        for (Animal animal :
+                                animales) {
+                            if (animal.zooAmigo.cedula==cedula) {
+                                animal.zooAmigo=null;
+                            }
+                        }
+                        for (Zoologico zoologico :
+                                zoologicos) {
+                            zoologico.zooAmigos.removeIf(zooAmigo->  zooAmigo.cedula== cedula); //Elimando la relación con Bioma
+                        }
+                        System.out.println("El ZooAmigo se ha eliminado correctamente");
+                        break;
+                    case "N":
+                        return;
+                }
+                break;
+            }
+            else {
+                System.out.println("Opcion invalida\n");
             }
         }
-        for (Zoologico zoologico :
-                zoologicos) {
-            zoologico.zooAmigos.removeIf(zooAmigo->  zooAmigo.cedula== cedula); //Elimando la relación con Bioma
-        }
-        System.out.println("El ZooAmigo se ha eliminado correctamente");
     }
 }
