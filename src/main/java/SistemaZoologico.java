@@ -2157,9 +2157,10 @@ public class SistemaZoologico {
                             System.out.println("ERROR: El ZooAmigo no se encuentra registrado");
                             return;
                         }
+
                         for (Animal animal :
                                 animales) {
-                            if (animal.zooAmigo.cedula==cedula) {
+                            if (animal.zooAmigo.cedula==cedula && animal.zooAmigo!=null) {
                                 animal.zooAmigo=null;
                             }
                         }
