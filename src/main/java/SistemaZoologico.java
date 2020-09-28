@@ -824,7 +824,7 @@ public class SistemaZoologico {
                         if (nuevaVege.isEmpty()){}
                         else habitat.vegetacion = nuevaVege;
                         if (nuevaJau.isEmpty()){}
-                        else habitat.tipoSuelo = nuevaJau;
+                        else habitat.tipoJaula = nuevaJau;
                     case "N":
                         break;
                 }
