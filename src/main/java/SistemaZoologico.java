@@ -38,8 +38,8 @@ public class SistemaZoologico {
         Animal ani2 = new Animal(31, "vvvv", 4, "uuuuu"); animales.add(ani2);
         Animal ani3 = new Animal(32, "vvvv", 4, "uuuuu"); animales.add(ani3);
         ZooAmigo zooA1 = new ZooAmigo(40, "qqqq","133121"); zooAmigos.add(zooA1);
-        ZooAmigo zooA2 = new ZooAmigo(40, "qqqq","133121"); zooAmigos.add(zooA2);
-        ZooAmigo zooA3 = new ZooAmigo(40, "qqqq","133121"); zooAmigos.add(zooA3);
+        ZooAmigo zooA2 = new ZooAmigo(41, "qqqq","133121"); zooAmigos.add(zooA2);
+        ZooAmigo zooA3 = new ZooAmigo(42, "qqqq","133121"); zooAmigos.add(zooA3);
 
 
         cargarUsuario(); //Llama a metodo para cargar todos los usuarios registrados desde src/database/usuarios.json
@@ -1290,7 +1290,7 @@ public class SistemaZoologico {
 
         while (true) {
             System.out.println("------------------------------------------");
-            System.out.println("Ingrese el ID del animal que desea editar: ");
+            System.out.println("Ingrese el ID del tecnico que desea editar: ");
             int cedula = input.nextInt();
             if (cedula < 0) {
                 System.out.println("Opcion invalida");
@@ -1303,7 +1303,7 @@ public class SistemaZoologico {
                 }
             }
             if (tecnico == null) {
-                System.out.println("No se encontro un animal con el ID ingresado");
+                System.out.println("No se encontro un tecnico con el ID ingresado");
             } else break;
         }
         input.nextLine();
@@ -1394,7 +1394,7 @@ public class SistemaZoologico {
 
 
                     Tecnico.setHabitats(habitatNuevo, tecnico);
-                    System.out.println("\n MENSAJE: Animal y habitat se han relacionado correctamente");
+                    System.out.println("\n MENSAJE: Tecnico y habitat se han relacionado correctamente");
 
                     break;
                 case 0:
@@ -1581,9 +1581,6 @@ public class SistemaZoologico {
                         System.out.println("El Bioma y el Profesional ya están relacionados");
                         return;
                     }
-                    Profesional.setBiomas(biomaNuevo, profesional);
-                    System.out.println("\n MENSAJE: Bioma y el Profesional se han relacionado correctamente");
-
                     Bioma finalBiomaNuevo = biomaNuevo;
                     profesional.biomas.removeIf(bioma -> bioma.id== finalBiomaNuevo.id);
 
@@ -1591,6 +1588,59 @@ public class SistemaZoologico {
                     Profesional finalProfesional = profesional;
                     biomaNuevo.profesionales.removeIf(profesional1 -> profesional1.cedula == finalProfesional.cedula);
 
+                    Profesional.setBiomas(biomaNuevo, profesional);
+                    System.out.println("\n MENSAJE: Zoologico y el Profesional se han relacionado correctamente");
+
+
+
+                    break;
+                case 2:
+                    System.out.println("\nEstos son los zoologicos disponibles:\n");
+                    for (Zoologico zoologico1 : zoologicos) {
+                        System.out.println(zoologico1);
+                    }
+                    Zoologico zoologico = null;
+                    String option;
+                    while (true) {
+                        System.out.println("------------------------------------------");
+                        System.out.println("Estas son las claves unicas del zoologico: \n");
+                        System.out.println("1. Seleccionar por NIT");
+                        System.out.println("2. Seleccionar por Siglas\n");
+                        option = input.next();
+                        if (!option.equals("1") && !option.equals("2")) {
+                            System.out.println("Opcion invalida");
+                            return;
+                        }
+                        if (option.equals("1")) {
+                            System.out.print("Ingrese NIT: ");
+                            String opcion2 = input.next();
+                            for (Zoologico zoo : zoologicos) {
+                                if (zoo.nit.replace(".", "").equals(opcion2.replace(".", ""))) {
+                                    zoologico = zoo;
+                                }
+                            }
+                        } else {
+                            System.out.print("Ingrese siglas: ");
+                            String opcion2 = input.next();
+                            for (Zoologico zoo : zoologicos) {
+                                if (zoo.siglas.equalsIgnoreCase(opcion2)) {
+                                    zoologico = zoo;
+                                }
+                            }
+                        }
+                        if (zoologico == null) {
+                            System.out.println("No se encontro zoologico con estas especificaciones.");
+                        } else break;
+                    }
+                    if (zoologico.profesionales.contains(profesional)){
+                        System.out.println("El Zoologico y el Profesional ya están relacionados");
+                        return;
+                    }
+                    for (Zoologico zoologico1: zoologicos){
+                        zoologico1.profesionales.remove(profesional);
+                    }
+                    Profesional.setZoologicos(zoologico, profesional);
+                    System.out.println("\n MENSAJE: Zoologico y el Profesional se han relacionado correctamente");
                     break;
                 case 0:
                     break label;

@@ -15,6 +15,11 @@ public class Profesional {
         this.horaSalida = horaSalida;
     }
 
+    public static void setZoologicos(Zoologico zoologico, Profesional profesional) {
+        profesional.zoologico = zoologico;
+        zoologico.profesionales.add(profesional);
+    }
+
     public String getBiomaID(){
         ArrayList<Integer> idBiomas = new ArrayList<>();
         for (Bioma bioma : biomas) {
