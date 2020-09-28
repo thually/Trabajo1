@@ -563,17 +563,17 @@ public class SistemaZoologico {
         }
 
         for (Profesional profesional : profesionales) {
-            if (profesional.zoologico.nit.replace(".", "").equals(zoologico.nit.replace(".", ""))) {
+            if (profesional.zoologico != null && profesional.zoologico.nit.replace(".", "").equals(zoologico.nit.replace(".", ""))) {
                 profesional.zoologico = null;
             }
         }
         for (ZooAmigo zooAmigo : zooAmigos) {
-            if (zooAmigo.zoologico.nit.replace(".", "").equals(zoologico.nit.replace(".", ""))) {
+            if (zooAmigo.zoologico != null && zooAmigo.zoologico.nit.replace(".", "").equals(zoologico.nit.replace(".", ""))) {
                 zooAmigo.zoologico = null;
             }
         }
         for (Bioma bioma : biomas) {
-            if (bioma.zoologico.nit.replace(".", "").equals(zoologico.nit.replace(".", ""))) {
+            if (bioma.zoologico != null && bioma.zoologico.nit.replace(".", "").equals(zoologico.nit.replace(".", ""))) {
                 bioma.zoologico = null;
             }
         }
@@ -873,7 +873,7 @@ public class SistemaZoologico {
 
         }
         for (Habitat habitat : habitats) {
-            if (habitat.bioma.id == bioma.id) {
+            if (habitat.bioma != null && habitat.bioma.id == bioma.id) {
                 habitat.bioma = null;
             }
         }
@@ -1171,7 +1171,7 @@ public class SistemaZoologico {
 
         }
         for (Animal animal : animales) {
-            if (animal.habitat.id == habitat.id) {
+            if (animal.habitat != null && animal.habitat.id == habitat.id) {
                 animal.habitat = null;
             }
         }
