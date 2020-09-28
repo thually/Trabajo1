@@ -2,7 +2,7 @@ public class Animal {
     int id;
     String especie; // Sea un Leon, foca, etc
     int nivelAgresividad; // Se mide del 0 al 5, siendo por ejemplo 0 un gorrion y 5 un leon
-    String alimentacion; // Carnivoro, Hervivoro, Omnivoro,etc
+    String alimentacion; // Carnivoro, Hervivoro, Omnivoro.
     Habitat habitat;
     ZooAmigo zooAmigo;
 
@@ -12,6 +12,15 @@ public class Animal {
         this.nivelAgresividad = nivelAgresividad;
         this.alimentacion = alimentacion;
     }
+    public static void setHabitats(Habitat nuevoHabitat, Animal animal){
+        nuevoHabitat.animales.add(animal);
+        animal.habitat = nuevoHabitat;
+    }
+
+    public static void setZooAmigo(ZooAmigo nuevoZooAmigo, Animal animal){
+       nuevoZooAmigo.animales.add(animal);
+        animal.zooAmigo = nuevoZooAmigo;
+    }
 
     @Override
     public String toString() {
@@ -20,6 +29,9 @@ public class Animal {
                 ", especie='" + especie + '\'' +
                 ", nivelAgresividad=" + nivelAgresividad +
                 ", alimentacion='" + alimentacion + '\'' +
+                ", ID del habitat= " + ((habitat == null) ? "N/A" : habitat.id) +
+                ", Cedula del ZooAmigo= " + ((zooAmigo == null) ? "N/A" : zooAmigo.cedula) +
                 '}';
     }
+
 }

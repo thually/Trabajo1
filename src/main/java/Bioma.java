@@ -6,8 +6,8 @@ public class Bioma {
     String humedad; // Se utiliza una descripcion, seco, arido, etc
     String tipo;
     Zoologico zoologico;
-    ArrayList<Profesional> profesional = new ArrayList<>();
-    ArrayList<Habitat> habitat = new ArrayList<>();
+    ArrayList<Profesional> profesionales = new ArrayList<>();
+    ArrayList<Habitat> habitats = new ArrayList<>();
 
     public Bioma(int id, Double temperatura, String humedad, String tipo) {
         this.id = id;
@@ -16,13 +16,47 @@ public class Bioma {
         this.tipo = tipo;
     }
 
+    public void setZoo(Zoologico nuevoZoo, Bioma bioma){
+        this.zoologico = nuevoZoo;
+        nuevoZoo.biomas.add(bioma);
+    }
+
+    public void setProfesional(Profesional nuevoPro, Bioma bioma){
+        profesionales.add(nuevoPro);
+        nuevoPro.biomas.add(bioma);
+    }
+
+    public void setHabitat(Habitat habitat, Bioma bioma){
+        bioma.habitats.add(habitat);
+        habitat.bioma = bioma;
+    }
+
+    public String getProfesionalesCedula(){
+        ArrayList<Integer> cedulaProfecional = new ArrayList<>();
+        for (Profesional profesional : profesionales) {
+            cedulaProfecional.add(profesional.cedula);
+        }
+        return cedulaProfecional.toString();
+    }
+
+    public String getHabitatId(){
+        ArrayList<Integer> idHabitats = new ArrayList<>();
+        for (Habitat habitat : habitats) {
+            idHabitats.add(habitat.id);
+        }
+        return idHabitats.toString();
+    }
+
     @Override
     public String toString() {
-        return "Bioma{" +
+        return "Bioma{ " +
                 "id=" + id +
                 ", temperatura=" + temperatura +
                 ", humedad='" + humedad + '\'' +
                 ", tipo='" + tipo + '\'' +
-                '}';
+                ", NIT de zoologico asociados= " + ((zoologico == null) ? "N/A" : zoologico.nit) +
+                ", id de habitats asociados= " + getHabitatId()+
+                ", cedula de profesionales asociados= " + getProfesionalesCedula()+
+                " }";
     }
 }
