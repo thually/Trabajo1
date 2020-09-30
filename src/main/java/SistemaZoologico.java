@@ -2192,7 +2192,7 @@ public class SistemaZoologico {
         label:
         while (true) {
             System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, selecione el atributo que desea buscar: \n");
+            System.out.println("Por favor, seleccione el atributo que desea buscar: \n");
             System.out.println("1. Nit.");
             System.out.println("2. Nombre.");
             System.out.println("3. Siglas.");
@@ -2206,6 +2206,25 @@ public class SistemaZoologico {
             System.out.println();
             switch(option){
                 case "1":
+                    String option1;
+                    System.out.println("--------------------------------------------------");
+                    System.out.println("Por favor, selecione el valor que desea buscar: \n");
+                    System.out.println("1. Valor exacto.");
+                    System.out.println("2. Valor sin considerar puntos.");
+                    option1 = input.next();
+                    if (zoologicos.size() == 0){
+                        System.out.println("No se encuentran zoologicos registrados");
+                    }else if (!option1.equals("1") && !option1.equals("2")){
+                        System.out.println("Opcion incorrecta");
+                    }else if(option1.equals("1")){
+                        for (Zoologico zoologico : zoologicos){
+                            System.out.println(zoologico.nit);
+                        }
+                    }else  {
+                        for (Zoologico zoologico : zoologicos) {
+                            System.out.println(zoologico.nit.replace(".", ""));
+                        }
+                    }
                     break;
                 case "2":
                     String option2;
@@ -2214,22 +2233,152 @@ public class SistemaZoologico {
                     System.out.println("1. Valor exacto.");
                     System.out.println("2. Valor sin considerar mayusculas.");
                     option2 = input.next();
-                    if(option2.equals("1")){
-                        System.out.println("Ingrese el nombre: ");
-                        String nombrezoo = input.nextLine();
-
-                    }else if(option2.equals("2")){
-                        System.out.println("Ingrese el nombre: ");
+                    if (zoologicos.size() == 0){
+                        System.out.println("No se encuentran zoologicos registrados");
+                    }else if (!option2.equals("1") && !option2.equals("2")){
+                        System.out.println("Opcion incorrecta");
+                    }else if(option2.equals("1")){
+                        for (Zoologico zoologico : zoologicos){
+                            System.out.println(zoologico.nombre);
+                        }
+                    }else  {
+                        for (Zoologico zoologico : zoologicos) {
+                            System.out.println(zoologico.nombre.toLowerCase());
+                        }
                     }
                     break;
-                case "3": //siglas();
+                case "3":
+                    String option3;
+                    System.out.println("--------------------------------------------------");
+                    System.out.println("Por favor, selecione el valor que desea buscar: \n");
+                    System.out.println("1. Valor exacto.");
+                    System.out.println("2. Valor sin considerar mayusculas.");
+                    option3 = input.next();
+                    if (zoologicos.size() == 0){
+                        System.out.println("No se encuentran zoologicos registrados");
+                    }else if (!option3.equals("1") && !option3.equals("2")){
+                        System.out.println("Opcion incorrecta");
+                    }else if(option3.equals("1")){
+                        for (Zoologico zoologico : zoologicos){
+                            System.out.println(zoologico.siglas);
+                        }
+                    }else  {
+                        for (Zoologico zoologico : zoologicos) {
+                            System.out.println(zoologico.siglas.toLowerCase());
+                        }
+                    }
                     break;
-                case "4": animal();
+                case "4":
+                    String option4;
+                    System.out.println("--------------------------------------------------");
+                    System.out.println("Por favor, selecione el valor que desea buscar: \n");
+                    System.out.println("1. Valor exacto.");
+                    System.out.println("2. Valor sin considerar mayusculas.");
+                    option4 = input.next();
+                    if (zoologicos.size() == 0){
+                        System.out.println("No se encuentran zoologicos registrados");
+                    }else if (!option4.equals("1") && !option4.equals("2")){
+                        System.out.println("Opcion incorrecta");
+                    }else if(option4.equals("1")){
+                        for (Zoologico zoologico : zoologicos){
+                            System.out.println(zoologico.ciudad);
+                        }
+                    }else  {
+                        for (Zoologico zoologico : zoologicos) {
+                            System.out.println(zoologico.ciudad.toLowerCase());
+                        }
+                    }
                     break;
+                case "5":
+                    String option5;
+                    System.out.println("--------------------------------------------------");
+                    System.out.println("Por favor, selecione el valor que desea buscar: \n");
+                    System.out.println("1. Valor exacto.");
+                    System.out.println("2. Valor sin considerar mayusculas.");
+                    option5 = input.next();
+                    if (zoologicos.size() == 0){
+                        System.out.println("No se encuentran zoologicos registrados");
+                    }else if (!option5.equals("1") && !option5.equals("2")){
+                        System.out.println("Opcion incorrecta");
+                    }else if(option5.equals("1")){
+                        for (Zoologico zoologico : zoologicos){
+                            System.out.println(zoologico.biomas);
+                        }
+                    }else  {
+                        for (Zoologico zoologico : zoologicos) {
+                            System.out.println(zoologico.biomas);
+                        }
+                    }
+                case "6":
+                    String option6;
+                    System.out.println("--------------------------------------------------");
+                    System.out.println("Por favor, selecione el valor que desea buscar: \n");
+                    System.out.println("1. Valor exacto.");
+                    System.out.println("2. Valor sin considerar mayusculas.");
+                    option6 = input.next();
+                    if (zoologicos.size() == 0){
+                        System.out.println("No se encuentran zoologicos registrados");
+                    }else if (!option6.equals("1") && !option6.equals("2")){
+                        System.out.println("Opcion incorrecta");
+                    }else if(option6.equals("1")){
+                        for (Zoologico zoologico : zoologicos){
+                            System.out.println(zoologico.profesionales);
+                        }
+                    }else  {
+                        for (Zoologico zoologico : zoologicos) {
+                            System.out.println(zoologico.profesionales);
+                        }
+                    }
+                case "7":
+                    String option7;
+                    System.out.println("--------------------------------------------------");
+                    System.out.println("Por favor, selecione el valor que desea buscar: \n");
+                    System.out.println("1. Valor exacto.");
+                    System.out.println("2. Valor sin considerar mayusculas.");
+                    option7 = input.next();
+                    if (zoologicos.size() == 0){
+                        System.out.println("No se encuentran zoologicos registrados");
+                    }else if (!option7.equals("1") && !option7.equals("2")){
+                        System.out.println("Opcion incorrecta");
+                    }else if(option7.equals("1")){
+                        for (Zoologico zoologico : zoologicos){
+                            System.out.println(zoologico.zooAmigos);
+                        }
+                    }else  {
+                        for (Zoologico zoologico : zoologicos) {
+                            System.out.println(zoologico.zooAmigos);
+                        }
+                    }
+                case "8":
+                    String option8;
+                    System.out.println("--------------------------------------------------");
+                    System.out.println("Por favor, selecione el valor que desea buscar: \n");
+                    System.out.println("1. Valor exacto.");
+                    System.out.println("2. Valor sin considerar mayusculas.");
+                    option4 = input.next();
+                    if (zoologicos.size() == 0){
+                        System.out.println("No se encuentran zoologicos registrados");
+                    }else if (!option4.equals("1") && !option4.equals("2")){
+                        System.out.println("Opcion incorrecta");
+                    }else  {
+                        for (Zoologico zoologico : zoologicos) {
+                            System.out.println(zoologicos);
+                        }
+                    }
                 case "0":
                     break label;
             }
-            System.out.println("----------------------------------");
+            System.out.println("--------------------------------------------------");
+            System.out.println("Por favor, seleccione el atributo por el que desea ordenar: \n");
+            System.out.println("1. Temperatura.");
+            System.out.println("2. Hora inicio.");
+            System.out.println("3. Hora salida.");
+            System.out.println("4. Humedad.");
+            ArrayList<Zoologico> listaCopia = new ArrayList<Zoologico>(zoologicos.size());
+            Collections.copy(listaCopia, zoologicos);
+            System.out.println(zoologicos);
+            System.out.println(listaCopia);
+            System.out.println("--------------------------------------------------");
         }
     }
     public static void bioma(){
