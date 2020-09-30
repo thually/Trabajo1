@@ -2355,10 +2355,10 @@ public class SistemaZoologico {
                     System.out.println("Por favor, selecione el valor que desea buscar: \n");
                     System.out.println("1. Valor exacto.");
                     System.out.println("2. Valor sin considerar mayusculas.");
-                    option4 = input.next();
+                    option8 = input.next();
                     if (zoologicos.size() == 0){
                         System.out.println("No se encuentran zoologicos registrados");
-                    }else if (!option4.equals("1") && !option4.equals("2")){
+                    }else if (!option8.equals("1") && !option8.equals("2")){
                         System.out.println("Opcion incorrecta");
                     }else  {
                         for (Zoologico zoologico : zoologicos) {
@@ -2368,16 +2368,6 @@ public class SistemaZoologico {
                 case "0":
                     break label;
             }
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione el atributo por el que desea ordenar: \n");
-            System.out.println("1. Temperatura.");
-            System.out.println("2. Hora inicio.");
-            System.out.println("3. Hora salida.");
-            System.out.println("4. Humedad.");
-            ArrayList<Zoologico> listaCopia = new ArrayList<Zoologico>(zoologicos.size());
-            Collections.copy(listaCopia, zoologicos);
-            System.out.println(zoologicos);
-            System.out.println(listaCopia);
             System.out.println("--------------------------------------------------");
         }
     }
