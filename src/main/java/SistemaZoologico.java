@@ -1,3 +1,4 @@
+import jdk.nashorn.internal.ir.SwitchNode;
 import org.json.simple.*;
 import org.json.simple.parser.*;
 
@@ -61,7 +62,7 @@ public class SistemaZoologico {
                     administrar();
                     break;
                 case "2":
-                    //busqueda();
+                    busqueda();
                     break;
                 case "3":
                     //diagnostico();
@@ -434,7 +435,7 @@ public class SistemaZoologico {
                             }
                         }
                         if (proNuevo == null){
-                            System.out.println("\nLa cedula no coincide con ningun profesionak");
+                            System.out.println("\nLa cedula no coincide con ningun profesional");
                         } else break;
                     }
 
@@ -2146,6 +2147,275 @@ public class SistemaZoologico {
             else {
                 System.out.println("Opcion invalida\n");
             }
+        }
+    }
+
+    public static void busqueda(){
+        String option;
+        label:
+        while (true) {
+            System.out.println("--------------------------------------------------");
+            System.out.println("Por favor, selecione la clase que desea buscar: \n");
+            System.out.println("1. Zoologico.");
+            System.out.println("2. Bioma.");
+            System.out.println("3. Habitat.");
+            System.out.println("4. Animal.");
+            System.out.println("5. Tecnico.");
+            System.out.println("6. Profesional.");
+            System.out.println("7. ZooAmigo.");
+            System.out.println("0. Regresar a Menu Principal.");
+            option = input.next();
+            System.out.println();
+            switch(option){
+                case "1": zoologico();
+                    break;
+                case "2": bioma();
+                    break;
+                case "3": habitat();
+                    break;
+                case "4": animal();
+                    break;
+                case "5": tecnico();
+                    break;
+                case "6": profesional();
+                    break;
+                case "7": zooamigo();
+                    break;
+                case "0":
+                    break label;
+            }
+            System.out.println("----------------------------------");
+        }
+    }
+    public static void zoologico(){
+        String option;
+        label:
+        while (true) {
+            System.out.println("--------------------------------------------------");
+            System.out.println("Por favor, selecione el atributo que desea buscar: \n");
+            System.out.println("1. Nit.");
+            System.out.println("2. Nombre.");
+            System.out.println("3. Siglas.");
+            System.out.println("4. Ciudad.");
+            System.out.println("5. Bioma.");
+            System.out.println("6. Profesional.");
+            System.out.println("7. ZooAmigo.");
+            System.out.println("8. Mostrar todos los zoologicos.");
+            System.out.println("0. Regresar a Menu Principal.");
+            option = input.next();
+            System.out.println();
+            switch(option){
+                case "1":
+                    break;
+                case "2":
+                    String option2;
+                    System.out.println("--------------------------------------------------");
+                    System.out.println("Por favor, selecione el valor que desea buscar: \n");
+                    System.out.println("1. Valor exacto.");
+                    System.out.println("2. Valor sin considerar mayusculas.");
+                    option2 = input.next();
+                    if(option2.equals("1")){
+                        System.out.println("Ingrese el nombre: ");
+                        String nombrezoo = input.nextLine();
+
+                    }else if(option2.equals("2")){
+                        System.out.println("Ingrese el nombre: ");
+                    }
+                    break;
+                case "3": //siglas();
+                    break;
+                case "4": animal();
+                    break;
+                case "0":
+                    break label;
+            }
+            System.out.println("----------------------------------");
+        }
+    }
+    public static void bioma(){
+        String option;
+        label:
+        while (true) {
+            System.out.println("--------------------------------------------------");
+            System.out.println("Por favor, selecione el atributo que desea buscar: \n");
+            System.out.println("1. ID.");
+            System.out.println("2. Temperatura.");
+            System.out.println("3. Humedad.");
+            System.out.println("4. Tipo.");
+            System.out.println("5. Zoologico.");
+            System.out.println("6. Profesional.");
+            System.out.println("7. Habitat.");
+            System.out.println("8. Mostrar todos los biomas.");
+            System.out.println("0. Regresar a Menu Principal.");
+            option = input.next();
+            System.out.println();
+            switch(option){
+                case "1": //nit();
+                    break;
+                case "2": //nombre();
+                    break;
+                case "3": //siglas();
+                    break;
+                case "4": animal();
+                    break;
+                case "0":
+                    break label;
+            }
+            System.out.println("----------------------------------");
+        }
+    }
+    public static void habitat(){
+        String option;
+        label:
+        while (true) {
+            System.out.println("--------------------------------------------------");
+            System.out.println("Por favor, selecione el atributo que desea buscar: \n");
+            System.out.println("1. ID.");
+            System.out.println("2. Tipo de Suelo.");
+            System.out.println("3. Vegetacion.");
+            System.out.println("4. Tipo de Jaula.");
+            System.out.println("5. Animal.");
+            System.out.println("6. Bioma.");
+            System.out.println("7. Tecnico.");
+            System.out.println("8. Mostrar todos los habitats.");
+            System.out.println("0. Regresar a Menu Principal.");
+            option = input.next();
+            System.out.println();
+            switch(option){
+                case "1": //nit();
+                    break;
+                case "2": //nombre();
+                    break;
+                case "3": //siglas();
+                    break;
+                case "4": animal();
+                    break;
+                case "0":
+                    break label;
+            }
+            System.out.println("----------------------------------");
+        }
+    }
+    public static void animal(){
+        String option;
+        label:
+        while (true) {
+            System.out.println("--------------------------------------------------");
+            System.out.println("Por favor, selecione el atributo que desea buscar: \n");
+            System.out.println("1. ID.");
+            System.out.println("2. Especie.");
+            System.out.println("3. Nivel de Agresividad.");
+            System.out.println("4. Alimentacion.");
+            System.out.println("5. Habitat.");
+            System.out.println("6. ZooAmigo.");
+            System.out.println("7. Mostrar todos los animales.");
+            System.out.println("0. Regresar a Menu Principal.");
+            option = input.next();
+            System.out.println();
+            switch(option){
+                case "1": //nit();
+                    break;
+                case "2": //nombre();
+                    break;
+                case "3": //siglas();
+                    break;
+                case "4": animal();
+                    break;
+                case "0":
+                    break label;
+            }
+            System.out.println("----------------------------------");
+        }
+    }
+    public static void tecnico(){
+        String option;
+        label:
+        while (true) {
+            System.out.println("--------------------------------------------------");
+            System.out.println("Por favor, selecione el atributo que desea buscar: \n");
+            System.out.println("1. Cedula.");
+            System.out.println("2. Area.");
+            System.out.println("3. Hora Inicio.");
+            System.out.println("4. Hora Salida.");
+            System.out.println("5. Habitat.");
+            System.out.println("6. Mostrar todos los tecnicos.");
+            System.out.println("0. Regresar a Menu Principal.");
+            option = input.next();
+            System.out.println();
+            switch(option){
+                case "1": //nit();
+                    break;
+                case "2": //nombre();
+                    break;
+                case "3": //siglas();
+                    break;
+                case "4": animal();
+                    break;
+                case "0":
+                    break label;
+            }
+            System.out.println("----------------------------------");
+        }
+    }
+    public static void profesional(){
+        String option;
+        label:
+        while (true) {
+            System.out.println("--------------------------------------------------");
+            System.out.println("Por favor, selecione el atributo que desea buscar: \n");
+            System.out.println("1. Cedula.");
+            System.out.println("2. Area.");
+            System.out.println("3. Hora Inicio.");
+            System.out.println("4. Hora Salida.");
+            System.out.println("5. Bioma.");
+            System.out.println("6. Zoologico.");
+            System.out.println("7. Mostrar todos los profesionales.");
+            System.out.println("0. Regresar a Menu Principal.");
+            option = input.next();
+            System.out.println();
+            switch(option){
+                case "1": //nit();
+                    break;
+                case "2": //nombre();
+                    break;
+                case "3": //siglas();
+                    break;
+                case "4": animal();
+                    break;
+                case "0":
+                    break label;
+            }
+            System.out.println("----------------------------------");
+        }
+    }
+    public static void zooamigo(){
+        String option;
+        label:
+        while (true) {
+            System.out.println("--------------------------------------------------");
+            System.out.println("Por favor, selecione el atributo que desea buscar: \n");
+            System.out.println("1. Cedula.");
+            System.out.println("2. Nombre.");
+            System.out.println("3. Telefono.");
+            System.out.println("4. Animal.");
+            System.out.println("5. Zoologico.");
+            System.out.println("6. Mostrar todos los ZooAmigos.");
+            System.out.println("0. Regresar a Menu Principal.");
+            option = input.next();
+            System.out.println();
+            switch(option){
+                case "1": //nit();
+                    break;
+                case "2": //nombre();
+                    break;
+                case "3": //siglas();
+                    break;
+                case "4": animal();
+                    break;
+                case "0":
+                    break label;
+            }
+            System.out.println("----------------------------------");
         }
     }
 }
