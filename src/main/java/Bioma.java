@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-
+import java.util.Comparator;
 public class Bioma {
     int id;
     Double temperatura;
@@ -46,6 +46,58 @@ public class Bioma {
         }
         return idHabitats.toString();
     }
+
+    public class temperaturaComparator implements Comparator<Bioma> {
+        public int compare(Bioma temperatura1, Bioma temperatura2){
+            if (temperatura1.temperatura < temperatura2.temperatura){
+                return -1;
+            }else if(temperatura1.temperatura == temperatura2.temperatura){
+                return 0;
+            }else{
+                return 1;
+            }
+        }
+    }
+
+    public class IDComparator implements Comparator<Bioma> {
+        public int compare(Bioma id1, Bioma id2){
+            if (id1.id < id2.id){
+                return -1;
+            }else if(id1.id == id2.id){
+                return 0;
+            }else{
+                return 1;
+            }
+        }
+    }
+
+    public class humedadComparator implements Comparator<Bioma> {
+        public int compare(Bioma humedad1, Bioma humedad2){
+
+            if (humedad1.humedad.compareTo(humedad2.humedad) < 0){
+                return -1;
+            }else if(humedad1.humedad.equals(humedad2.humedad)){
+                return 0;
+            }else{
+                return 1;
+            }
+        }
+    }
+
+    public class tipoComparator implements Comparator<Bioma> {
+        public int compare(Bioma tipo1, Bioma tipo2){
+
+            if (tipo1.tipo.compareTo(tipo2.tipo) < 0){
+                return -1;
+            }else if(tipo1.tipo.equals(tipo2.tipo)){
+                return 0;
+            }else{
+                return 1;
+            }
+        }
+    }
+
+
 
     @Override
     public String toString() {
