@@ -47,17 +47,7 @@ public class Bioma {
         return idHabitats.toString();
     }
 
-    public class temperaturaComparator implements Comparator<Bioma> {
-        public int compare(Bioma temperatura1, Bioma temperatura2){
-            if (temperatura1.temperatura < temperatura2.temperatura){
-                return -1;
-            }else if(temperatura1.temperatura == temperatura2.temperatura){
-                return 0;
-            }else{
-                return 1;
-            }
-        }
-    }
+
 
     public class IDComparator implements Comparator<Bioma> {
         public int compare(Bioma id1, Bioma id2){
