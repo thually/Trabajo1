@@ -2361,13 +2361,13 @@ public class SistemaZoologico {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String ciudadBus= input.next();
-                        ciudadZoologico(1, ciudadBus);
+                        horaSalidaBus(1, ciudadBus);
                         break;
                     }else{
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String ciudadBus= input.next();
-                        ciudadZoologico(2, ciudadBus);
+                        horaSalidaBus(2, ciudadBus);
                         break;
                     }
                     break;
@@ -2548,7 +2548,7 @@ public class SistemaZoologico {
             }
         }
     }
-    public static void ciudadZoologico(int opcionValor, String ciudad){
+    public static void horaSalidaBus(int opcionValor, String ciudad){
         ArrayList<Zoologico> copiaZoo = new ArrayList<>(zoologicos);
         String option;
         String option2;
@@ -3377,14 +3377,12 @@ public class SistemaZoologico {
         while (true) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione el atributo que desea buscar: \n");
-            System.out.println("1. Nit.");
-            System.out.println("2. Nombre.");
-            System.out.println("3. Siglas.");
-            System.out.println("4. Ciudad.");
-            System.out.println("5. Bioma.");
-            System.out.println("6. Profesional.");
-            System.out.println("7. ZooAmigo.");
-            System.out.println("8. Mostrar todos los zoologicos.");
+            System.out.println("1. Cedula.");
+            System.out.println("2. Ares.");
+            System.out.println("3. Hora inicio.");
+            System.out.println("4. Hora salida.");
+            System.out.println("5. Habitat.");
+            System.out.println("6. Mostrar todos los zoologicos.");
             System.out.println("0. Regresar al menu anterior.");
             option = input.next();
             System.out.println();
@@ -3394,21 +3392,36 @@ public class SistemaZoologico {
                     System.out.println("--------------------------------------------------");
                     System.out.println("Por favor, selecione el valor que desea buscar: \n");
                     System.out.println("1. Valor exacto.");
-                    System.out.println("2. Valor sin considerar puntos.");
+                    System.out.println("2. Valor maximo.");
+                    System.out.println("3. Valor minimo.");
+                    System.out.println("4. Rango.");
                     option1 = input.next();
-                    if (!option1.equals("1") && !option1.equals("2")) {
+                    if (!option1.equals("1") && !option1.equals("2") && !option1.equals("3") && !option1.equals("4")) {
                         System.out.println("Opcion incorrecta");
-                    }else if(option1.equals("1")) {
+                    }else if(option1.equals("1")){
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String nitBus= input.next();
-                        nitZoologico(1, nitBus);
+                        int cedulaBus= input.nextInt();
+                        cedulaTecnico(1, cedulaBus);
                         break;
-                    }else{
+                    }else if(option1.equals("2")) {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String nitBus= input.next();
-                        nitZoologico(2, nitBus);
+                        int cedulaBus = input.nextInt();
+                        cedulaTecnico(2, cedulaBus);
+                        break;
+                    }else if(option1.equals("3")) {
+                        System.out.println("--------------------------------------------------");
+                        System.out.println("Por favor, ingrese el valor que desea buscar: \n");
+                        int cedulaBus = input.nextInt();
+                        cedulaTecnico(3, cedulaBus);
+                        break;
+                    }
+                    else{
+                        System.out.println("--------------------------------------------------");
+                        System.out.println("Por favor, ingrese el valor que desea buscar: \n");
+                        int cedulaBus= input.nextInt();
+                        cedulaTecnico(4, cedulaBus);
                         break;
                     }
                     break;
@@ -3424,14 +3437,14 @@ public class SistemaZoologico {
                     }else if(option2.equals("1")){
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String nombreBus= input.next();
-                        nombreZoologico(1, nombreBus);
+                        String areaBus= input.next();
+                        areaTecnico(1, areaBus);
                         break;
                     }else{
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String nombreBus= input.next();
-                        nombreZoologico(2, nombreBus);
+                        String areaBus= input.next();
+                        areaTecnico(2, areaBus);
                         break;
                     }
                     break;
@@ -3440,21 +3453,36 @@ public class SistemaZoologico {
                     System.out.println("--------------------------------------------------");
                     System.out.println("Por favor, selecione el valor que desea buscar: \n");
                     System.out.println("1. Valor exacto.");
-                    System.out.println("2. Valor sin considerar mayusculas.");
+                    System.out.println("2. Valor maximo.");
+                    System.out.println("3. Valor minimo.");
+                    System.out.println("4. Rango.");
                     option3 = input.next();
-                    if (!option3.equals("1") && !option3.equals("2")) {
+                    if (!option3.equals("1") && !option3.equals("2") && !option3.equals("3") && !option3.equals("4")) {
                         System.out.println("Opcion incorrecta");
-                    }else if(option3.equals("1")) {
+                    }else if(option3.equals("1")){
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String siglasBus= input.next();
-                        siglasZoologico(1, siglasBus);
+                        String horaInicioBus= input.next();
+                        horaInicioTecnico(1, horaInicioBus);
                         break;
-                    }else{
+                    }else if(option3.equals("2")) {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String siglasBus= input.next();
-                        siglasZoologico(2, siglasBus);
+                        String horaInicioBus = input.next();
+                        horaInicioTecnico(2, horaInicioBus);
+                        break;
+                    }else if(option3.equals("3")) {
+                        System.out.println("--------------------------------------------------");
+                        System.out.println("Por favor, ingrese el valor que desea buscar: \n");
+                        String horaInicioBus = input.next();
+                        horaInicioTecnico(3, horaInicioBus);
+                        break;
+                    }
+                    else{
+                        System.out.println("--------------------------------------------------");
+                        System.out.println("Por favor, ingrese el valor que desea buscar: \n");
+                        String horaInicioBus= input.next();
+                        horaInicioTecnico(4, horaInicioBus);
                         break;
                     }
                     break;
@@ -3463,21 +3491,36 @@ public class SistemaZoologico {
                     System.out.println("--------------------------------------------------");
                     System.out.println("Por favor, selecione el valor que desea buscar: \n");
                     System.out.println("1. Valor exacto.");
-                    System.out.println("2. Valor sin considerar mayusculas.");
+                    System.out.println("2. Valor maximo.");
+                    System.out.println("3. Valor minimo.");
+                    System.out.println("4. Rango.");
                     option4 = input.next();
-                    if (!option4.equals("1") && !option4.equals("2")) {
+                    if (!option4.equals("1") && !option4.equals("2") && !option4.equals("3") && !option4.equals("4")) {
                         System.out.println("Opcion incorrecta");
-                    }else if(option4.equals("1")) {
+                    }else if(option4.equals("1")){
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String ciudadBus= input.next();
-                        ciudadZoologico(1, ciudadBus);
+                        String horaSalidaBus= input.next();
+                        horaSalidaTecnico(1, horaSalidaBus);
                         break;
-                    }else{
+                    }else if(option4.equals("2")) {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String ciudadBus= input.next();
-                        ciudadZoologico(2, ciudadBus);
+                        String horaSalidaBus = input.next();
+                        horaSalidaTecnico(2, horaSalidaBus);
+                        break;
+                    }else if(option4.equals("3")) {
+                        System.out.println("--------------------------------------------------");
+                        System.out.println("Por favor, ingrese el valor que desea buscar: \n");
+                        String horaSalidaBus = input.next();
+                        horaSalidaTecnico(3, horaSalidaBus);
+                        break;
+                    }
+                    else{
+                        System.out.println("--------------------------------------------------");
+                        System.out.println("Por favor, ingrese el valor que desea buscar: \n");
+                        String horaSalidaBus= input.next();
+                        horaSalidaTecnico(4, horaSalidaBus);
                         break;
                     }
                     break;
@@ -3493,76 +3536,28 @@ public class SistemaZoologico {
                     }else if(option5.equals("1")) {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String biomaBus = input.next();
-                        biomaZoologico(1,biomaBus);
+                        String habitatBus = input.next();
+                        habitatTecnico(1,habitatBus);
                         break;
                     }else{
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String biomaBus= input.next();
-                        biomaZoologico(2,biomaBus);
+                        String habitatBus= input.next();
+                        habitatTecnico(2,habitatBus);
                         break;
                     }
                     break;
                 case "6":
                     String option6;
                     System.out.println("--------------------------------------------------");
-                    System.out.println("Por favor, selecione el valor que desea buscar: \n");
-                    System.out.println("1. Valor exacto.");
-                    System.out.println("2. Valor sin considerar mayusculas.");
+                    System.out.println("Por favor, seleccione el atributo que desea buscar: \n");
+                    System.out.println("1. Cedula.");
+                    System.out.println("2. Ares.");
+                    System.out.println("3. Hora inicio.");
+                    System.out.println("4. Hora salida.");
+                    System.out.println("5. Habitat.");
+                    System.out.println("6. Mostrar todos los zoologicos.");
                     option6 = input.next();
-                    if (!option6.equals("1") && !option6.equals("2")) {
-                        System.out.println("Opcion incorrecta");
-                    }else if(option6.equals("1")) {
-                        System.out.println("--------------------------------------------------");
-                        System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String profesionalBus= input.next();
-                        profesionalZoologico(1, profesionalBus);
-                        break;
-                    }else{
-                        System.out.println("--------------------------------------------------");
-                        System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String profesionalBus= input.next();
-                        profesionalZoologico(2, profesionalBus);
-                        break;
-                    }
-                    break;
-                case "7":
-                    String option7;
-                    System.out.println("--------------------------------------------------");
-                    System.out.println("Por favor, selecione el valor que desea buscar: \n");
-                    System.out.println("1. Valor exacto.");
-                    System.out.println("2. Valor sin considerar mayusculas.");
-                    option7 = input.next();
-                    if (!option7.equals("1") && !option7.equals("2")) {
-                        System.out.println("Opcion incorrecta");
-                    }else if(option7.equals("1")) {
-                        System.out.println("--------------------------------------------------");
-                        System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String zooAmigoBus= input.next();
-                        zooAmigoZoologico(1, zooAmigoBus);
-                        break;
-                    }else{
-                        System.out.println("--------------------------------------------------");
-                        System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String zooAmigoBus= input.next();
-                        zooAmigoZoologico(2, zooAmigoBus);
-                        break;
-                    }
-                    break;
-                case "8":
-                    String option8;
-                    System.out.println("--------------------------------------------------");
-                    System.out.println("Por favor, seleccione el atributo por el que desea ordenar: \n");
-                    System.out.println("1. Nit.");
-                    System.out.println("2. Nombre.");
-                    System.out.println("3. Siglas.");
-                    System.out.println("4. Ciudad.");
-                    System.out.println("5. Bioma.");
-                    System.out.println("6. Profesional.");
-                    System.out.println("7. ZooAmigo.");
-                    System.out.println("0. Regresar al menu anterior.");
-                    option8 = input.next();
                     System.out.println();
                     break;
                 case "0":
@@ -3572,7 +3567,7 @@ public class SistemaZoologico {
         }
     }
     public static void cedulaTecnico(int opcionValor, int cedulaBus){}
-    public static void areaTecnico(int opcionValor, double areaBus){}
+    public static void areaTecnico(int opcionValor, String areaBus){}
     public static void horaInicioTecnico(int opcionValor, String horaInicioBus){}
     public static void horaSalidaTecnico(int opcionValor, String horaSalidaBus){}
     public static void habitatTecnico(int opcionValor, String habitatBus){}
@@ -3583,14 +3578,13 @@ public class SistemaZoologico {
         while (true) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione el atributo que desea buscar: \n");
-            System.out.println("1. Nit.");
-            System.out.println("2. Nombre.");
-            System.out.println("3. Siglas.");
-            System.out.println("4. Ciudad.");
+            System.out.println("1. Cedula.");
+            System.out.println("2. Area.");
+            System.out.println("3. Hora inicio.");
+            System.out.println("4. Hora salida.");
             System.out.println("5. Bioma.");
-            System.out.println("6. Profesional.");
-            System.out.println("7. ZooAmigo.");
-            System.out.println("8. Mostrar todos los zoologicos.");
+            System.out.println("6. Zoologico.");
+            System.out.println("7. Mostrar todos los zoologicos.");
             System.out.println("0. Regresar al menu anterior.");
             option = input.next();
             System.out.println();
@@ -3600,21 +3594,36 @@ public class SistemaZoologico {
                     System.out.println("--------------------------------------------------");
                     System.out.println("Por favor, selecione el valor que desea buscar: \n");
                     System.out.println("1. Valor exacto.");
-                    System.out.println("2. Valor sin considerar puntos.");
+                    System.out.println("2. Valor maximo.");
+                    System.out.println("3. Valor minimo.");
+                    System.out.println("4. Rango.");
                     option1 = input.next();
-                    if (!option1.equals("1") && !option1.equals("2")) {
+                    if (!option1.equals("1") && !option1.equals("2") && !option1.equals("3") && !option1.equals("4")) {
                         System.out.println("Opcion incorrecta");
-                    }else if(option1.equals("1")) {
+                    }else if(option1.equals("1")){
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String nitBus= input.next();
-                        nitZoologico(1, nitBus);
+                        int cedulaBus= input.nextInt();
+                        cedulaProfesiona(1, cedulaBus);
                         break;
-                    }else{
+                    }else if(option1.equals("2")) {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String nitBus= input.next();
-                        nitZoologico(2, nitBus);
+                        int cedulaBus = input.nextInt();
+                        cedulaProfesiona(2, cedulaBus);
+                        break;
+                    }else if(option1.equals("3")) {
+                        System.out.println("--------------------------------------------------");
+                        System.out.println("Por favor, ingrese el valor que desea buscar: \n");
+                        int cedulaBus = input.nextInt();
+                        cedulaProfesiona(3, cedulaBus);
+                        break;
+                    }
+                    else{
+                        System.out.println("--------------------------------------------------");
+                        System.out.println("Por favor, ingrese el valor que desea buscar: \n");
+                        int cedulaBus= input.nextInt();
+                        cedulaProfesiona(4, cedulaBus);
                         break;
                     }
                     break;
@@ -3630,14 +3639,14 @@ public class SistemaZoologico {
                     }else if(option2.equals("1")){
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String nombreBus= input.next();
-                        nombreZoologico(1, nombreBus);
+                        String areaBus= input.next();
+                        areaProfesional(1, areaBus);
                         break;
                     }else{
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String nombreBus= input.next();
-                        nombreZoologico(2, nombreBus);
+                        String areaBus= input.next();
+                        areaProfesional(2, areaBus);
                         break;
                     }
                     break;
@@ -3646,21 +3655,36 @@ public class SistemaZoologico {
                     System.out.println("--------------------------------------------------");
                     System.out.println("Por favor, selecione el valor que desea buscar: \n");
                     System.out.println("1. Valor exacto.");
-                    System.out.println("2. Valor sin considerar mayusculas.");
+                    System.out.println("2. Valor maximo.");
+                    System.out.println("3. Valor minimo.");
+                    System.out.println("4. Rango.");
                     option3 = input.next();
-                    if (!option3.equals("1") && !option3.equals("2")) {
+                    if (!option3.equals("1") && !option3.equals("2") && !option3.equals("3") && !option3.equals("4")) {
                         System.out.println("Opcion incorrecta");
-                    }else if(option3.equals("1")) {
+                    }else if(option3.equals("1")){
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String siglasBus= input.next();
-                        siglasZoologico(1, siglasBus);
+                        String horaInicioBus= input.next();
+                        horaInicioProfesional(1, horaInicioBus);
                         break;
-                    }else{
+                    }else if(option3.equals("2")) {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String siglasBus= input.next();
-                        siglasZoologico(2, siglasBus);
+                        String horaInicioBus = input.next();
+                        horaInicioProfesional(2, horaInicioBus);
+                        break;
+                    }else if(option3.equals("3")) {
+                        System.out.println("--------------------------------------------------");
+                        System.out.println("Por favor, ingrese el valor que desea buscar: \n");
+                        String horaInicioBus = input.next();
+                        horaInicioProfesional(3, horaInicioBus);
+                        break;
+                    }
+                    else{
+                        System.out.println("--------------------------------------------------");
+                        System.out.println("Por favor, ingrese el valor que desea buscar: \n");
+                        String horaInicioBus= input.next();
+                        horaInicioProfesional(4, horaInicioBus);
                         break;
                     }
                     break;
@@ -3669,21 +3693,36 @@ public class SistemaZoologico {
                     System.out.println("--------------------------------------------------");
                     System.out.println("Por favor, selecione el valor que desea buscar: \n");
                     System.out.println("1. Valor exacto.");
-                    System.out.println("2. Valor sin considerar mayusculas.");
+                    System.out.println("2. Valor maximo.");
+                    System.out.println("3. Valor minimo.");
+                    System.out.println("4. Rango.");
                     option4 = input.next();
-                    if (!option4.equals("1") && !option4.equals("2")) {
+                    if (!option4.equals("1") && !option4.equals("2") && !option4.equals("3") && !option4.equals("4")) {
                         System.out.println("Opcion incorrecta");
-                    }else if(option4.equals("1")) {
+                    }else if(option4.equals("1")){
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String ciudadBus= input.next();
-                        ciudadZoologico(1, ciudadBus);
+                        String horaSalidaBus= input.next();
+                        horaSalidaProfesional(1, horaSalidaBus);
                         break;
-                    }else{
+                    }else if(option4.equals("2")) {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String ciudadBus= input.next();
-                        ciudadZoologico(2, ciudadBus);
+                        String horaSalidaBus = input.next();
+                        horaSalidaProfesional(2, horaSalidaBus);
+                        break;
+                    }else if(option4.equals("3")) {
+                        System.out.println("--------------------------------------------------");
+                        System.out.println("Por favor, ingrese el valor que desea buscar: \n");
+                        String horaSalidaBus = input.next();
+                        horaSalidaProfesional(3, horaSalidaBus);
+                        break;
+                    }
+                    else{
+                        System.out.println("--------------------------------------------------");
+                        System.out.println("Por favor, ingrese el valor que desea buscar: \n");
+                        String horaSalidaBus= input.next();
+                        horaSalidaProfesional(4, horaSalidaBus);
                         break;
                     }
                     break;
@@ -3700,13 +3739,13 @@ public class SistemaZoologico {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String biomaBus = input.next();
-                        biomaZoologico(1,biomaBus);
+                        biomaProfesional(1,biomaBus);
                         break;
                     }else{
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String biomaBus= input.next();
-                        biomaZoologico(2,biomaBus);
+                        biomaProfesional(2,biomaBus);
                         break;
                     }
                     break;
@@ -3723,52 +3762,28 @@ public class SistemaZoologico {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String profesionalBus= input.next();
-                        profesionalZoologico(1, profesionalBus);
+                        zoologicoProfesional(1, profesionalBus);
                         break;
                     }else{
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String profesionalBus= input.next();
-                        profesionalZoologico(2, profesionalBus);
+                        zoologicoProfesional(2, profesionalBus);
                         break;
                     }
                     break;
                 case "7":
                     String option7;
                     System.out.println("--------------------------------------------------");
-                    System.out.println("Por favor, selecione el valor que desea buscar: \n");
-                    System.out.println("1. Valor exacto.");
-                    System.out.println("2. Valor sin considerar mayusculas.");
-                    option7 = input.next();
-                    if (!option7.equals("1") && !option7.equals("2")) {
-                        System.out.println("Opcion incorrecta");
-                    }else if(option7.equals("1")) {
-                        System.out.println("--------------------------------------------------");
-                        System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String zooAmigoBus= input.next();
-                        zooAmigoZoologico(1, zooAmigoBus);
-                        break;
-                    }else{
-                        System.out.println("--------------------------------------------------");
-                        System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String zooAmigoBus= input.next();
-                        zooAmigoZoologico(2, zooAmigoBus);
-                        break;
-                    }
-                    break;
-                case "8":
-                    String option8;
-                    System.out.println("--------------------------------------------------");
-                    System.out.println("Por favor, seleccione el atributo por el que desea ordenar: \n");
-                    System.out.println("1. Nit.");
-                    System.out.println("2. Nombre.");
-                    System.out.println("3. Siglas.");
-                    System.out.println("4. Ciudad.");
+                    System.out.println("Por favor, seleccione el atributo que desea buscar: \n");
+                    System.out.println("1. Cedula.");
+                    System.out.println("2. Area.");
+                    System.out.println("3. Hora inicio.");
+                    System.out.println("4. Hora salida.");
                     System.out.println("5. Bioma.");
-                    System.out.println("6. Profesional.");
-                    System.out.println("7. ZooAmigo.");
+                    System.out.println("6. Zoologico.");
                     System.out.println("0. Regresar al menu anterior.");
-                    option8 = input.next();
+                    option7 = input.next();
                     System.out.println();
                     break;
                 case "0":
@@ -3778,7 +3793,7 @@ public class SistemaZoologico {
         }
     }
     public static void cedulaProfesiona(int opcionValor, int cedulaBus){}
-    public static void areaProfesional(int opcionValor, double areaBus){}
+    public static void areaProfesional(int opcionValor, String areaBus){}
     public static void horaInicioProfesional(int opcionValor, String horaInicioBus){}
     public static void horaSalidaProfesional(int opcionValor, String horaSalidaBus){}
     public static void biomaProfesional(int opcionValor, String biomaBus){}
@@ -3790,14 +3805,12 @@ public class SistemaZoologico {
         while (true) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione el atributo que desea buscar: \n");
-            System.out.println("1. Nit.");
+            System.out.println("1. Cedula.");
             System.out.println("2. Nombre.");
-            System.out.println("3. Siglas.");
-            System.out.println("4. Ciudad.");
-            System.out.println("5. Bioma.");
-            System.out.println("6. Profesional.");
-            System.out.println("7. ZooAmigo.");
-            System.out.println("8. Mostrar todos los zoologicos.");
+            System.out.println("3. Telefono.");
+            System.out.println("4. Animal.");
+            System.out.println("5. Zoologico.");
+            System.out.println("6. Mostrar todos los zoologicos.");
             System.out.println("0. Regresar al menu anterior.");
             option = input.next();
             System.out.println();
@@ -3807,21 +3820,36 @@ public class SistemaZoologico {
                     System.out.println("--------------------------------------------------");
                     System.out.println("Por favor, selecione el valor que desea buscar: \n");
                     System.out.println("1. Valor exacto.");
-                    System.out.println("2. Valor sin considerar puntos.");
+                    System.out.println("2. Valor maximo.");
+                    System.out.println("3. Valor minimo.");
+                    System.out.println("4. Rango.");
                     option1 = input.next();
-                    if (!option1.equals("1") && !option1.equals("2")) {
+                    if (!option1.equals("1") && !option1.equals("2") && !option1.equals("3") && !option1.equals("4")) {
                         System.out.println("Opcion incorrecta");
-                    }else if(option1.equals("1")) {
+                    }else if(option1.equals("1")){
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String nitBus= input.next();
-                        nitZoologico(1, nitBus);
+                        int cedulaBus= input.nextInt();
+                        cedulaZooAmigo(1, cedulaBus);
                         break;
-                    }else{
+                    }else if(option1.equals("2")) {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String nitBus= input.next();
-                        nitZoologico(2, nitBus);
+                        int cedulaBus = input.nextInt();
+                        cedulaZooAmigo(2, cedulaBus);
+                        break;
+                    }else if(option1.equals("3")) {
+                        System.out.println("--------------------------------------------------");
+                        System.out.println("Por favor, ingrese el valor que desea buscar: \n");
+                        int cedulaBus = input.nextInt();
+                        cedulaZooAmigo(3, cedulaBus);
+                        break;
+                    }
+                    else{
+                        System.out.println("--------------------------------------------------");
+                        System.out.println("Por favor, ingrese el valor que desea buscar: \n");
+                        int cedulaBus= input.nextInt();
+                        cedulaZooAmigo(4, cedulaBus);
                         break;
                     }
                     break;
@@ -3838,13 +3866,13 @@ public class SistemaZoologico {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String nombreBus= input.next();
-                        nombreZoologico(1, nombreBus);
+                        nombreZooAmigo(1, nombreBus);
                         break;
                     }else{
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String nombreBus= input.next();
-                        nombreZoologico(2, nombreBus);
+                        nombreZooAmigo(2, nombreBus);
                         break;
                     }
                     break;
@@ -3853,21 +3881,36 @@ public class SistemaZoologico {
                     System.out.println("--------------------------------------------------");
                     System.out.println("Por favor, selecione el valor que desea buscar: \n");
                     System.out.println("1. Valor exacto.");
-                    System.out.println("2. Valor sin considerar mayusculas.");
+                    System.out.println("2. Valor maximo.");
+                    System.out.println("3. Valor minimo.");
+                    System.out.println("4. Rango.");
                     option3 = input.next();
-                    if (!option3.equals("1") && !option3.equals("2")) {
+                    if (!option3.equals("1") && !option3.equals("2") && !option3.equals("3") && !option3.equals("4")) {
                         System.out.println("Opcion incorrecta");
-                    }else if(option3.equals("1")) {
+                    }else if(option3.equals("1")){
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String siglasBus= input.next();
-                        siglasZoologico(1, siglasBus);
+                        String telefonoBus= input.next();
+                        telefonoZooAmigo(1, telefonoBus);
                         break;
-                    }else{
+                    }else if(option3.equals("2")) {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String siglasBus= input.next();
-                        siglasZoologico(2, siglasBus);
+                        String telefonoBus = input.next();
+                        telefonoZooAmigo(2, telefonoBus);
+                        break;
+                    }else if(option3.equals("3")) {
+                        System.out.println("--------------------------------------------------");
+                        System.out.println("Por favor, ingrese el valor que desea buscar: \n");
+                        String telefonoBus = input.next();
+                        telefonoZooAmigo(3, telefonoBus);
+                        break;
+                    }
+                    else{
+                        System.out.println("--------------------------------------------------");
+                        System.out.println("Por favor, ingrese el valor que desea buscar: \n");
+                        String telefonoBus= input.next();
+                        telefonoZooAmigo(4, telefonoBus);
                         break;
                     }
                     break;
@@ -3883,14 +3926,14 @@ public class SistemaZoologico {
                     }else if(option4.equals("1")) {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String ciudadBus= input.next();
-                        ciudadZoologico(1, ciudadBus);
+                        String animalBus= input.next();
+                        animalZooAmigo(1, animalBus);
                         break;
                     }else{
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String ciudadBus= input.next();
-                        ciudadZoologico(2, ciudadBus);
+                        String animalBus= input.next();
+                        animalZooAmigo(2, animalBus);
                         break;
                     }
                     break;
@@ -3906,76 +3949,28 @@ public class SistemaZoologico {
                     }else if(option5.equals("1")) {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String biomaBus = input.next();
-                        biomaZoologico(1,biomaBus);
+                        String zoologicoBus = input.next();
+                        zoologicoZooAmigo(1,zoologicoBus);
                         break;
                     }else{
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String biomaBus= input.next();
-                        biomaZoologico(2,biomaBus);
+                        String zoologicoBus= input.next();
+                        zoologicoZooAmigo(2,zoologicoBus);
                         break;
                     }
                     break;
                 case "6":
                     String option6;
                     System.out.println("--------------------------------------------------");
-                    System.out.println("Por favor, selecione el valor que desea buscar: \n");
-                    System.out.println("1. Valor exacto.");
-                    System.out.println("2. Valor sin considerar mayusculas.");
-                    option6 = input.next();
-                    if (!option6.equals("1") && !option6.equals("2")) {
-                        System.out.println("Opcion incorrecta");
-                    }else if(option6.equals("1")) {
-                        System.out.println("--------------------------------------------------");
-                        System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String profesionalBus= input.next();
-                        profesionalZoologico(1, profesionalBus);
-                        break;
-                    }else{
-                        System.out.println("--------------------------------------------------");
-                        System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String profesionalBus= input.next();
-                        profesionalZoologico(2, profesionalBus);
-                        break;
-                    }
-                    break;
-                case "7":
-                    String option7;
-                    System.out.println("--------------------------------------------------");
-                    System.out.println("Por favor, selecione el valor que desea buscar: \n");
-                    System.out.println("1. Valor exacto.");
-                    System.out.println("2. Valor sin considerar mayusculas.");
-                    option7 = input.next();
-                    if (!option7.equals("1") && !option7.equals("2")) {
-                        System.out.println("Opcion incorrecta");
-                    }else if(option7.equals("1")) {
-                        System.out.println("--------------------------------------------------");
-                        System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String zooAmigoBus= input.next();
-                        zooAmigoZoologico(1, zooAmigoBus);
-                        break;
-                    }else{
-                        System.out.println("--------------------------------------------------");
-                        System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String zooAmigoBus= input.next();
-                        zooAmigoZoologico(2, zooAmigoBus);
-                        break;
-                    }
-                    break;
-                case "8":
-                    String option8;
-                    System.out.println("--------------------------------------------------");
                     System.out.println("Por favor, seleccione el atributo por el que desea ordenar: \n");
-                    System.out.println("1. Nit.");
+                    System.out.println("1. Cedula.");
                     System.out.println("2. Nombre.");
-                    System.out.println("3. Siglas.");
-                    System.out.println("4. Ciudad.");
-                    System.out.println("5. Bioma.");
-                    System.out.println("6. Profesional.");
-                    System.out.println("7. ZooAmigo.");
+                    System.out.println("3. Telefono.");
+                    System.out.println("4. Animal.");
+                    System.out.println("5. Zoologico.");
                     System.out.println("0. Regresar al menu anterior.");
-                    option8 = input.next();
+                    option6 = input.next();
                     System.out.println();
                     break;
                 case "0":
