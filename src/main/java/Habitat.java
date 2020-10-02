@@ -49,43 +49,11 @@ public class Habitat {
         return idAnimal.toString();
     }
 
-    public class IDComparator implements Comparator<Habitat> {
-        public int compare(Habitat id1, Habitat id2){
-            if (id1.id < id2.id){
-                return -1;
-            }else if(id1.id == id2.id){
-                return 0;
-            }else{
-                return 1;
-            }
-        }
-    }
 
-    public class tipoSueloComparator implements Comparator<Habitat> {
-        public int compare(Habitat tipoSuelo1, Habitat tipoSuelo2){
 
-            if (tipoSuelo1.tipoSuelo.compareTo(tipoSuelo2.tipoSuelo) < 0){
-                return -1;
-            }else if(tipoSuelo1.tipoSuelo.equals(tipoSuelo2.tipoSuelo)){
-                return 0;
-            }else{
-                return 1;
-            }
-        }
-    }
 
-    public class tipoJaulaComparator implements Comparator<Habitat> {
-        public int compare(Habitat tipoJaula1, Habitat tipoJaula2){
 
-            if (tipoJaula1.tipoJaula.compareTo(tipoJaula2.tipoJaula) < 0){
-                return -1;
-            }else if(tipoJaula1.tipoJaula.equals(tipoJaula2.tipoJaula)){
-                return 0;
-            }else{
-                return 1;
-            }
-        }
-    }
+
 
     public class vegetacionComparator implements Comparator<Habitat> {
         public int compare(Habitat vegetacion1, Habitat vegetacion2){

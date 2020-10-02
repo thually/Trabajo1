@@ -47,31 +47,9 @@ public class Bioma {
         return idHabitats.toString();
     }
 
-    public class humedadComparator implements Comparator<Bioma> {
-        public int compare(Bioma humedad1, Bioma humedad2){
 
-            if (humedad1.humedad.compareTo(humedad2.humedad) < 0){
-                return -1;
-            }else if(humedad1.humedad.equals(humedad2.humedad)){
-                return 0;
-            }else{
-                return 1;
-            }
-        }
-    }
 
-    public class tipoComparator implements Comparator<Bioma> {
-        public int compare(Bioma tipo1, Bioma tipo2){
 
-            if (tipo1.tipo.compareTo(tipo2.tipo) < 0){
-                return -1;
-            }else if(tipo1.tipo.equals(tipo2.tipo)){
-                return 0;
-            }else{
-                return 1;
-            }
-        }
-    }
 
 
 
