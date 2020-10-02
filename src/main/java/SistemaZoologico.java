@@ -16,8 +16,13 @@ public class SistemaZoologico {
     public static ArrayList<Tecnico> tecnicos = new ArrayList<>();
     public static ArrayList<ZooAmigo> zooAmigos = new ArrayList<>();
     public static ArrayList<Zoologico> zoologicos = new ArrayList<>();
+    public static ArrayList<Zoologico> copiaZoo = new ArrayList<Zoologico>(zoologicos);
     public static Comparator<Zoologico> [] comparadoresZoologico = new Comparator[7];
-    public static Comparator<Bioma> [] comparadoresBioma = new Comparator[4];
+    public static Comparator<Bioma> [] comparadoresBioma = new Comparator[7];
+    public static Comparator<Habitat> [] comparadoresHabitat = new Comparator[6];
+    public static Comparator<Animal> [] comparadoresAnimal = new Comparator[6];
+    public static Comparator<Tecnico> [] comparadoresTecnico = new Comparator[5];
+    public static Comparator<Profesional> [] comparadoresProfesional = new Comparator[6];
 
     public static void main(String[] args) {
 
@@ -27,7 +32,7 @@ public class SistemaZoologico {
         comparadoresZoologico [3] = new ciudadComparator();
         comparadoresZoologico [4] = new biomaZComparator();
         comparadoresZoologico [5] = new profesionalesZComparator();
-
+        comparadoresBioma [0] = new IDComparator();
 
         cargarUsuario(); //Llama a metodo para cargar todos los usuarios registrados desde src/database/usuarios.json
         label:
@@ -2260,11 +2265,10 @@ public class SistemaZoologico {
                             System.out.println(zoologico.nit);
                         }
                     } else {
-                        for (Zoologico zoologico : zoologicos) {
+                        for (Zoologico zoologico : copiaZoo) {
                             System.out.println(zoologico.nit.replace(".", ""));
                         }
                     }
-
                     break;
                 case "2":
                     String option2;
@@ -2350,6 +2354,27 @@ public class SistemaZoologico {
                             System.out.println(zoologico.biomas);
                         }
                     }
+                    System.out.println("--------------------------------------------------");
+                    System.out.println("Se buscara por bioma ");
+                    System.out.println("Por favor, seleccione el atributo por el cual desea ordenar: ");
+                    System.out.println("1. ID.");
+                    System.out.println("2. Temperatura.");
+                    System.out.println("3. Humedad.");
+                    System.out.println("4. Tipo.");
+                    System.out.println("5. Zoologico.");
+                    System.out.println("6. Profesional.");
+                    System.out.println("7. Habitat.");
+                    int atributobioma = input.nextInt();
+                    atributobioma = atributobioma-1;
+                    for(Zoologico zoologico:copiaZoo){
+                        if (atributobioma==0) {
+                            System.out.println("Se organizara por ID");
+                            System.out.println("Por favor, seleccione la manera en la que desea ordenar: ");
+                            System.out.println("1. Ascendente.");
+                            System.out.println("2. Descendente.");
+                        }
+                    }
+
                 case "6":
                     String option6;
                     System.out.println("--------------------------------------------------");

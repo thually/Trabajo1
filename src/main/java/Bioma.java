@@ -47,20 +47,6 @@ public class Bioma {
         return idHabitats.toString();
     }
 
-
-
-    public class IDComparator implements Comparator<Bioma> {
-        public int compare(Bioma id1, Bioma id2){
-            if (id1.id < id2.id){
-                return -1;
-            }else if(id1.id == id2.id){
-                return 0;
-            }else{
-                return 1;
-            }
-        }
-    }
-
     public class humedadComparator implements Comparator<Bioma> {
         public int compare(Bioma humedad1, Bioma humedad2){
 
