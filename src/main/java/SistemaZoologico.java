@@ -2208,52 +2208,52 @@ public class SistemaZoologico {
                 case "1":
                     if (zoologicos.size() == 0) {
                         System.out.println("No se encuentran zoologicos registrados");
-                    }
-                    else {
+                    } else {
                         busquedaZoologico();
-                    }break;
+                    }
+                    break;
                 case "2":
                     if (biomas.size() == 0) {
                         System.out.println("No se encuentran biomas registrados");
-                    }
-                    else {
+                    } else {
                         busquedaBioma();
-                    }break;
+                    }
+                    break;
                 case "3":
                     if (habitats.size() == 0) {
                         System.out.println("No se encuentran habitats registrados");
-                    }
-                    else {
+                    } else {
                         busquedaHabitat();
-                    }break;
+                    }
+                    break;
                 case "4":
                     if (animales.size() == 0) {
                         System.out.println("No se encuentran animales registrados");
-                    }
-                    else {
+                    } else {
                         busquedaAnimal();
-                    }break;
+                    }
+                    break;
                 case "5":
                     if (tecnicos.size() == 0) {
                         System.out.println("No se encuentran tecnicos registrados");
-                    }
-                    else {
+                    } else {
                         busquedaTecnico();
-                    }break;
+                    }
+                    break;
                 case "6":
                     if (profesionales.size() == 0) {
                         System.out.println("No se encuentran profesionales registrados");
-                    }
-                    else {
+                    } else {
                         busquedaProfesional();
-                    }break;
+                    }
+                    break;
                 case "7":
                     if (zooAmigos.size() == 0) {
                         System.out.println("No se encuentran ZooAmigos registrados");
-                    }
-                    else {
+                    } else {
                         busquedaZooamigo();
-                    }break;
+                    }
+                    break;
                 case "0":
                     break label;
             }
@@ -2288,16 +2288,16 @@ public class SistemaZoologico {
                     option1 = input.next();
                     if (!option1.equals("1") && !option1.equals("2")) {
                         System.out.println("Opcion incorrecta");
-                    }else if(option1.equals("1")) {
+                    } else if (option1.equals("1")) {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String nitBus= input.next();
+                        String nitBus = input.next();
                         nitZoologico(1, nitBus);
                         break;
-                    }else{
+                    } else {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String nitBus= input.next();
+                        String nitBus = input.next();
                         nitZoologico(2, nitBus);
                         break;
                     }
@@ -2311,16 +2311,16 @@ public class SistemaZoologico {
                     option2 = input.next();
                     if (!option2.equals("1") && !option2.equals("2")) {
                         System.out.println("Opcion incorrecta");
-                    }else if(option2.equals("1")){
+                    } else if (option2.equals("1")) {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String nombreBus= input.next();
+                        String nombreBus = input.next();
                         nombreZoologico(1, nombreBus);
                         break;
-                    }else{
+                    } else {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String nombreBus= input.next();
+                        String nombreBus = input.next();
                         nombreZoologico(2, nombreBus);
                         break;
                     }
@@ -2334,16 +2334,16 @@ public class SistemaZoologico {
                     option3 = input.next();
                     if (!option3.equals("1") && !option3.equals("2")) {
                         System.out.println("Opcion incorrecta");
-                    }else if(option3.equals("1")) {
+                    } else if (option3.equals("1")) {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String siglasBus= input.next();
+                        String siglasBus = input.next();
                         siglasZoologico(1, siglasBus);
                         break;
-                    }else{
+                    } else {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String siglasBus= input.next();
+                        String siglasBus = input.next();
                         siglasZoologico(2, siglasBus);
                         break;
                     }
@@ -2357,16 +2357,16 @@ public class SistemaZoologico {
                     option4 = input.next();
                     if (!option4.equals("1") && !option4.equals("2")) {
                         System.out.println("Opcion incorrecta");
-                    }else if(option4.equals("1")) {
+                    } else if (option4.equals("1")) {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String ciudadBus= input.next();
+                        String ciudadBus = input.next();
                         ciudadZoologico(1, ciudadBus);
                         break;
-                    }else{
+                    } else {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String ciudadBus= input.next();
+                        String ciudadBus = input.next();
                         ciudadZoologico(2, ciudadBus);
                         break;
                     }
@@ -2380,17 +2380,17 @@ public class SistemaZoologico {
                     option5 = input.next();
                     if (!option5.equals("1") && !option5.equals("2")) {
                         System.out.println("Opcion incorrecta");
-                    }else if(option5.equals("1")) {
+                    } else if (option5.equals("1")) {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String biomaBus = input.next();
-                        biomaZoologico(1,biomaBus);
+                        biomaZoologico(1, biomaBus);
                         break;
-                    }else{
+                    } else {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String biomaBus= input.next();
-                        biomaZoologico(2,biomaBus);
+                        String biomaBus = input.next();
+                        biomaZoologico(2, biomaBus);
                         break;
                     }
                     break;
@@ -2403,16 +2403,16 @@ public class SistemaZoologico {
                     option6 = input.next();
                     if (!option6.equals("1") && !option6.equals("2")) {
                         System.out.println("Opcion incorrecta");
-                    }else if(option6.equals("1")) {
+                    } else if (option6.equals("1")) {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String profesionalBus= input.next();
+                        String profesionalBus = input.next();
                         profesionalZoologico(1, profesionalBus);
                         break;
-                    }else{
+                    } else {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String profesionalBus= input.next();
+                        String profesionalBus = input.next();
                         profesionalZoologico(2, profesionalBus);
                         break;
                     }
@@ -2426,16 +2426,16 @@ public class SistemaZoologico {
                     option7 = input.next();
                     if (!option7.equals("1") && !option7.equals("2")) {
                         System.out.println("Opcion incorrecta");
-                    }else if(option7.equals("1")) {
+                    } else if (option7.equals("1")) {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String zooAmigoBus= input.next();
+                        String zooAmigoBus = input.next();
                         zooAmigoZoologico(1, zooAmigoBus);
                         break;
-                    }else{
+                    } else {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String zooAmigoBus= input.next();
+                        String zooAmigoBus = input.next();
                         zooAmigoZoologico(2, zooAmigoBus);
                         break;
                     }
@@ -2461,30 +2461,34 @@ public class SistemaZoologico {
             System.out.println("--------------------------------------------------");
         }
     }
-    public static void nitZoologico(int opcionValor, String nitBus){
+
+    public static void nitZoologico(int opcionValor, String nitBus) {
         ArrayList<Zoologico> copiaZoo = new ArrayList<>(zoologicos);
-        if (opcionValor==1){
-            for(Zoologico zoologico : copiaZoo){
-                if(nitBus.equals(zoologico.nit)){
+        if (opcionValor == 1) {
+            for (Zoologico zoologico : copiaZoo) {
+                if (nitBus.equals(zoologico.nit)) {
                     System.out.println(zoologico);
                 }
-            }return;
+            }
+            return;
 
-        }else if(opcionValor==2){
-            for (Zoologico zoologico:copiaZoo){
-                if(nitBus.equals(zoologico.nit.replace(".",""))){
-                    System.out.println( zoologico);
+        } else if (opcionValor == 2) {
+            for (Zoologico zoologico : copiaZoo) {
+                if (nitBus.equals(zoologico.nit.replace(".", ""))) {
+                    System.out.println(zoologico);
                 }
-            }return;
+            }
+            return;
 
         }
 
     }
-    public static void nombreZoologico(int opcionValor, String nombre){
+
+    public static void nombreZoologico(int opcionValor, String nombre) {
         ArrayList<Zoologico> copiaZoo = new ArrayList<>(zoologicos);
         ArrayList<Zoologico> nombreZoo = new ArrayList<>();
-        for(Zoologico zoologico: copiaZoo){
-            if(nombre.equals(zoologico.nombre) || nombre.equals(zoologico.nombre.toLowerCase())){
+        for (Zoologico zoologico : copiaZoo) {
+            if (nombre.equals(zoologico.nombre) || nombre.equals(zoologico.nombre.toLowerCase())) {
                 nombreZoo.add(zoologico);
             }
         }
@@ -2501,215 +2505,221 @@ public class SistemaZoologico {
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
-        if (option.equals("1")){
+        if (option.equals("1")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
             System.out.println("2. Descendente.");
             option2 = input.next();
             System.out.println();
-            if (option2.equals("1")){
+            if (option2.equals("1")) {
                 System.out.println("Ascendente");
                 Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
                 for (Zoologico zoologico : nombreZoo) {
                     System.out.println(zoologico);
                 }
-            }else if (option2.equals("2")){
+            } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
                 for (Zoologico zoologico : nombreZoo) {
                     System.out.println(zoologico);
                 }
-            }else{
+            } else {
                 System.out.println("Opcion incorrecta");
             }
-        }
-        else if (option.equals("2")){
+        } else if (option.equals("2")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
             System.out.println("2. Descendente.");
             option2 = input.next();
             System.out.println();
-            if (option.equals("1")){
+            if (option.equals("1")) {
                 System.out.println("--------------------------------------------------");
                 System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
                 System.out.println("1. Ascendente.");
                 System.out.println("2. Descendente.");
                 option2 = input.next();
                 System.out.println();
-                if (option2.equals("1")){
+                if (option2.equals("1")) {
                     System.out.println("Ascendente");
                     Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[1]));
                     for (Zoologico zoologico : nombreZoo) {
                         System.out.println(zoologico);
                     }
-                }else if (option2.equals("2")){
+                } else if (option2.equals("2")) {
                     System.out.println("Descendente");
                     Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[1]));
                     for (Zoologico zoologico : nombreZoo) {
                         System.out.println(zoologico);
                     }
-                }else{
+                } else {
                     System.out.println("Opcion incorrecta");
                 }
             }
-        }else if (option.equals("3")){
+        } else if (option.equals("3")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
             System.out.println("2. Descendente.");
             option2 = input.next();
             System.out.println();
-            if (option.equals("1")){
+            if (option.equals("1")) {
                 System.out.println("--------------------------------------------------");
                 System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
                 System.out.println("1. Ascendente.");
                 System.out.println("2. Descendente.");
                 option2 = input.next();
                 System.out.println();
-                if (option2.equals("1")){
+                if (option2.equals("1")) {
                     System.out.println("Ascendente");
                     Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
                     for (Zoologico zoologico : nombreZoo) {
                         System.out.println(zoologico);
                     }
-                }else if (option2.equals("2")){
+                } else if (option2.equals("2")) {
                     System.out.println("Descendente");
                     Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
                     for (Zoologico zoologico : nombreZoo) {
                         System.out.println(zoologico);
                     }
-                }else{
+                } else {
                     System.out.println("Opcion incorrecta");
                 }
             }
-        }else if (option.equals("4")){
+        } else if (option.equals("4")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
             System.out.println("2. Descendente.");
             option2 = input.next();
             System.out.println();
-            if (option.equals("1")){
+            if (option.equals("1")) {
                 System.out.println("--------------------------------------------------");
                 System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
                 System.out.println("1. Ascendente.");
                 System.out.println("2. Descendente.");
                 option2 = input.next();
                 System.out.println();
-                if (option2.equals("1")){
+                if (option2.equals("1")) {
                     System.out.println("Ascendente");
                     Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
                     for (Zoologico zoologico : nombreZoo) {
                         System.out.println(zoologico);
                     }
-                }else if (option2.equals("2")){
+                } else if (option2.equals("2")) {
                     System.out.println("Descendente");
                     Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
                     for (Zoologico zoologico : nombreZoo) {
                         System.out.println(zoologico);
                     }
-                }else{
+                } else {
                     System.out.println("Opcion incorrecta");
                 }
             }
-        }else if (option.equals("5")){
+        } else if (option.equals("5")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
             System.out.println("2. Descendente.");
             option2 = input.next();
             System.out.println();
-            if (option.equals("1")){
+            if (option.equals("1")) {
                 System.out.println("--------------------------------------------------");
                 System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
                 System.out.println("1. Ascendente.");
                 System.out.println("2. Descendente.");
                 option2 = input.next();
                 System.out.println();
-                if (option2.equals("1")){
+                if (option2.equals("1")) {
                     System.out.println("Ascendente");
                     Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
                     for (Zoologico zoologico : nombreZoo) {
                         System.out.println(zoologico);
                     }
-                }else if (option2.equals("2")){
+                } else if (option2.equals("2")) {
                     System.out.println("Descendente");
                     Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
                     for (Zoologico zoologico : nombreZoo) {
                         System.out.println(zoologico);
                     }
-                }else{
+                } else {
                     System.out.println("Opcion incorrecta");
                 }
             }
-        }else if (option.equals("6")){
+        } else if (option.equals("6")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
             System.out.println("2. Descendente.");
             option2 = input.next();
             System.out.println();
-            if (option.equals("1")){
+            if (option.equals("1")) {
                 System.out.println("--------------------------------------------------");
                 System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
                 System.out.println("1. Ascendente.");
                 System.out.println("2. Descendente.");
                 option2 = input.next();
                 System.out.println();
-                if (option2.equals("1")){
+                if (option2.equals("1")) {
                     System.out.println("Ascendente");
                     Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
                     for (Zoologico zoologico : nombreZoo) {
                         System.out.println(zoologico);
                     }
-                }else if (option2.equals("2")){
+                } else if (option2.equals("2")) {
                     System.out.println("Descendente");
                     Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
                     for (Zoologico zoologico : nombreZoo) {
                         System.out.println(zoologico);
                     }
-                }else{
+                } else {
                     System.out.println("Opcion incorrecta");
                 }
             }
-        }else if (option.equals("7")){
+        } else if (option.equals("7")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
             System.out.println("2. Descendente.");
             option2 = input.next();
             System.out.println();
-            if (option.equals("1")){
+            if (option.equals("1")) {
                 System.out.println("--------------------------------------------------");
                 System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
                 System.out.println("1. Ascendente.");
                 System.out.println("2. Descendente.");
                 option2 = input.next();
                 System.out.println();
-                if (option2.equals("1")){
+                if (option2.equals("1")) {
                     System.out.println("Ascendente");
                     Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[6]));
                     for (Zoologico zoologico : nombreZoo) {
                         System.out.println(zoologico);
                     }
-                }else if (option2.equals("2")){
+                } else if (option2.equals("2")) {
                     System.out.println("Descendente");
                     Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[6]));
                     for (Zoologico zoologico : nombreZoo) {
                         System.out.println(zoologico);
                     }
-                }else{
+                } else {
                     System.out.println("Opcion incorrecta");
                 }
             }
-        }else{
+        } else {
             return;
         }
     }
-    public static void siglasZoologico(int opcionValor, String siglas){
+
+    public static void siglasZoologico(int opcionValor, String siglas) {
         ArrayList<Zoologico> copiaZoo = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> siglasZoo = new ArrayList<>();
+        for (Zoologico zoologico : copiaZoo) {
+            if (siglas.equals(zoologico.siglas) || siglas.equals(zoologico.siglas.toLowerCase())) {
+                siglasZoo.add(zoologico);
+            }
+        }
         String option;
         String option2;
         System.out.println("--------------------------------------------------");
@@ -2723,202 +2733,206 @@ public class SistemaZoologico {
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
-        if (option.equals("1")){
+        if (option.equals("1")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
             System.out.println("2. Descendente.");
             option2 = input.next();
             System.out.println();
-            if (option2.equals("1")){
+            if (option2.equals("1")) {
                 System.out.println("Ascendente");
                 Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[0]));
                 for (Zoologico zoologico : copiaZoo) {
                     System.out.println(zoologico);
                 }
-            }else if (option2.equals("2")){
+            } else if (option2.equals("2")) {
                 System.out.println("Descendente");
-            }else{
+            } else {
                 System.out.println("Opcion incorrecta");
             }
-        }else if (option.equals("2")){
+        } else if (option.equals("2")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
             System.out.println("2. Descendente.");
             option2 = input.next();
             System.out.println();
-            if (option2.equals("1")){
+            if (option2.equals("1")) {
                 System.out.println("Ascendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(siglasZoo, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : siglasZoo) {
                     System.out.println(zoologico);
                 }
-            }else if (option2.equals("2")){
+            } else if (option2.equals("2")) {
                 System.out.println("Descendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(siglasZoo, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : siglasZoo) {
+                    ArrayList<Zoologico> reverse = new ArrayList<>(siglasZoo);
+
                     System.out.println(zoologico);
                 }
-            }else{
+            } else {
                 System.out.println("Opcion incorrecta");
             }
-        }else if (option.equals("3")){
+        } else if (option.equals("3")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
             System.out.println("2. Descendente.");
             option2 = input.next();
             System.out.println();
-            if (option.equals("1")){
+            if (option.equals("1")) {
                 System.out.println("--------------------------------------------------");
                 System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
                 System.out.println("1. Ascendente.");
                 System.out.println("2. Descendente.");
                 option2 = input.next();
                 System.out.println();
-                if (option2.equals("1")){
+                if (option2.equals("1")) {
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(siglasZoo, (comparadoresZoologico[2]));
+                    for (Zoologico zoologico : siglasZoo) {
                         System.out.println(zoologico);
                     }
-                }else if (option2.equals("2")){
+                } else if (option2.equals("2")) {
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(siglasZoo, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : siglasZoo) {
                         System.out.println(zoologico);
                     }
-                }else{
+                } else {
                     System.out.println("Opcion incorrecta");
                 }
             }
-        }else if (option.equals("4")){
+        } else if (option.equals("4")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
             System.out.println("2. Descendente.");
             option2 = input.next();
             System.out.println();
-            if (option.equals("1")){
+            if (option.equals("1")) {
                 System.out.println("--------------------------------------------------");
                 System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
                 System.out.println("1. Ascendente.");
                 System.out.println("2. Descendente.");
                 option2 = input.next();
                 System.out.println();
-                if (option2.equals("1")){
+                if (option2.equals("1")) {
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(siglasZoo, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : siglasZoo) {
                         System.out.println(zoologico);
                     }
-                }else if (option2.equals("2")){
+                } else if (option2.equals("2")) {
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(siglasZoo, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : siglasZoo) {
                         System.out.println(zoologico);
                     }
-                }else{
+                } else {
                     System.out.println("Opcion incorrecta");
                 }
             }
-        }else if (option.equals("5")){
+        } else if (option.equals("5")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
             System.out.println("2. Descendente.");
             option2 = input.next();
             System.out.println();
-            if (option.equals("1")){
+            if (option.equals("1")) {
                 System.out.println("--------------------------------------------------");
                 System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
                 System.out.println("1. Ascendente.");
                 System.out.println("2. Descendente.");
                 option2 = input.next();
                 System.out.println();
-                if (option2.equals("1")){
+                if (option2.equals("1")) {
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(siglasZoo, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : siglasZoo) {
                         System.out.println(zoologico);
                     }
-                }else if (option2.equals("2")){
+                } else if (option2.equals("2")) {
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(siglasZoo, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : siglasZoo) {
                         System.out.println(zoologico);
                     }
-                }else{
+                } else {
                     System.out.println("Opcion incorrecta");
                 }
             }
-        }else if (option.equals("6")){
+        } else if (option.equals("6")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
             System.out.println("2. Descendente.");
             option2 = input.next();
             System.out.println();
-            if (option.equals("1")){
+            if (option.equals("1")) {
                 System.out.println("--------------------------------------------------");
                 System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
                 System.out.println("1. Ascendente.");
                 System.out.println("2. Descendente.");
                 option2 = input.next();
                 System.out.println();
-                if (option2.equals("1")){
+                if (option2.equals("1")) {
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(siglasZoo, Collections.reverseOrder(comparadoresZoologico[5]));
+                    for (Zoologico zoologico : siglasZoo) {
                         System.out.println(zoologico);
                     }
-                }else if (option2.equals("2")){
+                } else if (option2.equals("2")) {
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(siglasZoo, Collections.reverseOrder(comparadoresZoologico[5]));
+                    for (Zoologico zoologico : siglasZoo) {
                         System.out.println(zoologico);
                     }
-                }else{
+                } else {
                     System.out.println("Opcion incorrecta");
                 }
             }
-        }else if (option.equals("7")){
+        } else if (option.equals("7")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
             System.out.println("2. Descendente.");
             option2 = input.next();
             System.out.println();
-            if (option.equals("1")){
+            if (option.equals("1")) {
                 System.out.println("--------------------------------------------------");
                 System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
                 System.out.println("1. Ascendente.");
                 System.out.println("2. Descendente.");
                 option2 = input.next();
                 System.out.println();
-                if (option2.equals("1")){
+                if (option2.equals("1")) {
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[6]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(siglasZoo, Collections.reverseOrder(comparadoresZoologico[6]));
+                    for (Zoologico zoologico : siglasZoo) {
                         System.out.println(zoologico);
                     }
-                }else if (option2.equals("2")){
+                } else if (option2.equals("2")) {
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[6]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(siglasZoo, Collections.reverseOrder(comparadoresZoologico[6]));
+                    for (Zoologico zoologico : siglasZoo) {
                         System.out.println(zoologico);
                     }
-                }else{
+                } else {
                     System.out.println("Opcion incorrecta");
                 }
             }
-        }else{
+        } else {
             return;
         }
     }
+
     public static void ciudadZoologico(int opcionValor, String ciudad){
         ArrayList<Zoologico> copiaZoo = new ArrayList<>(zoologicos);
+
         String option;
         String option2;
         System.out.println("--------------------------------------------------");
@@ -2955,6 +2969,12 @@ public class SistemaZoologico {
     }
     public static void biomaZoologico(int opcionValor, String bioma){
         ArrayList<Zoologico> copiaZoo = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> biomaZoo = new ArrayList<>();
+        for (Zoologico zoologico : copiaZoo) {
+            if (bioma.equals(zoologico.biomas) || bioma.equals(zoologico.biomas)) {
+                biomaZoo.add(zoologico);
+            }
+        }
         String option;
         String option2;
         System.out.println("--------------------------------------------------");
@@ -2995,14 +3015,14 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(biomaZoo, Collections.reverseOrder(comparadoresZoologico[1]));
+                for (Zoologico zoologico : biomaZoo) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
                 System.out.println("Descendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(biomaZoo, Collections.reverseOrder(comparadoresZoologico[1]));
+                for (Zoologico zoologico : biomaZoo) {
                     System.out.println(zoologico);
                 }
             }else{
@@ -3024,14 +3044,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(biomaZoo, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : biomaZoo) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(biomaZoo, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : biomaZoo) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -3054,14 +3074,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(biomaZoo, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : biomaZoo) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(biomaZoo, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : biomaZoo) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -3084,14 +3104,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(biomaZoo, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : biomaZoo) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(biomaZoo, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : biomaZoo) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -3114,14 +3134,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(biomaZoo, Collections.reverseOrder(comparadoresZoologico[5]));
+                    for (Zoologico zoologico : biomaZoo) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(biomaZoo, Collections.reverseOrder(comparadoresZoologico[5]));
+                    for (Zoologico zoologico : biomaZoo) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -3144,14 +3164,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[6]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(biomaZoo, Collections.reverseOrder(comparadoresZoologico[6]));
+                    for (Zoologico zoologico : biomaZoo) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[6]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(biomaZoo, Collections.reverseOrder(comparadoresZoologico[6]));
+                    for (Zoologico zoologico : biomaZoo) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -3162,8 +3182,14 @@ public class SistemaZoologico {
             return;
         }
     }
-    public static void profesionalZoologico(int opcionValor, String profesional){
+    public static void profesionalZoologico(int opcionValor, String profesional) {
         ArrayList<Zoologico> copiaZoo = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> profesionalZoo = new ArrayList<>();
+        for (Zoologico zoologico : copiaZoo) {
+            if (profesional.equals(zoologico.profesionales) || profesional.equals(zoologico.profesionales)) {
+                profesionalZoo.add(zoologico);
+            }
+        }
         String option;
         String option2;
         System.out.println("--------------------------------------------------");
@@ -3177,202 +3203,209 @@ public class SistemaZoologico {
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
-        if (option.equals("1")){
+        if (option.equals("1")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
             System.out.println("2. Descendente.");
             option2 = input.next();
             System.out.println();
-            if (option2.equals("1")){
+            if (option2.equals("1")) {
                 System.out.println("Ascendente");
                 Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[0]));
                 for (Zoologico zoologico : copiaZoo) {
                     System.out.println(zoologico);
                 }
-            }else if (option2.equals("2")){
+            } else if (option2.equals("2")) {
                 System.out.println("Descendente");
-            }else{
+            } else {
                 System.out.println("Opcion incorrecta");
             }
-        }else if (option.equals("2")){
+        } else if (option.equals("2")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
             System.out.println("2. Descendente.");
             option2 = input.next();
             System.out.println();
-            if (option2.equals("1")){
+            if (option2.equals("1")) {
                 System.out.println("Ascendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(profesionalZoo, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : profesionalZoo) {
                     System.out.println(zoologico);
                 }
-            }else if (option2.equals("2")){
+            } else if (option2.equals("2")) {
                 System.out.println("Descendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(profesionalZoo, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : profesionalZoo) {
                     System.out.println(zoologico);
                 }
-            }else{
+            } else {
                 System.out.println("Opcion incorrecta");
             }
-        }else if (option.equals("3")){
+        } else if (option.equals("3")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
             System.out.println("2. Descendente.");
             option2 = input.next();
             System.out.println();
-            if (option.equals("1")){
+            if (option.equals("1")) {
                 System.out.println("--------------------------------------------------");
                 System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
                 System.out.println("1. Ascendente.");
                 System.out.println("2. Descendente.");
                 option2 = input.next();
                 System.out.println();
-                if (option2.equals("1")){
+                if (option2.equals("1")) {
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(profesionalZoo, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : profesionalZoo) {
                         System.out.println(zoologico);
                     }
-                }else if (option2.equals("2")){
+                } else if (option2.equals("2")) {
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(profesionalZoo, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : profesionalZoo) {
                         System.out.println(zoologico);
                     }
-                }else{
+                } else {
                     System.out.println("Opcion incorrecta");
                 }
             }
-        }else if (option.equals("4")){
+        } else if (option.equals("4")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
             System.out.println("2. Descendente.");
             option2 = input.next();
             System.out.println();
-            if (option.equals("1")){
+            if (option.equals("1")) {
                 System.out.println("--------------------------------------------------");
                 System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
                 System.out.println("1. Ascendente.");
                 System.out.println("2. Descendente.");
                 option2 = input.next();
                 System.out.println();
-                if (option2.equals("1")){
+                if (option2.equals("1")) {
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(profesionalZoo, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : profesionalZoo) {
                         System.out.println(zoologico);
                     }
-                }else if (option2.equals("2")){
+                } else if (option2.equals("2")) {
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(profesionalZoo, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : profesionalZoo) {
                         System.out.println(zoologico);
                     }
-                }else{
+                } else {
                     System.out.println("Opcion incorrecta");
                 }
             }
-        }else if (option.equals("5")){
+        } else if (option.equals("5")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
             System.out.println("2. Descendente.");
             option2 = input.next();
             System.out.println();
-            if (option.equals("1")){
+            if (option.equals("1")) {
                 System.out.println("--------------------------------------------------");
                 System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
                 System.out.println("1. Ascendente.");
                 System.out.println("2. Descendente.");
                 option2 = input.next();
                 System.out.println();
-                if (option2.equals("1")){
+                if (option2.equals("1")) {
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(profesionalZoo, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : profesionalZoo) {
                         System.out.println(zoologico);
                     }
-                }else if (option2.equals("2")){
+                } else if (option2.equals("2")) {
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(profesionalZoo, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : profesionalZoo) {
                         System.out.println(zoologico);
                     }
-                }else{
+                } else {
                     System.out.println("Opcion incorrecta");
                 }
             }
-        }else if (option.equals("6")){
+        } else if (option.equals("6")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
             System.out.println("2. Descendente.");
             option2 = input.next();
             System.out.println();
-            if (option.equals("1")){
+            if (option.equals("1")) {
                 System.out.println("--------------------------------------------------");
                 System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
                 System.out.println("1. Ascendente.");
                 System.out.println("2. Descendente.");
                 option2 = input.next();
                 System.out.println();
-                if (option2.equals("1")){
+                if (option2.equals("1")) {
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(profesionalZoo, Collections.reverseOrder(comparadoresZoologico[5]));
+                    for (Zoologico zoologico : profesionalZoo) {
                         System.out.println(zoologico);
                     }
-                }else if (option2.equals("2")){
+                } else if (option2.equals("2")) {
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(profesionalZoo, Collections.reverseOrder(comparadoresZoologico[5]));
+                    for (Zoologico zoologico : profesionalZoo) {
                         System.out.println(zoologico);
                     }
-                }else{
+                } else {
                     System.out.println("Opcion incorrecta");
                 }
             }
-        }else if (option.equals("7")){
+        } else if (option.equals("7")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
             System.out.println("2. Descendente.");
             option2 = input.next();
             System.out.println();
-            if (option.equals("1")){
+            if (option.equals("1")) {
                 System.out.println("--------------------------------------------------");
                 System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
                 System.out.println("1. Ascendente.");
                 System.out.println("2. Descendente.");
                 option2 = input.next();
                 System.out.println();
-                if (option2.equals("1")){
+                if (option2.equals("1")) {
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[6]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(profesionalZoo, Collections.reverseOrder(comparadoresZoologico[6]));
+                    for (Zoologico zoologico : profesionalZoo) {
                         System.out.println(zoologico);
                     }
-                }else if (option2.equals("2")){
+                } else if (option2.equals("2")) {
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[6]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(profesionalZoo, Collections.reverseOrder(comparadoresZoologico[6]));
+                    for (Zoologico zoologico : profesionalZoo) {
                         System.out.println(zoologico);
                     }
-                }else{
+                } else {
                     System.out.println("Opcion incorrecta");
                 }
             }
-        }else{
+        } else {
             return;
         }
+
     }
-    public static void zooAmigoZoologico(int opcionValor, String profesional){
+    public static void zooAmigoZoologico(int opcionValor, String zooAmigo){
         ArrayList<Zoologico> copiaZoo = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> zooAmigoZoo = new ArrayList<>();
+        for (Zoologico zoologico : copiaZoo) {
+            if (zooAmigo.equals(zoologico.siglas) || zooAmigo.equals(zoologico.zooAmigos)) {
+                zooAmigoZoo.add(zoologico);
+            }
+        }
         String option;
         String option2;
         System.out.println("--------------------------------------------------");
@@ -3413,14 +3446,14 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(zooAmigoZoo, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : zooAmigoZoo) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
                 System.out.println("Descendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(zooAmigoZoo, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : zooAmigoZoo) {
                     System.out.println(zoologico);
                 }
             }else{
@@ -3442,14 +3475,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(zooAmigoZoo, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : zooAmigoZoo) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(zooAmigoZoo, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : zooAmigoZoo) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -3472,14 +3505,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(zooAmigoZoo, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : zooAmigoZoo) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(zooAmigoZoo, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : zooAmigoZoo) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -3502,14 +3535,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(zooAmigoZoo, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : zooAmigoZoo) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(zooAmigoZoo, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : zooAmigoZoo) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -3532,14 +3565,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(zooAmigoZoo, Collections.reverseOrder(comparadoresZoologico[5]));
+                    for (Zoologico zoologico : zooAmigoZoo) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(zooAmigoZoo, Collections.reverseOrder(comparadoresZoologico[5]));
+                    for (Zoologico zoologico : zooAmigoZoo) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -3562,14 +3595,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[6]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(zooAmigoZoo, Collections.reverseOrder(comparadoresZoologico[6]));
+                    for (Zoologico zoologico : zooAmigoZoo) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[6]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(zooAmigoZoo, Collections.reverseOrder(comparadoresZoologico[6]));
+                    for (Zoologico zoologico : zooAmigoZoo) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -3818,8 +3851,8 @@ public class SistemaZoologico {
     public static void idBioma(int opcionValor, int idBusMin, int idBusMax){
         ArrayList<Zoologico> copiaBioma = new ArrayList<>(zoologicos);
         if (opcionValor==1){
-            for(Zoologico zoologico : this.copiaBioma){
-                if(idBus==(zoologico){
+            for(Zoologico zoologico : copiaBioma){
+                if(idBusMin == zoologico){
                     System.out.println(zoologico);
                 }
             }return;
