@@ -408,7 +408,7 @@ public class SistemaZoologico {
                     * si es así, elimina dicha relacion y despues crea la nueva*/
                     for (Zoologico zoo : zoologicos) {
                         Bioma finalBiomaNuevo = biomaNuevo;
-                        zoo.biomas.removeIf(bio -> (bio.id == finalBiomaNuevo.id));
+                        zoo.biomas.removeIf(bio -> (bio.id == finalBiomaNuevo.id)); // elimina relacion existente entre bioma y zoo
                     }
                     zoologico.setBiomas(biomaNuevo, zoologico);
                     System.out.println("\nMENSAJE: Zoologico y bioma relacionados correctamente");
