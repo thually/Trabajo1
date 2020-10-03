@@ -54,7 +54,7 @@ public class Bioma {
                 ", temperatura=" + temperatura +
                 ", humedad='" + humedad + '\'' +
                 ", tipo='" + tipo + '\'' +
-                ", NIT de zoologico asociados= " + ((zoologico == null) ? "N/A" : zoologico.nit) +
+                ", NIT de zoologico asociado= " + ((zoologico == null) ? "N/A" : zoologico.nit) +
                 ", id de habitats asociados= " + getHabitatId()+
                 ", cedula de profesionales asociados= " + getProfesionalesCedula()+
                 " }";
