@@ -16,25 +16,46 @@ public class SistemaZoologico {
     public static ArrayList<Tecnico> tecnicos = new ArrayList<>();
     public static ArrayList<ZooAmigo> zooAmigos = new ArrayList<>();
     public static ArrayList<Zoologico> copiaHabitat = new ArrayList<>();
-    public static Comparator<Zoologico>[] comparadoresZoologico = new Comparator[7];
-    public static Comparator<Bioma>[] comparadoresBioma = new Comparator[7];
+    public static Comparator<Zoologico>[] comparadoresZoologico = new Comparator[4];
+    public static Comparator<Bioma>[] comparadoresBioma = new Comparator[6];
     public static Comparator<Habitat>[] comparadoresHabitat = new Comparator[6];
     public static Comparator<Animal>[] comparadoresAnimal = new Comparator[6];
     public static Comparator<Tecnico>[] comparadoresTecnico = new Comparator[5];
     public static Comparator<Profesional>[] comparadoresProfesional = new Comparator[6];
+    public static Comparator<ZooAmigo>[] comparadoresZooAmigo = new Comparator[3];
+
     ArrayList<Bioma> copiaBio = new ArrayList<>(biomas);
     ArrayList<Zoologico> copiaAnimal = new ArrayList<>(copiaHabitat);
 
     public static void main(String[] args) {
 
-        comparadoresZoologico[0] = new nitComparator();
-        comparadoresZoologico[1] = new nombreComparator();
-        comparadoresZoologico[2] = new siglasComparator();
-        comparadoresZoologico[3] = new ciudadComparator();
-        comparadoresZoologico[4] = new biomaZComparator();
-        comparadoresZoologico[5] = new profesionalesZComparator();
-        comparadoresBioma[0] = new IDComparator();
-        comparadoresBioma[1] = new temperaturaComparator();
+        comparadoresZoologico[0] = new zNitComparator();
+        comparadoresZoologico[1] = new zNombreComparator();
+        comparadoresZoologico[2] = new zSiglasComparator();
+        comparadoresZoologico[3] = new zCiudadComparator();
+        comparadoresBioma[0] = new bIDComparator();
+        comparadoresBioma[1] = new bTemperaturaComparator();
+        comparadoresBioma[2] = new bHumedadComparator();
+        comparadoresBioma[3] = new bTipoComparator();
+        comparadoresHabitat[0] = new hIDComparator();
+        comparadoresHabitat[1] = new hTipoSueloComparator();
+        comparadoresHabitat[2] = new hVegetacionComparator();
+        comparadoresHabitat[3] = new hTipoJaulaComparator();
+        comparadoresAnimal[0] = new aIDComparator();
+        comparadoresAnimal[1] = new aEspecieComparator();
+        comparadoresAnimal[2] = new aNivelAgresividadComparator();
+        comparadoresAnimal[3] = new aAlimentacionComparator();
+        comparadoresTecnico[0] = new tCedulaComparator();
+        comparadoresTecnico[1] = new tAreaComparator();
+        comparadoresTecnico[2] = new tHoraInicioComparator();
+        comparadoresTecnico[3] = new tHoraSalidaComparator();
+        comparadoresProfesional[0] = new pCedulaComparator();
+        comparadoresProfesional[1] = new pAreaComparator();
+        comparadoresProfesional[2] = new pHoraInicioComparator();
+        comparadoresProfesional[3] = new pHoraSalidaComparator();
+        comparadoresZooAmigo[0] = new zACedulaComparator();
+        comparadoresZooAmigo[1] = new zANombreComparator();
+        comparadoresZooAmigo[2] = new zATelefonoComparator();
 
         cargarUsuario(); //Llama a metodo para cargar todos los usuarios registrados desde src/database/usuarios.json
         label:
@@ -2461,9 +2482,8 @@ public class SistemaZoologico {
             System.out.println("--------------------------------------------------");
         }
     }
-
     public static void nitZoologico(int opcionValor, String nitBus) {
-        ArrayList<Zoologico> copiaZoo = new ArrayList<>(copiaHabitat);
+        ArrayList<Zoologico> copiaZoo = new ArrayList<>();
         if (opcionValor == 1) {
             for (Zoologico zoologico : copiaZoo) {
                 if (nitBus.equals(zoologico.nit)) {
@@ -2483,9 +2503,8 @@ public class SistemaZoologico {
         }
 
     }
-
     public static void nombreZoologico(int opcionValor, String nombre) {
-        ArrayList<Zoologico> copiaZoo = new ArrayList<>(copiaHabitat);
+        ArrayList<Zoologico> copiaZoo = new ArrayList<>();
         ArrayList<Zoologico> nombreZoo = new ArrayList<>();
         for (Zoologico zoologico : copiaZoo) {
             if (nombre.equals(zoologico.nombre) || nombre.equals(zoologico.nombre.toLowerCase())) {
@@ -2514,7 +2533,7 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")) {
                 System.out.println("Ascendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
+                Collections.sort(nombreZoo, (comparadoresZoologico[0]));
                 for (Zoologico zoologico : nombreZoo) {
                     System.out.println(zoologico);
                 }
@@ -2711,9 +2730,8 @@ public class SistemaZoologico {
             return;
         }
     }
-
     public static void siglasZoologico(int opcionValor, String siglas) {
-        ArrayList<Zoologico> copiaZoo = new ArrayList<>(copiaHabitat);
+        ArrayList<Zoologico> copiaZoo = new ArrayList<>();
         ArrayList<Zoologico> siglasZoo = new ArrayList<>();
         for (Zoologico zoologico : copiaZoo) {
             if (siglas.equals(zoologico.siglas) || siglas.equals(zoologico.siglas.toLowerCase())) {
@@ -2929,9 +2947,14 @@ public class SistemaZoologico {
             return;
         }
     }
-
     public static void ciudadZoologico(int opcionValor, String ciudad){
-        ArrayList<Zoologico> copiaZoo = new ArrayList<>(copiaHabitat);
+        ArrayList<Zoologico> copiaZoo = new ArrayList<>();
+        ArrayList<Zoologico> ciudadZoo = new ArrayList<>();
+        for (Zoologico zoologico : copiaZoo) {
+            if (ciudad.equals(zoologico.ciudad) || ciudad.equals(zoologico.ciudad.toLowerCase())) {
+                ciudadZoo.add(zoologico);
+            }
+        }
 
         String option;
         String option2;
@@ -3101,9 +3124,11 @@ public class SistemaZoologico {
                 System.out.println("1. Ascendente.");
                 System.out.println("2. Descendente.");
                 option2 = input.next();
-                System.out.println();
+
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
+
+
                     Collections.sort(biomaZoo, Collections.reverseOrder(comparadoresZoologico[4]));
                     for (Zoologico zoologico : biomaZoo) {
                         System.out.println(zoologico);
@@ -3849,25 +3874,31 @@ public class SistemaZoologico {
         }
     }
     public static void idBioma(int opcionValor, int idBusMin, int idBusMax){
-        ArrayList<Zoologico> copiaBioma = new ArrayList<>(copiaHabitat);
+        ArrayList<Bioma> copiaBioma = new ArrayList<>();
         if (opcionValor==1){
-            for(Zoologico zoologico : copiaBioma){
+            for(Bioma bioma : copiaBioma){
                 if(idBusMin == 0){
-                    System.out.println(zoologico);
+                    System.out.println(bioma);
                 }
             }return;
 
         }else if(opcionValor==2){
-            for (Zoologico zoologico: copiaBioma){
+            for (Bioma bioma: copiaBioma){
                 if(idBusMin==0){
-                    System.out.println( zoologico);
+                    System.out.println( bioma);
                 }
             }return;
 
         }
     }
-    public static void temperaturaBioma(int opcionValor, double temperaturaBusMin, double temperaturaBusMax){
-        ArrayList<Zoologico> copiaBioma = new ArrayList<>(copiaHabitat);
+    public static void temperaturaBioma(int opcionValor, double temperaturaBusMin, double temperaturaBusMax) {
+        ArrayList<Bioma> copiaBioma = new ArrayList<>();
+        ArrayList<Bioma> temperaturaBioma = new ArrayList<>();
+        for (Bioma bioma : copiaBioma) {
+            if (temperaturaBusMin <= bioma.temperatura || temperaturaBusMax >= bioma.temperatura || temperaturaBusMin == bioma.temperatura || temperaturaBusMax == bioma.temperatura ) {
+                temperaturaBioma.add(bioma);
+            }
+        }
         String option;
         String option2;
         System.out.println("--------------------------------------------------");
@@ -3882,198 +3913,106 @@ public class SistemaZoologico {
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
-        if (option.equals("1")){
+        if (option.equals("1")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
             System.out.println("2. Descendente.");
             option2 = input.next();
             System.out.println();
-            if (option2.equals("1")){
+            if (option2.equals("1")) {
                 System.out.println("Ascendente");
-                Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : copiaBioma) {
-                    System.out.println(zoologico);
+                Collections.sort(copiaBioma, comparadoresBioma[0]);
+                for (Bioma bioma : copiaBioma) {
+                    System.out.println(bioma);
                 }
-            }else if (option2.equals("2")){
+            } else if (option2.equals("2")) {
                 System.out.println("Descendente");
-            }else{
+            } else {
                 System.out.println("Opcion incorrecta");
             }
-        }else if (option.equals("2")){
+        } else if (option.equals("2")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
             System.out.println("2. Descendente.");
             option2 = input.next();
             System.out.println();
-            if (option2.equals("1")){
+            if (option2.equals("1")) {
                 System.out.println("Ascendente");
-                Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : copiaBioma) {
-                    System.out.println(zoologico);
+                Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresBioma[1]));
+                for (Bioma bioma : copiaBioma) {
+                    System.out.println(bioma);
                 }
-            }else if (option2.equals("2")){
+            } else if (option2.equals("2")) {
                 System.out.println("Descendente");
-                Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : copiaBioma) {
-                    System.out.println(zoologico);
+                Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresBioma[1]));
+                for (Bioma bioma : copiaBioma) {
+                    System.out.println(bioma);
                 }
-            }else{
+            } else {
                 System.out.println("Opcion incorrecta");
             }
-        }else if (option.equals("3")){
+        } else if (option.equals("3")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
             System.out.println("2. Descendente.");
             option2 = input.next();
             System.out.println();
-            if (option.equals("1")){
+            if (option.equals("1")) {
                 System.out.println("--------------------------------------------------");
                 System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
                 System.out.println("1. Ascendente.");
                 System.out.println("2. Descendente.");
                 option2 = input.next();
                 System.out.println();
-                if (option2.equals("1")){
+                if (option2.equals("1")) {
                     System.out.println("Ascendente");
-                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : copiaBioma) {
-                        System.out.println(zoologico);
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresBioma[2]));
+                    for (Bioma bioma : copiaBioma) {
+                        System.out.println(bioma);
                     }
-                }else if (option2.equals("2")){
+                } else if (option2.equals("2")) {
                     System.out.println("Descendente");
-                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : copiaBioma) {
-                        System.out.println(zoologico);
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresBioma[2]));
+                    for (Bioma bioma : copiaBioma) {
+                        System.out.println(bioma);
                     }
-                }else{
+                } else {
                     System.out.println("Opcion incorrecta");
                 }
             }
-        }else if (option.equals("4")){
+        } else if (option.equals("4")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
             System.out.println("2. Descendente.");
             option2 = input.next();
             System.out.println();
-            if (option.equals("1")){
+            if (option.equals("1")) {
                 System.out.println("--------------------------------------------------");
                 System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
                 System.out.println("1. Ascendente.");
                 System.out.println("2. Descendente.");
                 option2 = input.next();
                 System.out.println();
-                if (option2.equals("1")){
+                if (option2.equals("1")) {
                     System.out.println("Ascendente");
-                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : copiaBioma) {
-                        System.out.println(zoologico);
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresBioma[3]));
+                    for (Bioma bioma : copiaBioma) {
+                        System.out.println(bioma);
                     }
-                }else if (option2.equals("2")){
+                } else if (option2.equals("2")) {
                     System.out.println("Descendente");
-                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : copiaBioma) {
-                        System.out.println(zoologico);
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresBioma[3]));
+                    for (Bioma bioma : copiaBioma) {
+                        System.out.println(bioma);
                     }
-                }else{
+                } else {
                     System.out.println("Opcion incorrecta");
                 }
             }
-        }else if (option.equals("5")){
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option.equals("1")){
-                System.out.println("--------------------------------------------------");
-                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-                System.out.println("1. Ascendente.");
-                System.out.println("2. Descendente.");
-                option2 = input.next();
-                System.out.println();
-                if (option2.equals("1")){
-                    System.out.println("Ascendente");
-                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : copiaBioma) {
-                        System.out.println(zoologico);
-                    }
-                }else if (option2.equals("2")){
-                    System.out.println("Descendente");
-                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : copiaBioma) {
-                        System.out.println(zoologico);
-                    }
-                }else{
-                    System.out.println("Opcion incorrecta");
-                }
-            }
-        }else if (option.equals("6")){
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option.equals("1")){
-                System.out.println("--------------------------------------------------");
-                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-                System.out.println("1. Ascendente.");
-                System.out.println("2. Descendente.");
-                option2 = input.next();
-                System.out.println();
-                if (option2.equals("1")){
-                    System.out.println("Ascendente");
-                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : copiaBioma) {
-                        System.out.println(zoologico);
-                    }
-                }else if (option2.equals("2")){
-                    System.out.println("Descendente");
-                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : copiaBioma) {
-                        System.out.println(zoologico);
-                    }
-                }else{
-                    System.out.println("Opcion incorrecta");
-                }
-            }
-        }else if (option.equals("7")){
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option.equals("1")){
-                System.out.println("--------------------------------------------------");
-                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-                System.out.println("1. Ascendente.");
-                System.out.println("2. Descendente.");
-                option2 = input.next();
-                System.out.println();
-                if (option2.equals("1")){
-                    System.out.println("Ascendente");
-                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[6]));
-                    for (Zoologico zoologico : copiaBioma) {
-                        System.out.println(zoologico);
-                    }
-                }else if (option2.equals("2")){
-                    System.out.println("Descendente");
-                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[6]));
-                    for (Zoologico zoologico : copiaBioma) {
-                        System.out.println(zoologico);
-                    }
-                }else{
-                    System.out.println("Opcion incorrecta");
-                }
-            }
-        }else{
-            return;
         }
     }
     public static void humedadBioma(int opcionValor, String humedadBus){

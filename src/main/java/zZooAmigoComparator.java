@@ -1,6 +1,6 @@
 import java.util.Comparator;
 
-public class zooAmigoZComparator implements Comparator<Zoologico> {
+public class zZooAmigoComparator implements Comparator<Zoologico> {
     public int compare(Zoologico zooAmigo1, Zoologico zooAmigo2) {
         for (int i = 0; i < zooAmigo1.profesionales.size(); i++) {
             for (int j = 0; j < zooAmigo2.profesionales.size(); j++) {

@@ -1,6 +1,6 @@
 import java.util.Comparator;
 
-public class humedadComparator implements Comparator<Bioma> {
+public class bHumedadComparator implements Comparator<Bioma> {
     public int compare(Bioma humedad1, Bioma humedad2){
 
         if (humedad1.humedad.compareTo(humedad2.humedad) < 0){

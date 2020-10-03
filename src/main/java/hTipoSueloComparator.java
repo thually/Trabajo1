@@ -1,6 +1,6 @@
 import java.util.Comparator;
 
-public class tipoSueloComparator implements Comparator<Habitat> {
+public class hTipoSueloComparator implements Comparator<Habitat> {
     public int compare(Habitat tipoSuelo1, Habitat tipoSuelo2){
 
         if (tipoSuelo1.tipoSuelo.compareTo(tipoSuelo2.tipoSuelo) < 0){

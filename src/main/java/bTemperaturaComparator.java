@@ -1,6 +1,6 @@
 import java.util.Comparator;
 
-public class temperaturaComparator implements Comparator<Bioma> {
+public class bTemperaturaComparator implements Comparator<Bioma> {
     public int compare(Bioma temperatura1, Bioma temperatura2){
         if (temperatura1.temperatura < temperatura2.temperatura){
             return -1;

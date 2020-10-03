@@ -1,6 +1,6 @@
 import java.util.Comparator;
 
-public class siglasComparator implements Comparator<Zoologico> {
+public class zSiglasComparator implements Comparator<Zoologico> {
     public int compare(Zoologico siglas1, Zoologico siglas2){
 
         if (siglas1.siglas.compareTo(siglas2.siglas) < 0){

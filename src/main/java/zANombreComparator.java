@@ -1,7 +1,7 @@
 import java.util.Comparator;
 
-public class nombreComparator implements Comparator<Zoologico> {
-    public int compare(Zoologico nombre1, Zoologico nombre2){
+public class zANombreComparator implements Comparator<ZooAmigo> {
+    public int compare(ZooAmigo nombre1, ZooAmigo nombre2){
 
         if (nombre1.nombre.compareTo(nombre2.nombre) < 0){
             return -1;

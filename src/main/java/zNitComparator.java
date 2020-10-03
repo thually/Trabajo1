@@ -1,6 +1,6 @@
 import java.util.Comparator;
 
-public class nitComparator implements Comparator<Zoologico> {
+public class zNitComparator implements Comparator<Zoologico> {
     public int compare(Zoologico nit1, Zoologico nit2){
 
         if (nit1.nit.compareTo(nit2.nit) < 0){
