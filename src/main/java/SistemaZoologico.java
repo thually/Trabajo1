@@ -15,7 +15,7 @@ public class SistemaZoologico {
     public static ArrayList<Profesional> profesionales = new ArrayList<>();
     public static ArrayList<Tecnico> tecnicos = new ArrayList<>();
     public static ArrayList<ZooAmigo> zooAmigos = new ArrayList<>();
-    public static ArrayList<Zoologico> zoologicos = new ArrayList<>();
+    public static ArrayList<Zoologico> copiaHabitat = new ArrayList<>();
     public static Comparator<Zoologico>[] comparadoresZoologico = new Comparator[7];
     public static Comparator<Bioma>[] comparadoresBioma = new Comparator[7];
     public static Comparator<Habitat>[] comparadoresHabitat = new Comparator[6];
@@ -23,7 +23,7 @@ public class SistemaZoologico {
     public static Comparator<Tecnico>[] comparadoresTecnico = new Comparator[5];
     public static Comparator<Profesional>[] comparadoresProfesional = new Comparator[6];
     ArrayList<Bioma> copiaBio = new ArrayList<>(biomas);
-    ArrayList<Zoologico> copiaBioma = new ArrayList<>(zoologicos);
+    ArrayList<Zoologico> copiaBioma = new ArrayList<>(copiaHabitat);
 
     public static void main(String[] args) {
 
@@ -258,14 +258,14 @@ public class SistemaZoologico {
     public static void CRUDzoologico(int opcion) {
         String accion = CRUDclases(opcion);
         if (accion.equals("1") || accion.equals("3") || accion.equals("4")) {
-            if (zoologicos.isEmpty()) {
+            if (copiaHabitat.isEmpty()) {
                 System.out.println("Aun no se encuentran zoologicos registrados");
                 return;
             }
         }
         switch (accion) {
             case "1":
-                for (Zoologico zoologico : zoologicos) {
+                for (Zoologico zoologico : copiaHabitat) {
                     System.out.println(zoologico);
                 }
                 break;
@@ -284,7 +284,7 @@ public class SistemaZoologico {
     public static void crearZoologico() {
         System.out.print("Ingrese NIT del nuevo zoologico: ");
         String nuevoNIT = input.next();
-        for (Zoologico zoologico : zoologicos) {
+        for (Zoologico zoologico : copiaHabitat) {
             if (zoologico.nit.replace(".", "").equals(nuevoNIT.replace(".", ""))) {
                 System.out.println("ERROR: Ya existe un zoologico registrado con este NIT.");
                 return;
@@ -294,7 +294,7 @@ public class SistemaZoologico {
         String nuevoNombre = input.next();
         System.out.print("Ingrese las siglas del nuevo zoologico: ");
         String nuevoSiglas = input.next();
-        for (Zoologico zoologico : zoologicos) {
+        for (Zoologico zoologico : copiaHabitat) {
             if (zoologico.siglas.equalsIgnoreCase(nuevoSiglas)) {
                 System.out.println("ERROR: Ya existe un zoologico registrado con estas siglas.");
                 return;
@@ -304,7 +304,7 @@ public class SistemaZoologico {
         String nuevaCiudad = input.next();
 
         Zoologico nuevoZoo = new Zoologico(nuevoNIT, nuevoNombre, nuevoSiglas, nuevaCiudad);
-        zoologicos.add(nuevoZoo);
+        copiaHabitat.add(nuevoZoo);
         System.out.println("\nMENSAJE: Nuevo zoologico registrado con exito.\n" +
                 "IMPORTANTE: Si desea fijar las relaciones del nuevo zoologico, debe ingresar a la opcion 'Editar' del menu anterior.");
     }
@@ -325,7 +325,7 @@ public class SistemaZoologico {
             if (opcion.equals("1")) {
                 System.out.print("Ingrese NIT: ");
                 String opcion2 = input.next();
-                for (Zoologico zoo : zoologicos) {
+                for (Zoologico zoo : copiaHabitat) {
                     if (zoo.nit.replace(".", "").equals(opcion2.replace(".", ""))) {
                         zoologico = zoo;
                     }
@@ -333,7 +333,7 @@ public class SistemaZoologico {
             } else {
                 System.out.print("Ingrese siglas: ");
                 String opcion2 = input.next();
-                for (Zoologico zoo : zoologicos) {
+                for (Zoologico zoo : copiaHabitat) {
                     if (zoo.siglas.equalsIgnoreCase(opcion2)) {
                         zoologico = zoo;
                     }
@@ -428,7 +428,7 @@ public class SistemaZoologico {
                     }
                     /*Revisa si el bioma actual ya esta relacionado con algun zoologico.
                      * si es así, elimina dicha relacion y despues crea la nueva*/
-                    for (Zoologico zoo : zoologicos) {
+                    for (Zoologico zoo : copiaHabitat) {
                         Bioma finalBiomaNuevo = biomaNuevo;
                         zoo.biomas.removeIf(bio -> (bio.id == finalBiomaNuevo.id));
                     }
@@ -460,7 +460,7 @@ public class SistemaZoologico {
                         } else break;
                     }
 
-                    for (Zoologico zoo : zoologicos) {
+                    for (Zoologico zoo : copiaHabitat) {
                         Profesional finalProNuevo = proNuevo;
                         zoo.profesionales.removeIf(pro -> (pro.cedula == finalProNuevo.cedula));
                     }
@@ -492,7 +492,7 @@ public class SistemaZoologico {
                         } else break;
                     }
 
-                    for (Zoologico zoo : zoologicos) {
+                    for (Zoologico zoo : copiaHabitat) {
                         ZooAmigo finalZANuevo = nuevoZooAmigo;
                         zoo.zooAmigos.removeIf(za -> (za.cedula == finalZANuevo.cedula));
                     }
@@ -523,7 +523,7 @@ public class SistemaZoologico {
             if (opcion.equals("1")) {
                 System.out.print("Ingrese NIT: ");
                 String opcion2 = input.next();
-                for (Zoologico zoo : zoologicos) {
+                for (Zoologico zoo : copiaHabitat) {
                     if (zoo.nit.replace(".", "").equals(opcion2.replace(".", ""))) {
                         zoologico = zoo;
                     }
@@ -531,7 +531,7 @@ public class SistemaZoologico {
             } else {
                 System.out.print("Ingrese siglas: ");
                 String opcion2 = input.next();
-                for (Zoologico zoo : zoologicos) {
+                for (Zoologico zoo : copiaHabitat) {
                     if (zoo.siglas.equalsIgnoreCase(opcion2)) {
                         zoologico = zoo;
                     }
@@ -573,7 +573,7 @@ public class SistemaZoologico {
                 bioma.zoologico = null;
             }
         }
-        zoologicos.remove(zoologico);
+        copiaHabitat.remove(zoologico);
 
         System.out.println("El zoologico se ha eliminado correctamente");
     }
@@ -714,19 +714,19 @@ public class SistemaZoologico {
             System.out.println();
             switch (opcion) {
                 case 1:
-                    if (zoologicos.isEmpty()) {
+                    if (copiaHabitat.isEmpty()) {
                         System.out.println("Aun no hay zoologicos registrados");
                         return;
                     }
                     System.out.println("\nEstos son los zoologicos disponibles:\n");
-                    for (Zoologico zoologico : zoologicos) {
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                     Zoologico ZooNuevo = null;
                     while (true) {
                         System.out.print("\nIngrese el NIT del zoologico con el que quiere asociar este bioma: ");
                         String nit = input.next();
-                        for (Zoologico zoologico : zoologicos) {
+                        for (Zoologico zoologico : copiaHabitat) {
                             if (zoologico.nit.replace(".", "").equals(nit.replace(".", ""))) {
                                 ZooNuevo = zoologico;
                                 break;
@@ -737,7 +737,7 @@ public class SistemaZoologico {
                         } else break;
                     }
 
-                    for (Zoologico zoo : zoologicos) {
+                    for (Zoologico zoo : copiaHabitat) {
                         Bioma finalBiomaNuevo = bioma;
                         zoo.biomas.removeIf(bio -> (bio.id == finalBiomaNuevo.id));
                     }
@@ -858,7 +858,7 @@ public class SistemaZoologico {
             }
         }
 
-        for (Zoologico zoologico : zoologicos) {
+        for (Zoologico zoologico : copiaHabitat) {
             Bioma finalBioma = bioma;
             zoologico.biomas.removeIf(bio -> bio.id == finalBioma.id);
 
@@ -1832,7 +1832,7 @@ public class SistemaZoologico {
                     break;
                 case 2:
                     System.out.println("\nEstos son los zoologicos disponibles:\n");
-                    for (Zoologico zoologico1 : zoologicos) {
+                    for (Zoologico zoologico1 : copiaHabitat) {
                         System.out.println(zoologico1);
                     }
                     Zoologico zoologico = null;
@@ -1850,7 +1850,7 @@ public class SistemaZoologico {
                         if (option.equals("1")) {
                             System.out.print("Ingrese NIT: ");
                             String opcion2 = input.next();
-                            for (Zoologico zoo : zoologicos) {
+                            for (Zoologico zoo : copiaHabitat) {
                                 if (zoo.nit.replace(".", "").equals(opcion2.replace(".", ""))) {
                                     zoologico = zoo;
                                 }
@@ -1858,7 +1858,7 @@ public class SistemaZoologico {
                         } else {
                             System.out.print("Ingrese siglas: ");
                             String opcion2 = input.next();
-                            for (Zoologico zoo : zoologicos) {
+                            for (Zoologico zoo : copiaHabitat) {
                                 if (zoo.siglas.equalsIgnoreCase(opcion2)) {
                                     zoologico = zoo;
                                 }
@@ -1872,7 +1872,7 @@ public class SistemaZoologico {
                         System.out.println("El Zoologico y el Profesional ya están relacionados");
                         return;
                     }
-                    for (Zoologico zoologico1 : zoologicos) {
+                    for (Zoologico zoologico1 : copiaHabitat) {
                         zoologico1.profesionales.remove(profesional);
                     }
                     Profesional.setZoologicos(zoologico, profesional);
@@ -1912,7 +1912,7 @@ public class SistemaZoologico {
                             bioma.profesionales.removeIf(profesional -> profesional.cedula == cedula); //Elimando la relación con Bioma
                         }
                         for (Zoologico zoologico :
-                                zoologicos) {
+                                copiaHabitat) {
                             zoologico.profesionales.removeIf(profesional -> profesional.cedula == cedula); //Elimando la relación con Bioma
                         }
                         System.out.println("El profesional se ha eliminado correctamente");
@@ -2085,12 +2085,12 @@ public class SistemaZoologico {
 
                     break;
                 case 2:
-                    if (zoologicos.isEmpty()) {
+                    if (copiaHabitat.isEmpty()) {
                         System.out.println("Aun no hay Zoologicos registrados");
                         return;
                     }
                     System.out.println("\nEstos son los zoologicos disponibles:\n");
-                    for (Zoologico zoologico : zoologicos) {
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                     Zoologico zoologico = null;
@@ -2108,7 +2108,7 @@ public class SistemaZoologico {
                         if (option.equals("1")) {
                             System.out.print("Ingrese NIT: ");
                             String opcion2 = input.next();
-                            for (Zoologico zoo : zoologicos) {
+                            for (Zoologico zoo : copiaHabitat) {
                                 if (zoo.nit.replace(".", "").equals(opcion2.replace(".", ""))) {
                                     zoologico = zoo;
                                 }
@@ -2116,7 +2116,7 @@ public class SistemaZoologico {
                         } else {
                             System.out.print("Ingrese siglas: ");
                             String opcion2 = input.next();
-                            for (Zoologico zoo : zoologicos) {
+                            for (Zoologico zoo : copiaHabitat) {
                                 if (zoo.siglas.equalsIgnoreCase(opcion2)) {
                                     zoologico = zoo;
                                 }
@@ -2127,7 +2127,7 @@ public class SistemaZoologico {
                         } else break;
                     }
                     for (Zoologico zoo :
-                            zoologicos) {
+                            copiaHabitat) {
                         if (zoo.zooAmigos.contains(zooAmigo)) {
                             zoo.zooAmigos.remove(zooAmigo);
                         }
@@ -2173,7 +2173,7 @@ public class SistemaZoologico {
                             }
                         }
                         for (Zoologico zoologico :
-                                zoologicos) {
+                                copiaHabitat) {
                             zoologico.zooAmigos.removeIf(zooAmigo -> zooAmigo.cedula == cedula); //Elimando la relación con Bioma
                         }
                         System.out.println("El ZooAmigo se ha eliminado correctamente");
@@ -2206,7 +2206,7 @@ public class SistemaZoologico {
             System.out.println();
             switch (option) {
                 case "1":
-                    if (zoologicos.size() == 0) {
+                    if (copiaHabitat.size() == 0) {
                         System.out.println("No se encuentran zoologicos registrados");
                     } else {
                         busquedaZoologico();
@@ -2463,7 +2463,7 @@ public class SistemaZoologico {
     }
 
     public static void nitZoologico(int opcionValor, String nitBus) {
-        ArrayList<Zoologico> copiaZoo = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaZoo = new ArrayList<>(copiaHabitat);
         if (opcionValor == 1) {
             for (Zoologico zoologico : copiaZoo) {
                 if (nitBus.equals(zoologico.nit)) {
@@ -2485,7 +2485,7 @@ public class SistemaZoologico {
     }
 
     public static void nombreZoologico(int opcionValor, String nombre) {
-        ArrayList<Zoologico> copiaZoo = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaZoo = new ArrayList<>(copiaHabitat);
         ArrayList<Zoologico> nombreZoo = new ArrayList<>();
         for (Zoologico zoologico : copiaZoo) {
             if (nombre.equals(zoologico.nombre) || nombre.equals(zoologico.nombre.toLowerCase())) {
@@ -2713,7 +2713,7 @@ public class SistemaZoologico {
     }
 
     public static void siglasZoologico(int opcionValor, String siglas) {
-        ArrayList<Zoologico> copiaZoo = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaZoo = new ArrayList<>(copiaHabitat);
         ArrayList<Zoologico> siglasZoo = new ArrayList<>();
         for (Zoologico zoologico : copiaZoo) {
             if (siglas.equals(zoologico.siglas) || siglas.equals(zoologico.siglas.toLowerCase())) {
@@ -2931,7 +2931,7 @@ public class SistemaZoologico {
     }
 
     public static void ciudadZoologico(int opcionValor, String ciudad){
-        ArrayList<Zoologico> copiaZoo = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaZoo = new ArrayList<>(copiaHabitat);
 
         String option;
         String option2;
@@ -2968,7 +2968,7 @@ public class SistemaZoologico {
         }
     }
     public static void biomaZoologico(int opcionValor, String bioma){
-        ArrayList<Zoologico> copiaZoo = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaZoo = new ArrayList<>(copiaHabitat);
         ArrayList<Zoologico> biomaZoo = new ArrayList<>();
         for (Zoologico zoologico : copiaZoo) {
             if (bioma.equals(zoologico.biomas) || bioma.equals(zoologico.biomas)) {
@@ -3183,7 +3183,7 @@ public class SistemaZoologico {
         }
     }
     public static void profesionalZoologico(int opcionValor, String profesional) {
-        ArrayList<Zoologico> copiaZoo = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaZoo = new ArrayList<>(copiaHabitat);
         ArrayList<Zoologico> profesionalZoo = new ArrayList<>();
         for (Zoologico zoologico : copiaZoo) {
             if (profesional.equals(zoologico.profesionales) || profesional.equals(zoologico.profesionales)) {
@@ -3399,7 +3399,7 @@ public class SistemaZoologico {
 
     }
     public static void zooAmigoZoologico(int opcionValor, String zooAmigo){
-        ArrayList<Zoologico> copiaZoo = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaZoo = new ArrayList<>(copiaHabitat);
         ArrayList<Zoologico> zooAmigoZoo = new ArrayList<>();
         for (Zoologico zoologico : copiaZoo) {
             if (zooAmigo.equals(zoologico.siglas) || zooAmigo.equals(zoologico.zooAmigos)) {
@@ -3849,17 +3849,17 @@ public class SistemaZoologico {
         }
     }
     public static void idBioma(int opcionValor, int idBusMin, int idBusMax){
-        ArrayList<Zoologico> copiaBioma = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaBioma = new ArrayList<>(copiaHabitat);
         if (opcionValor==1){
             for(Zoologico zoologico : copiaBioma){
-                if(idBusMin == zoologico){
+                if(idBusMin == 0){
                     System.out.println(zoologico);
                 }
             }return;
 
         }else if(opcionValor==2){
-            for (Zoologico zoologico: this.copiaBioma){
-                if(idBus==(zoologico.ID){
+            for (Zoologico zoologico: copiaBioma){
+                if(idBusMin==0){
                     System.out.println( zoologico);
                 }
             }return;
@@ -3867,7 +3867,7 @@ public class SistemaZoologico {
         }
     }
     public static void temperaturaBioma(int opcionValor, double temperaturaBusMin, double temperaturaBusMax){
-        ArrayList<Zoologico> copiaBioma = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaBioma = new ArrayList<>(copiaHabitat);
         String option;
         String option2;
         System.out.println("--------------------------------------------------");
@@ -3891,8 +3891,8 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : copiaZoo) {
+                Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaBioma) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
@@ -3909,14 +3909,14 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaBioma) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
                 System.out.println("Descendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaBioma) {
                     System.out.println(zoologico);
                 }
             }else{
@@ -3938,14 +3938,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -3968,14 +3968,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -3998,14 +3998,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -4028,14 +4028,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[5]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[5]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -4058,14 +4058,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[6]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[6]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[6]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[6]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -4077,7 +4077,7 @@ public class SistemaZoologico {
         }
     }
     public static void humedadBioma(int opcionValor, String humedadBus){
-        ArrayList<Zoologico> copiaBioma = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaBioma = new ArrayList<>(copiaHabitat);
         String option;
         String option2;
         System.out.println("--------------------------------------------------");
@@ -4101,8 +4101,8 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : copiaZoo) {
+                Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaBioma) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
@@ -4119,14 +4119,14 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaBioma) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
                 System.out.println("Descendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaBioma) {
                     System.out.println(zoologico);
                 }
             }else{
@@ -4148,14 +4148,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -4178,14 +4178,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -4208,14 +4208,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -4238,14 +4238,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[5]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[5]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -4268,14 +4268,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[6]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[6]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[6]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[6]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -4287,7 +4287,7 @@ public class SistemaZoologico {
         }
     }
     public static void tipoBioma(int opcionValor, String tipoBus){
-        ArrayList<Zoologico> copiaBioma = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaBioma = new ArrayList<>(copiaHabitat);
         String option;
         String option2;
         System.out.println("--------------------------------------------------");
@@ -4311,8 +4311,8 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : copiaZoo) {
+                Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaBioma) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
@@ -4329,14 +4329,14 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaBioma) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
                 System.out.println("Descendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaBioma) {
                     System.out.println(zoologico);
                 }
             }else{
@@ -4358,14 +4358,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -4388,14 +4388,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -4418,14 +4418,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -4448,14 +4448,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[5]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[5]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -4478,14 +4478,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[6]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[6]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[6]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[6]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -4497,7 +4497,7 @@ public class SistemaZoologico {
         }
     }
     public static void zoologicoBioma(int opcionValor, String zoologicoBus){
-        ArrayList<Zoologico> copiaBioma = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaBioma = new ArrayList<>(copiaHabitat);
         String option;
         String option2;
         System.out.println("--------------------------------------------------");
@@ -4521,8 +4521,8 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : copiaZoo) {
+                Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaBioma) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
@@ -4539,14 +4539,14 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaBioma) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
                 System.out.println("Descendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaBioma) {
                     System.out.println(zoologico);
                 }
             }else{
@@ -4568,14 +4568,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -4598,14 +4598,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -4628,14 +4628,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -4658,14 +4658,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[5]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[5]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -4688,14 +4688,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[6]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[6]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[6]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[6]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -4707,7 +4707,7 @@ public class SistemaZoologico {
         }
     }
     public static void profesionalBioma(int opcionValor, String profesionalBus){
-        ArrayList<Zoologico> copiaBioma = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaBioma = new ArrayList<>(copiaHabitat);
         String option;
         String option2;
         System.out.println("--------------------------------------------------");
@@ -4731,8 +4731,8 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : copiaZoo) {
+                Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaBioma) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
@@ -4749,14 +4749,14 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaBioma) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
                 System.out.println("Descendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaBioma) {
                     System.out.println(zoologico);
                 }
             }else{
@@ -4778,14 +4778,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -4808,14 +4808,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -4838,14 +4838,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -4868,14 +4868,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[5]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[5]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -4898,14 +4898,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[6]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[6]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[6]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[6]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -4917,7 +4917,7 @@ public class SistemaZoologico {
         }
     }
     public static void habitatBioma(int opcionValor, String habitatBus){
-        ArrayList<Zoologico> copiaBioma = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaBioma = new ArrayList<>(copiaHabitat);
         String option;
         String option2;
         System.out.println("--------------------------------------------------");
@@ -4941,8 +4941,8 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : copiaZoo) {
+                Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaBioma) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
@@ -4959,14 +4959,14 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaBioma) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
                 System.out.println("Descendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaBioma) {
                     System.out.println(zoologico);
                 }
             }else{
@@ -4988,14 +4988,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -5018,14 +5018,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -5048,14 +5048,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -5078,14 +5078,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[5]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[5]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -5108,14 +5108,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[6]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[6]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[6]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaBioma, Collections.reverseOrder(comparadoresZoologico[6]));
+                    for (Zoologico zoologico : copiaBioma) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -5345,17 +5345,17 @@ public class SistemaZoologico {
         }
     }
     public static void idHabitat(int opcionValor, int idBusMin, int idBusMax){
-        ArrayList<Zoologico> copiaHabitat = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaHabitat = new ArrayList<>(SistemaZoologico.copiaHabitat);
         if (opcionValor==1){
-            for(Zoologico zoologico : this.copiaBioma){
-                if(idBus==(zoologico){
+            for(Zoologico zoologico : copiaHabitat){
+                if(idBusMin==0){
                         System.out.println(zoologico);
                 }
             }return;
 
         }else if(opcionValor==2){
-            for (Zoologico zoologico: this.copiaBioma){
-                if(idBus==(zoologico.ID){
+            for (Zoologico zoologico: copiaHabitat){
+                if(idBusMin==0){
                         System.out.println( zoologico);
                 }
             }return;
@@ -5363,7 +5363,7 @@ public class SistemaZoologico {
         }
     }
     public static void tipoSueloHabitat(int opcionValor, String tipoSueloBus){
-        ArrayList<Zoologico> copiaHabitat = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaHabitat = new ArrayList<>(SistemaZoologico.copiaHabitat);
         String option;
         String option2;
         System.out.println("--------------------------------------------------");
@@ -5387,8 +5387,8 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : copiaZoo) {
+                Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaHabitat) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
@@ -5405,14 +5405,14 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaHabitat) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
                 System.out.println("Descendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaHabitat) {
                     System.out.println(zoologico);
                 }
             }else{
@@ -5434,14 +5434,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -5464,14 +5464,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -5494,14 +5494,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -5524,14 +5524,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[5]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[5]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -5554,14 +5554,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[6]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[6]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[6]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[6]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -5573,7 +5573,7 @@ public class SistemaZoologico {
         }
     }
     public static void vegetacionHabitat(int opcionValor, String vegetacionBus){
-        ArrayList<Zoologico> copiaHabitat = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaHabitat = new ArrayList<>(SistemaZoologico.copiaHabitat);
         String option;
         String option2;
         System.out.println("--------------------------------------------------");
@@ -5597,8 +5597,8 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : copiaZoo) {
+                Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaHabitat) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
@@ -5615,14 +5615,14 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(SistemaZoologico.copiaHabitat, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : SistemaZoologico.copiaHabitat) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
                 System.out.println("Descendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(SistemaZoologico.copiaHabitat, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : SistemaZoologico.copiaHabitat) {
                     System.out.println(zoologico);
                 }
             }else{
@@ -5644,14 +5644,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(SistemaZoologico.copiaHabitat, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : SistemaZoologico.copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(SistemaZoologico.copiaHabitat, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : SistemaZoologico.copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -5674,14 +5674,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(SistemaZoologico.copiaHabitat, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : SistemaZoologico.copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(SistemaZoologico.copiaHabitat, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : SistemaZoologico.copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -5704,14 +5704,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(SistemaZoologico.copiaHabitat, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : SistemaZoologico.copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(SistemaZoologico.copiaHabitat, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : SistemaZoologico.copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -5734,14 +5734,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(SistemaZoologico.copiaHabitat, Collections.reverseOrder(comparadoresZoologico[5]));
+                    for (Zoologico zoologico : SistemaZoologico.copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(SistemaZoologico.copiaHabitat, Collections.reverseOrder(comparadoresZoologico[5]));
+                    for (Zoologico zoologico : SistemaZoologico.copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -5764,14 +5764,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[6]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(SistemaZoologico.copiaHabitat, Collections.reverseOrder(comparadoresZoologico[6]));
+                    for (Zoologico zoologico : SistemaZoologico.copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[6]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(SistemaZoologico.copiaHabitat, Collections.reverseOrder(comparadoresZoologico[6]));
+                    for (Zoologico zoologico : SistemaZoologico.copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -5783,7 +5783,7 @@ public class SistemaZoologico {
         }
     }
     public static void tipoJaulaHabitat(int opcionValor, String tipoJaulaBus){
-        ArrayList<Zoologico> copiaHabitat = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaHabitat = new ArrayList<>(SistemaZoologico.copiaHabitat);
         String option;
         String option2;
         System.out.println("--------------------------------------------------");
@@ -5807,8 +5807,8 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : copiaZoo) {
+                Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaHabitat) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
@@ -5825,14 +5825,14 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaHabitat) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
                 System.out.println("Descendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaHabitat) {
                     System.out.println(zoologico);
                 }
             }else{
@@ -5854,14 +5854,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -5884,14 +5884,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -5914,14 +5914,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -5944,14 +5944,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[5]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[5]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -5974,14 +5974,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[6]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[6]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[6]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[6]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -5993,7 +5993,7 @@ public class SistemaZoologico {
         }
     }
     public static void animalHabitat(int opcionValor, String animalBus){
-        ArrayList<Zoologico> copiaHabitat = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaHabitat = new ArrayList<>(SistemaZoologico.copiaHabitat);
         String option;
         String option2;
         System.out.println("--------------------------------------------------");
@@ -6017,8 +6017,8 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : copiaZoo) {
+                Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaHabitat) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
@@ -6035,14 +6035,14 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaHabitat) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
                 System.out.println("Descendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaHabitat) {
                     System.out.println(zoologico);
                 }
             }else{
@@ -6064,14 +6064,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -6094,14 +6094,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -6124,14 +6124,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -6154,14 +6154,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[5]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[5]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -6184,14 +6184,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[6]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[6]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[6]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[6]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -6203,7 +6203,7 @@ public class SistemaZoologico {
         }
     }
     public static void biomaHabitat(int opcionValor, String habitatBus){
-        ArrayList<Zoologico> copiaHabitat = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaHabitat = new ArrayList<>(SistemaZoologico.copiaHabitat);
         String option;
         String option2;
         System.out.println("--------------------------------------------------");
@@ -6227,8 +6227,8 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : copiaZoo) {
+                Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaHabitat) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
@@ -6245,14 +6245,14 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaHabitat) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
                 System.out.println("Descendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaHabitat) {
                     System.out.println(zoologico);
                 }
             }else{
@@ -6274,14 +6274,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -6304,14 +6304,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -6334,14 +6334,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -6364,14 +6364,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[5]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[5]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -6394,14 +6394,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[6]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[6]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[6]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[6]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -6413,7 +6413,7 @@ public class SistemaZoologico {
         }
     }
     public static void tecnicoHabitat(int opcionValor, String tecnicoBus){
-        ArrayList<Zoologico> copiaHabitat = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaHabitat = new ArrayList<>(SistemaZoologico.copiaHabitat);
         String option;
         String option2;
         System.out.println("--------------------------------------------------");
@@ -6437,8 +6437,8 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : copiaZoo) {
+                Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaHabitat) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
@@ -6455,14 +6455,14 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaHabitat) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
                 System.out.println("Descendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaHabitat) {
                     System.out.println(zoologico);
                 }
             }else{
@@ -6484,14 +6484,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -6514,14 +6514,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -6544,14 +6544,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -6574,14 +6574,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[5]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[5]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -6604,14 +6604,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[6]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[6]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[6]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresZoologico[6]));
+                    for (Zoologico zoologico : copiaHabitat) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -6834,17 +6834,17 @@ public class SistemaZoologico {
         }
     }
     public static void idAnimal(int opcionValor, int idAnimalMin, int idBusMax){
-        ArrayList<Zoologico> copiaAnimal = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaAnimal = new ArrayList<>(copiaHabitat);
         if (opcionValor==1){
-            for(Zoologico zoologico : this.copiaBioma){
-                if(idBus==(zoologico){
+            for(Zoologico zoologico : copiaBioma){
+                if(idAnimalMin==(0){
                         System.out.println(zoologico);
                 }
             }return;
 
         }else if(opcionValor==2){
-            for (Zoologico zoologico: this.copiaBioma){
-                if(idBus==(zoologico.ID){
+            for (Zoologico zoologico: copiaBioma){
+                if(idAnimalMin==(0){
                         System.out.println( zoologico);
                 }
             }return;
@@ -6854,7 +6854,7 @@ public class SistemaZoologico {
     public static void especieAnimal(int opcionValor, String especieBus){
         String option;
         String option2;
-        ArrayList<Zoologico> copiaAnimal = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaAnimal = new ArrayList<>(copiaHabitat);
         System.out.println("--------------------------------------------------");
         System.out.println("Por favor, seleccione el atributo que desea buscar: \n");
         System.out.println("1. ID.");
@@ -6875,8 +6875,8 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : copiaZoo) {
+                Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaAnimal) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
@@ -6893,14 +6893,14 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaAnimal) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
                 System.out.println("Descendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaAnimal) {
                     System.out.println(zoologico);
                 }
             }else{
@@ -6922,14 +6922,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaAnimal) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaAnimal) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -6952,14 +6952,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaAnimal) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaAnimal) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -6982,14 +6982,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaAnimal) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaAnimal) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -7012,14 +7012,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")) {
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[5]));
+                    for (Zoologico zoologico : copiaAnimal) {
                         System.out.println(zoologico);
                     }
                 } else if (option2.equals("2")) {
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[5]));
+                    for (Zoologico zoologico : copiaAnimal) {
                         System.out.println(zoologico);
                     }
                 } else {
@@ -7033,7 +7033,7 @@ public class SistemaZoologico {
     public static void nivelAgresividadAnimal(int opcionValor, int nivelAgresividadBusMin, int nivelAgresividadMax){
         String option;
         String option2;
-        ArrayList<Zoologico> copiaAnimal = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaAnimal = new ArrayList<>(copiaHabitat);
         System.out.println("--------------------------------------------------");
         System.out.println("Por favor, seleccione el atributo que desea buscar: \n");
         System.out.println("1. ID.");
@@ -7054,8 +7054,8 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : copiaZoo) {
+                Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaAnimal) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
@@ -7072,14 +7072,14 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaAnimal) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
                 System.out.println("Descendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaAnimal) {
                     System.out.println(zoologico);
                 }
             }else{
@@ -7101,14 +7101,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaAnimal) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaAnimal) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -7131,14 +7131,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaAnimal) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaAnimal) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -7161,14 +7161,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaAnimal) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaAnimal) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -7191,14 +7191,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")) {
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[5]));
+                    for (Zoologico zoologico : copiaAnimal) {
                         System.out.println(zoologico);
                     }
                 } else if (option2.equals("2")) {
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[5]));
+                    for (Zoologico zoologico : copiaAnimal) {
                         System.out.println(zoologico);
                     }
                 } else {
@@ -7212,7 +7212,7 @@ public class SistemaZoologico {
     public static void alimentacionAnimal(int opcionValor, String alimentacionBus){
         String option;
         String option2;
-        ArrayList<Zoologico> copiaAnimal = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaAnimal = new ArrayList<>(copiaHabitat);
         System.out.println("--------------------------------------------------");
         System.out.println("Por favor, seleccione el atributo que desea buscar: \n");
         System.out.println("1. ID.");
@@ -7233,8 +7233,8 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : copiaZoo) {
+                Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaAnimal) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
@@ -7251,14 +7251,14 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaAnimal) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
                 System.out.println("Descendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaAnimal) {
                     System.out.println(zoologico);
                 }
             }else{
@@ -7280,14 +7280,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaAnimal) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaAnimal) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -7310,14 +7310,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaAnimal) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaAnimal) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -7340,14 +7340,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaAnimal) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaAnimal) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -7370,14 +7370,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")) {
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[5]));
+                    for (Zoologico zoologico : copiaAnimal) {
                         System.out.println(zoologico);
                     }
                 } else if (option2.equals("2")) {
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[5]));
+                    for (Zoologico zoologico : copiaAnimal) {
                         System.out.println(zoologico);
                     }
                 } else {
@@ -7391,7 +7391,7 @@ public class SistemaZoologico {
     public static void habitatAnimal(int opcionValor, String habitatBus){
         String option;
         String option2;
-        ArrayList<Zoologico> copiaAnimal = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaAnimal = new ArrayList<>(copiaHabitat);
         System.out.println("--------------------------------------------------");
         System.out.println("Por favor, seleccione el atributo que desea buscar: \n");
         System.out.println("1. ID.");
@@ -7412,8 +7412,8 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : copiaZoo) {
+                Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaAnimal) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
@@ -7430,14 +7430,14 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaAnimal) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
                 System.out.println("Descendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaAnimal) {
                     System.out.println(zoologico);
                 }
             }else{
@@ -7459,14 +7459,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaAnimal) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaAnimal) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -7489,14 +7489,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaAnimal) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaAnimal) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -7519,14 +7519,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaAnimal) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaAnimal) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -7549,14 +7549,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")) {
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[5]));
+                    for (Zoologico zoologico : copiaAnimal) {
                         System.out.println(zoologico);
                     }
                 } else if (option2.equals("2")) {
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[5]));
+                    for (Zoologico zoologico : copiaAnimal) {
                         System.out.println(zoologico);
                     }
                 } else {
@@ -7570,7 +7570,7 @@ public class SistemaZoologico {
     public static void zooAmigoAnimal(int opcionValor, String zooAmigoAnimal){
         String option;
         String option2;
-        ArrayList<Zoologico> copiaAnimal = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaAnimal = new ArrayList<>(copiaHabitat);
         System.out.println("--------------------------------------------------");
         System.out.println("Por favor, seleccione el atributo que desea buscar: \n");
         System.out.println("1. ID.");
@@ -7591,8 +7591,8 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : copiaZoo) {
+                Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaAnimal) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
@@ -7609,14 +7609,14 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaAnimal) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
                 System.out.println("Descendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaAnimal) {
                     System.out.println(zoologico);
                 }
             }else{
@@ -7638,14 +7638,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaAnimal) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaAnimal) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -7668,14 +7668,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaAnimal) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaAnimal) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -7698,14 +7698,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaAnimal) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaAnimal) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -7728,14 +7728,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")) {
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[5]));
+                    for (Zoologico zoologico : copiaAnimal) {
                         System.out.println(zoologico);
                     }
                 } else if (option2.equals("2")) {
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[5]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresZoologico[5]));
+                    for (Zoologico zoologico : copiaAnimal) {
                         System.out.println(zoologico);
                     }
                 } else {
@@ -7949,17 +7949,17 @@ public class SistemaZoologico {
         }
     }
     public static void cedulaTecnico(int opcionValor, int cedulaBusMin, int cedulaBusMax){
-        ArrayList<Zoologico> copiaTecnico = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaTecnico = new ArrayList<>(copiaHabitat);
         if (opcionValor==1){
-            for(Zoologico zoologico : this.copiaBioma){
-                if(idBus==(zoologico){
+            for(Zoologico zoologico : copiaTecnico){
+                if(cedulaBusMin==0){
                         System.out.println(zoologico);
                 }
             }return;
 
         }else if(opcionValor==2){
-            for (Zoologico zoologico: this.copiaBioma){
-                if(idBus==(zoologico.ID){
+            for (Zoologico zoologico: copiaTecnico){
+                if(cedulaBusMin==(0)){
                         System.out.println( zoologico);
                 }
             }return;
@@ -7969,7 +7969,7 @@ public class SistemaZoologico {
     public static void areaTecnico(int opcionValor, String areaBus){
         String option;
         String option2;
-        ArrayList<Zoologico> copiaTecnico = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaTecnico = new ArrayList<>(copiaHabitat);
         System.out.println("--------------------------------------------------");
         System.out.println("Por favor, seleccione el atributo que desea buscar: \n");
         System.out.println("1. Cedula.");
@@ -7989,8 +7989,8 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : copiaZoo) {
+                Collections.sort(copiaTecnico, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaTecnico) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
@@ -8007,14 +8007,14 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaTecnico, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaTecnico) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
                 System.out.println("Descendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaTecnico, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaTecnico) {
                     System.out.println(zoologico);
                 }
             }else{
@@ -8036,14 +8036,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaTecnico, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaTecnico) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaTecnico, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaTecnico) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -8066,14 +8066,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaTecnico, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaTecnico) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaTecnico, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaTecnico) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -8096,14 +8096,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaTecnico, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaTecnico) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaTecnico, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaTecnico) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -8117,7 +8117,7 @@ public class SistemaZoologico {
     public static void horaInicioTecnico(int opcionValor, String horaInicioBusMin, String horaInicioBusMax){
         String option;
         String option2;
-        ArrayList<Zoologico> copiaTecnico = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaTecnico = new ArrayList<>(copiaHabitat);
         System.out.println("--------------------------------------------------");
         System.out.println("Por favor, seleccione el atributo que desea buscar: \n");
         System.out.println("1. Cedula.");
@@ -8137,8 +8137,8 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : copiaZoo) {
+                Collections.sort(copiaTecnico, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaTecnico) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
@@ -8155,14 +8155,14 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaTecnico, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaTecnico) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
                 System.out.println("Descendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaTecnico, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaTecnico) {
                     System.out.println(zoologico);
                 }
             }else{
@@ -8184,14 +8184,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaTecnico, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaTecnico) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaTecnico, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaTecnico) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -8214,14 +8214,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaTecnico, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaTecnico) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaTecnico, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaTecnico) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -8244,14 +8244,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaTecnico, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaTecnico) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaTecnico, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaTecnico) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -8265,7 +8265,7 @@ public class SistemaZoologico {
     public static void horaSalidaTecnico(int opcionValor, String horaSalidaBusMin, String horaInicioBusMax){
         String option;
         String option2;
-        ArrayList<Zoologico> copiaTecnico = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaTecnico = new ArrayList<>(copiaHabitat);
         System.out.println("--------------------------------------------------");
         System.out.println("Por favor, seleccione el atributo que desea buscar: \n");
         System.out.println("1. Cedula.");
@@ -8285,8 +8285,8 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : copiaZoo) {
+                Collections.sort(copiaTecnico, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaTecnico) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
@@ -8303,14 +8303,14 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaTecnico, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaTecnico) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
                 System.out.println("Descendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaTecnico, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaTecnico) {
                     System.out.println(zoologico);
                 }
             }else{
@@ -8332,14 +8332,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaTecnico, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaTecnico) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaTecnico, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaTecnico) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -8362,14 +8362,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaTecnico, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaTecnico) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaTecnico, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaTecnico) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -8392,14 +8392,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaTecnico, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaTecnico) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaTecnico, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaTecnico) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -8413,7 +8413,7 @@ public class SistemaZoologico {
     public static void habitatTecnico(int opcionValor, String habitatBus){
         String option;
         String option2;
-        ArrayList<Zoologico> copiaTecnico = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaTecnico = new ArrayList<>(copiaHabitat);
         System.out.println("--------------------------------------------------");
         System.out.println("Por favor, seleccione el atributo que desea buscar: \n");
         System.out.println("1. Cedula.");
@@ -8433,8 +8433,8 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : copiaZoo) {
+                Collections.sort(copiaTecnico, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaTecnico) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
@@ -8451,14 +8451,14 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaTecnico, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaTecnico) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
                 System.out.println("Descendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaTecnico, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaTecnico) {
                     System.out.println(zoologico);
                 }
             }else{
@@ -8480,14 +8480,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaTecnico, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaTecnico) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaTecnico, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaTecnico) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -8510,14 +8510,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaTecnico, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaTecnico) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaTecnico, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaTecnico) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -8540,14 +8540,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaTecnico, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaTecnico) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaTecnico, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaTecnico) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -8666,7 +8666,7 @@ public class SistemaZoologico {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String horaInicioBus = input.next();
-                        horaInicioProfesional(3, horaInicioBus, 0);
+                        horaInicioProfesional(3, horaInicioBus, "0");
                         break;
                     }
                     else{
@@ -8694,19 +8694,19 @@ public class SistemaZoologico {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String horaSalidaBus= input.next();
-                        horaSalidaProfesional(1, horaSalidaBus, 0);
+                        horaSalidaProfesional(1, horaSalidaBus, "0");
                         break;
                     }else if(option4.equals("2")) {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String horaSalidaBus = input.next();
-                        horaSalidaProfesional(2, horaSalidaBus, 0);
+                        horaSalidaProfesional(2, horaSalidaBus, "0");
                         break;
                     }else if(option4.equals("3")) {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String horaSalidaBus = input.next();
-                        horaSalidaProfesional(3, horaSalidaBus, 0);
+                        horaSalidaProfesional(3, horaSalidaBus, "0");
                         break;
                     }
                     else{
@@ -8715,7 +8715,7 @@ public class SistemaZoologico {
                         String horaSalidaBusMin= input.next();
                         System.out.println("Por favor, ingrese el valor maximo que desea buscar: \n");
                         String horaSalidaBusMax = input.next();
-                        idBioma(4, horaSalidaBusMin, horaSalidaBusMax);
+                        horaSalidaProfesional(4, horaSalidaBusMin, horaSalidaBusMax);
                         break;
                     }
                     break;
@@ -8786,17 +8786,17 @@ public class SistemaZoologico {
         }
     }
     public static void cedulaProfesional(int opcionValor, int cedulaBusMin, int cedulaBusMax){
-        ArrayList<Zoologico> copiaProfesional = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaProfesional = new ArrayList<>(copiaHabitat);
         if (opcionValor==1){
-            for(Zoologico zoologico : this.copiaBioma){
-                if(idBus==(zoologico){
+            for(Zoologico zoologico : copiaProfesional){
+                if(cedulaBusMin==0){
                         System.out.println(zoologico);
                 }
             }return;
 
         }else if(opcionValor==2){
-            for (Zoologico zoologico: this.copiaBioma){
-                if(idBus==(zoologico.ID){
+            for (Zoologico zoologico: copiaProfesional){
+                if(cedulaBusMin==(0){
                         System.out.println( zoologico);
                 }
             }return;
@@ -8806,7 +8806,7 @@ public class SistemaZoologico {
     public static void areaProfesional(int opcionValor, String areaBus){
         String option;
         String option2;
-        ArrayList<Zoologico> copiaProfesional = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaProfesional = new ArrayList<>(copiaHabitat);
         System.out.println("--------------------------------------------------");
         System.out.println("Por favor, seleccione el atributo que desea buscar: \n");
         System.out.println("1. Cedula.");
@@ -8827,8 +8827,8 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : copiaZoo) {
+                Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaProfesional) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
@@ -8845,14 +8845,14 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaProfesional) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
                 System.out.println("Descendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaProfesional) {
                     System.out.println(zoologico);
                 }
             }else{
@@ -8874,14 +8874,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaProfesional) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaProfesional) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -8904,14 +8904,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaProfesional) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaProfesional) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -8934,14 +8934,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaProfesional) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaProfesional) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -8964,14 +8964,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaProfesional) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaProfesional) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -8985,7 +8985,7 @@ public class SistemaZoologico {
     public static void horaInicioProfesional(int opcionValor, String horaInicioBusMin, String horaInicioBusMax){
         String option;
         String option2;
-        ArrayList<Zoologico> copiaProfesional = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaProfesional = new ArrayList<>(copiaHabitat);
         System.out.println("--------------------------------------------------");
         System.out.println("Por favor, seleccione el atributo que desea buscar: \n");
         System.out.println("1. Cedula.");
@@ -9006,8 +9006,8 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : copiaZoo) {
+                Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaProfesional) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
@@ -9024,14 +9024,14 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaProfesional) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
                 System.out.println("Descendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaProfesional) {
                     System.out.println(zoologico);
                 }
             }else{
@@ -9053,14 +9053,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaProfesional) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaProfesional) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -9083,14 +9083,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaProfesional) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaProfesional) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -9113,14 +9113,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaProfesional) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaProfesional) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -9143,14 +9143,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaProfesional) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaProfesional) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -9164,7 +9164,7 @@ public class SistemaZoologico {
     public static void horaSalidaProfesional(int opcionValor, String horaSalidaBusMin, String horaInicioBusMax){
         String option;
         String option2;
-        ArrayList<Zoologico> copiaProfesional = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaProfesional = new ArrayList<>(copiaHabitat);
         System.out.println("--------------------------------------------------");
         System.out.println("Por favor, seleccione el atributo que desea buscar: \n");
         System.out.println("1. Cedula.");
@@ -9185,8 +9185,8 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : copiaZoo) {
+                Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaProfesional) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
@@ -9203,14 +9203,14 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaProfesional) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
                 System.out.println("Descendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaProfesional) {
                     System.out.println(zoologico);
                 }
             }else{
@@ -9232,14 +9232,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaProfesional) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaProfesional) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -9262,14 +9262,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaProfesional) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaProfesional) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -9292,14 +9292,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaProfesional) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaProfesional) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -9322,14 +9322,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaProfesional) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaProfesional) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -9343,7 +9343,7 @@ public class SistemaZoologico {
     public static void biomaProfesional(int opcionValor, String biomaBus){
         String option;
         String option2;
-        ArrayList<Zoologico> copiaProfesional = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaProfesional = new ArrayList<>(copiaHabitat);
         System.out.println("--------------------------------------------------");
         System.out.println("Por favor, seleccione el atributo que desea buscar: \n");
         System.out.println("1. Cedula.");
@@ -9364,8 +9364,8 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : copiaZoo) {
+                Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaProfesional) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
@@ -9382,14 +9382,14 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaProfesional) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
                 System.out.println("Descendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaProfesional) {
                     System.out.println(zoologico);
                 }
             }else{
@@ -9411,14 +9411,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaProfesional) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaProfesional) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -9441,14 +9441,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaProfesional) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaProfesional) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -9471,14 +9471,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaProfesional) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaProfesional) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -9501,14 +9501,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaProfesional) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaProfesional) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -9522,7 +9522,7 @@ public class SistemaZoologico {
     public static void zoologicoProfesional(int opcionValor, String zoologicoBus){
         String option;
         String option2;
-        ArrayList<Zoologico> copiaProfesional = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaProfesional = new ArrayList<>(copiaHabitat);
         System.out.println("--------------------------------------------------");
         System.out.println("Por favor, seleccione el atributo que desea buscar: \n");
         System.out.println("1. Cedula.");
@@ -9543,8 +9543,8 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : copiaZoo) {
+                Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaProfesional) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
@@ -9561,14 +9561,14 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaProfesional) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
                 System.out.println("Descendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaProfesional) {
                     System.out.println(zoologico);
                 }
             }else{
@@ -9590,14 +9590,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaProfesional) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaProfesional) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -9620,14 +9620,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaProfesional) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaProfesional) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -9650,14 +9650,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaProfesional) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaProfesional) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -9680,14 +9680,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaProfesional) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaProfesional, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaProfesional) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -9884,17 +9884,17 @@ public class SistemaZoologico {
         }
     }
     public static void cedulaZooAmigo(int opcionValor, int cedulaBusMin, int cedulaBusMax){
-        ArrayList<Zoologico> copiaZooAmigo = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaZooAmigo = new ArrayList<>(copiaHabitat);
         if (opcionValor==1){
-            for(Zoologico zoologico : this.copiaBioma){
-                if(idBus==(zoologico){
+            for(Zoologico zoologico : copiaZooAmigo){
+                if(cedulaBusMin==(0){
                         System.out.println(zoologico);
                 }
             }return;
 
         }else if(opcionValor==2){
-            for (Zoologico zoologico: this.copiaBioma){
-                if(idBus==(zoologico.ID){
+            for (Zoologico zoologico: copiaZooAmigo){
+                if(cedulaBusMin==0){
                         System.out.println( zoologico);
                 }
             }return;
@@ -9904,7 +9904,7 @@ public class SistemaZoologico {
     public static void nombreZooAmigo(int opcionValor, String nombreBus){
         String option;
         String option2;
-        ArrayList<Zoologico> copiaZooAmigo = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaZooAmigo = new ArrayList<>(copiaHabitat);
         System.out.println("--------------------------------------------------");
         System.out.println("Por favor, seleccione el atributo que desea buscar: \n");
         System.out.println("1. Cedula.");
@@ -9924,8 +9924,8 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : copiaZoo) {
+                Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaZooAmigo) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
@@ -9942,14 +9942,14 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaZooAmigo) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
                 System.out.println("Descendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaZooAmigo) {
                     System.out.println(zoologico);
                 }
             }else{
@@ -9971,14 +9971,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaZooAmigo) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaZooAmigo) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -10001,14 +10001,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaZooAmigo) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaZooAmigo) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -10031,14 +10031,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaZooAmigo) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaZooAmigo) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -10052,7 +10052,7 @@ public class SistemaZoologico {
     public static void telefonoZooAmigo(int opcionValor, String telefonoBusMin, String telefonoBusMax){
         String option;
         String option2;
-        ArrayList<Zoologico> copiaZooAmigo = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaZooAmigo = new ArrayList<>(copiaHabitat);
         System.out.println("--------------------------------------------------");
         System.out.println("Por favor, seleccione el atributo que desea buscar: \n");
         System.out.println("1. Cedula.");
@@ -10072,8 +10072,8 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : copiaZoo) {
+                Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaZooAmigo) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
@@ -10090,14 +10090,14 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaZooAmigo) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
                 System.out.println("Descendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaZooAmigo) {
                     System.out.println(zoologico);
                 }
             }else{
@@ -10119,14 +10119,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaZooAmigo) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaZooAmigo) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -10149,14 +10149,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaZooAmigo) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaZooAmigo) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -10179,14 +10179,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaZooAmigo) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaZooAmigo) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -10200,7 +10200,7 @@ public class SistemaZoologico {
     public static void animalZooAmigo(int opcionValor, String animalBus){
         String option;
         String option2;
-        ArrayList<Zoologico> copiaZooAmigo = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaZooAmigo = new ArrayList<>(copiaHabitat);
         System.out.println("--------------------------------------------------");
         System.out.println("Por favor, seleccione el atributo que desea buscar: \n");
         System.out.println("1. Cedula.");
@@ -10220,8 +10220,8 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : copiaZoo) {
+                Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaZooAmigo) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
@@ -10238,14 +10238,14 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaZooAmigo) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
                 System.out.println("Descendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaZooAmigo) {
                     System.out.println(zoologico);
                 }
             }else{
@@ -10267,14 +10267,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaZooAmigo) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaZooAmigo) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -10297,14 +10297,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaZooAmigo) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaZooAmigo) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -10327,14 +10327,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaZooAmigo) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaZooAmigo) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -10348,7 +10348,7 @@ public class SistemaZoologico {
     public static void zoologicoZooAmigo(int opcionValor, String zoologicoBus){
         String option;
         String option2;
-        ArrayList<Zoologico> copiaZooAmigo = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaZooAmigo = new ArrayList<>(copiaHabitat);
         System.out.println("--------------------------------------------------");
         System.out.println("Por favor, seleccione el atributo que desea buscar: \n");
         System.out.println("1. Cedula.");
@@ -10368,8 +10368,8 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : copiaZoo) {
+                Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaZooAmigo) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
@@ -10386,14 +10386,14 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")){
                 System.out.println("Ascendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaZooAmigo) {
                     System.out.println(zoologico);
                 }
             }else if (option2.equals("2")){
                 System.out.println("Descendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
+                Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZoologico[0]));
+                for (Zoologico zoologico : copiaZooAmigo) {
                     System.out.println(zoologico);
                 }
             }else{
@@ -10415,14 +10415,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaZooAmigo) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaZooAmigo) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -10445,14 +10445,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaZooAmigo) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaZooAmigo) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -10475,14 +10475,14 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")){
                     System.out.println("Ascendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaZooAmigo) {
                         System.out.println(zoologico);
                     }
                 }else if (option2.equals("2")){
                     System.out.println("Descendente");
-                    Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[4]));
-                    for (Zoologico zoologico : nombreZoo) {
+                    Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZoologico[4]));
+                    for (Zoologico zoologico : copiaZooAmigo) {
                         System.out.println(zoologico);
                     }
                 }else{
@@ -10557,7 +10557,7 @@ public class SistemaZoologico {
     }
 
     public static void mostrarBusqueda() {
-        ArrayList<Zoologico> copiaZoo = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> copiaZoo = new ArrayList<>(copiaHabitat);
         if (copiaZoo.size() == 0){
             System.out.println("No hay zoologicos registrados");
         }
