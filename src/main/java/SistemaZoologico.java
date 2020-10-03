@@ -3091,9 +3091,6 @@ public class SistemaZoologico {
         System.out.println("2. Temperatura.");
         System.out.println("3. Humedad.");
         System.out.println("4. Tipo.");
-        System.out.println("5. Zoologico.");
-        System.out.println("6. Profesional.");
-        System.out.println("7. Habitat.");
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
@@ -3209,9 +3206,6 @@ public class SistemaZoologico {
         System.out.println("2. Temperatura.");
         System.out.println("3. Humedad.");
         System.out.println("4. Tipo.");
-        System.out.println("5. Zoologico.");
-        System.out.println("6. Profesional.");
-        System.out.println("7. Habitat.");
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
@@ -3419,9 +3413,6 @@ public class SistemaZoologico {
         System.out.println("2. Temperatura.");
         System.out.println("3. Humedad.");
         System.out.println("4. Tipo.");
-        System.out.println("5. Zoologico.");
-        System.out.println("6. Profesional.");
-        System.out.println("7. Habitat.");
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
@@ -3793,9 +3784,6 @@ public class SistemaZoologico {
         System.out.println("2. Tipo de suelo.");
         System.out.println("3. Vegetacion.");
         System.out.println("4. Tipo de jaula.");
-        System.out.println("5. Animal.");
-        System.out.println("6. Bioma.");
-        System.out.println("7. Tecnico.");
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
@@ -4003,9 +3991,6 @@ public class SistemaZoologico {
         System.out.println("2. Tipo de suelo.");
         System.out.println("3. Vegetacion.");
         System.out.println("4. Tipo de jaula.");
-        System.out.println("5. Animal.");
-        System.out.println("6. Bioma.");
-        System.out.println("7. Tecnico.");
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
@@ -4213,9 +4198,6 @@ public class SistemaZoologico {
         System.out.println("2. Tipo de suelo.");
         System.out.println("3. Vegetacion.");
         System.out.println("4. Tipo de jaula.");
-        System.out.println("5. Animal.");
-        System.out.println("6. Bioma.");
-        System.out.println("7. Tecnico.");
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
@@ -4604,8 +4586,6 @@ public class SistemaZoologico {
         System.out.println("2. Especie.");
         System.out.println("3. Nivel de agresividad.");
         System.out.println("4. Alimentacion.");
-        System.out.println("5. Habitat.");
-        System.out.println("6. Zooamigo.");
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
@@ -4783,8 +4763,6 @@ public class SistemaZoologico {
         System.out.println("2. Especie.");
         System.out.println("3. Nivel de agresividad.");
         System.out.println("4. Alimentacion.");
-        System.out.println("5. Habitat.");
-        System.out.println("6. Zooamigo.");
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
@@ -4962,8 +4940,6 @@ public class SistemaZoologico {
         System.out.println("2. Especie.");
         System.out.println("3. Nivel de agresividad.");
         System.out.println("4. Alimentacion.");
-        System.out.println("5. Habitat.");
-        System.out.println("6. Zooamigo.");
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
@@ -5337,7 +5313,6 @@ public class SistemaZoologico {
         System.out.println("2. Ares.");
         System.out.println("3. Hora inicio.");
         System.out.println("4. Hora salida.");
-        System.out.println("5. Habitat.");
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
@@ -5482,10 +5457,9 @@ public class SistemaZoologico {
         System.out.println("--------------------------------------------------");
         System.out.println("Por favor, seleccione el atributo que desea buscar: \n");
         System.out.println("1. Cedula.");
-        System.out.println("2. Ares.");
+        System.out.println("2. Area.");
         System.out.println("3. Hora inicio.");
         System.out.println("4. Hora salida.");
-        System.out.println("5. Habitat.");
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
@@ -5630,10 +5604,9 @@ public class SistemaZoologico {
         System.out.println("--------------------------------------------------");
         System.out.println("Por favor, seleccione el atributo que desea buscar: \n");
         System.out.println("1. Cedula.");
-        System.out.println("2. Ares.");
+        System.out.println("2. Area.");
         System.out.println("3. Hora inicio.");
         System.out.println("4. Hora salida.");
-        System.out.println("5. Habitat.");
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
@@ -5978,8 +5951,6 @@ public class SistemaZoologico {
         System.out.println("2. Area.");
         System.out.println("3. Hora inicio.");
         System.out.println("4. Hora salida.");
-        System.out.println("5. Bioma.");
-        System.out.println("6. Zoologico.");
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
@@ -6157,8 +6128,6 @@ public class SistemaZoologico {
         System.out.println("2. Area.");
         System.out.println("3. Hora inicio.");
         System.out.println("4. Hora salida.");
-        System.out.println("5. Bioma.");
-        System.out.println("6. Zoologico.");
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
@@ -6336,8 +6305,6 @@ public class SistemaZoologico {
         System.out.println("2. Area.");
         System.out.println("3. Hora inicio.");
         System.out.println("4. Hora salida.");
-        System.out.println("5. Bioma.");
-        System.out.println("6. Zoologico.");
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
@@ -6669,8 +6636,6 @@ public class SistemaZoologico {
         System.out.println("1. Cedula.");
         System.out.println("2. Nombre.");
         System.out.println("3. Telefono.");
-        System.out.println("4. Animal.");
-        System.out.println("5. Zoologico.");
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
@@ -6817,8 +6782,6 @@ public class SistemaZoologico {
         System.out.println("1. Cedula.");
         System.out.println("2. Nombre.");
         System.out.println("3. Telefono.");
-        System.out.println("4. Animal.");
-        System.out.println("5. Zoologico.");
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
@@ -6956,17 +6919,5 @@ public class SistemaZoologico {
             return;
         }
     }
-
-    public static void mostrarBusqueda() {
-        ArrayList<Zoologico> copiaZoo = new ArrayList<>(copiaHabitat);
-        if (copiaZoo.size() == 0){
-            System.out.println("No hay zoologicos registrados");
-        }
-        System.out.println("Lista de zoologicos: ");
-        for (Zoologico zoologico : copiaZoo){
-            System.out.println(zoologico);
-        }
-    }
-
 
 }
