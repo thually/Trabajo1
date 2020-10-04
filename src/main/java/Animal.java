@@ -1,5 +1,3 @@
-import java.util.Comparator;
-
 public class Animal {
     int id;
     String especie; // Sea un Leon, foca, etc
