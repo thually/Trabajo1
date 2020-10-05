@@ -2463,6 +2463,7 @@ public class SistemaZoologico {
                     eleccion = input.nextInt();
                     zoo = copiaZoo.get(eleccion-1);
 
+                    input.nextLine();
                     System.out.println("\nNIT: " + zoo.nit);
                     String nuevoNIT = input.nextLine();
 
@@ -2548,7 +2549,8 @@ public class SistemaZoologico {
                     i++;
                     System.out.println(i + ". " + zoologico + "\n");
                 }
-                for(Zoologico zoologico: copiaZoo){
+                for(Zoologico zoologico: nombreZoo){
+
                     String accion;
                     System.out.println("-----------------------------------------");
                     System.out.println("\nIndique la accion que desea realizar:\n");
@@ -2564,19 +2566,28 @@ public class SistemaZoologico {
                         System.out.println("------------------------------------------");
                         System.out.println("Escoja el zoologico que desea editar: \n");
                         eleccion = input.nextInt();
-                        zoo = copiaZoo.get(eleccion - 1);
+                        zoo = nombreZoo.get(eleccion - 1);
 
+                        input.nextLine();
                         System.out.println("NIT: " + zoo.nit);
-                        String nuevoNIT = input.next();
+                        String nuevoNIT = input.nextLine();
+                        if (zoo.nit.replace(".", "").equals(nuevoNIT)) {
+                            System.out.println("ERROR: Ya existe un zoologico registrado con este NIT.");
+                            return;
+                        }
 
                         System.out.println("Nombre: " + zoo.nombre);
-                        String nuevoNombre = input.next();
+                        String nuevoNombre = input.nextLine();
 
                         System.out.println("Siglas: " + zoo.siglas);
-                        String nuevoSiglas = input.next();
+                        String nuevoSiglas = input.nextLine();
+                        if (zoologico.siglas.equalsIgnoreCase(nuevoSiglas)) {
+                            System.out.println("ERROR: Ya existe un zoologico registrado con estas siglas.");
+                            return;
+                        }
 
                         System.out.println("Ciudad: " + zoo.ciudad);
-                        String nuevoCiudad = input.next();
+                        String nuevoCiudad = input.nextLine();
 
 
                         while (true) {
@@ -2586,13 +2597,13 @@ public class SistemaZoologico {
                                 switch (optionE.toUpperCase()) {
                                     case "Y":
                                         if (nuevoNIT.isEmpty()) {
-                                        } else zoologico.nit = nuevoNIT;
+                                        } else zoo.nit = nuevoNIT;
                                         if (nuevoNombre.isEmpty()) {
-                                        } else zoologico.nombre = nuevoNombre;
+                                        } else zoo.nombre = nuevoNombre;
                                         if (nuevoSiglas.isEmpty()) {
-                                        } else zoologico.siglas = nuevoSiglas;
+                                        } else zoo.siglas = nuevoSiglas;
                                         if (nuevoCiudad.isEmpty()) {
-                                        } else zoologico.ciudad = nuevoCiudad;
+                                        } else zoo.ciudad = nuevoCiudad;
                                     case "N":
                                         break;
                                 }
@@ -2601,6 +2612,8 @@ public class SistemaZoologico {
                                 System.out.println("Opcion invalida\n");
                             }
                         }
+                    }else{
+                        return;
                     }
                 }
             } else if (option2.equals("2")) {
@@ -9595,6 +9608,21 @@ public class SistemaZoologico {
     }
 
     public static void diagnosticoDeInconsistencias(){
+        for(Zoologico zoologico : zoologicos){
+            if(zoologico.biomas.isEmpty()){
+                System.out.println("El siguiente zoologico no tiene ningún bioma asociado: ");
+                System.out.println(zoologico);
+            }
+            else if(zoologico.profesionales.isEmpty()){
+                System.out.println("El siguiente zoologico no tiene profesionales asociados: ");
+                System.out.println(zoologico);
+            }
+            else if(zoologico.profesionales.isEmpty()){
+                System.out.println("El siguiente zoologico no tienes zooamigos asociados: ");
+                System.out.println(zoologico);
+            }
+        }
+
 
     }
 
