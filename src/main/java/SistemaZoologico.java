@@ -2644,7 +2644,7 @@ public class SistemaZoologico {
         String option;
         String option2;
         System.out.println("--------------------------------------------------");
-        System.out.println("Por favor, seleccione el atributo que desea ordenar: \n");
+        System.out.println("Por favor, seleccione el atributo por el que desea ordenar: \n");
         System.out.println("1. Nit.");
         System.out.println("2. Nombre.");
         System.out.println("3. Siglas.");
@@ -2666,15 +2666,17 @@ public class SistemaZoologico {
                     System.out.println(zoologico);
                 }
             }
-            if (option2.equals("2")) {
+            else if (option2.equals("2")) {
                 System.out.println("Descente");
                 Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[0]));
                 for (Zoologico zoologico : copiaZoo) {
                     System.out.println(zoologico);
                 }
+            }else{
+                System.out.println("Opcion incorrecta");
             }
         }
-        if (option.equals("2")) {
+        else if (option.equals("2")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
@@ -2688,16 +2690,17 @@ public class SistemaZoologico {
                     System.out.println(zoologico);
                 }
             }
-            if (option2.equals("2")) {
+            else if (option2.equals("2")) {
                 System.out.println("Descente");
                 Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[1]));
                 for (Zoologico zoologico : copiaZoo) {
                     System.out.println(zoologico);
                 }
+            }else{
+                System.out.println("Opcion incorrecta");
             }
-
         }
-        if (option.equals("3")) {
+        else if (option.equals("3")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
@@ -2711,16 +2714,17 @@ public class SistemaZoologico {
                     System.out.println(zoologico);
                 }
             }
-            if (option2.equals("2")) {
+            else if (option2.equals("2")) {
                 System.out.println("Descente");
                 Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[2]));
                 for (Zoologico zoologico : copiaZoo) {
                     System.out.println(zoologico);
                 }
+            }else{
+                System.out.println("Opcion incorrecta");
             }
-
         }
-        if (option.equals("4")) {
+        else if (option.equals("4")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
@@ -2734,14 +2738,15 @@ public class SistemaZoologico {
                     System.out.println(zoologico);
                 }
             }
-            if (option2.equals("2")) {
+            else if (option2.equals("2")) {
                 System.out.println("Descente");
                 Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[3]));
                 for (Zoologico zoologico : copiaZoo) {
                     System.out.println(zoologico);
                 }
+            }else{
+                System.out.println("Opcion incorrecta");
             }
-
         } else {
             return;
         }
@@ -3585,7 +3590,7 @@ public class SistemaZoologico {
         String option;
         String option2;
         System.out.println("--------------------------------------------------");
-        System.out.println("Por favor, seleccione el atributo que desea ordenar: \n");
+        System.out.println("Por favor, seleccione el atributo por el que desea ordenar: \n");
         System.out.println("1. Id.");
         System.out.println("2. Temperatura.");
         System.out.println("3. Humedad.");
@@ -3609,18 +3614,18 @@ public class SistemaZoologico {
                 return;
             }
 
-            if (option2.equals("2")) {
+            else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(copiaBio, Collections.reverseOrder(comparadoresBioma[0]));
                 for (Bioma bioma : copiaBio) {
                     System.out.println(bioma);
                 }
                 return;
+            }else{
+                System.out.println("Opcion incorrecta");
             }
-
-
         }
-        if (option.equals("2")) {
+        else if (option.equals("2")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
@@ -3635,17 +3640,18 @@ public class SistemaZoologico {
                 }
                 return;
             }
-            if (option2.equals("2")) {
+            else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(copiaBio, Collections.reverseOrder(comparadoresBioma[1]));
                 for (Bioma bioma : copiaBio) {
                     System.out.println(bioma);
                 }
                 return;
+            }else{
+                System.out.println("Opcion incorrecta");
             }
-
         }
-        if (option.equals("3")) {
+        else if (option.equals("3")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
@@ -3660,18 +3666,18 @@ public class SistemaZoologico {
                 }
                 return;
             }
-            if (option2.equals("2")) {
+            else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(copiaBio, Collections.reverseOrder(comparadoresBioma[2]));
                 for (Bioma bioma : copiaBio) {
                     System.out.println(bioma);
                 }
                 return;
+            }else{
+                System.out.println("Opcion incorrecta");
             }
-
-
         }
-        if (option.equals("4")) {
+        else if (option.equals("4")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
@@ -3686,16 +3692,17 @@ public class SistemaZoologico {
                 }
                 return;
             }
-            if (option2.equals("2")) {
+            else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(copiaBio, Collections.reverseOrder(comparadoresBioma[3]));
                 for (Bioma bioma : copiaBio) {
                     System.out.println(bioma);
                 }
                 return;
+            }else{
+                System.out.println("Opcion incorrecta");
             }
-
-        } else {
+        }else {
             return;
         }
     }
@@ -4379,7 +4386,7 @@ public class SistemaZoologico {
         String option;
         String option2;
         System.out.println("--------------------------------------------------");
-        System.out.println("Por favor, seleccione el atributo que desea ordenar: \n");
+        System.out.println("Por favor, seleccione el atributo por el que desea ordenar: \n");
         System.out.println("1. Id.");
         System.out.println("2. Tipo de suelo.");
         System.out.println("3. Vegetacion.");
@@ -4403,18 +4410,17 @@ public class SistemaZoologico {
                 return;
             }
 
-            if (option2.equals("2")) {
+            else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresHabitat[0]));
                 for (Habitat habitat : copiaHabitat) {
                     System.out.println(habitat);
                 }
                 return;
+            }else{
+                System.out.println("Opcion incorrecta");
             }
-
-
-        }
-        if (option.equals("2")) {
+        }else if (option.equals("2")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
@@ -4429,17 +4435,18 @@ public class SistemaZoologico {
                 }
                 return;
             }
-            if (option2.equals("2")) {
+            else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresHabitat[1]));
                 for (Habitat habitat : copiaHabitat) {
                     System.out.println(habitat);
                 }
                 return;
+            }else{
+                System.out.println("Opcion incorrecta");
             }
-
         }
-        if (option.equals("3")) {
+        else if (option.equals("3")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
@@ -4454,18 +4461,18 @@ public class SistemaZoologico {
                 }
                 return;
             }
-            if (option2.equals("2")) {
+            else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresHabitat[2]));
                 for (Habitat habitat : copiaHabitat) {
                     System.out.println(habitat);
                 }
                 return;
+            }else{
+                System.out.println("Opcion incorrecta");
             }
-
-
         }
-        if (option.equals("4")) {
+        else if (option.equals("4")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
@@ -4480,15 +4487,16 @@ public class SistemaZoologico {
                 }
                 return;
             }
-            if (option2.equals("2")) {
+            else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresHabitat[3]));
                 for (Habitat habitat : copiaHabitat) {
                     System.out.println(habitat);
                 }
                 return;
+            }else{
+                System.out.println("Opcion incorrecta");
             }
-
         } else {
             return;
         }
@@ -5397,7 +5405,7 @@ public class SistemaZoologico {
         String option;
         String option2;
         System.out.println("--------------------------------------------------");
-        System.out.println("Por favor, seleccione el atributo que desea ordenar: \n");
+        System.out.println("Por favor, seleccione el atributo por el que desea ordenar: \n");
         System.out.println("1. Id.");
         System.out.println("2. Especie.");
         System.out.println("3. Nivel de agresividad.");
@@ -5419,20 +5427,18 @@ public class SistemaZoologico {
                     System.out.println(habitat);
                 }
                 return;
-            }
-
-            if (option2.equals("2")) {
+            } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(copiaHab, Collections.reverseOrder(comparadoresHabitat[0]));
                 for (Habitat habitat : copiaHab) {
                     System.out.println(habitat);
                 }
                 return;
+            }else{
+                System.out.println("Opcion incorrecta");
             }
-
-
         }
-        if (option.equals("2")) {
+        else if (option.equals("2")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
@@ -5447,17 +5453,18 @@ public class SistemaZoologico {
                 }
                 return;
             }
-            if (option2.equals("2")) {
+            else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(copiaHab, Collections.reverseOrder(comparadoresHabitat[1]));
                 for (Habitat habitat : copiaHab) {
                     System.out.println(habitat);
                 }
                 return;
+            }else{
+                System.out.println("Opcion incorrecta");
             }
-
         }
-        if (option.equals("3")) {
+        else if (option.equals("3")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
@@ -5472,18 +5479,18 @@ public class SistemaZoologico {
                 }
                 return;
             }
-            if (option2.equals("2")) {
+            else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(copiaHab, Collections.reverseOrder(comparadoresHabitat[2]));
                 for (Habitat habitat : copiaHab) {
                     System.out.println(habitat);
                 }
                 return;
+            }else{
+                System.out.println("Opcion incorrecta");
             }
-
-
         }
-        if (option.equals("4")) {
+        else if (option.equals("4")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
@@ -5498,15 +5505,16 @@ public class SistemaZoologico {
                 }
                 return;
             }
-            if (option2.equals("2")) {
+            else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(copiaHab, Collections.reverseOrder(comparadoresHabitat[3]));
                 for (Habitat habitat : copiaHab) {
                     System.out.println(habitat);
                 }
                 return;
+            }else{
+                System.out.println("Opcion incorrecta");
             }
-
         } else {
             return;
         }
@@ -6642,7 +6650,7 @@ public class SistemaZoologico {
         String option;
         String option2;
         System.out.println("--------------------------------------------------");
-        System.out.println("Por favor, seleccione el atributo que desea ordenar: \n");
+        System.out.println("Por favor, seleccione el atributo por el que desea ordenar: \n");
         System.out.println("1. Cedula.");
         System.out.println("2. Area.");
         System.out.println("3. Hora inicio.");
@@ -6664,20 +6672,18 @@ public class SistemaZoologico {
                     System.out.println(tecnico);
                 }
                 return;
-            }
-
-            if (option2.equals("2")) {
+            }else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(copiaTec, Collections.reverseOrder(comparadoresTecnico[0]));
                 for (Tecnico tecnico : copiaTec) {
                     System.out.println(tecnico);
                 }
                 return;
+            }else{
+                System.out.println("Opcion incorrecta");
             }
-
-
         }
-        if (option.equals("2")) {
+        else if (option.equals("2")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
@@ -6692,17 +6698,18 @@ public class SistemaZoologico {
                 }
                 return;
             }
-            if (option2.equals("2")) {
+            else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(copiaTec, Collections.reverseOrder(comparadoresTecnico[1]));
                 for (Tecnico tecnico : copiaTec) {
                     System.out.println(tecnico);
                 }
                 return;
+            }else{
+                System.out.println("Opcion incorrecta");
             }
-
         }
-        if (option.equals("3")) {
+        else if (option.equals("3")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
@@ -6717,18 +6724,18 @@ public class SistemaZoologico {
                 }
                 return;
             }
-            if (option2.equals("2")) {
+            else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(copiaTec, Collections.reverseOrder(comparadoresTecnico[2]));
                 for (Tecnico tecnico : copiaTec) {
                     System.out.println(tecnico);
                 }
                 return;
+            }else{
+                System.out.println("Opcion incorrecta");
             }
-
-
         }
-        if (option.equals("4")) {
+        else if (option.equals("4")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
@@ -6743,15 +6750,16 @@ public class SistemaZoologico {
                 }
                 return;
             }
-            if (option2.equals("2")) {
+            else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(copiaTec, Collections.reverseOrder(comparadoresTecnico[3]));
                 for (Tecnico tecnico : copiaTec) {
                     System.out.println(tecnico);
                 }
                 return;
+            }else{
+                System.out.println("Opcion incorrecta");
             }
-
         } else {
             return;
         }
@@ -7908,7 +7916,7 @@ public class SistemaZoologico {
         String option;
         String option2;
         System.out.println("--------------------------------------------------");
-        System.out.println("Por favor, seleccione el atributo que desea ordenar: \n");
+        System.out.println("Por favor, seleccione el atributo por el que desea ordenar: \n");
         System.out.println("1. Cedula.");
         System.out.println("2. Area.");
         System.out.println("3. Hora inicio.");
@@ -7931,19 +7939,18 @@ public class SistemaZoologico {
                 }
                 return;
             }
-
-            if (option2.equals("2")) {
+            else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(copiaPro, Collections.reverseOrder(comparadoresProfesional[0]));
                 for (Profesional profesional : copiaPro) {
                     System.out.println(profesional);
                 }
                 return;
+            }else{
+                System.out.println("Opcion incorrecta");
             }
-
-
         }
-        if (option.equals("2")) {
+        else if (option.equals("2")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
@@ -7958,17 +7965,18 @@ public class SistemaZoologico {
                 }
                 return;
             }
-            if (option2.equals("2")) {
+            else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(copiaPro, Collections.reverseOrder(comparadoresProfesional[1]));
                 for (Profesional profesional : copiaPro) {
                     System.out.println(profesional);
                 }
                 return;
+            }else{
+                System.out.println("Opcion incorrecta");
             }
-
         }
-        if (option.equals("3")) {
+        else if (option.equals("3")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
@@ -7983,18 +7991,18 @@ public class SistemaZoologico {
                 }
                 return;
             }
-            if (option2.equals("2")) {
+            else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(copiaPro, Collections.reverseOrder(comparadoresProfesional[2]));
                 for (Profesional profesional : copiaPro) {
                     System.out.println(profesional);
                 }
                 return;
+            }else{
+                System.out.println("Opcion incorrecta");
             }
-
-
         }
-        if (option.equals("4")) {
+        else if (option.equals("4")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
@@ -8009,15 +8017,16 @@ public class SistemaZoologico {
                 }
                 return;
             }
-            if (option2.equals("2")) {
+            else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(copiaPro, Collections.reverseOrder(comparadoresProfesional[3]));
                 for (Profesional profesional : copiaPro) {
                     System.out.println(profesional);
                 }
                 return;
+            }else{
+                System.out.println("Opcion incorrecta");
             }
-
         } else {
             return;
         }
@@ -8832,19 +8841,18 @@ public class SistemaZoologico {
                 }
                 return;
             }
-
-            if (option2.equals("2")) {
+            else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZooAmigo[0]));
                 for (ZooAmigo zooAmigo : copiaZooAmigo) {
                     System.out.println(zooAmigo);
                 }
                 return;
+            }else{
+                System.out.println("Opcion incorrecta");
             }
-
-
         }
-        if (option.equals("2")) {
+        else if (option.equals("2")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
@@ -8859,17 +8867,18 @@ public class SistemaZoologico {
                 }
                 return;
             }
-            if (option2.equals("2")) {
+            else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZooAmigo[1]));
                 for (ZooAmigo zooAmigo : copiaZooAmigo) {
                     System.out.println(zooAmigo);
                 }
                 return;
+            }else{
+                System.out.println("Opcion incorrecta");
             }
-
         }
-        if (option.equals("3")) {
+        else if (option.equals("3")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
@@ -8884,16 +8893,16 @@ public class SistemaZoologico {
                 }
                 return;
             }
-            if (option2.equals("2")) {
+            else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZooAmigo[2]));
                 for (ZooAmigo zooAmigo : copiaZooAmigo) {
                     System.out.println(zooAmigo);
                 }
                 return;
+            }else{
+                System.out.println("Opcion incorrecta");
             }
-
-
         } else {
             return;
         }
