@@ -27,9 +27,9 @@ public class SistemaZoologico {
     public static void main(String[] args) {
         Zoologico zoo1 = new Zoologico("1", "aaaa", "AAAA", "appp");
         zoologicos.add(zoo1);
-        Zoologico zoo2 = new Zoologico("2", "baaa", "bbbb", "bppp");
+        Zoologico zoo2 = new Zoologico("2", "aaaa", "bbbb", "bppp");
         zoologicos.add(zoo2);
-        Zoologico zoo3 = new Zoologico("3", "caaa", "cbbb", "cppp");
+        Zoologico zoo3 = new Zoologico("3", "aaaa", "cbbb", "cppp");
         zoologicos.add(zoo3);
         Habitat hab1 = new Habitat(10, "drrr", "dooo", "dwww");
         habitats.add(hab1);
@@ -391,7 +391,8 @@ public class SistemaZoologico {
                         zoologico = zoo;
                     }
                 }
-            } else {
+            }
+            else {
                 System.out.print("Ingrese siglas: ");
                 String opcion2 = input.next();
                 for (Zoologico zoo : zoologicos) {
@@ -2436,25 +2437,86 @@ public class SistemaZoologico {
         }
     }
     public static void nitZoologico(int opcionValor, String nitBus) {
+        ArrayList<Zoologico> copiaZoo = new ArrayList<>(zoologicos);
+        Zoologico zoo = null;
         int i = 0;
         if (opcionValor == 1) {
-            for (Zoologico zoologico : zoologicos) {
+            for (Zoologico zoologico : copiaZoo) {
                 if (nitBus.equals(zoologico.nit)) {
                     i++;
-                    System.out.println(i+". "+zoologico);
+                    System.out.println(i + ". " + zoologico);
+                }
+                String accion;
+                System.out.println("-----------------------------------------");
+                System.out.println("\nIndique la accion que desea realizar:\n");
+                System.out.println("1. Editar ");
+                System.out.println("2. Eliminar " );
+                System.out.println("0. Regresar al menú anterior" + "\n");
+                accion = input.next();
+                System.out.println("----------------------------------");
+
+                if (accion.equals("1")) {
+
+                    int eleccion;
+                    System.out.println("------------------------------------------");
+                    System.out.println("Escoja el zoologico que desea editar: \n");
+                    eleccion = input.nextInt();
+                    zoo = copiaZoo.get(eleccion-1);
+
+                    System.out.println("\nNIT: " + zoo.nit);
+                    String nuevoNIT = input.nextLine();
+
+                    System.out.println("Nombre: " + zoo.nombre);
+                    String nuevoNombre = input.nextLine();
+
+                    System.out.println("Siglas: " + zoo.siglas);
+                    String nuevoSiglas = input.nextLine();
+
+                    System.out.println("Ciudad: " + zoo.ciudad);
+                    String nuevoCiudad = input.nextLine();
+
+
+                    while (true) {
+                        System.out.print("Desea guardar?:[Y/N] ");
+                        String option = input.next();
+                        if (option.equalsIgnoreCase("Y") || option.equalsIgnoreCase("N")) {
+                            switch (option.toUpperCase()) {
+                                case "Y":
+                                    if (nuevoNIT.isEmpty()) {
+                                    } else zoologico.nit = nuevoNIT;
+                                    if (nuevoNombre.isEmpty()) {
+                                    } else zoologico.nombre = nuevoNombre;
+                                    if (nuevoSiglas.isEmpty()) {
+                                    } else zoologico.siglas = nuevoSiglas;
+                                    if (nuevoCiudad.isEmpty()) {
+                                    } else zoologico.ciudad = nuevoCiudad;
+                                case "N":
+                                    break;
+                            }
+                            break;
+                        } else {
+                            System.out.println("Opcion invalida\n");
+                        }
+                    }
+
+                }else{
+                    return;
                 }
             }
-        } else if (opcionValor == 2) {
+        }
+        else if (opcionValor == 2) {
             for (Zoologico zoologico : zoologicos) {
                 if (nitBus.equals(zoologico.nit.replace(".", ""))) {
-                    System.out.println(zoologico);
-                    i++;
-                    System.out.println(i+". "+zoologico);
+                        System.out.println(zoologico);
+                        i++;
+                        System.out.println(i + ". " + zoologico);
                 }
             }
         }
     }
     public static void nombreZoologico(int opcionValor, String nombreBus) {
+        ArrayList<Zoologico> copiaZoo = new ArrayList<>(zoologicos);
+        Zoologico zoo = null;
         int i=0;
         ArrayList<Zoologico> nombreZoo = new ArrayList<>();
         for (Zoologico zoologico : zoologicos) {
@@ -2484,7 +2546,62 @@ public class SistemaZoologico {
                 Collections.sort(nombreZoo, (comparadoresZoologico[0]));
                 for (Zoologico zoologico : nombreZoo) {
                     i++;
-                    System.out.println(i+". "+zoologico);
+                    System.out.println(i + ". " + zoologico + "\n");
+                }
+                for(Zoologico zoologico: copiaZoo){
+                    String accion;
+                    System.out.println("-----------------------------------------");
+                    System.out.println("\nIndique la accion que desea realizar:\n");
+                    System.out.println("1. Editar ");
+                    System.out.println("2. Eliminar " );
+                    System.out.println("0. Regresar al menú anterior" + "\n");
+                    accion = input.next();
+                    System.out.println("----------------------------------");
+
+                    if (accion.equals("1")) {
+
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el zoologico que desea editar: \n");
+                        eleccion = input.nextInt();
+                        zoo = copiaZoo.get(eleccion - 1);
+
+                        System.out.println("NIT: " + zoo.nit);
+                        String nuevoNIT = input.next();
+
+                        System.out.println("Nombre: " + zoo.nombre);
+                        String nuevoNombre = input.next();
+
+                        System.out.println("Siglas: " + zoo.siglas);
+                        String nuevoSiglas = input.next();
+
+                        System.out.println("Ciudad: " + zoo.ciudad);
+                        String nuevoCiudad = input.next();
+
+
+                        while (true) {
+                            System.out.print("Desea guardar?:[Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        if (nuevoNIT.isEmpty()) {
+                                        } else zoologico.nit = nuevoNIT;
+                                        if (nuevoNombre.isEmpty()) {
+                                        } else zoologico.nombre = nuevoNombre;
+                                        if (nuevoSiglas.isEmpty()) {
+                                        } else zoologico.siglas = nuevoSiglas;
+                                        if (nuevoCiudad.isEmpty()) {
+                                        } else zoologico.ciudad = nuevoCiudad;
+                                    case "N":
+                                        break;
+                                }
+                                break;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+                    }
                 }
             } else if (option2.equals("2")) {
                 System.out.println("Descendente");
@@ -4673,7 +4790,6 @@ public class SistemaZoologico {
             return;
         }
     }
-
 
     public static void busquedaAnimal() {
         String option;
@@ -8524,7 +8640,6 @@ public class SistemaZoologico {
             return;
         }
     }
-
 
     public static void busquedaZooamigo() {
         String option;
