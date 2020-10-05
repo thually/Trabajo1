@@ -2436,21 +2436,26 @@ public class SistemaZoologico {
         }
     }
     public static void nitZoologico(int opcionValor, String nitBus) {
+        int i = 0;
         if (opcionValor == 1) {
             for (Zoologico zoologico : zoologicos) {
                 if (nitBus.equals(zoologico.nit)) {
-                    System.out.println(zoologico);
+                    i++;
+                    System.out.println(i+". "+zoologico);
                 }
             }
         } else if (opcionValor == 2) {
             for (Zoologico zoologico : zoologicos) {
                 if (nitBus.equals(zoologico.nit.replace(".", ""))) {
                     System.out.println(zoologico);
+                    i++;
+                    System.out.println(i+". "+zoologico);
                 }
             }
         }
     }
     public static void nombreZoologico(int opcionValor, String nombreBus) {
+        int i=0;
         ArrayList<Zoologico> nombreZoo = new ArrayList<>();
         for (Zoologico zoologico : zoologicos) {
             if (nombreBus.equals(zoologico.nombre) || nombreBus.equals(zoologico.nombre.toLowerCase())) {
@@ -2478,13 +2483,15 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(nombreZoo, (comparadoresZoologico[0]));
                 for (Zoologico zoologico : nombreZoo) {
-                    System.out.println(zoologico);
+                    i++;
+                    System.out.println(i+". "+zoologico);
                 }
             } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
                 for (Zoologico zoologico : nombreZoo) {
-                    System.out.println(zoologico);
+                    i++;
+                    System.out.println(i+". "+zoologico);
                 }
             } else {
                 System.out.println("Opcion incorrecta");
@@ -2500,13 +2507,15 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(nombreZoo, (comparadoresZoologico[2]));
                 for (Zoologico zoologico : nombreZoo) {
-                    System.out.println(zoologico);
+                    i++;
+                    System.out.println(i+". "+zoologico);
                 }
             } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
                 for (Zoologico zoologico : nombreZoo) {
-                    System.out.println(zoologico);
+                    i++;
+                    System.out.println(i+". "+zoologico);
                 }
             } else {
                 System.out.println("Opcion incorrecta");
@@ -2522,13 +2531,15 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(nombreZoo, (comparadoresZoologico[3]));
                 for (Zoologico zoologico : nombreZoo) {
-                    System.out.println(zoologico);
+                    i++;
+                    System.out.println(i+". "+zoologico);
                 }
             } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
                 for (Zoologico zoologico : nombreZoo) {
-                    System.out.println(zoologico);
+                    i++;
+                    System.out.println(i+". "+zoologico);
                 }
             } else {
                 System.out.println("Opcion incorrecta");
@@ -2538,22 +2549,26 @@ public class SistemaZoologico {
         }
     }
     public static void siglasZoologico(int opcionValor, String siglasBus) {
+        int i=0;
         if (opcionValor == 1) {
             for (Zoologico zoologico : zoologicos) {
                 if (siglasBus.equals(zoologico.siglas)) {
-                    System.out.println(zoologico);
+                    i++;
+                    System.out.println(i+". "+zoologico);
                 }
             }
         } else if (opcionValor == 2) {
             for (Zoologico zoologico : zoologicos) {
                 if (siglasBus.equals(zoologico.siglas.toLowerCase())) {
-                    System.out.println(zoologico);
+                    i++;
+                    System.out.println(i+". "+zoologico);
                 }
             }
         }
     }
     public static void ciudadZoologico(int opcionValor, String ciudadBus) {
         ArrayList<Zoologico> ciudadZoo = new ArrayList<>();
+        int i=0;
         for (Zoologico zoologico : zoologicos) {
             if (ciudadBus.equals(zoologico.ciudad) || ciudadBus.equals(zoologico.ciudad.toLowerCase())) {
                 ciudadZoo.add(zoologico);
@@ -2580,13 +2595,15 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(ciudadZoo, (comparadoresZoologico[0]));
                 for (Zoologico zoologico : ciudadZoo) {
-                    System.out.println(zoologico);
+                    i++;
+                    System.out.println(i+". "+zoologico);
                 }
             } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(ciudadZoo, Collections.reverseOrder(comparadoresZoologico[0]));
                 for (Zoologico zoologico : ciudadZoo) {
-                    System.out.println(zoologico);
+                    i++;
+                    System.out.println(i+". "+zoologico);
                 }
             } else {
                 System.out.println("Opcion incorrecta");
@@ -2602,13 +2619,15 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(ciudadZoo, (comparadoresZoologico[1]));
                 for (Zoologico zoologico : ciudadZoo) {
-                    System.out.println(zoologico);
+                    i++;
+                    System.out.println(i+". "+zoologico);
                 }
             } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(ciudadZoo, Collections.reverseOrder(comparadoresZoologico[1]));
                 for (Zoologico zoologico : ciudadZoo) {
-                    System.out.println(zoologico);
+                    i++;
+                    System.out.println(i+". "+zoologico);
                 }
             } else {
                 System.out.println("Opcion incorrecta");
@@ -2624,13 +2643,15 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(ciudadZoo, (comparadoresZoologico[2]));
                 for (Zoologico zoologico : ciudadZoo) {
-                    System.out.println(zoologico);
+                    i++;
+                    System.out.println(i+". "+zoologico);
                 }
             } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(ciudadZoo, Collections.reverseOrder(comparadoresZoologico[2]));
                 for (Zoologico zoologico : ciudadZoo) {
-                    System.out.println(zoologico);
+                    i++;
+                    System.out.println(i+". "+zoologico);
                 }
             } else {
                 System.out.println("Opcion incorrecta");
@@ -2640,6 +2661,7 @@ public class SistemaZoologico {
         }
     }
     public static void mostarTodosZoologicos() {
+        int i=0;
         ArrayList<Zoologico> copiaZoo = new ArrayList<>(zoologicos);
         String option;
         String option2;
@@ -2663,14 +2685,16 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(copiaZoo, (comparadoresZoologico[0]));
                 for (Zoologico zoologico : copiaZoo) {
-                    System.out.println(zoologico);
+                    i++;
+                    System.out.println(i+". "+zoologico);
                 }
             }
             else if (option2.equals("2")) {
                 System.out.println("Descente");
                 Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[0]));
                 for (Zoologico zoologico : copiaZoo) {
-                    System.out.println(zoologico);
+                    i++;
+                    System.out.println(i+". "+zoologico);
                 }
             }else{
                 System.out.println("Opcion incorrecta");
@@ -2687,14 +2711,16 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(copiaZoo, (comparadoresZoologico[1]));
                 for (Zoologico zoologico : copiaZoo) {
-                    System.out.println(zoologico);
+                    i++;
+                    System.out.println(i+". "+zoologico);
                 }
             }
             else if (option2.equals("2")) {
                 System.out.println("Descente");
                 Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[1]));
                 for (Zoologico zoologico : copiaZoo) {
-                    System.out.println(zoologico);
+                    i++;
+                    System.out.println(i+". "+zoologico);
                 }
             }else{
                 System.out.println("Opcion incorrecta");
@@ -2711,14 +2737,16 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(copiaZoo, (comparadoresZoologico[2]));
                 for (Zoologico zoologico : copiaZoo) {
-                    System.out.println(zoologico);
+                    i++;
+                    System.out.println(i+". "+zoologico);
                 }
             }
             else if (option2.equals("2")) {
                 System.out.println("Descente");
                 Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[2]));
                 for (Zoologico zoologico : copiaZoo) {
-                    System.out.println(zoologico);
+                    i++;
+                    System.out.println(i+". "+zoologico);
                 }
             }else{
                 System.out.println("Opcion incorrecta");
@@ -2735,14 +2763,16 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(copiaZoo, (comparadoresZoologico[3]));
                 for (Zoologico zoologico : copiaZoo) {
-                    System.out.println(zoologico);
+                    i++;
+                    System.out.println(i+". "+zoologico);
                 }
             }
             else if (option2.equals("2")) {
                 System.out.println("Descente");
                 Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[3]));
                 for (Zoologico zoologico : copiaZoo) {
-                    System.out.println(zoologico);
+                    i++;
+                    System.out.println(i+". "+zoologico);
                 }
             }else{
                 System.out.println("Opcion incorrecta");
@@ -2902,6 +2932,7 @@ public class SistemaZoologico {
         }
     }
     public static void idBioma(int opcionValor, int idBusMin, int idBusMax) {
+        int i =0;
         ArrayList<Bioma> idBiomaEx = new ArrayList<>();
         ArrayList<Bioma> idBiomaMax = new ArrayList<>();
         ArrayList<Bioma> idBiomaMin = new ArrayList<>();
@@ -2953,25 +2984,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(idBiomaEx, (comparadoresBioma[1]));
                     for (Bioma bioma : idBiomaEx) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(idBiomaMax, (comparadoresBioma[1]));
                     for (Bioma bioma : idBiomaMax) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(idBiomaMin, (comparadoresBioma[1]));
                     for (Bioma bioma : idBiomaMin) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(idBiomaRan, (comparadoresBioma[1]));
                     for (Bioma bioma : idBiomaRan) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -2979,25 +3014,29 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(idBiomaEx, Collections.reverseOrder(comparadoresBioma[1]));
                     for (Bioma bioma : idBiomaEx) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(idBiomaMax, Collections.reverseOrder(comparadoresBioma[1]));
                     for (Bioma bioma : idBiomaMax) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(idBiomaMin, Collections.reverseOrder(comparadoresBioma[1]));
                     for (Bioma bioma : idBiomaMin) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(idBiomaRan, Collections.reverseOrder(comparadoresBioma[1]));
                     for (Bioma bioma : idBiomaRan) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 }
             }
@@ -3013,25 +3052,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(idBiomaEx, (comparadoresBioma[2]));
                     for (Bioma bioma : idBiomaEx) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(idBiomaMax, (comparadoresBioma[2]));
                     for (Bioma bioma : idBiomaMax) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(idBiomaMin, (comparadoresBioma[2]));
                     for (Bioma bioma : idBiomaMin) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(idBiomaRan, (comparadoresBioma[2]));
                     for (Bioma bioma : idBiomaRan) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -3039,25 +3082,29 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(idBiomaEx, Collections.reverseOrder(comparadoresBioma[2]));
                     for (Bioma bioma : idBiomaEx) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(idBiomaMax, Collections.reverseOrder(comparadoresBioma[2]));
                     for (Bioma bioma : idBiomaMax) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(idBiomaMin, Collections.reverseOrder(comparadoresBioma[2]));
                     for (Bioma bioma : idBiomaMin) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(idBiomaRan, Collections.reverseOrder(comparadoresBioma[2]));
                     for (Bioma bioma : idBiomaRan) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 }
             }
@@ -3073,25 +3120,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(idBiomaEx, (comparadoresBioma[3]));
                     for (Bioma bioma : idBiomaEx) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(idBiomaMax, (comparadoresBioma[3]));
                     for (Bioma bioma : idBiomaMax) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(idBiomaMin, (comparadoresBioma[3]));
                     for (Bioma bioma : idBiomaMin) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(idBiomaRan, (comparadoresBioma[3]));
                     for (Bioma bioma : idBiomaRan) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -3099,25 +3150,29 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(idBiomaEx, Collections.reverseOrder(comparadoresBioma[3]));
                     for (Bioma bioma : idBiomaEx) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(idBiomaMax, Collections.reverseOrder(comparadoresBioma[3]));
                     for (Bioma bioma : idBiomaMax) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(idBiomaMin, Collections.reverseOrder(comparadoresBioma[3]));
                     for (Bioma bioma : idBiomaMin) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(idBiomaRan, Collections.reverseOrder(comparadoresBioma[3]));
                     for (Bioma bioma : idBiomaRan) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 }
             }
@@ -3126,6 +3181,7 @@ public class SistemaZoologico {
         }
     }
     public static void temperaturaBioma(int opcionValor, double temperaturaBusMin, double temperaturaBusMax) {
+        int i=0;
         ArrayList<Bioma> tempBiomaEx = new ArrayList<>();
         ArrayList<Bioma> tempBiomaMax = new ArrayList<>();
         ArrayList<Bioma> tempBiomaMin = new ArrayList<>();
@@ -3178,25 +3234,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(tempBiomaEx, (comparadoresBioma[0]));
                     for (Bioma bioma : tempBiomaEx) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(tempBiomaMax, (comparadoresBioma[0]));
                     for (Bioma bioma : tempBiomaMax) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(tempBiomaMin, (comparadoresBioma[0]));
                     for (Bioma bioma : tempBiomaMin) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(tempBiomaRan, (comparadoresBioma[0]));
                     for (Bioma bioma : tempBiomaRan) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -3204,25 +3264,29 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(tempBiomaEx, Collections.reverseOrder(comparadoresBioma[0]));
                     for (Bioma bioma : tempBiomaEx) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(tempBiomaMax, Collections.reverseOrder(comparadoresBioma[0]));
                     for (Bioma bioma : tempBiomaMax) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(tempBiomaMin, Collections.reverseOrder(comparadoresBioma[0]));
                     for (Bioma bioma : tempBiomaMin) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(tempBiomaRan, Collections.reverseOrder(comparadoresBioma[0]));
                     for (Bioma bioma : tempBiomaRan) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 }
             }
@@ -3238,25 +3302,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(tempBiomaEx, (comparadoresBioma[1]));
                     for (Bioma bioma : tempBiomaEx) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(tempBiomaMax, (comparadoresBioma[1]));
                     for (Bioma bioma : tempBiomaMax) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(tempBiomaMin, (comparadoresBioma[1]));
                     for (Bioma bioma : tempBiomaMin) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(tempBiomaRan, (comparadoresBioma[1]));
                     for (Bioma bioma : tempBiomaRan) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -3264,25 +3332,29 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(tempBiomaEx, Collections.reverseOrder(comparadoresBioma[1]));
                     for (Bioma bioma : tempBiomaEx) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(tempBiomaMax, Collections.reverseOrder(comparadoresBioma[1]));
                     for (Bioma bioma : tempBiomaMax) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(tempBiomaMin, Collections.reverseOrder(comparadoresBioma[1]));
                     for (Bioma bioma : tempBiomaMin) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(tempBiomaRan, Collections.reverseOrder(comparadoresBioma[1]));
                     for (Bioma bioma : tempBiomaRan) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 }
             }
@@ -3298,25 +3370,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(tempBiomaEx, (comparadoresBioma[2]));
                     for (Bioma bioma : tempBiomaEx) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(tempBiomaMax, (comparadoresBioma[2]));
                     for (Bioma bioma : tempBiomaMax) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(tempBiomaMin, (comparadoresBioma[2]));
                     for (Bioma bioma : tempBiomaMin) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(tempBiomaRan, (comparadoresBioma[2]));
                     for (Bioma bioma : tempBiomaRan) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -3324,25 +3400,29 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(tempBiomaEx, Collections.reverseOrder(comparadoresBioma[2]));
                     for (Bioma bioma : tempBiomaEx) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(tempBiomaMax, Collections.reverseOrder(comparadoresBioma[2]));
                     for (Bioma bioma : tempBiomaMax) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(tempBiomaMin, Collections.reverseOrder(comparadoresBioma[2]));
                     for (Bioma bioma : tempBiomaMin) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(tempBiomaRan, Collections.reverseOrder(comparadoresBioma[2]));
                     for (Bioma bioma : tempBiomaRan) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 }
             }
@@ -3358,25 +3438,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(tempBiomaEx, (comparadoresBioma[3]));
                     for (Bioma bioma : tempBiomaEx) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(tempBiomaMax, (comparadoresBioma[3]));
                     for (Bioma bioma : tempBiomaMax) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(tempBiomaMin, (comparadoresBioma[3]));
                     for (Bioma bioma : tempBiomaMin) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(tempBiomaRan, (comparadoresBioma[3]));
                     for (Bioma bioma : tempBiomaRan) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -3384,25 +3468,29 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(tempBiomaEx, Collections.reverseOrder(comparadoresBioma[3]));
                     for (Bioma bioma : tempBiomaEx) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(tempBiomaMax, Collections.reverseOrder(comparadoresBioma[3]));
                     for (Bioma bioma : tempBiomaMax) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(tempBiomaMin, Collections.reverseOrder(comparadoresBioma[3]));
                     for (Bioma bioma : tempBiomaMin) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(tempBiomaRan, Collections.reverseOrder(comparadoresBioma[3]));
                     for (Bioma bioma : tempBiomaRan) {
-                        System.out.println(bioma);
+                        i++;
+                        System.out.println(i+". "+bioma);
                     }
                 }
             }
@@ -3411,6 +3499,7 @@ public class SistemaZoologico {
         }
     }
     public static void humedadBioma(int opcionValor, String humedadBus) {
+        int i =0;
         ArrayList<Bioma> humedadBio = new ArrayList<>();
         for (Bioma bioma : biomas) {
             if (humedadBus.equals(bioma.humedad) || humedadBus.equals(bioma.humedad.toLowerCase())) {
@@ -3438,13 +3527,15 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(humedadBio, (comparadoresBioma[0]));
                 for (Bioma bioma : humedadBio) {
-                    System.out.println(bioma);
+                    i++;
+                    System.out.println(i+". "+bioma);
                 }
             } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(humedadBio, Collections.reverseOrder(comparadoresBioma[0]));
                 for (Bioma bioma : humedadBio) {
-                    System.out.println(bioma);
+                    i++;
+                    System.out.println(i+". "+bioma);
                 }
             } else {
                 System.out.println("Opcion incorrecta");
@@ -3460,13 +3551,15 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(humedadBio, (comparadoresBioma[1]));
                 for (Bioma bioma : humedadBio) {
-                    System.out.println(bioma);
+                    i++;
+                    System.out.println(i+". "+bioma);
                 }
             } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(humedadBio, Collections.reverseOrder(comparadoresBioma[1]));
                 for (Bioma bioma : humedadBio) {
-                    System.out.println(bioma);
+                    i++;
+                    System.out.println(i+". "+bioma);
                 }
             } else {
                 System.out.println("Opcion incorrecta");
@@ -3482,13 +3575,15 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(humedadBio, (comparadoresBioma[3]));
                 for (Bioma bioma : humedadBio) {
-                    System.out.println(bioma);
+                    i++;
+                    System.out.println(i+". "+bioma);
                 }
             } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(humedadBio, Collections.reverseOrder(comparadoresBioma[3]));
                 for (Bioma bioma : humedadBio) {
-                    System.out.println(bioma);
+                    i++;
+                    System.out.println(i+". "+bioma);
                 }
             } else {
                 System.out.println("Opcion incorrecta");
@@ -3498,6 +3593,7 @@ public class SistemaZoologico {
         }
     }
     public static void tipoBioma(int opcionValor, String tipoBus) {
+        int i=0;
         ArrayList<Bioma> tipoBio = new ArrayList<>();
         for (Bioma bioma : biomas) {
             if (tipoBus.equals(bioma.humedad) || tipoBus.equals(bioma.humedad.toLowerCase())) {
@@ -3525,13 +3621,15 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(tipoBio, (comparadoresBioma[0]));
                 for (Bioma bioma : tipoBio) {
-                    System.out.println(bioma);
+                    i++;
+                    System.out.println(i+". "+bioma);
                 }
             } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(tipoBio, Collections.reverseOrder(comparadoresBioma[0]));
                 for (Bioma bioma : tipoBio) {
-                    System.out.println(bioma);
+                    i++;
+                    System.out.println(i+". "+bioma);
                 }
             } else {
                 System.out.println("Opcion incorrecta");
@@ -3547,13 +3645,15 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(tipoBio, (comparadoresBioma[1]));
                 for (Bioma bioma : tipoBio) {
-                    System.out.println(bioma);
+                    i++;
+                    System.out.println(i+". "+bioma);
                 }
             } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(tipoBio, Collections.reverseOrder(comparadoresBioma[1]));
                 for (Bioma bioma : tipoBio) {
-                    System.out.println(bioma);
+                    i++;
+                    System.out.println(i+". "+bioma);
                 }
             } else {
                 System.out.println("Opcion incorrecta");
@@ -3569,13 +3669,15 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(tipoBio, (comparadoresBioma[2]));
                 for (Bioma bioma : tipoBio) {
-                    System.out.println(bioma);
+                    i++;
+                    System.out.println(i+". "+bioma);
                 }
             } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(tipoBio, Collections.reverseOrder(comparadoresBioma[2]));
                 for (Bioma bioma : tipoBio) {
-                    System.out.println(bioma);
+                    i++;
+                    System.out.println(i+". "+bioma);
                 }
             } else {
                 System.out.println("Opcion incorrecta");
@@ -3586,6 +3688,7 @@ public class SistemaZoologico {
         }
     }
     public static void mostrarTodosBiomas() {
+        int i=0;
         ArrayList<Bioma> copiaBio = new ArrayList<>(biomas);
         String option;
         String option2;
@@ -3609,7 +3712,8 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(copiaBio, (comparadoresBioma[0]));
                 for (Bioma bioma : copiaBio) {
-                    System.out.println(bioma);
+                    i++;
+                    System.out.println(i+". "+bioma);
                 }
                 return;
             }
@@ -3618,7 +3722,8 @@ public class SistemaZoologico {
                 System.out.println("Descendente");
                 Collections.sort(copiaBio, Collections.reverseOrder(comparadoresBioma[0]));
                 for (Bioma bioma : copiaBio) {
-                    System.out.println(bioma);
+                    i++;
+                    System.out.println(i+". "+bioma);
                 }
                 return;
             }else{
@@ -3636,7 +3741,8 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(copiaBio, (comparadoresBioma[1]));
                 for (Bioma bioma : copiaBio) {
-                    System.out.println(bioma);
+                    i++;
+                    System.out.println(i+". "+bioma);
                 }
                 return;
             }
@@ -3644,7 +3750,8 @@ public class SistemaZoologico {
                 System.out.println("Descendente");
                 Collections.sort(copiaBio, Collections.reverseOrder(comparadoresBioma[1]));
                 for (Bioma bioma : copiaBio) {
-                    System.out.println(bioma);
+                    i++;
+                    System.out.println(i+". "+bioma);
                 }
                 return;
             }else{
@@ -3662,7 +3769,8 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(copiaBio, (comparadoresBioma[2]));
                 for (Bioma bioma : copiaBio) {
-                    System.out.println(bioma);
+                    i++;
+                    System.out.println(i+". "+bioma);
                 }
                 return;
             }
@@ -3670,7 +3778,8 @@ public class SistemaZoologico {
                 System.out.println("Descendente");
                 Collections.sort(copiaBio, Collections.reverseOrder(comparadoresBioma[2]));
                 for (Bioma bioma : copiaBio) {
-                    System.out.println(bioma);
+                    i++;
+                    System.out.println(i+". "+bioma);
                 }
                 return;
             }else{
@@ -3688,7 +3797,8 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(copiaBio, (comparadoresBioma[3]));
                 for (Bioma bioma : copiaBio) {
-                    System.out.println(bioma);
+                    i++;
+                    System.out.println(i+". "+bioma);
                 }
                 return;
             }
@@ -3696,7 +3806,8 @@ public class SistemaZoologico {
                 System.out.println("Descendente");
                 Collections.sort(copiaBio, Collections.reverseOrder(comparadoresBioma[3]));
                 for (Bioma bioma : copiaBio) {
-                    System.out.println(bioma);
+                    i++;
+                    System.out.println(i+". "+bioma);
                 }
                 return;
             }else{
@@ -3839,6 +3950,7 @@ public class SistemaZoologico {
         }
     }
     public static void idHabitat(int opcionValor, int idBusMin, int idBusMax) {
+        int i=0;
         ArrayList<Habitat> idHabitatEx = new ArrayList<>();
         ArrayList<Habitat> idHabitatMax = new ArrayList<>();
         ArrayList<Habitat> idHabitatMin = new ArrayList<>();
@@ -3891,25 +4003,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(idHabitatEx, (comparadoresHabitat[0]));
                     for (Habitat habitat : idHabitatEx) {
-                        System.out.println(habitat);
+                        i++;
+                        System.out.println(i+". "+habitat);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(idHabitatMax, (comparadoresHabitat[0]));
                     for (Habitat habitat : idHabitatMax) {
-                        System.out.println(habitat);
+                        i++;
+                        System.out.println(i+". "+habitat);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(idHabitatMin, (comparadoresHabitat[0]));
                     for (Habitat habitat : idHabitatMin) {
-                        System.out.println(habitat);
+                        i++;
+                        System.out.println(i+". "+habitat);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(idHabitatRan, (comparadoresHabitat[0]));
                     for (Habitat habitat : idHabitatRan) {
-                        System.out.println(habitat);
+                        i++;
+                        System.out.println(i+". "+habitat);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -3917,25 +4033,29 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(idHabitatEx, Collections.reverseOrder(comparadoresHabitat[0]));
                     for (Habitat habitat : idHabitatEx) {
-                        System.out.println(habitat);
+                        i++;
+                        System.out.println(i+". "+habitat);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(idHabitatMax, Collections.reverseOrder(comparadoresHabitat[0]));
                     for (Habitat habitat : idHabitatMax) {
-                        System.out.println(habitat);
+                        i++;
+                        System.out.println(i+". "+habitat);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(idHabitatMin, Collections.reverseOrder(comparadoresHabitat[0]));
                     for (Habitat habitat : idHabitatMin) {
-                        System.out.println(habitat);
+                        i++;
+                        System.out.println(i+". "+habitat);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(idHabitatRan, Collections.reverseOrder(comparadoresHabitat[0]));
                     for (Habitat habitat : idHabitatRan) {
-                        System.out.println(habitat);
+                        i++;
+                        System.out.println(i+". "+habitat);
                     }
                 }
             }
@@ -3951,25 +4071,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(idHabitatEx, (comparadoresHabitat[1]));
                     for (Habitat habitat : idHabitatEx) {
-                        System.out.println(habitat);
+                        i++;
+                        System.out.println(i+". "+habitat);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(idHabitatMax, (comparadoresHabitat[1]));
                     for (Habitat habitat : idHabitatMax) {
-                        System.out.println(habitat);
+                        i++;
+                        System.out.println(i+". "+habitat);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(idHabitatMin, (comparadoresHabitat[1]));
                     for (Habitat habitat : idHabitatMin) {
-                        System.out.println(habitat);
+                        i++;
+                        System.out.println(i+". "+habitat);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(idHabitatRan, (comparadoresHabitat[1]));
                     for (Habitat habitat : idHabitatRan) {
-                        System.out.println(habitat);
+                        i++;
+                        System.out.println(i+". "+habitat);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -3977,25 +4101,29 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(idHabitatEx, Collections.reverseOrder(comparadoresHabitat[1]));
                     for (Habitat habitat : idHabitatEx) {
-                        System.out.println(habitat);
+                        i++;
+                        System.out.println(i+". "+habitat);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(idHabitatMax, Collections.reverseOrder(comparadoresHabitat[1]));
                     for (Habitat habitat : idHabitatMax) {
-                        System.out.println(habitat);
+                        i++;
+                        System.out.println(i+". "+habitat);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(idHabitatMin, Collections.reverseOrder(comparadoresHabitat[1]));
                     for (Habitat habitat : idHabitatMin) {
-                        System.out.println(habitat);
+                        i++;
+                        System.out.println(i+". "+habitat);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(idHabitatRan, Collections.reverseOrder(comparadoresHabitat[1]));
                     for (Habitat habitat : idHabitatRan) {
-                        System.out.println(habitat);
+                        i++;
+                        System.out.println(i+". "+habitat);
                     }
                 }
             }
@@ -4011,25 +4139,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(idHabitatEx, (comparadoresHabitat[2]));
                     for (Habitat habitat : idHabitatEx) {
-                        System.out.println(habitat);
+                        i++;
+                        System.out.println(i+". "+habitat);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(idHabitatMax, (comparadoresHabitat[2]));
                     for (Habitat habitat : idHabitatMax) {
-                        System.out.println(habitat);
+                        i++;
+                        System.out.println(i+". "+habitat);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(idHabitatMin, (comparadoresHabitat[2]));
                     for (Habitat habitat : idHabitatMin) {
-                        System.out.println(habitat);
+                        i++;
+                        System.out.println(i+". "+habitat);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(idHabitatRan, (comparadoresHabitat[2]));
                     for (Habitat habitat : idHabitatRan) {
-                        System.out.println(habitat);
+                        i++;
+                        System.out.println(i+". "+habitat);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -4037,25 +4169,29 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(idHabitatEx, Collections.reverseOrder(comparadoresHabitat[2]));
                     for (Habitat habitat : idHabitatEx) {
-                        System.out.println(habitat);
+                        i++;
+                        System.out.println(i+". "+habitat);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(idHabitatMax, Collections.reverseOrder(comparadoresHabitat[2]));
                     for (Habitat habitat : idHabitatMax) {
-                        System.out.println(habitat);
+                        i++;
+                        System.out.println(i+". "+habitat);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(idHabitatMin, Collections.reverseOrder(comparadoresHabitat[2]));
                     for (Habitat habitat : idHabitatMin) {
-                        System.out.println(habitat);
+                        i++;
+                        System.out.println(i+". "+habitat);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(idHabitatRan, Collections.reverseOrder(comparadoresHabitat[2]));
                     for (Habitat habitat : idHabitatRan) {
-                        System.out.println(habitat);
+                        i++;
+                        System.out.println(i+". "+habitat);
                     }
                 }
             }
@@ -4071,25 +4207,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(idHabitatEx, (comparadoresHabitat[3]));
                     for (Habitat habitat : idHabitatEx) {
-                        System.out.println(habitat);
+                        i++;
+                        System.out.println(i+". "+habitat);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(idHabitatMax, (comparadoresHabitat[3]));
                     for (Habitat habitat : idHabitatMax) {
-                        System.out.println(habitat);
+                        i++;
+                        System.out.println(i+". "+habitat);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(idHabitatMin, (comparadoresHabitat[3]));
                     for (Habitat habitat : idHabitatMin) {
-                        System.out.println(habitat);
+                        i++;
+                        System.out.println(i+". "+habitat);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(idHabitatRan, (comparadoresHabitat[3]));
                     for (Habitat habitat : idHabitatRan) {
-                        System.out.println(habitat);
+                        i++;
+                        System.out.println(i+". "+habitat);
                     }
                 }
             }
@@ -4098,6 +4238,7 @@ public class SistemaZoologico {
         }
     }
     public static void tipoSueloHabitat(int opcionValor, String tipoSueloBus) {
+        int i=0;
         ArrayList<Habitat> tipoSueloHab = new ArrayList<>();
         for (Habitat habitat : habitats) {
             if (tipoSueloBus.equals(habitat.tipoSuelo) || tipoSueloBus.equals(habitat.tipoSuelo.toLowerCase())) {
@@ -4125,13 +4266,15 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(tipoSueloHab, (comparadoresHabitat[0]));
                 for (Habitat habitat : tipoSueloHab) {
-                    System.out.println(habitat);
+                    i++;
+                    System.out.println(i+". "+habitat);
                 }
             } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(tipoSueloHab, Collections.reverseOrder(comparadoresHabitat[0]));
-                for (Habitat bioma : tipoSueloHab) {
-                    System.out.println(bioma);
+                for (Habitat habitat : tipoSueloHab) {
+                    i++;
+                    System.out.println(i+". "+habitat);
                 }
             } else {
                 System.out.println("Opcion incorrecta");
@@ -4147,13 +4290,15 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(tipoSueloHab, (comparadoresHabitat[2]));
                 for (Habitat habitat : tipoSueloHab) {
-                    System.out.println(habitat);
+                    i++;
+                    System.out.println(i+". "+habitat);
                 }
             } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(tipoSueloHab, Collections.reverseOrder(comparadoresHabitat[2]));
                 for (Habitat habitat : tipoSueloHab) {
-                    System.out.println(habitat);
+                    i++;
+                    System.out.println(i+". "+habitat);
                 }
             } else {
                 System.out.println("Opcion incorrecta");
@@ -4169,13 +4314,15 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(tipoSueloHab, (comparadoresHabitat[3]));
                 for (Habitat habitat : tipoSueloHab) {
-                    System.out.println(habitat);
+                    i++;
+                    System.out.println(i+". "+habitat);
                 }
             } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(tipoSueloHab, Collections.reverseOrder(comparadoresHabitat[3]));
                 for (Habitat habitat : tipoSueloHab) {
-                    System.out.println(habitat);
+                    i++;
+                    System.out.println(i+". "+habitat);
                 }
             } else {
                 System.out.println("Opcion incorrecta");
@@ -4185,6 +4332,7 @@ public class SistemaZoologico {
         }
     }
     public static void vegetacionHabitat(int opcionValor, String vegetacionBus) {
+        int i=0;
         ArrayList<Habitat> vegetacionHab = new ArrayList<>();
         for (Habitat habitat : habitats) {
             if (vegetacionBus.equals(habitat.vegetacion) || vegetacionBus.equals(habitat.vegetacion.toLowerCase())) {
@@ -4212,13 +4360,15 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(vegetacionHab, (comparadoresHabitat[0]));
                 for (Habitat habitat : vegetacionHab) {
-                    System.out.println(habitat);
+                    i++;
+                    System.out.println(i+". "+habitat);
                 }
             } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(vegetacionHab, Collections.reverseOrder(comparadoresHabitat[0]));
-                for (Habitat bioma : vegetacionHab) {
-                    System.out.println(bioma);
+                for (Habitat habitat : vegetacionHab) {
+                    i++;
+                    System.out.println(i+". "+habitat);
                 }
             } else {
                 System.out.println("Opcion incorrecta");
@@ -4234,13 +4384,15 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(vegetacionHab, (comparadoresHabitat[1]));
                 for (Habitat habitat : vegetacionHab) {
-                    System.out.println(habitat);
+                    i++;
+                    System.out.println(i+". "+habitat);
                 }
             } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(vegetacionHab, Collections.reverseOrder(comparadoresHabitat[1]));
                 for (Habitat habitat : vegetacionHab) {
-                    System.out.println(habitat);
+                    i++;
+                    System.out.println(i+". "+habitat);
                 }
             } else {
                 System.out.println("Opcion incorrecta");
@@ -4256,13 +4408,15 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(vegetacionHab, (comparadoresHabitat[2]));
                 for (Habitat habitat : vegetacionHab) {
-                    System.out.println(habitat);
+                    i++;
+                    System.out.println(i+". "+habitat);
                 }
             } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(vegetacionHab, Collections.reverseOrder(comparadoresHabitat[2]));
                 for (Habitat habitat : vegetacionHab) {
-                    System.out.println(habitat);
+                    i++;
+                    System.out.println(i+". "+habitat);
                 }
             } else {
                 System.out.println("Opcion incorrecta");
@@ -4278,13 +4432,15 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(vegetacionHab, (comparadoresHabitat[3]));
                 for (Habitat habitat : vegetacionHab) {
-                    System.out.println(habitat);
+                    i++;
+                    System.out.println(i+". "+habitat);
                 }
             } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(vegetacionHab, Collections.reverseOrder(comparadoresHabitat[3]));
                 for (Habitat habitat : vegetacionHab) {
-                    System.out.println(habitat);
+                    i++;
+                    System.out.println(i+". "+habitat);
                 }
             } else {
                 System.out.println("Opcion incorrecta");
@@ -4294,6 +4450,7 @@ public class SistemaZoologico {
         }
     }
     public static void tipoJaulaHabitat(int opcionValor, String tipoJaulaBus) {
+        int i=0;
         ArrayList<Habitat> tipoJaulaHab = new ArrayList<>();
         for (Habitat habitat : habitats) {
             if (tipoJaulaBus.equals(habitat.tipoJaula) || tipoJaulaBus.equals(habitat.tipoJaula.toLowerCase())) {
@@ -4321,13 +4478,15 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(tipoJaulaHab, (comparadoresHabitat[0]));
                 for (Habitat habitat : tipoJaulaHab) {
-                    System.out.println(habitat);
+                    i++;
+                    System.out.println(i+". "+habitat);
                 }
             } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(tipoJaulaHab, Collections.reverseOrder(comparadoresHabitat[0]));
                 for (Habitat habitat : tipoJaulaHab) {
-                    System.out.println(habitat);
+                    i++;
+                    System.out.println(i+". "+habitat);
                 }
             } else {
                 System.out.println("Opcion incorrecta");
@@ -4343,13 +4502,15 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(tipoJaulaHab, (comparadoresHabitat[1]));
                 for (Habitat habitat : tipoJaulaHab) {
-                    System.out.println(habitat);
+                    i++;
+                    System.out.println(i+". "+habitat);
                 }
             } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(tipoJaulaHab, Collections.reverseOrder(comparadoresHabitat[1]));
                 for (Habitat habitat : tipoJaulaHab) {
-                    System.out.println(habitat);
+                    i++;
+                    System.out.println(i+". "+habitat);
                 }
             } else {
                 System.out.println("Opcion incorrecta");
@@ -4365,13 +4526,15 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(tipoJaulaHab, (comparadoresHabitat[2]));
                 for (Habitat habitat : tipoJaulaHab) {
-                    System.out.println(habitat);
+                    i++;
+                    System.out.println(i+". "+habitat);
                 }
             } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(tipoJaulaHab, Collections.reverseOrder(comparadoresHabitat[2]));
                 for (Habitat habitat : tipoJaulaHab) {
-                    System.out.println(habitat);
+                    i++;
+                    System.out.println(i+". "+habitat);
                 }
             } else {
                 System.out.println("Opcion incorrecta");
@@ -4382,6 +4545,7 @@ public class SistemaZoologico {
         }
     }
     public static void mostrarTodosHabitats() {
+        int i=0;
         ArrayList<Habitat> copiaHabitat = new ArrayList<>(habitats);
         String option;
         String option2;
@@ -4405,7 +4569,8 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(copiaHabitat, (comparadoresHabitat[0]));
                 for (Habitat habitat : copiaHabitat) {
-                    System.out.println(habitat);
+                    i++;
+                    System.out.println(i+". "+habitat);
                 }
                 return;
             }
@@ -4414,7 +4579,8 @@ public class SistemaZoologico {
                 System.out.println("Descendente");
                 Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresHabitat[0]));
                 for (Habitat habitat : copiaHabitat) {
-                    System.out.println(habitat);
+                    i++;
+                    System.out.println(i+". "+habitat);
                 }
                 return;
             }else{
@@ -4431,7 +4597,8 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(copiaHabitat, (comparadoresHabitat[1]));
                 for (Habitat habitat : copiaHabitat) {
-                    System.out.println(habitat);
+                    i++;
+                    System.out.println(i+". "+habitat);
                 }
                 return;
             }
@@ -4439,7 +4606,8 @@ public class SistemaZoologico {
                 System.out.println("Descendente");
                 Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresHabitat[1]));
                 for (Habitat habitat : copiaHabitat) {
-                    System.out.println(habitat);
+                    i++;
+                    System.out.println(i+". "+habitat);
                 }
                 return;
             }else{
@@ -4457,7 +4625,8 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(copiaHabitat, (comparadoresHabitat[2]));
                 for (Habitat habitat : copiaHabitat) {
-                    System.out.println(habitat);
+                    i++;
+                    System.out.println(i+". "+habitat);
                 }
                 return;
             }
@@ -4465,7 +4634,8 @@ public class SistemaZoologico {
                 System.out.println("Descendente");
                 Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresHabitat[2]));
                 for (Habitat habitat : copiaHabitat) {
-                    System.out.println(habitat);
+                    i++;
+                    System.out.println(i+". "+habitat);
                 }
                 return;
             }else{
@@ -4483,7 +4653,8 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(copiaHabitat, (comparadoresHabitat[3]));
                 for (Habitat habitat : copiaHabitat) {
-                    System.out.println(habitat);
+                    i++;
+                    System.out.println(i+". "+habitat);
                 }
                 return;
             }
@@ -4491,7 +4662,8 @@ public class SistemaZoologico {
                 System.out.println("Descendente");
                 Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresHabitat[3]));
                 for (Habitat habitat : copiaHabitat) {
-                    System.out.println(habitat);
+                    i++;
+                    System.out.println(i+". "+habitat);
                 }
                 return;
             }else{
@@ -4653,6 +4825,7 @@ public class SistemaZoologico {
         }
     }
     public static void idAnimal(int opcionValor, int idBusMin, int idBusMax) {
+        int i =0;
         ArrayList<Animal> idAnimalEx = new ArrayList<>();
         ArrayList<Animal> idAnimalMax = new ArrayList<>();
         ArrayList<Animal> idAnimalMin = new ArrayList<>();
@@ -4705,25 +4878,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(idAnimalEx, (comparadoresAnimal[0]));
                     for (Animal animal : idAnimalEx) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(idAnimalMax, (comparadoresAnimal[0]));
                     for (Animal animal : idAnimalMax) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(idAnimalMin, (comparadoresAnimal[0]));
                     for (Animal animal : idAnimalMin) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(idAnimalRan, (comparadoresAnimal[0]));
                     for (Animal animal : idAnimalRan) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -4731,25 +4908,29 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(idAnimalEx, Collections.reverseOrder(comparadoresAnimal[0]));
                     for (Animal animal : idAnimalEx) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(idAnimalMax, Collections.reverseOrder(comparadoresAnimal[0]));
                     for (Animal animal : idAnimalMax) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(idAnimalMax, Collections.reverseOrder(comparadoresAnimal[0]));
                     for (Animal animal : idAnimalMax) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(idAnimalRan, Collections.reverseOrder(comparadoresAnimal[0]));
                     for (Animal animal : idAnimalRan) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 }
             }
@@ -4765,25 +4946,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(idAnimalEx, (comparadoresAnimal[1]));
                     for (Animal animal : idAnimalEx) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(idAnimalMax, (comparadoresAnimal[1]));
                     for (Animal animal : idAnimalMax) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(idAnimalMin, (comparadoresAnimal[1]));
                     for (Animal animal : idAnimalMin) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(idAnimalRan, (comparadoresAnimal[1]));
                     for (Animal animal : idAnimalRan) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -4791,25 +4976,29 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(idAnimalEx, Collections.reverseOrder(comparadoresAnimal[1]));
                     for (Animal animal : idAnimalEx) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(idAnimalMax, Collections.reverseOrder(comparadoresAnimal[1]));
                     for (Animal animal : idAnimalMax) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(idAnimalMin, Collections.reverseOrder(comparadoresAnimal[1]));
                     for (Animal animal : idAnimalMin) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(idAnimalRan, Collections.reverseOrder(comparadoresAnimal[1]));
                     for (Animal animal : idAnimalRan) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 }
             }
@@ -4825,25 +5014,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(idAnimalEx, (comparadoresAnimal[2]));
                     for (Animal animal : idAnimalEx) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(idAnimalMax, (comparadoresAnimal[2]));
                     for (Animal animal : idAnimalMax) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(idAnimalMin, (comparadoresAnimal[2]));
                     for (Animal animal : idAnimalMin) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(idAnimalRan, (comparadoresAnimal[2]));
                     for (Animal animal : idAnimalRan) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -4851,24 +5044,28 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(idAnimalEx, Collections.reverseOrder(comparadoresAnimal[2]));
                     for (Animal animal : idAnimalEx) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(idAnimalMax, Collections.reverseOrder(comparadoresAnimal[2]));
                     for (Animal animal : idAnimalMax) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 } else if (opcionValor == 3) {
                     Collections.sort(idAnimalMin, Collections.reverseOrder(comparadoresAnimal[2]));
                     for (Animal animal : idAnimalMin) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(idAnimalRan, Collections.reverseOrder(comparadoresAnimal[2]));
                     for (Animal animal : idAnimalRan) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 }
             }
@@ -4884,25 +5081,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(idAnimalEx, (comparadoresAnimal[3]));
                     for (Animal animal : idAnimalEx) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(idAnimalMax, (comparadoresAnimal[3]));
                     for (Animal animal : idAnimalMax) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(idAnimalMin, (comparadoresAnimal[3]));
                     for (Animal animal : idAnimalMin) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(idAnimalRan, (comparadoresAnimal[3]));
                     for (Animal animal : idAnimalRan) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 }
             } else if (option.equals("2")) {
@@ -4911,25 +5112,29 @@ public class SistemaZoologico {
                         System.out.println("Ascendente");
                         Collections.sort(idAnimalEx, Collections.reverseOrder(comparadoresAnimal[3]));
                         for (Animal animal : idAnimalEx) {
-                            System.out.println(animal);
+                            i++;
+                            System.out.println(i+". "+animal);
                         }
                     } else if (opcionValor == 2) {
                         System.out.println("Ascendente");
                         Collections.sort(idAnimalMax, Collections.reverseOrder(comparadoresAnimal[3]));
                         for (Animal animal : idAnimalMax) {
-                            System.out.println(animal);
+                            i++;
+                            System.out.println(i+". "+animal);
                         }
                     } else if (opcionValor == 3) {
                         System.out.println("Ascendente");
                         Collections.sort(idAnimalMin, Collections.reverseOrder(comparadoresAnimal[3]));
                         for (Animal animal : idAnimalMin) {
-                            System.out.println(animal);
+                            i++;
+                            System.out.println(i+". "+animal);
                         }
                     } else {
                         System.out.println("Ascendente");
                         Collections.sort(idAnimalRan, Collections.reverseOrder(comparadoresAnimal[3]));
                         for (Animal animal : idAnimalRan) {
-                            System.out.println(animal);
+                            i++;
+                            System.out.println(i+". "+animal);
                         }
                     }
                 }
@@ -4939,6 +5144,7 @@ public class SistemaZoologico {
         }
     }
     public static void especieAnimal(int opcionValor, String especieBus) {
+        int i=0;
         ArrayList<Animal> especieAnimal = new ArrayList<>();
         for (Animal animal : animales) {
             if (especieBus.equals(animal.especie) || especieBus.equals(animal.especie.toLowerCase())) {
@@ -4966,13 +5172,15 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(especieAnimal, (comparadoresAnimal[0]));
                 for (Animal animal : especieAnimal) {
-                    System.out.println(animal);
+                    i++;
+                    System.out.println(i+". "+animal);
                 }
             } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(especieAnimal, Collections.reverseOrder(comparadoresAnimal[0]));
                 for (Animal animal : especieAnimal) {
-                    System.out.println(animal);
+                    i++;
+                    System.out.println(i+". "+animal);
                 }
             } else {
                 System.out.println("Opcion incorrecta");
@@ -4988,13 +5196,15 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(especieAnimal, (comparadoresAnimal[2]));
                 for (Animal animal : especieAnimal) {
-                    System.out.println(animal);
+                    i++;
+                    System.out.println(i+". "+animal);
                 }
             } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(especieAnimal, Collections.reverseOrder(comparadoresAnimal[2]));
                 for (Animal animal : especieAnimal) {
-                    System.out.println(animal);
+                    i++;
+                    System.out.println(i+". "+animal);
                 }
             } else {
                 System.out.println("Opcion incorrecta");
@@ -5010,13 +5220,15 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(especieAnimal, (comparadoresAnimal[3]));
                 for (Animal animal : especieAnimal) {
-                    System.out.println(animal);
+                    i++;
+                    System.out.println(i+". "+animal);
                 }
             } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(especieAnimal, Collections.reverseOrder(comparadoresAnimal[3]));
                 for (Animal animal : especieAnimal) {
-                    System.out.println(animal);
+                    i++;
+                    System.out.println(i+". "+animal);
                 }
             } else {
                 System.out.println("Opcion incorrecta");
@@ -5027,6 +5239,7 @@ public class SistemaZoologico {
         }
     }
     public static void nivelAgresividadAnimal(int opcionValor, int nivelAgresividadBusMin, int nivelAgresividadMax) {
+        int i =0;
         ArrayList<Animal> nivelAgrEx = new ArrayList<>();
         ArrayList<Animal> nivelAgrMax = new ArrayList<>();
         ArrayList<Animal> nivelAgrMin = new ArrayList<>();
@@ -5079,25 +5292,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(nivelAgrEx, (comparadoresAnimal[0]));
                     for (Animal animal : nivelAgrEx) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(nivelAgrMax, (comparadoresAnimal[0]));
                     for (Animal animal : nivelAgrMax) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(nivelAgrMin, (comparadoresAnimal[0]));
                     for (Animal animal : nivelAgrMin) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(nivelAgrRan, (comparadoresAnimal[0]));
                     for (Animal animal : nivelAgrRan) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -5105,25 +5322,29 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(nivelAgrEx, Collections.reverseOrder(comparadoresAnimal[0]));
                     for (Animal animal : nivelAgrEx) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(nivelAgrMax, Collections.reverseOrder(comparadoresAnimal[0]));
                     for (Animal animal : nivelAgrMax) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(nivelAgrMin, Collections.reverseOrder(comparadoresAnimal[0]));
                     for (Animal animal : nivelAgrMin) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(nivelAgrRan, Collections.reverseOrder(comparadoresAnimal[0]));
                     for (Animal animal : nivelAgrRan) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 }
             }
@@ -5139,25 +5360,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(nivelAgrEx, (comparadoresAnimal[1]));
                     for (Animal animal : nivelAgrEx) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(nivelAgrMax, (comparadoresAnimal[1]));
                     for (Animal animal : nivelAgrMax) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(nivelAgrMin, (comparadoresAnimal[1]));
                     for (Animal animal : nivelAgrMin) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(nivelAgrRan, (comparadoresAnimal[1]));
                     for (Animal animal : nivelAgrRan) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -5165,25 +5390,29 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(nivelAgrEx, Collections.reverseOrder(comparadoresAnimal[1]));
                     for (Animal animal : nivelAgrEx) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(nivelAgrMax, Collections.reverseOrder(comparadoresAnimal[1]));
                     for (Animal animal : nivelAgrMax) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(nivelAgrMin, Collections.reverseOrder(comparadoresAnimal[1]));
                     for (Animal animal : nivelAgrMin) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(nivelAgrRan, Collections.reverseOrder(comparadoresAnimal[1]));
                     for (Animal animal : nivelAgrRan) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 }
             }
@@ -5199,25 +5428,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(nivelAgrEx, (comparadoresAnimal[2]));
                     for (Animal animal : nivelAgrEx) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(nivelAgrMax, (comparadoresAnimal[2]));
                     for (Animal animal : nivelAgrMax) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(nivelAgrMin, (comparadoresAnimal[2]));
                     for (Animal animal : nivelAgrMin) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(nivelAgrRan, (comparadoresAnimal[2]));
                     for (Animal animal : nivelAgrRan) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -5225,24 +5458,28 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(nivelAgrEx, Collections.reverseOrder(comparadoresAnimal[2]));
                     for (Animal animal : nivelAgrEx) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(nivelAgrMax, Collections.reverseOrder(comparadoresAnimal[2]));
                     for (Animal animal : nivelAgrMax) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 } else if (opcionValor == 3) {
                     Collections.sort(nivelAgrMin, Collections.reverseOrder(comparadoresAnimal[2]));
                     for (Animal animal : nivelAgrMin) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(nivelAgrRan, Collections.reverseOrder(comparadoresAnimal[2]));
                     for (Animal animal : nivelAgrRan) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 }
             }
@@ -5258,25 +5495,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(nivelAgrEx, (comparadoresAnimal[3]));
                     for (Animal animal : nivelAgrEx) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(nivelAgrMax, (comparadoresAnimal[3]));
                     for (Animal animal : nivelAgrMax) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(nivelAgrMin, (comparadoresAnimal[3]));
                     for (Animal animal : nivelAgrMin) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(nivelAgrRan, (comparadoresAnimal[3]));
                     for (Animal animal : nivelAgrRan) {
-                        System.out.println(animal);
+                        i++;
+                        System.out.println(i+". "+animal);
                     }
                 }
             } else if (option.equals("2")) {
@@ -5285,25 +5526,29 @@ public class SistemaZoologico {
                         System.out.println("Descendente");
                         Collections.sort(nivelAgrEx, Collections.reverseOrder(comparadoresAnimal[3]));
                         for (Animal animal : nivelAgrEx) {
-                            System.out.println(animal);
+                            i++;
+                            System.out.println(i+". "+animal);
                         }
                     } else if (opcionValor == 2) {
                         System.out.println("Descendente");
                         Collections.sort(nivelAgrMax, Collections.reverseOrder(comparadoresAnimal[3]));
                         for (Animal animal : nivelAgrMax) {
-                            System.out.println(animal);
+                            i++;
+                            System.out.println(i+". "+animal);
                         }
                     } else if (opcionValor == 3) {
                         System.out.println("Descendente");
                         Collections.sort(nivelAgrMin, Collections.reverseOrder(comparadoresAnimal[3]));
                         for (Animal animal : nivelAgrMin) {
-                            System.out.println(animal);
+                            i++;
+                            System.out.println(i+". "+animal);
                         }
                     } else {
                         System.out.println("Descendente");
                         Collections.sort(nivelAgrRan, Collections.reverseOrder(comparadoresAnimal[3]));
                         for (Animal animal : nivelAgrRan) {
-                            System.out.println(animal);
+                            i++;
+                            System.out.println(i+". "+animal);
                         }
                     }
                 }
@@ -5314,6 +5559,7 @@ public class SistemaZoologico {
     }
     public static void alimentacionAnimal(int opcionValor, String alimentacionBus) {
         ArrayList<Animal> alimentacionAni = new ArrayList<>();
+        int i=0;
         for (Animal animal : animales) {
             if (alimentacionBus.equals(animal.especie) || alimentacionBus.equals(animal.especie.toLowerCase())) {
                 alimentacionAni.add(animal);
@@ -5340,13 +5586,15 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(alimentacionAni, (comparadoresAnimal[0]));
                 for (Animal animal : alimentacionAni) {
-                    System.out.println(animal);
+                    i++;
+                    System.out.println(i+". "+animal);
                 }
             } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(alimentacionAni, Collections.reverseOrder(comparadoresAnimal[0]));
                 for (Animal animal : alimentacionAni) {
-                    System.out.println(animal);
+                    i++;
+                    System.out.println(i+". "+animal);
                 }
             } else {
                 System.out.println("Opcion incorrecta");
@@ -5362,13 +5610,15 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(alimentacionAni, (comparadoresAnimal[1]));
                 for (Animal animal : alimentacionAni) {
-                    System.out.println(animal);
+                    i++;
+                    System.out.println(i+". "+animal);
                 }
             } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(alimentacionAni, Collections.reverseOrder(comparadoresAnimal[1]));
                 for (Animal animal : alimentacionAni) {
-                    System.out.println(animal);
+                    i++;
+                    System.out.println(i+". "+animal);
                 }
             } else {
                 System.out.println("Opcion incorrecta");
@@ -5384,13 +5634,15 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(alimentacionAni, (comparadoresAnimal[2]));
                 for (Animal animal : alimentacionAni) {
-                    System.out.println(animal);
+                    i++;
+                    System.out.println(i+". "+animal);
                 }
             } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(alimentacionAni, Collections.reverseOrder(comparadoresAnimal[2]));
                 for (Animal animal : alimentacionAni) {
-                    System.out.println(animal);
+                    i++;
+                    System.out.println(i+". "+animal);
                 }
             } else {
                 System.out.println("Opcion incorrecta");
@@ -5401,7 +5653,8 @@ public class SistemaZoologico {
         }
     }
     public static void mostrarTodosAnimales() {
-        ArrayList<Habitat> copiaHab = new ArrayList<>(habitats);
+        int i=0;
+        ArrayList<Animal> copiaAnimal = new ArrayList<>(animales);
         String option;
         String option2;
         System.out.println("--------------------------------------------------");
@@ -5422,16 +5675,18 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")) {
                 System.out.println("Ascendente");
-                Collections.sort(copiaHab, (comparadoresHabitat[0]));
-                for (Habitat habitat : copiaHab) {
-                    System.out.println(habitat);
+                Collections.sort(copiaAnimal, (comparadoresAnimal[0]));
+                for (Animal animal : copiaAnimal) {
+                    i++;
+                    System.out.println(i+". "+animal);
                 }
                 return;
             } else if (option2.equals("2")) {
                 System.out.println("Descendente");
-                Collections.sort(copiaHab, Collections.reverseOrder(comparadoresHabitat[0]));
-                for (Habitat habitat : copiaHab) {
-                    System.out.println(habitat);
+                Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresAnimal[0]));
+                for (Animal animal : copiaAnimal) {
+                    i++;
+                    System.out.println(i+". "+animal);
                 }
                 return;
             }else{
@@ -5447,17 +5702,19 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")) {
                 System.out.println("Ascendente");
-                Collections.sort(copiaHab, (comparadoresHabitat[1]));
-                for (Habitat habitat : copiaHab) {
-                    System.out.println(habitat);
+                Collections.sort(copiaAnimal, (comparadoresAnimal[1]));
+                for (Animal animal : copiaAnimal) {
+                    i++;
+                    System.out.println(i+". "+animal);
                 }
                 return;
             }
             else if (option2.equals("2")) {
                 System.out.println("Descendente");
-                Collections.sort(copiaHab, Collections.reverseOrder(comparadoresHabitat[1]));
-                for (Habitat habitat : copiaHab) {
-                    System.out.println(habitat);
+                Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresAnimal[1]));
+                for (Animal animal : copiaAnimal) {
+                    i++;
+                    System.out.println(i+". "+animal);
                 }
                 return;
             }else{
@@ -5473,17 +5730,19 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")) {
                 System.out.println("Ascendente");
-                Collections.sort(copiaHab, (comparadoresHabitat[2]));
-                for (Habitat habitat : copiaHab) {
-                    System.out.println(habitat);
+                Collections.sort(copiaAnimal, (comparadoresAnimal[2]));
+                for (Animal animal : copiaAnimal) {
+                    i++;
+                    System.out.println(i+". "+animal);
                 }
                 return;
             }
             else if (option2.equals("2")) {
                 System.out.println("Descendente");
-                Collections.sort(copiaHab, Collections.reverseOrder(comparadoresHabitat[2]));
-                for (Habitat habitat : copiaHab) {
-                    System.out.println(habitat);
+                Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresAnimal[2]));
+                for (Animal animal : copiaAnimal) {
+                    i++;
+                    System.out.println(i+". "+animal);
                 }
                 return;
             }else{
@@ -5499,17 +5758,19 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")) {
                 System.out.println("Ascendente");
-                Collections.sort(copiaHab, (comparadoresHabitat[3]));
-                for (Habitat habitat : copiaHab) {
-                    System.out.println(habitat);
+                Collections.sort(copiaAnimal, (comparadoresAnimal[3]));
+                for (Animal animal : copiaAnimal) {
+                    i++;
+                    System.out.println(i+". "+animal);
                 }
                 return;
             }
             else if (option2.equals("2")) {
                 System.out.println("Descendente");
-                Collections.sort(copiaHab, Collections.reverseOrder(comparadoresHabitat[3]));
-                for (Habitat habitat : copiaHab) {
-                    System.out.println(habitat);
+                Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresAnimal[3]));
+                for (Animal animal : copiaAnimal) {
+                    i++;
+                    System.out.println(i+". "+animal);
                 }
                 return;
             }else{
@@ -5685,6 +5946,7 @@ public class SistemaZoologico {
         }
     }
     public static void cedulaTecnico(int opcionValor, int cedulaBusMin, int cedulaBusMax) {
+        int i=0;
         ArrayList<Tecnico> cedulaEx = new ArrayList<>();
         ArrayList<Tecnico> cedulaMax = new ArrayList<>();
         ArrayList<Tecnico> cedulaMin = new ArrayList<>();
@@ -5737,25 +5999,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaEx, (comparadoresTecnico[0]));
                     for (Tecnico tecnico : cedulaEx) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaMax, (comparadoresTecnico[0]));
                     for (Tecnico tecnico : cedulaMax) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaMin, (comparadoresTecnico[0]));
                     for (Tecnico tecnico : cedulaMin) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaRan, (comparadoresTecnico[0]));
                     for (Tecnico tecnico : cedulaRan) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -5763,25 +6029,29 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(cedulaEx, Collections.reverseOrder(comparadoresTecnico[0]));
                     for (Tecnico tecnico : cedulaEx) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(cedulaMax, Collections.reverseOrder(comparadoresTecnico[0]));
                     for (Tecnico tecnico : cedulaMax) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(cedulaMin, Collections.reverseOrder(comparadoresTecnico[0]));
                     for (Tecnico tecnico : cedulaMin) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(cedulaRan, Collections.reverseOrder(comparadoresTecnico[0]));
                     for (Tecnico tecnico : cedulaRan) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 }
             }
@@ -5797,25 +6067,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaEx, (comparadoresTecnico[1]));
                     for (Tecnico tecnico : cedulaEx) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaMax, (comparadoresTecnico[1]));
                     for (Tecnico tecnico : cedulaMax) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaMin, (comparadoresTecnico[1]));
                     for (Tecnico tecnico : cedulaMin) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaRan, (comparadoresTecnico[1]));
                     for (Tecnico tecnico : cedulaRan) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -5823,25 +6097,29 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(cedulaEx, Collections.reverseOrder(comparadoresTecnico[1]));
                     for (Tecnico tecnico : cedulaEx) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(cedulaMax, Collections.reverseOrder(comparadoresTecnico[1]));
                     for (Tecnico tecnico : cedulaMax) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(cedulaMin, Collections.reverseOrder(comparadoresTecnico[1]));
                     for (Tecnico tecnico : cedulaMin) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(cedulaRan, Collections.reverseOrder(comparadoresTecnico[1]));
                     for (Tecnico tecnico : cedulaRan) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 }
             }
@@ -5857,25 +6135,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaEx, (comparadoresTecnico[2]));
                     for (Tecnico tecnico : cedulaEx) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaMax, (comparadoresTecnico[2]));
                     for (Tecnico tecnico : cedulaMax) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaMin, (comparadoresTecnico[2]));
                     for (Tecnico tecnico : cedulaMin) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaRan, (comparadoresTecnico[2]));
                     for (Tecnico tecnico : cedulaRan) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -5883,25 +6165,29 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(cedulaEx, Collections.reverseOrder(comparadoresTecnico[2]));
                     for (Tecnico tecnico : cedulaEx) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(cedulaMax, Collections.reverseOrder(comparadoresTecnico[2]));
                     for (Tecnico tecnico : cedulaMax) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(cedulaMin, Collections.reverseOrder(comparadoresTecnico[2]));
                     for (Tecnico tecnico : cedulaMin) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(cedulaRan, Collections.reverseOrder(comparadoresTecnico[2]));
                     for (Tecnico tecnico : cedulaRan) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 }
             } else if (option.equals("4")) {
@@ -5916,25 +6202,29 @@ public class SistemaZoologico {
                         System.out.println("Ascendente");
                         Collections.sort(cedulaEx, (comparadoresTecnico[3]));
                         for (Tecnico tecnico : cedulaEx) {
-                            System.out.println(tecnico);
+                            i++;
+                            System.out.println(i+". "+tecnico);
                         }
                     } else if (opcionValor == 2) {
                         System.out.println("Ascendente");
                         Collections.sort(cedulaMax, (comparadoresTecnico[3]));
                         for (Tecnico tecnico : cedulaMax) {
-                            System.out.println(tecnico);
+                            i++;
+                            System.out.println(i+". "+tecnico);
                         }
                     } else if (opcionValor == 3) {
                         System.out.println("Ascendente");
                         Collections.sort(cedulaMin, (comparadoresTecnico[3]));
                         for (Tecnico tecnico : cedulaMin) {
-                            System.out.println(tecnico);
+                            i++;
+                            System.out.println(i+". "+tecnico);
                         }
                     } else {
                         System.out.println("Ascendente");
                         Collections.sort(cedulaRan, (comparadoresTecnico[3]));
                         for (Tecnico tecnico : cedulaRan) {
-                            System.out.println(tecnico);
+                            i++;
+                            System.out.println(i+". "+tecnico);
                         }
                     }
 
@@ -5943,25 +6233,29 @@ public class SistemaZoologico {
                         System.out.println("Descendente");
                         Collections.sort(cedulaEx, Collections.reverseOrder(comparadoresTecnico[3]));
                         for (Tecnico tecnico : cedulaEx) {
-                            System.out.println(tecnico);
+                            i++;
+                            System.out.println(i+". "+tecnico);
                         }
                     } else if (opcionValor == 2) {
                         System.out.println("Descendente");
                         Collections.sort(cedulaMax, Collections.reverseOrder(comparadoresTecnico[3]));
                         for (Tecnico tecnico : cedulaMax) {
-                            System.out.println(tecnico);
+                            i++;
+                            System.out.println(i+". "+tecnico);
                         }
                     } else if (opcionValor == 3) {
                         System.out.println("Descendente");
                         Collections.sort(cedulaMin, Collections.reverseOrder(comparadoresTecnico[3]));
                         for (Tecnico tecnico : cedulaMin) {
-                            System.out.println(tecnico);
+                            i++;
+                            System.out.println(i+". "+tecnico);
                         }
                     } else {
                         System.out.println("Descendente");
                         Collections.sort(cedulaRan, Collections.reverseOrder(comparadoresTecnico[3]));
                         for (Tecnico tecnico : cedulaRan) {
-                            System.out.println(tecnico);
+                            i++;
+                            System.out.println(i+". "+tecnico);
                         }
                     }
                 } else {
@@ -5971,6 +6265,7 @@ public class SistemaZoologico {
         }
     }
     public static void areaTecnico(int opcionValor, String areaBus) {
+        int i=0;
         ArrayList<Tecnico> areaTec = new ArrayList<>();
         for (Tecnico tecnico : tecnicos) {
             if (areaBus.equals(tecnico.area) || areaBus.equals(tecnico.area.toLowerCase())) {
@@ -5998,13 +6293,15 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(areaTec, (comparadoresTecnico[0]));
                 for (Tecnico tecnico : areaTec) {
-                    System.out.println(tecnico);
+                    i++;
+                    System.out.println(i+". "+tecnico);
                 }
             } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(areaTec, Collections.reverseOrder(comparadoresTecnico[0]));
                 for (Tecnico tecnico : areaTec) {
-                    System.out.println(tecnico);
+                    i++;
+                    System.out.println(i+". "+tecnico);
                 }
             } else {
                 System.out.println("Opcion incorrecta");
@@ -6020,13 +6317,15 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(areaTec, (comparadoresTecnico[2]));
                 for (Tecnico tecnico : areaTec) {
-                    System.out.println(tecnico);
+                    i++;
+                    System.out.println(i+". "+tecnico);
                 }
             } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(areaTec, Collections.reverseOrder(comparadoresTecnico[2]));
                 for (Tecnico tecnico : areaTec) {
-                    System.out.println(tecnico);
+                    i++;
+                    System.out.println(i+". "+tecnico);
                 }
             } else {
                 System.out.println("Opcion incorrecta");
@@ -6042,13 +6341,15 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(areaTec, (comparadoresTecnico[3]));
                 for (Tecnico tecnico : areaTec) {
-                    System.out.println(tecnico);
+                    i++;
+                    System.out.println(i+". "+tecnico);
                 }
             } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(areaTec, Collections.reverseOrder(comparadoresTecnico[3]));
                 for (Tecnico tecnico : areaTec) {
-                    System.out.println(tecnico);
+                    i++;
+                    System.out.println(i+". "+tecnico);
                 }
             } else {
                 System.out.println("Opcion incorrecta");
@@ -6058,6 +6359,7 @@ public class SistemaZoologico {
         }
     }
     public static void horaInicioTecnico(int opcionValor, String horaInicioBusMin, String horaInicioBusMax) {
+        int i=0;
         ArrayList<Tecnico> horaInicioEx = new ArrayList<>();
         ArrayList<Tecnico> horaInicioMax = new ArrayList<>();
         ArrayList<Tecnico> horaInicioMin = new ArrayList<>();
@@ -6119,25 +6421,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(horaInicioEx, (comparadoresTecnico[0]));
                     for (Tecnico tecnico : horaInicioEx) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(horaInicioMax, (comparadoresTecnico[0]));
                     for (Tecnico tecnico : horaInicioMax) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(horaInicioMin, (comparadoresTecnico[0]));
                     for (Tecnico tecnico : horaInicioMin) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(horaInicioRan, (comparadoresTecnico[0]));
                     for (Tecnico tecnico : horaInicioRan) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -6145,25 +6451,29 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(horaInicioEx, Collections.reverseOrder(comparadoresTecnico[0]));
                     for (Tecnico tecnico : horaInicioEx) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(horaInicioMax, Collections.reverseOrder(comparadoresTecnico[0]));
                     for (Tecnico tecnico : horaInicioMax) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(horaInicioMin, Collections.reverseOrder(comparadoresTecnico[0]));
                     for (Tecnico tecnico : horaInicioMin) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(horaInicioRan, Collections.reverseOrder(comparadoresTecnico[0]));
                     for (Tecnico tecnico : horaInicioRan) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 }
             }
@@ -6179,25 +6489,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(horaInicioEx, (comparadoresTecnico[1]));
                     for (Tecnico tecnico : horaInicioEx) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(horaInicioMax, (comparadoresTecnico[1]));
                     for (Tecnico tecnico : horaInicioMax) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(horaInicioMin, (comparadoresTecnico[1]));
                     for (Tecnico tecnico : horaInicioMin) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(horaInicioRan, (comparadoresTecnico[1]));
                     for (Tecnico tecnico : horaInicioRan) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -6205,25 +6519,29 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(horaInicioEx, Collections.reverseOrder(comparadoresTecnico[1]));
                     for (Tecnico tecnico : horaInicioEx) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(horaInicioMax, Collections.reverseOrder(comparadoresTecnico[1]));
                     for (Tecnico tecnico : horaInicioMax) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(horaInicioMin, Collections.reverseOrder(comparadoresTecnico[1]));
                     for (Tecnico tecnico : horaInicioMin) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(horaInicioRan, Collections.reverseOrder(comparadoresTecnico[1]));
                     for (Tecnico tecnico : horaInicioRan) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 }
             }
@@ -6239,25 +6557,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(horaInicioEx, (comparadoresTecnico[2]));
                     for (Tecnico tecnico : horaInicioEx) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(horaInicioMax, (comparadoresTecnico[2]));
                     for (Tecnico tecnico : horaInicioMax) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(horaInicioMin, (comparadoresTecnico[2]));
                     for (Tecnico tecnico : horaInicioMin) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(horaInicioRan, (comparadoresTecnico[2]));
                     for (Tecnico tecnico : horaInicioRan) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -6265,25 +6587,29 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(horaInicioEx, Collections.reverseOrder(comparadoresTecnico[2]));
                     for (Tecnico tecnico : horaInicioEx) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(horaInicioMax, Collections.reverseOrder(comparadoresTecnico[2]));
                     for (Tecnico tecnico : horaInicioMax) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(horaInicioMin, Collections.reverseOrder(comparadoresTecnico[2]));
                     for (Tecnico tecnico : horaInicioMin) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(horaInicioRan, Collections.reverseOrder(comparadoresTecnico[2]));
                     for (Tecnico tecnico : horaInicioRan) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 }
             }
@@ -6299,25 +6625,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(horaInicioEx, (comparadoresTecnico[3]));
                     for (Tecnico tecnico : horaInicioEx) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(horaInicioMax, (comparadoresTecnico[3]));
                     for (Tecnico tecnico : horaInicioMax) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(horaInicioMin, (comparadoresTecnico[3]));
                     for (Tecnico tecnico : horaInicioMin) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(horaInicioRan, (comparadoresTecnico[3]));
                     for (Tecnico tecnico : horaInicioRan) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -6325,25 +6655,29 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(horaInicioEx, Collections.reverseOrder(comparadoresTecnico[3]));
                     for (Tecnico tecnico : horaInicioEx) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(horaInicioMax, Collections.reverseOrder(comparadoresTecnico[3]));
                     for (Tecnico tecnico : horaInicioMax) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(horaInicioMin, Collections.reverseOrder(comparadoresTecnico[3]));
                     for (Tecnico tecnico : horaInicioMin) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(horaInicioRan, Collections.reverseOrder(comparadoresTecnico[3]));
                     for (Tecnico tecnico : horaInicioRan) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 }
             }
@@ -6352,6 +6686,7 @@ public class SistemaZoologico {
         }
     }
     public static void horaSalidaTecnico(int opcionValor, String horaSalidaBusMin, String horaInicioBusMax) {
+        int i=0;
         ArrayList<Tecnico> horaSalidaEx = new ArrayList<>();
         ArrayList<Tecnico> horaSalidaMax = new ArrayList<>();
         ArrayList<Tecnico> horaSalidaMin = new ArrayList<>();
@@ -6413,25 +6748,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(horaSalidaEx, (comparadoresTecnico[0]));
                     for (Tecnico tecnico : horaSalidaEx) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(horaSalidaMax, (comparadoresTecnico[0]));
                     for (Tecnico tecnico : horaSalidaMax) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(horaSalidaMin, (comparadoresTecnico[0]));
                     for (Tecnico tecnico : horaSalidaMin) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(horaSalidaRan, (comparadoresTecnico[0]));
                     for (Tecnico tecnico : horaSalidaRan) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -6439,25 +6778,29 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(horaSalidaEx, Collections.reverseOrder(comparadoresTecnico[0]));
                     for (Tecnico tecnico : horaSalidaEx) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(horaSalidaMax, Collections.reverseOrder(comparadoresTecnico[0]));
                     for (Tecnico tecnico : horaSalidaMax) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(horaSalidaMin, Collections.reverseOrder(comparadoresTecnico[0]));
                     for (Tecnico tecnico : horaSalidaMin) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(horaSalidaRan, Collections.reverseOrder(comparadoresTecnico[0]));
                     for (Tecnico tecnico : horaSalidaRan) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 }
             }
@@ -6473,25 +6816,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(horaSalidaEx, (comparadoresTecnico[1]));
                     for (Tecnico tecnico : horaSalidaEx) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(horaSalidaMax, (comparadoresTecnico[1]));
                     for (Tecnico tecnico : horaSalidaMax) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(horaSalidaMin, (comparadoresTecnico[1]));
                     for (Tecnico tecnico : horaSalidaMin) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(horaSalidaRan, (comparadoresTecnico[1]));
                     for (Tecnico tecnico : horaSalidaRan) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -6499,25 +6846,29 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(horaSalidaEx, Collections.reverseOrder(comparadoresTecnico[1]));
                     for (Tecnico tecnico : horaSalidaEx) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(horaSalidaMax, Collections.reverseOrder(comparadoresTecnico[1]));
                     for (Tecnico tecnico : horaSalidaMax) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(horaSalidaMin, Collections.reverseOrder(comparadoresTecnico[1]));
                     for (Tecnico tecnico : horaSalidaMin) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(horaSalidaRan, Collections.reverseOrder(comparadoresTecnico[1]));
                     for (Tecnico tecnico : horaSalidaRan) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 }
             }
@@ -6533,25 +6884,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(horaSalidaEx, (comparadoresTecnico[2]));
                     for (Tecnico tecnico : horaSalidaEx) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(horaSalidaMax, (comparadoresTecnico[2]));
                     for (Tecnico tecnico : horaSalidaMax) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(horaSalidaMin, (comparadoresTecnico[2]));
                     for (Tecnico tecnico : horaSalidaMin) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(horaSalidaRan, (comparadoresTecnico[2]));
                     for (Tecnico tecnico : horaSalidaRan) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -6559,25 +6914,29 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(horaSalidaEx, Collections.reverseOrder(comparadoresTecnico[2]));
                     for (Tecnico tecnico : horaSalidaEx) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(horaSalidaMax, Collections.reverseOrder(comparadoresTecnico[2]));
                     for (Tecnico tecnico : horaSalidaMax) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(horaSalidaMin, Collections.reverseOrder(comparadoresTecnico[2]));
                     for (Tecnico tecnico : horaSalidaMin) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(horaSalidaRan, Collections.reverseOrder(comparadoresTecnico[2]));
                     for (Tecnico tecnico : horaSalidaRan) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 }
             }
@@ -6593,25 +6952,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(horaSalidaEx, (comparadoresTecnico[3]));
                     for (Tecnico tecnico : horaSalidaEx) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(horaSalidaMax, (comparadoresTecnico[3]));
                     for (Tecnico tecnico : horaSalidaMax) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(horaSalidaMin, (comparadoresTecnico[3]));
                     for (Tecnico tecnico : horaSalidaMin) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(horaSalidaRan, (comparadoresTecnico[3]));
                     for (Tecnico tecnico : horaSalidaRan) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -6619,25 +6982,29 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(horaSalidaEx, Collections.reverseOrder(comparadoresTecnico[3]));
                     for (Tecnico tecnico : horaSalidaEx) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(horaSalidaMax, Collections.reverseOrder(comparadoresTecnico[3]));
                     for (Tecnico tecnico : horaSalidaMax) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(horaSalidaMin, Collections.reverseOrder(comparadoresTecnico[3]));
                     for (Tecnico tecnico : horaSalidaMin) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(horaSalidaRan, Collections.reverseOrder(comparadoresTecnico[3]));
                     for (Tecnico tecnico : horaSalidaRan) {
-                        System.out.println(tecnico);
+                        i++;
+                        System.out.println(i+". "+tecnico);
                     }
                 }
             }
@@ -6646,6 +7013,7 @@ public class SistemaZoologico {
         }
     }
     public static void mostrarTodosTecnicos() {
+        int i =0;
         ArrayList<Tecnico> copiaTec = new ArrayList<>(tecnicos);
         String option;
         String option2;
@@ -6669,14 +7037,16 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(copiaTec, (comparadoresTecnico[0]));
                 for (Tecnico tecnico : copiaTec) {
-                    System.out.println(tecnico);
+                    i++;
+                    System.out.println(i+". "+tecnico);
                 }
                 return;
             }else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(copiaTec, Collections.reverseOrder(comparadoresTecnico[0]));
                 for (Tecnico tecnico : copiaTec) {
-                    System.out.println(tecnico);
+                    i++;
+                    System.out.println(i+". "+tecnico);
                 }
                 return;
             }else{
@@ -6694,7 +7064,8 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(copiaTec, (comparadoresTecnico[1]));
                 for (Tecnico tecnico : copiaTec) {
-                    System.out.println(tecnico);
+                    i++;
+                    System.out.println(i+". "+tecnico);
                 }
                 return;
             }
@@ -6702,7 +7073,8 @@ public class SistemaZoologico {
                 System.out.println("Descendente");
                 Collections.sort(copiaTec, Collections.reverseOrder(comparadoresTecnico[1]));
                 for (Tecnico tecnico : copiaTec) {
-                    System.out.println(tecnico);
+                    i++;
+                    System.out.println(i+". "+tecnico);
                 }
                 return;
             }else{
@@ -6720,7 +7092,8 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(copiaTec, (comparadoresTecnico[2]));
                 for (Tecnico tecnico : copiaTec) {
-                    System.out.println(tecnico);
+                    i++;
+                    System.out.println(i+". "+tecnico);
                 }
                 return;
             }
@@ -6728,7 +7101,8 @@ public class SistemaZoologico {
                 System.out.println("Descendente");
                 Collections.sort(copiaTec, Collections.reverseOrder(comparadoresTecnico[2]));
                 for (Tecnico tecnico : copiaTec) {
-                    System.out.println(tecnico);
+                    i++;
+                    System.out.println(i+". "+tecnico);
                 }
                 return;
             }else{
@@ -6746,7 +7120,8 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(copiaTec, (comparadoresTecnico[3]));
                 for (Tecnico tecnico : copiaTec) {
-                    System.out.println(tecnico);
+                    i++;
+                    System.out.println(i+". "+tecnico);
                 }
                 return;
             }
@@ -6754,7 +7129,8 @@ public class SistemaZoologico {
                 System.out.println("Descendente");
                 Collections.sort(copiaTec, Collections.reverseOrder(comparadoresTecnico[3]));
                 for (Tecnico tecnico : copiaTec) {
-                    System.out.println(tecnico);
+                    i++;
+                    System.out.println(i+". "+tecnico);
                 }
                 return;
             }else{
@@ -6929,6 +7305,7 @@ public class SistemaZoologico {
         }
     }
     public static void cedulaProfesional(int opcionValor, int cedulaBusMin, int cedulaBusMax) {
+        int i=0;
         ArrayList<Profesional> cedulaEx = new ArrayList<>();
         ArrayList<Profesional> cedulaMax = new ArrayList<>();
         ArrayList<Profesional> cedulaMin = new ArrayList<>();
@@ -6981,51 +7358,59 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaEx, (comparadoresProfesional[0]));
                     for (Profesional profesional : cedulaEx) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaMax, (comparadoresProfesional[0]));
                     for (Profesional profesional : cedulaMax) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaMin, (comparadoresProfesional[0]));
                     for (Profesional profesional : cedulaMin) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaRan, (comparadoresProfesional[0]));
                     for (Profesional profesional : cedulaRan) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 }
             } else if (option2.equals("2")) {
                 if (opcionValor == 1) {
                     System.out.println("Descendente");
                     Collections.sort(cedulaEx, Collections.reverseOrder(comparadoresProfesional[0]));
-                    for (Profesional tecnico : cedulaEx) {
-                        System.out.println(tecnico);
+                    for (Profesional profesional : cedulaEx) {
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(cedulaMax, Collections.reverseOrder(comparadoresProfesional[0]));
                     for (Profesional profesional : cedulaMax) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(cedulaMin, Collections.reverseOrder(comparadoresProfesional[0]));
                     for (Profesional profesional : cedulaMin) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(cedulaRan, Collections.reverseOrder(comparadoresProfesional[0]));
                     for (Profesional profesional : cedulaRan) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 }
             }
@@ -7041,51 +7426,59 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaEx, (comparadoresProfesional[1]));
                     for (Profesional profesional : cedulaEx) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaMax, (comparadoresProfesional[1]));
                     for (Profesional profesional : cedulaMax) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaMin, (comparadoresProfesional[1]));
                     for (Profesional profesional : cedulaMin) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaRan, (comparadoresProfesional[1]));
                     for (Profesional profesional : cedulaRan) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 }
             } else if (option2.equals("2")) {
                 if (opcionValor == 1) {
                     System.out.println("Descendente");
                     Collections.sort(cedulaEx, Collections.reverseOrder(comparadoresProfesional[1]));
-                    for (Profesional tecnico : cedulaEx) {
-                        System.out.println(tecnico);
+                    for (Profesional profesional : cedulaEx) {
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(cedulaMax, Collections.reverseOrder(comparadoresProfesional[1]));
                     for (Profesional profesional : cedulaMax) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(cedulaMin, Collections.reverseOrder(comparadoresProfesional[1]));
                     for (Profesional profesional : cedulaMin) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(cedulaRan, Collections.reverseOrder(comparadoresProfesional[1]));
                     for (Profesional profesional : cedulaRan) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 }
             }
@@ -7101,51 +7494,59 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaEx, (comparadoresProfesional[2]));
                     for (Profesional profesional : cedulaEx) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaMax, (comparadoresProfesional[2]));
                     for (Profesional profesional : cedulaMax) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaMin, (comparadoresProfesional[2]));
                     for (Profesional profesional : cedulaMin) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaRan, (comparadoresProfesional[2]));
                     for (Profesional profesional : cedulaRan) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 }
             } else if (option2.equals("2")) {
                 if (opcionValor == 1) {
                     System.out.println("Descendente");
                     Collections.sort(cedulaEx, Collections.reverseOrder(comparadoresProfesional[2]));
-                    for (Profesional tecnico : cedulaEx) {
-                        System.out.println(tecnico);
+                    for (Profesional profesional : cedulaEx) {
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(cedulaMax, Collections.reverseOrder(comparadoresProfesional[2]));
                     for (Profesional profesional : cedulaMax) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(cedulaMin, Collections.reverseOrder(comparadoresProfesional[2]));
                     for (Profesional profesional : cedulaMin) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(cedulaRan, Collections.reverseOrder(comparadoresProfesional[2]));
                     for (Profesional profesional : cedulaRan) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 }
             }
@@ -7161,25 +7562,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaEx, (comparadoresProfesional[3]));
                     for (Profesional profesional : cedulaEx) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaMax, (comparadoresProfesional[3]));
                     for (Profesional profesional : cedulaMax) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaMin, (comparadoresProfesional[3]));
                     for (Profesional profesional : cedulaMin) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaRan, (comparadoresProfesional[3]));
                     for (Profesional profesional : cedulaRan) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -7187,25 +7592,29 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(cedulaEx, Collections.reverseOrder(comparadoresProfesional[3]));
                     for (Profesional profesional : cedulaEx) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(cedulaMax, Collections.reverseOrder(comparadoresProfesional[3]));
                     for (Profesional profesional : cedulaMax) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(cedulaMin, Collections.reverseOrder(comparadoresProfesional[3]));
                     for (Profesional profesional : cedulaMin) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(cedulaRan, Collections.reverseOrder(comparadoresProfesional[3]));
                     for (Profesional profesional : cedulaRan) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 }
             }
@@ -7214,6 +7623,7 @@ public class SistemaZoologico {
         }
     }
     public static void areaProfesional(int opcionValor, String areaBus) {
+        int i=0;
         ArrayList<Profesional> areaPro = new ArrayList<>();
         for (Profesional profesional : profesionales) {
             if (areaBus.equals(profesional.area) || areaBus.equals(profesional.area.toLowerCase())) {
@@ -7242,13 +7652,15 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(areaPro, (comparadoresProfesional[0]));
                 for (Profesional profesional : areaPro) {
-                    System.out.println(profesional);
+                    i++;
+                    System.out.println(i+". "+profesional);
                 }
             } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(areaPro, Collections.reverseOrder(comparadoresProfesional[0]));
                 for (Profesional profesional : areaPro) {
-                    System.out.println(profesional);
+                    i++;
+                    System.out.println(i+". "+profesional);
                 }
             } else {
                 System.out.println("Opcion incorrecta");
@@ -7264,13 +7676,15 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(areaPro, (comparadoresProfesional[1]));
                 for (Profesional profesional : areaPro) {
-                    System.out.println(profesional);
+                    i++;
+                    System.out.println(i+". "+profesional);
                 }
             } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(areaPro, Collections.reverseOrder(comparadoresProfesional[1]));
                 for (Profesional profesional : areaPro) {
-                    System.out.println(profesional);
+                    i++;
+                    System.out.println(i+". "+profesional);
                 }
             } else {
                 System.out.println("Opcion incorrecta");
@@ -7286,13 +7700,15 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(areaPro, (comparadoresProfesional[2]));
                 for (Profesional profesional : areaPro) {
-                    System.out.println(profesional);
+                    i++;
+                    System.out.println(i+". "+profesional);
                 }
             } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(areaPro, Collections.reverseOrder(comparadoresProfesional[2]));
                 for (Profesional profesional : areaPro) {
-                    System.out.println(profesional);
+                    i++;
+                    System.out.println(i+". "+profesional);
                 }
             } else {
                 System.out.println("Opcion incorrecta");
@@ -7308,13 +7724,15 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(areaPro, (comparadoresProfesional[3]));
                 for (Profesional profesional : areaPro) {
-                    System.out.println(profesional);
+                    i++;
+                    System.out.println(i+". "+profesional);
                 }
             } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(areaPro, Collections.reverseOrder(comparadoresProfesional[3]));
                 for (Profesional profesional : areaPro) {
-                    System.out.println(profesional);
+                    i++;
+                    System.out.println(i+". "+profesional);
                 }
             } else {
                 System.out.println("Opcion incorrecta");
@@ -7324,6 +7742,7 @@ public class SistemaZoologico {
         }
     }
     public static void horaInicioProfesional(int opcionValor, String horaInicioBusMin, String horaInicioBusMax) {
+        int i=0;
         ArrayList<Profesional> horaInicioEx = new ArrayList<>();
         ArrayList<Profesional> horaInicioMax = new ArrayList<>();
         ArrayList<Profesional> horaInicioMin = new ArrayList<>();
@@ -7385,25 +7804,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(horaInicioEx, (comparadoresProfesional[0]));
                     for (Profesional profesional : horaInicioEx) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(horaInicioMax, (comparadoresProfesional[0]));
                     for (Profesional profesional : horaInicioMax) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(horaInicioMin, (comparadoresProfesional[0]));
                     for (Profesional profesional : horaInicioMin) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(horaInicioRan, (comparadoresProfesional[0]));
                     for (Profesional profesional : horaInicioRan) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -7411,25 +7834,29 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(horaInicioEx, Collections.reverseOrder(comparadoresProfesional[0]));
                     for (Profesional profesional : horaInicioEx) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(horaInicioMax, Collections.reverseOrder(comparadoresProfesional[0]));
                     for (Profesional profesional : horaInicioMax) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(horaInicioMin, Collections.reverseOrder(comparadoresProfesional[0]));
                     for (Profesional profesional : horaInicioMin) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(horaInicioRan, Collections.reverseOrder(comparadoresProfesional[0]));
                     for (Profesional profesional : horaInicioRan) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 }
             }
@@ -7445,25 +7872,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(horaInicioEx, (comparadoresProfesional[1]));
                     for (Profesional profesional : horaInicioEx) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(horaInicioMax, (comparadoresProfesional[1]));
                     for (Profesional profesional : horaInicioMax) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(horaInicioMin, (comparadoresProfesional[1]));
                     for (Profesional profesional : horaInicioMin) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(horaInicioRan, (comparadoresProfesional[1]));
                     for (Profesional profesional : horaInicioRan) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -7471,25 +7902,29 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(horaInicioEx, Collections.reverseOrder(comparadoresProfesional[1]));
                     for (Profesional profesional : horaInicioEx) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(horaInicioMax, Collections.reverseOrder(comparadoresProfesional[1]));
                     for (Profesional profesional : horaInicioMax) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(horaInicioMin, Collections.reverseOrder(comparadoresProfesional[1]));
                     for (Profesional profesional : horaInicioMin) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(horaInicioRan, Collections.reverseOrder(comparadoresProfesional[1]));
                     for (Profesional profesional : horaInicioRan) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 }
             }
@@ -7505,25 +7940,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(horaInicioEx, (comparadoresProfesional[2]));
                     for (Profesional profesional : horaInicioEx) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(horaInicioMax, (comparadoresProfesional[2]));
                     for (Profesional profesional : horaInicioMax) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(horaInicioMin, (comparadoresProfesional[2]));
                     for (Profesional profesional : horaInicioMin) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(horaInicioRan, (comparadoresProfesional[2]));
                     for (Profesional profesional : horaInicioRan) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -7531,25 +7970,29 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(horaInicioEx, Collections.reverseOrder(comparadoresProfesional[2]));
                     for (Profesional profesional : horaInicioEx) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(horaInicioMax, Collections.reverseOrder(comparadoresProfesional[2]));
                     for (Profesional profesional : horaInicioMax) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(horaInicioMin, Collections.reverseOrder(comparadoresProfesional[2]));
                     for (Profesional profesional : horaInicioMin) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(horaInicioRan, Collections.reverseOrder(comparadoresProfesional[2]));
                     for (Profesional profesional : horaInicioRan) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 }
             }
@@ -7565,25 +8008,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(horaInicioEx, (comparadoresProfesional[3]));
                     for (Profesional profesional : horaInicioEx) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(horaInicioMax, (comparadoresProfesional[3]));
                     for (Profesional profesional : horaInicioMax) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(horaInicioMin, (comparadoresProfesional[3]));
                     for (Profesional profesional : horaInicioMin) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(horaInicioRan, (comparadoresProfesional[3]));
                     for (Profesional profesional : horaInicioRan) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -7591,25 +8038,29 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(horaInicioEx, Collections.reverseOrder(comparadoresProfesional[3]));
                     for (Profesional profesional : horaInicioEx) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(horaInicioMax, Collections.reverseOrder(comparadoresProfesional[3]));
                     for (Profesional profesional : horaInicioMax) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(horaInicioMin, Collections.reverseOrder(comparadoresProfesional[3]));
                     for (Profesional profesional : horaInicioMin) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(horaInicioRan, Collections.reverseOrder(comparadoresProfesional[3]));
                     for (Profesional profesional : horaInicioRan) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 }
             }
@@ -7618,6 +8069,7 @@ public class SistemaZoologico {
         }
     }
     public static void horaSalidaProfesional(int opcionValor, String horaSalidaBusMin, String horaInicioBusMax) {
+        int i=0;
         ArrayList<Profesional> horaSalidaEx = new ArrayList<>();
         ArrayList<Profesional> horaSalidaMax = new ArrayList<>();
         ArrayList<Profesional> horaSalidaMin = new ArrayList<>();
@@ -7679,25 +8131,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(horaSalidaEx, (comparadoresProfesional[0]));
                     for (Profesional profesional : horaSalidaEx) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(horaSalidaMax, (comparadoresProfesional[0]));
                     for (Profesional profesional : horaSalidaMax) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(horaSalidaMin, (comparadoresProfesional[0]));
                     for (Profesional profesional : horaSalidaMin) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(horaSalidaRan, (comparadoresProfesional[0]));
                     for (Profesional profesional : horaSalidaRan) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -7705,25 +8161,29 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(horaSalidaEx, Collections.reverseOrder(comparadoresProfesional[0]));
                     for (Profesional profesional : horaSalidaEx) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(horaSalidaMax, Collections.reverseOrder(comparadoresProfesional[0]));
                     for (Profesional profesional : horaSalidaMax) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(horaSalidaMin, Collections.reverseOrder(comparadoresProfesional[0]));
                     for (Profesional profesional : horaSalidaMin) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(horaSalidaRan, Collections.reverseOrder(comparadoresProfesional[0]));
                     for (Profesional profesional : horaSalidaRan) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 }
             }
@@ -7739,25 +8199,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(horaSalidaEx, (comparadoresProfesional[1]));
                     for (Profesional profesional : horaSalidaEx) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(horaSalidaMax, (comparadoresProfesional[1]));
                     for (Profesional profesional : horaSalidaMax) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(horaSalidaMin, (comparadoresProfesional[1]));
                     for (Profesional profesional : horaSalidaMin) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(horaSalidaRan, (comparadoresProfesional[1]));
                     for (Profesional profesional : horaSalidaRan) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -7765,25 +8229,29 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(horaSalidaEx, Collections.reverseOrder(comparadoresProfesional[1]));
                     for (Profesional profesional : horaSalidaEx) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(horaSalidaMax, Collections.reverseOrder(comparadoresProfesional[1]));
                     for (Profesional profesional : horaSalidaMax) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(horaSalidaMin, Collections.reverseOrder(comparadoresProfesional[1]));
                     for (Profesional profesional : horaSalidaMin) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(horaSalidaRan, Collections.reverseOrder(comparadoresProfesional[1]));
                     for (Profesional profesional : horaSalidaRan) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 }
             }
@@ -7799,25 +8267,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(horaSalidaEx, (comparadoresProfesional[2]));
                     for (Profesional profesional : horaSalidaEx) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(horaSalidaMax, (comparadoresProfesional[2]));
                     for (Profesional profesional : horaSalidaMax) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(horaSalidaMin, (comparadoresProfesional[2]));
                     for (Profesional profesional : horaSalidaMin) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(horaSalidaRan, (comparadoresProfesional[2]));
                     for (Profesional profesional : horaSalidaRan) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -7825,25 +8297,29 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(horaSalidaEx, Collections.reverseOrder(comparadoresProfesional[2]));
                     for (Profesional profesional : horaSalidaEx) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(horaSalidaMax, Collections.reverseOrder(comparadoresProfesional[2]));
                     for (Profesional profesional : horaSalidaMax) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(horaSalidaMin, Collections.reverseOrder(comparadoresProfesional[2]));
                     for (Profesional profesional : horaSalidaMin) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(horaSalidaRan, Collections.reverseOrder(comparadoresProfesional[2]));
                     for (Profesional profesional : horaSalidaRan) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 }
             }
@@ -7859,25 +8335,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(horaSalidaEx, (comparadoresProfesional[3]));
                     for (Profesional profesional : horaSalidaEx) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(horaSalidaMax, (comparadoresProfesional[3]));
                     for (Profesional profesional : horaSalidaMax) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(horaSalidaMin, (comparadoresProfesional[3]));
                     for (Profesional profesional : horaSalidaMin) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(horaSalidaRan, (comparadoresProfesional[3]));
                     for (Profesional profesional : horaSalidaRan) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -7885,25 +8365,29 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(horaSalidaEx, Collections.reverseOrder(comparadoresProfesional[3]));
                     for (Profesional profesional : horaSalidaEx) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(horaSalidaMax, Collections.reverseOrder(comparadoresProfesional[3]));
                     for (Profesional profesional : horaSalidaMax) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(horaSalidaMin, Collections.reverseOrder(comparadoresProfesional[3]));
                     for (Profesional profesional : horaSalidaMin) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(horaSalidaRan, Collections.reverseOrder(comparadoresProfesional[3]));
                     for (Profesional profesional : horaSalidaRan) {
-                        System.out.println(profesional);
+                        i++;
+                        System.out.println(i+". "+profesional);
                     }
                 }
             }
@@ -7912,6 +8396,7 @@ public class SistemaZoologico {
         }
     }
     public static void mostrarTodosProfesionales() {
+        int i=0;
         ArrayList<Profesional> copiaPro = new ArrayList<>(profesionales);
         String option;
         String option2;
@@ -7935,7 +8420,8 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(copiaPro, (comparadoresProfesional[0]));
                 for (Profesional profesional : copiaPro) {
-                    System.out.println(profesional);
+                    i++;
+                    System.out.println(i+". "+profesional);
                 }
                 return;
             }
@@ -7943,7 +8429,8 @@ public class SistemaZoologico {
                 System.out.println("Descendente");
                 Collections.sort(copiaPro, Collections.reverseOrder(comparadoresProfesional[0]));
                 for (Profesional profesional : copiaPro) {
-                    System.out.println(profesional);
+                    i++;
+                    System.out.println(i+". "+profesional);
                 }
                 return;
             }else{
@@ -7961,7 +8448,8 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(copiaPro, (comparadoresProfesional[1]));
                 for (Profesional profesional : copiaPro) {
-                    System.out.println(profesional);
+                    i++;
+                    System.out.println(i+". "+profesional);
                 }
                 return;
             }
@@ -7969,7 +8457,8 @@ public class SistemaZoologico {
                 System.out.println("Descendente");
                 Collections.sort(copiaPro, Collections.reverseOrder(comparadoresProfesional[1]));
                 for (Profesional profesional : copiaPro) {
-                    System.out.println(profesional);
+                    i++;
+                    System.out.println(i+". "+profesional);
                 }
                 return;
             }else{
@@ -7987,7 +8476,8 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(copiaPro, (comparadoresProfesional[2]));
                 for (Profesional profesional : copiaPro) {
-                    System.out.println(profesional);
+                    i++;
+                    System.out.println(i+". "+profesional);
                 }
                 return;
             }
@@ -7995,7 +8485,8 @@ public class SistemaZoologico {
                 System.out.println("Descendente");
                 Collections.sort(copiaPro, Collections.reverseOrder(comparadoresProfesional[2]));
                 for (Profesional profesional : copiaPro) {
-                    System.out.println(profesional);
+                    i++;
+                    System.out.println(i+". "+profesional);
                 }
                 return;
             }else{
@@ -8013,7 +8504,8 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(copiaPro, (comparadoresProfesional[3]));
                 for (Profesional profesional : copiaPro) {
-                    System.out.println(profesional);
+                    i++;
+                    System.out.println(i+". "+profesional);
                 }
                 return;
             }
@@ -8021,7 +8513,8 @@ public class SistemaZoologico {
                 System.out.println("Descendente");
                 Collections.sort(copiaPro, Collections.reverseOrder(comparadoresProfesional[3]));
                 for (Profesional profesional : copiaPro) {
-                    System.out.println(profesional);
+                    i++;
+                    System.out.println(i+". "+profesional);
                 }
                 return;
             }else{
@@ -8157,6 +8650,7 @@ public class SistemaZoologico {
         }
     }
     public static void cedulaZooAmigo(int opcionValor, int cedulaBusMin, int cedulaBusMax) {
+        int i=0;
         ArrayList<ZooAmigo> cedulaEx = new ArrayList<>();
         ArrayList<ZooAmigo> cedulaMax = new ArrayList<>();
         ArrayList<ZooAmigo> cedulaMin = new ArrayList<>();
@@ -8208,25 +8702,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaEx, (comparadoresZooAmigo[0]));
                     for (ZooAmigo zooAmigo : cedulaEx) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaMax, (comparadoresZooAmigo[0]));
                     for (ZooAmigo zooAmigo : cedulaMax) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaMin, (comparadoresZooAmigo[0]));
                     for (ZooAmigo zooAmigo : cedulaMin) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaRan, (comparadoresZooAmigo[0]));
                     for (ZooAmigo zooAmigo : cedulaRan) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -8234,25 +8732,29 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(cedulaEx, Collections.reverseOrder(comparadoresZooAmigo[0]));
                     for (ZooAmigo zooAmigo : cedulaEx) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(cedulaMax, Collections.reverseOrder(comparadoresZooAmigo[0]));
                     for (ZooAmigo zooAmigo : cedulaMax) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(cedulaMin, Collections.reverseOrder(comparadoresZooAmigo[0]));
                     for (ZooAmigo zooAmigo : cedulaMin) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(cedulaRan, Collections.reverseOrder(comparadoresZooAmigo[0]));
                     for (ZooAmigo zooAmigo : cedulaRan) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 }
             }
@@ -8268,25 +8770,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaEx, (comparadoresZooAmigo[1]));
                     for (ZooAmigo zooAmigo : cedulaEx) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaMax, (comparadoresZooAmigo[1]));
                     for (ZooAmigo zooAmigo : cedulaMax) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaMin, (comparadoresZooAmigo[1]));
                     for (ZooAmigo zooAmigo : cedulaMin) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaRan, (comparadoresZooAmigo[1]));
                     for (ZooAmigo zooAmigo : cedulaRan) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -8294,25 +8800,29 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(cedulaEx, Collections.reverseOrder(comparadoresZooAmigo[1]));
                     for (ZooAmigo zooAmigo : cedulaEx) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(cedulaMax, Collections.reverseOrder(comparadoresZooAmigo[1]));
                     for (ZooAmigo zooAmigo : cedulaMax) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(cedulaMin, Collections.reverseOrder(comparadoresZooAmigo[1]));
                     for (ZooAmigo zooAmigo : cedulaMin) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(cedulaRan, Collections.reverseOrder(comparadoresZooAmigo[1]));
                     for (ZooAmigo zooAmigo : cedulaRan) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 }
             }
@@ -8328,25 +8838,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaEx, (comparadoresZooAmigo[2]));
                     for (ZooAmigo zooAmigo : cedulaEx) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaMax, (comparadoresZooAmigo[2]));
                     for (ZooAmigo zooAmigo : cedulaMax) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaMin, (comparadoresZooAmigo[2]));
                     for (ZooAmigo zooAmigo : cedulaMin) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaRan, (comparadoresZooAmigo[2]));
                     for (ZooAmigo zooAmigo : cedulaRan) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -8354,25 +8868,29 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(cedulaEx, Collections.reverseOrder(comparadoresZooAmigo[2]));
                     for (ZooAmigo zooAmigo : cedulaEx) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(cedulaMax, Collections.reverseOrder(comparadoresZooAmigo[2]));
                     for (ZooAmigo zooAmigo : cedulaMax) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(cedulaMin, Collections.reverseOrder(comparadoresZooAmigo[2]));
                     for (ZooAmigo zooAmigo : cedulaMin) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(cedulaRan, Collections.reverseOrder(comparadoresZooAmigo[2]));
                     for (ZooAmigo zooAmigo : cedulaRan) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 }
             }
@@ -8388,25 +8906,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaEx, (comparadoresZooAmigo[3]));
                     for (ZooAmigo zooAmigo : cedulaEx) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaMax, (comparadoresZooAmigo[3]));
                     for (ZooAmigo zooAmigo : cedulaMax) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaMin, (comparadoresZooAmigo[3]));
                     for (ZooAmigo zooAmigo : cedulaMin) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(cedulaRan, (comparadoresZooAmigo[3]));
                     for (ZooAmigo zooAmigo : cedulaRan) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -8414,7 +8936,8 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(cedulaEx, Collections.reverseOrder(comparadoresZooAmigo[3]));
                     for (ZooAmigo zooAmigo : cedulaEx) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
@@ -8426,13 +8949,15 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(cedulaMin, Collections.reverseOrder(comparadoresZooAmigo[3]));
                     for (ZooAmigo zooAmigo : cedulaMin) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(cedulaRan, Collections.reverseOrder(comparadoresZooAmigo[3]));
                     for (ZooAmigo zooAmigo : cedulaRan) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 }
             }
@@ -8441,6 +8966,7 @@ public class SistemaZoologico {
         }
     }
     public static void nombreZooAmigo(int opcionValor, String nombreBus) {
+        int i=0;
         ArrayList<ZooAmigo> nombreZA = new ArrayList<>();
         for (ZooAmigo zooAmigo : zooAmigos) {
             if (nombreBus.equals(zooAmigo.nombre) || nombreBus.equals(zooAmigo.nombre.toLowerCase())) {
@@ -8467,13 +8993,15 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(nombreZA, (comparadoresZooAmigo[0]));
                 for (ZooAmigo zooAmigo : nombreZA) {
-                    System.out.println(zooAmigo);
+                    i++;
+                    System.out.println(i+". "+zooAmigo);
                 }
             } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(nombreZA, Collections.reverseOrder(comparadoresZooAmigo[0]));
                 for (ZooAmigo zooAmigo : nombreZA) {
-                    System.out.println(zooAmigo);
+                    i++;
+                    System.out.println(i+". "+zooAmigo);
                 }
             } else {
                 System.out.println("Opcion incorrecta");
@@ -8489,13 +9017,15 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(nombreZA, (comparadoresZooAmigo[2]));
                 for (ZooAmigo zooAmigo : nombreZA) {
-                    System.out.println(zooAmigo);
+                    i++;
+                    System.out.println(i+". "+zooAmigo);
                 }
             } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(nombreZA, Collections.reverseOrder(comparadoresZooAmigo[2]));
                 for (ZooAmigo zooAmigo : nombreZA) {
-                    System.out.println(zooAmigo);
+                    i++;
+                    System.out.println(i+". "+zooAmigo);
                 }
             } else {
                 System.out.println("Opcion incorrecta");
@@ -8511,13 +9041,15 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(nombreZA, (comparadoresZooAmigo[3]));
                 for (ZooAmigo zooAmigo : nombreZA) {
-                    System.out.println(zooAmigo);
+                    i++;
+                    System.out.println(i+". "+zooAmigo);
                 }
             } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(nombreZA, Collections.reverseOrder(comparadoresZooAmigo[3]));
                 for (ZooAmigo zooAmigo : nombreZA) {
-                    System.out.println(zooAmigo);
+                    i++;
+                    System.out.println(i+". "+zooAmigo);
                 }
             } else {
                 System.out.println("Opcion incorrecta");
@@ -8527,6 +9059,7 @@ public class SistemaZoologico {
         }
     }
     public static void telefonoZooAmigo(int opcionValor, int telefonoBusMin, int telefonoBusMax) {
+        int i=0;
         ArrayList<ZooAmigo> telefonoEx = new ArrayList<>();
         ArrayList<ZooAmigo> telefonoMax = new ArrayList<>();
         ArrayList<ZooAmigo> telefonoMin = new ArrayList<>();
@@ -8582,13 +9115,15 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(telefonoEx, (comparadoresZooAmigo[0]));
                     for (ZooAmigo zooAmigo : telefonoEx) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(telefonoMax, (comparadoresZooAmigo[0]));
                     for (ZooAmigo zooAmigo : telefonoMax) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
@@ -8600,7 +9135,8 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(telefonoRan, (comparadoresZooAmigo[0]));
                     for (ZooAmigo zooAmigo : telefonoRan) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -8608,25 +9144,29 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(telefonoEx, Collections.reverseOrder(comparadoresZooAmigo[0]));
                     for (ZooAmigo zooAmigo : telefonoEx) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(telefonoMax, Collections.reverseOrder(comparadoresZooAmigo[0]));
                     for (ZooAmigo zooAmigo : telefonoMax) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(telefonoMin, Collections.reverseOrder(comparadoresZooAmigo[0]));
                     for (ZooAmigo zooAmigo : telefonoMin) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(telefonoRan, Collections.reverseOrder(comparadoresZooAmigo[0]));
                     for (ZooAmigo zooAmigo : telefonoRan) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 }
             }
@@ -8642,25 +9182,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(telefonoEx, (comparadoresZooAmigo[1]));
                     for (ZooAmigo zooAmigo : telefonoEx) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(telefonoMax, (comparadoresZooAmigo[1]));
                     for (ZooAmigo zooAmigo : telefonoMax) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(telefonoMin, (comparadoresZooAmigo[1]));
                     for (ZooAmigo zooAmigo : telefonoMin) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(telefonoRan, (comparadoresZooAmigo[1]));
                     for (ZooAmigo zooAmigo : telefonoRan) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -8668,25 +9212,29 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(telefonoEx, Collections.reverseOrder(comparadoresZooAmigo[1]));
                     for (ZooAmigo zooAmigo : telefonoEx) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(telefonoMax, Collections.reverseOrder(comparadoresZooAmigo[1]));
                     for (ZooAmigo zooAmigo : telefonoMax) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(telefonoMin, Collections.reverseOrder(comparadoresZooAmigo[1]));
                     for (ZooAmigo zooAmigo : telefonoMin) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(telefonoRan, Collections.reverseOrder(comparadoresZooAmigo[1]));
                     for (ZooAmigo zooAmigo : telefonoRan) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 }
             }
@@ -8702,25 +9250,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(telefonoEx, (comparadoresZooAmigo[2]));
                     for (ZooAmigo zooAmigo : telefonoEx) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(telefonoMax, (comparadoresZooAmigo[2]));
                     for (ZooAmigo zooAmigo : telefonoMax) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(telefonoMin, (comparadoresZooAmigo[2]));
                     for (ZooAmigo zooAmigo : telefonoMin) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(telefonoRan, (comparadoresZooAmigo[2]));
                     for (ZooAmigo zooAmigo : telefonoRan) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -8728,25 +9280,29 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(telefonoEx, Collections.reverseOrder(comparadoresZooAmigo[2]));
                     for (ZooAmigo zooAmigo : telefonoEx) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(telefonoMax, Collections.reverseOrder(comparadoresZooAmigo[2]));
                     for (ZooAmigo zooAmigo : telefonoMax) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(telefonoMin, Collections.reverseOrder(comparadoresZooAmigo[2]));
                     for (ZooAmigo zooAmigo : telefonoMin) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(telefonoRan, Collections.reverseOrder(comparadoresZooAmigo[2]));
                     for (ZooAmigo zooAmigo : telefonoRan) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 }
             }
@@ -8762,25 +9318,29 @@ public class SistemaZoologico {
                     System.out.println("Ascendente");
                     Collections.sort(telefonoEx, (comparadoresZooAmigo[3]));
                     for (ZooAmigo zooAmigo : telefonoEx) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(telefonoMax, (comparadoresZooAmigo[3]));
                     for (ZooAmigo zooAmigo : telefonoMax) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(telefonoMin, (comparadoresZooAmigo[3]));
                     for (ZooAmigo zooAmigo : telefonoMin) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else {
                     System.out.println("Ascendente");
                     Collections.sort(telefonoRan, (comparadoresZooAmigo[3]));
                     for (ZooAmigo zooAmigo : telefonoRan) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 }
             } else if (option2.equals("2")) {
@@ -8788,25 +9348,29 @@ public class SistemaZoologico {
                     System.out.println("Descendente");
                     Collections.sort(telefonoEx, Collections.reverseOrder(comparadoresZooAmigo[3]));
                     for (ZooAmigo zooAmigo : telefonoEx) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else if (opcionValor == 2) {
                     System.out.println("Descendente");
                     Collections.sort(telefonoMax, Collections.reverseOrder(comparadoresZooAmigo[3]));
                     for (ZooAmigo zooAmigo : telefonoMax) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else if (opcionValor == 3) {
                     System.out.println("Descendente");
                     Collections.sort(telefonoMin, Collections.reverseOrder(comparadoresZooAmigo[3]));
                     for (ZooAmigo zooAmigo : telefonoMin) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 } else {
                     System.out.println("Descendente");
                     Collections.sort(telefonoRan, Collections.reverseOrder(comparadoresZooAmigo[3]));
                     for (ZooAmigo zooAmigo : telefonoRan) {
-                        System.out.println(zooAmigo);
+                        i++;
+                        System.out.println(i+". "+zooAmigo);
                     }
                 }
             }
@@ -8815,6 +9379,7 @@ public class SistemaZoologico {
         }
     }
     public static void mostrarTodosZooAmigos() {
+        int i=0;
         ArrayList<ZooAmigo> copiaZooAmigo = new ArrayList<>(zooAmigos);
         String option;
         String option2;
@@ -8837,7 +9402,8 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(copiaZooAmigo, (comparadoresZooAmigo[0]));
                 for (ZooAmigo zooAmigo : copiaZooAmigo) {
-                    System.out.println(zooAmigo);
+                    i++;
+                    System.out.println(i+". "+zooAmigo);
                 }
                 return;
             }
@@ -8845,7 +9411,8 @@ public class SistemaZoologico {
                 System.out.println("Descendente");
                 Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZooAmigo[0]));
                 for (ZooAmigo zooAmigo : copiaZooAmigo) {
-                    System.out.println(zooAmigo);
+                    i++;
+                    System.out.println(i+". "+zooAmigo);
                 }
                 return;
             }else{
@@ -8863,7 +9430,8 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(copiaZooAmigo, (comparadoresZooAmigo[1]));
                 for (ZooAmigo zooAmigo : copiaZooAmigo) {
-                    System.out.println(zooAmigo);
+                    i++;
+                    System.out.println(i+". "+zooAmigo);
                 }
                 return;
             }
@@ -8871,7 +9439,8 @@ public class SistemaZoologico {
                 System.out.println("Descendente");
                 Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZooAmigo[1]));
                 for (ZooAmigo zooAmigo : copiaZooAmigo) {
-                    System.out.println(zooAmigo);
+                    i++;
+                    System.out.println(i+". "+zooAmigo);
                 }
                 return;
             }else{
@@ -8889,7 +9458,8 @@ public class SistemaZoologico {
                 System.out.println("Ascendente");
                 Collections.sort(copiaZooAmigo, (comparadoresZooAmigo[2]));
                 for (ZooAmigo zooAmigo : copiaZooAmigo) {
-                    System.out.println(zooAmigo);
+                    i++;
+                    System.out.println(i+". "+zooAmigo);
                 }
                 return;
             }
@@ -8897,7 +9467,8 @@ public class SistemaZoologico {
                 System.out.println("Descendente");
                 Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZooAmigo[2]));
                 for (ZooAmigo zooAmigo : copiaZooAmigo) {
-                    System.out.println(zooAmigo);
+                    i++;
+                    System.out.println(i+". "+zooAmigo);
                 }
                 return;
             }else{
