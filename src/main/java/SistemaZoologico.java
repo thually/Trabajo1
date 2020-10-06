@@ -57,7 +57,7 @@ public class SistemaZoologico {
             System.out.println("0. Salir y cancelar.");
             String opcion = input.next();
             System.out.println();
-            switch (opcion){
+            label2 : switch (opcion){
                 case "1":
                     administrar();
                     break;
@@ -71,8 +71,23 @@ public class SistemaZoologico {
                     guardar();
                     break;
                 case "0":
-                    //salircancelar();
-                    break label;
+                    while (true){
+                        System.out.println("MENSAJE: si sale se perderan los cambios sin guardar");
+                        System.out.print("Esta seguro que desea salir?: [Y/N] ");
+                        String option = input.next();
+                        if (option.equalsIgnoreCase("Y") || option.equalsIgnoreCase("N")){
+                            switch (option.toUpperCase()){
+                                case "Y":
+                                    break label;
+                                case "N":
+                                    break label2;
+                            }
+                            break;
+                        }
+                        else {
+                            System.out.println("Opcion invalida\n");
+                        }
+                    }
             }
             System.out.println("----------------------------------");
         }
