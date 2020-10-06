@@ -1,3 +1,5 @@
+import org.json.simple.JSONObject;
+
 import java.util.ArrayList;
 
 public class Tecnico {
@@ -6,6 +8,7 @@ public class Tecnico {
     String horaInicio;
     String horaSalida;
     ArrayList<Habitat> habitats = new ArrayList<>();
+    String IDHab = "";
 
     public Tecnico(int cedula, String area, String horaInicio, String horaSalida) {
         this.cedula = cedula;
@@ -25,6 +28,32 @@ public class Tecnico {
     public static void setHabitats(Habitat nuevoHabitat, Tecnico tecnico){
         nuevoHabitat.tecnicos.add(tecnico);
         tecnico.habitats.add(nuevoHabitat);
+    }
+
+    public Tecnico(JSONObject toJavaObj){
+        JSONObject tecnico = (JSONObject) toJavaObj.get("tecnico");
+        this.cedula = (int) tecnico.get("cedula");
+        this.area = (String) tecnico.get("area");
+        this.horaInicio = (String) tecnico.get("horaInicio");
+        this.horaSalida = (String) tecnico.get("horaSalida");
+        this.IDHab = (String) tecnico.get("ID Habitats");
+    }
+
+    public JSONObject toJSONObj(){
+        if (habitats.isEmpty()) IDHab = "N/A";
+        else for (Habitat hab : habitats) { IDHab += hab.id + " "; }
+
+        JSONObject tecDetails = new JSONObject();
+        tecDetails.put("cedula", cedula);
+        tecDetails.put("area", area);
+        tecDetails.put("horaInicio", horaInicio);
+        tecDetails.put("horaSalida", horaSalida);
+        tecDetails.put("ID Habitats", IDHab);
+
+        JSONObject tecnicoObj = new JSONObject();
+        tecnicoObj.put("tecnico", tecDetails);
+
+        return tecnicoObj;
     }
 
     @Override
