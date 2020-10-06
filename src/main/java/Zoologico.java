@@ -8,11 +8,11 @@ public class Zoologico {
     String siglas;
     String ciudad;
     ArrayList<Bioma> biomas = new ArrayList<>();
-    String IDBios;
+    String IDBios = "";
     ArrayList<Profesional> profesionales = new ArrayList<>();
-    String IDPros;
+    String IDPros = "";
     ArrayList<ZooAmigo> zooAmigos = new ArrayList<>();
-    String IDZooA;
+    String IDZooA = "";
 
 
     public Zoologico(String nit, String nombre, String siglas, String ciudad) {
