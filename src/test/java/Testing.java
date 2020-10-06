@@ -55,5 +55,22 @@ public class Testing {
         System.out.println(bioma);
         Bioma biomaJava = new Bioma(bioObj);
         System.out.println(biomaJava);
+
+        System.out.println("----------------\n");
+
+        Habitat habitat = new Habitat(301, "ggggg","ffff","gggg");
+        habitat.tecnicos.add(new Tecnico(401, "eee", "1200", "4000"));
+        habitat.tecnicos.add(new Tecnico(402, "eee", "1200", "4000"));
+        habitat.tecnicos.add(new Tecnico(403, "eee", "1200", "4000"));
+        habitat.bioma = bioma;
+        habitat.animales.add(new Animal(40, "qqqq", 5,"pppp"));
+        habitat.animales.add(new Animal(41, "qqqq", 5,"pppp"));
+        habitat.animales.add(new Animal(42, "qqqq", 5,"pppp"));
+
+        JSONObject habObj = habitat.toJSONObj();
+        System.out.println(habObj);
+        System.out.println(habitat);
+        Habitat habitatJava = new Habitat(habObj);
+        System.out.println(habitatJava);
     }
 }

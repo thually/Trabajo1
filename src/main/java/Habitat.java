@@ -1,3 +1,5 @@
+import org.json.simple.*;
+
 import java.util.ArrayList;
 
 public class Habitat {
@@ -6,8 +8,11 @@ public class Habitat {
     String vegetacion; // Abundante, sin vegetacion, etc
     String tipoJaula; // Aviario, barrotes, malla, etc
     ArrayList<Animal> animales = new ArrayList<>();
+    String IDAnis = "";
     Bioma bioma;
+    String IDBio = "";
     ArrayList<Tecnico> tecnicos = new ArrayList<>();
+    String IDTecs = "";
 
     public Habitat(int id, String tipoSuelo, String vegetacion, String tipoJaula) {
         this.id = id;
@@ -45,6 +50,40 @@ public class Habitat {
             idAnimal.add(animal.id);
         }
         return idAnimal.toString();
+    }
+
+    public Habitat(JSONObject toJavaObj){
+        JSONObject habitat = (JSONObject) toJavaObj.get("habitat");
+        this.id = (int) habitat.get("id");
+        this.tipoSuelo = (String) habitat.get("tipoSuelo");
+        this.vegetacion = (String) habitat.get("vegetacion");
+        this.tipoJaula = (String) habitat.get("tipoJaula");
+        this.IDBio = (String) habitat.get("ID Bioma");
+        this.IDTecs = (String) habitat.get("ID Tecnicos");
+        this.IDAnis = (String) habitat.get("ID Animales");
+    }
+
+    public JSONObject toJSONObj(){
+        if (bioma == null) IDBio = "N/A";
+        else IDBio = Integer.toString(bioma.id);
+        if (tecnicos.isEmpty()) IDTecs = "N/A";
+        else for (Tecnico tec : tecnicos) { IDTecs += tec.cedula + " "; }
+        if (animales.isEmpty()) IDAnis = "N/A";
+        else for (Animal ani : animales) { IDAnis += ani.id + " "; }
+
+        JSONObject habDetails = new JSONObject();
+        habDetails.put("id", id);
+        habDetails.put("tipoSuelo", tipoSuelo);
+        habDetails.put("vegetacion", vegetacion);
+        habDetails.put("tipoJaula", tipoJaula);
+        habDetails.put("ID Bioma", IDBio);
+        habDetails.put("ID Tecnicos", IDTecs);
+        habDetails.put("ID Animales", IDAnis);
+
+        JSONObject habObj = new JSONObject();
+        habObj.put("habitat", habDetails);
+
+        return habObj;
     }
 
     @Override
