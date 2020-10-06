@@ -17041,6 +17041,7 @@ public class SistemaZoologico {
         }
     }
     public static void tipoJaulaHabitat(int opcionValor, String tipoJaulaBus) {
+        Habitat hab = null;
         int i=0;
         ArrayList<Habitat> tipoJaulaHab = new ArrayList<>();
         for (Habitat habitat : habitats) {
@@ -17072,17 +17073,242 @@ public class SistemaZoologico {
                     i++;
                     System.out.println(i+". "+habitat);
                 }
-            } else if (option2.equals("2")) {
+                //Menu editar - eliminar
+                String accion;
+                System.out.println("-----------------------------------------");
+                System.out.println("\nIndique la accion que desea realizar:\n");
+                System.out.println("1. Editar ");
+                System.out.println("2. Eliminar ");
+                System.out.println("0. Regresar al menú anterior" + "\n");
+                accion = input.next();
+                System.out.println("----------------------------------");
+
+//Codigo editar
+                if (accion.equals("1")) {
+                    for (Habitat habitat : tipoJaulaHab) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el habitat que desea editar: \n");
+                        eleccion = input.nextInt();
+                        hab = tipoJaulaHab.get(eleccion - 1);
+
+                        input.nextLine();
+                        System.out.println("\nID: " + habitat.id);
+                        String nuevoID1 = input.nextLine();
+
+                        System.out.println("Tipo de suelo: " + habitat.tipoSuelo);
+                        String nuevoSuelo = input.nextLine();
+
+                        System.out.println("Vegetacion: " + habitat.vegetacion);
+                        String nuevaVege = input.nextLine();
+
+                        System.out.println("Tipo de jaula: " + habitat.tipoJaula);
+                        String nuevaJau = input.nextLine();
+
+                        while (true) {
+                            System.out.print("Desea guardar?:[Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        if (nuevoID1.isEmpty()) {
+                                        } else {
+                                            habitat.id = Integer.parseInt(nuevoID1);
+                                        }
+                                        if (nuevoSuelo.isEmpty()) {
+                                        } else habitat.tipoSuelo = nuevoSuelo;
+                                        if (nuevaVege.isEmpty()) {
+                                        } else habitat.vegetacion = nuevaVege;
+                                        if (nuevaJau.isEmpty()) {
+                                        } else habitat.tipoJaula = nuevaJau;
+                                    case "N":
+                                        break;
+                                }
+
+                                return;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                    }
+                    return;
+                }
+
+
+//Codigo eliminar
+                else if(accion.equals("2")) {
+                    for (Habitat habitat : tipoJaulaHab) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el habitat que desea eliminar: \n");
+                        eleccion = input.nextInt();
+                        hab = tipoJaulaHab.get(eleccion - 1);
+
+                        while (true) {
+                            System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        break;
+                                    case "N":
+                                        return;
+                                }
+                                break;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                        for (Bioma bioma : biomas) {
+                            Habitat finalHab = habitat;
+                            bioma.habitats.removeIf(habitat1 -> habitat1.id == finalHab.id);
+
+                        }
+                        for (Tecnico tecnico : tecnicos) {
+                            Habitat finalHab = habitat;
+                            tecnico.habitats.removeIf(habitat1 -> habitat1.id == finalHab.id);
+
+                        }
+                        for (Animal animal : animales) {
+                            if (animal.habitat != null && animal.habitat.id == habitat.id) {
+                                animal.habitat = null;
+                            }
+                        }
+                        habitats.remove(habitat);
+
+                        System.out.println("El habitat se ha eliminado correctamente");
+                    }
+                }
+
+                else return;
+
+
+            }
+            else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(tipoJaulaHab, Collections.reverseOrder(comparadoresHabitat[0]));
                 for (Habitat habitat : tipoJaulaHab) {
                     i++;
                     System.out.println(i+". "+habitat);
                 }
-            } else {
+                //Menu editar - eliminar
+                String accion;
+                System.out.println("-----------------------------------------");
+                System.out.println("\nIndique la accion que desea realizar:\n");
+                System.out.println("1. Editar ");
+                System.out.println("2. Eliminar ");
+                System.out.println("0. Regresar al menú anterior" + "\n");
+                accion = input.next();
+                System.out.println("----------------------------------");
+
+//Codigo editar
+                if (accion.equals("1")) {
+                    for (Habitat habitat : tipoJaulaHab) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el habitat que desea editar: \n");
+                        eleccion = input.nextInt();
+                        hab = tipoJaulaHab.get(eleccion - 1);
+
+                        input.nextLine();
+                        System.out.println("\nID: " + habitat.id);
+                        String nuevoID1 = input.nextLine();
+
+                        System.out.println("Tipo de suelo: " + habitat.tipoSuelo);
+                        String nuevoSuelo = input.nextLine();
+
+                        System.out.println("Vegetacion: " + habitat.vegetacion);
+                        String nuevaVege = input.nextLine();
+
+                        System.out.println("Tipo de jaula: " + habitat.tipoJaula);
+                        String nuevaJau = input.nextLine();
+
+                        while (true) {
+                            System.out.print("Desea guardar?:[Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        if (nuevoID1.isEmpty()) {
+                                        } else {
+                                            habitat.id = Integer.parseInt(nuevoID1);
+                                        }
+                                        if (nuevoSuelo.isEmpty()) {
+                                        } else habitat.tipoSuelo = nuevoSuelo;
+                                        if (nuevaVege.isEmpty()) {
+                                        } else habitat.vegetacion = nuevaVege;
+                                        if (nuevaJau.isEmpty()) {
+                                        } else habitat.tipoJaula = nuevaJau;
+                                    case "N":
+                                        break;
+                                }
+
+                                return;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                    }
+                    return;
+                }
+
+
+//Codigo eliminar
+                else if(accion.equals("2")) {
+                    for (Habitat habitat : tipoJaulaHab) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el habitat que desea eliminar: \n");
+                        eleccion = input.nextInt();
+                        hab = tipoJaulaHab.get(eleccion - 1);
+
+                        while (true) {
+                            System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        break;
+                                    case "N":
+                                        return;
+                                }
+                                break;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                        for (Bioma bioma : biomas) {
+                            Habitat finalHab = habitat;
+                            bioma.habitats.removeIf(habitat1 -> habitat1.id == finalHab.id);
+
+                        }
+                        for (Tecnico tecnico : tecnicos) {
+                            Habitat finalHab = habitat;
+                            tecnico.habitats.removeIf(habitat1 -> habitat1.id == finalHab.id);
+
+                        }
+                        for (Animal animal : animales) {
+                            if (animal.habitat != null && animal.habitat.id == habitat.id) {
+                                animal.habitat = null;
+                            }
+                        }
+                        habitats.remove(habitat);
+
+                        System.out.println("El habitat se ha eliminado correctamente");
+                    }
+                }
+
+                else return;
+            }
+            else {
                 System.out.println("Opcion incorrecta");
             }
-        } else if (option.equals("2")) {
+        }
+        else if (option.equals("2")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
@@ -17096,17 +17322,240 @@ public class SistemaZoologico {
                     i++;
                     System.out.println(i+". "+habitat);
                 }
-            } else if (option2.equals("2")) {
+                //Menu editar - eliminar
+                String accion;
+                System.out.println("-----------------------------------------");
+                System.out.println("\nIndique la accion que desea realizar:\n");
+                System.out.println("1. Editar ");
+                System.out.println("2. Eliminar ");
+                System.out.println("0. Regresar al menú anterior" + "\n");
+                accion = input.next();
+                System.out.println("----------------------------------");
+
+//Codigo editar
+                if (accion.equals("1")) {
+                    for (Habitat habitat : tipoJaulaHab) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el habitat que desea editar: \n");
+                        eleccion = input.nextInt();
+                        hab = tipoJaulaHab.get(eleccion - 1);
+
+                        input.nextLine();
+                        System.out.println("\nID: " + habitat.id);
+                        String nuevoID1 = input.nextLine();
+
+                        System.out.println("Tipo de suelo: " + habitat.tipoSuelo);
+                        String nuevoSuelo = input.nextLine();
+
+                        System.out.println("Vegetacion: " + habitat.vegetacion);
+                        String nuevaVege = input.nextLine();
+
+                        System.out.println("Tipo de jaula: " + habitat.tipoJaula);
+                        String nuevaJau = input.nextLine();
+
+                        while (true) {
+                            System.out.print("Desea guardar?:[Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        if (nuevoID1.isEmpty()) {
+                                        } else {
+                                            habitat.id = Integer.parseInt(nuevoID1);
+                                        }
+                                        if (nuevoSuelo.isEmpty()) {
+                                        } else habitat.tipoSuelo = nuevoSuelo;
+                                        if (nuevaVege.isEmpty()) {
+                                        } else habitat.vegetacion = nuevaVege;
+                                        if (nuevaJau.isEmpty()) {
+                                        } else habitat.tipoJaula = nuevaJau;
+                                    case "N":
+                                        break;
+                                }
+
+                                return;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                    }
+                    return;
+                }
+
+
+//Codigo eliminar
+                else if(accion.equals("2")) {
+                    for (Habitat habitat : tipoJaulaHab) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el habitat que desea eliminar: \n");
+                        eleccion = input.nextInt();
+                        hab = tipoJaulaHab.get(eleccion - 1);
+
+                        while (true) {
+                            System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        break;
+                                    case "N":
+                                        return;
+                                }
+                                break;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                        for (Bioma bioma : biomas) {
+                            Habitat finalHab = habitat;
+                            bioma.habitats.removeIf(habitat1 -> habitat1.id == finalHab.id);
+
+                        }
+                        for (Tecnico tecnico : tecnicos) {
+                            Habitat finalHab = habitat;
+                            tecnico.habitats.removeIf(habitat1 -> habitat1.id == finalHab.id);
+
+                        }
+                        for (Animal animal : animales) {
+                            if (animal.habitat != null && animal.habitat.id == habitat.id) {
+                                animal.habitat = null;
+                            }
+                        }
+                        habitats.remove(habitat);
+
+                        System.out.println("El habitat se ha eliminado correctamente");
+                    }
+                }
+
+                else return;
+            }
+            else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(tipoJaulaHab, Collections.reverseOrder(comparadoresHabitat[1]));
                 for (Habitat habitat : tipoJaulaHab) {
                     i++;
                     System.out.println(i+". "+habitat);
                 }
-            } else {
+                //Menu editar - eliminar
+                String accion;
+                System.out.println("-----------------------------------------");
+                System.out.println("\nIndique la accion que desea realizar:\n");
+                System.out.println("1. Editar ");
+                System.out.println("2. Eliminar ");
+                System.out.println("0. Regresar al menú anterior" + "\n");
+                accion = input.next();
+                System.out.println("----------------------------------");
+
+//Codigo editar
+                if (accion.equals("1")) {
+                    for (Habitat habitat : tipoJaulaHab) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el habitat que desea editar: \n");
+                        eleccion = input.nextInt();
+                        hab = tipoJaulaHab.get(eleccion - 1);
+
+                        input.nextLine();
+                        System.out.println("\nID: " + habitat.id);
+                        String nuevoID1 = input.nextLine();
+
+                        System.out.println("Tipo de suelo: " + habitat.tipoSuelo);
+                        String nuevoSuelo = input.nextLine();
+
+                        System.out.println("Vegetacion: " + habitat.vegetacion);
+                        String nuevaVege = input.nextLine();
+
+                        System.out.println("Tipo de jaula: " + habitat.tipoJaula);
+                        String nuevaJau = input.nextLine();
+
+                        while (true) {
+                            System.out.print("Desea guardar?:[Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        if (nuevoID1.isEmpty()) {
+                                        } else {
+                                            habitat.id = Integer.parseInt(nuevoID1);
+                                        }
+                                        if (nuevoSuelo.isEmpty()) {
+                                        } else habitat.tipoSuelo = nuevoSuelo;
+                                        if (nuevaVege.isEmpty()) {
+                                        } else habitat.vegetacion = nuevaVege;
+                                        if (nuevaJau.isEmpty()) {
+                                        } else habitat.tipoJaula = nuevaJau;
+                                    case "N":
+                                        break;
+                                }
+
+                                return;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                    }
+                    return;
+                }
+
+
+//Codigo eliminar
+                else if(accion.equals("2")) {
+                    for (Habitat habitat : tipoJaulaHab) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el habitat que desea eliminar: \n");
+                        eleccion = input.nextInt();
+                        hab = tipoJaulaHab.get(eleccion - 1);
+
+                        while (true) {
+                            System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        break;
+                                    case "N":
+                                        return;
+                                }
+                                break;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                        for (Bioma bioma : biomas) {
+                            Habitat finalHab = habitat;
+                            bioma.habitats.removeIf(habitat1 -> habitat1.id == finalHab.id);
+
+                        }
+                        for (Tecnico tecnico : tecnicos) {
+                            Habitat finalHab = habitat;
+                            tecnico.habitats.removeIf(habitat1 -> habitat1.id == finalHab.id);
+
+                        }
+                        for (Animal animal : animales) {
+                            if (animal.habitat != null && animal.habitat.id == habitat.id) {
+                                animal.habitat = null;
+                            }
+                        }
+                        habitats.remove(habitat);
+
+                        System.out.println("El habitat se ha eliminado correctamente");
+                    }
+                }
+
+                else return;
+            }
+            else {
                 System.out.println("Opcion incorrecta");
             }
-        } else if (option.equals("3")) {
+        }
+        else if (option.equals("3")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
@@ -17120,14 +17569,236 @@ public class SistemaZoologico {
                     i++;
                     System.out.println(i+". "+habitat);
                 }
-            } else if (option2.equals("2")) {
+                //Menu editar - eliminar
+                String accion;
+                System.out.println("-----------------------------------------");
+                System.out.println("\nIndique la accion que desea realizar:\n");
+                System.out.println("1. Editar ");
+                System.out.println("2. Eliminar ");
+                System.out.println("0. Regresar al menú anterior" + "\n");
+                accion = input.next();
+                System.out.println("----------------------------------");
+
+//Codigo editar
+                if (accion.equals("1")) {
+                    for (Habitat habitat : tipoJaulaHab) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el habitat que desea editar: \n");
+                        eleccion = input.nextInt();
+                        hab = tipoJaulaHab.get(eleccion - 1);
+
+                        input.nextLine();
+                        System.out.println("\nID: " + habitat.id);
+                        String nuevoID1 = input.nextLine();
+
+                        System.out.println("Tipo de suelo: " + habitat.tipoSuelo);
+                        String nuevoSuelo = input.nextLine();
+
+                        System.out.println("Vegetacion: " + habitat.vegetacion);
+                        String nuevaVege = input.nextLine();
+
+                        System.out.println("Tipo de jaula: " + habitat.tipoJaula);
+                        String nuevaJau = input.nextLine();
+
+                        while (true) {
+                            System.out.print("Desea guardar?:[Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        if (nuevoID1.isEmpty()) {
+                                        } else {
+                                            habitat.id = Integer.parseInt(nuevoID1);
+                                        }
+                                        if (nuevoSuelo.isEmpty()) {
+                                        } else habitat.tipoSuelo = nuevoSuelo;
+                                        if (nuevaVege.isEmpty()) {
+                                        } else habitat.vegetacion = nuevaVege;
+                                        if (nuevaJau.isEmpty()) {
+                                        } else habitat.tipoJaula = nuevaJau;
+                                    case "N":
+                                        break;
+                                }
+
+                                return;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                    }
+                    return;
+                }
+
+
+//Codigo eliminar
+                else if(accion.equals("2")) {
+                    for (Habitat habitat : tipoJaulaHab) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el habitat que desea eliminar: \n");
+                        eleccion = input.nextInt();
+                        hab = tipoJaulaHab.get(eleccion - 1);
+
+                        while (true) {
+                            System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        break;
+                                    case "N":
+                                        return;
+                                }
+                                break;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                        for (Bioma bioma : biomas) {
+                            Habitat finalHab = habitat;
+                            bioma.habitats.removeIf(habitat1 -> habitat1.id == finalHab.id);
+
+                        }
+                        for (Tecnico tecnico : tecnicos) {
+                            Habitat finalHab = habitat;
+                            tecnico.habitats.removeIf(habitat1 -> habitat1.id == finalHab.id);
+
+                        }
+                        for (Animal animal : animales) {
+                            if (animal.habitat != null && animal.habitat.id == habitat.id) {
+                                animal.habitat = null;
+                            }
+                        }
+                        habitats.remove(habitat);
+
+                        System.out.println("El habitat se ha eliminado correctamente");
+                    }
+                }
+
+                else return;
+            }
+            else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(tipoJaulaHab, Collections.reverseOrder(comparadoresHabitat[2]));
                 for (Habitat habitat : tipoJaulaHab) {
                     i++;
                     System.out.println(i+". "+habitat);
                 }
-            } else {
+                //Menu editar - eliminar
+                String accion;
+                System.out.println("-----------------------------------------");
+                System.out.println("\nIndique la accion que desea realizar:\n");
+                System.out.println("1. Editar ");
+                System.out.println("2. Eliminar ");
+                System.out.println("0. Regresar al menú anterior" + "\n");
+                accion = input.next();
+                System.out.println("----------------------------------");
+
+//Codigo editar
+                if (accion.equals("1")) {
+                    for (Habitat habitat : tipoJaulaHab) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el habitat que desea editar: \n");
+                        eleccion = input.nextInt();
+                        hab = tipoJaulaHab.get(eleccion - 1);
+
+                        input.nextLine();
+                        System.out.println("\nID: " + habitat.id);
+                        String nuevoID1 = input.nextLine();
+
+                        System.out.println("Tipo de suelo: " + habitat.tipoSuelo);
+                        String nuevoSuelo = input.nextLine();
+
+                        System.out.println("Vegetacion: " + habitat.vegetacion);
+                        String nuevaVege = input.nextLine();
+
+                        System.out.println("Tipo de jaula: " + habitat.tipoJaula);
+                        String nuevaJau = input.nextLine();
+
+                        while (true) {
+                            System.out.print("Desea guardar?:[Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        if (nuevoID1.isEmpty()) {
+                                        } else {
+                                            habitat.id = Integer.parseInt(nuevoID1);
+                                        }
+                                        if (nuevoSuelo.isEmpty()) {
+                                        } else habitat.tipoSuelo = nuevoSuelo;
+                                        if (nuevaVege.isEmpty()) {
+                                        } else habitat.vegetacion = nuevaVege;
+                                        if (nuevaJau.isEmpty()) {
+                                        } else habitat.tipoJaula = nuevaJau;
+                                    case "N":
+                                        break;
+                                }
+
+                                return;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                    }
+                    return;
+                }
+
+
+//Codigo eliminar
+                else if(accion.equals("2")) {
+                    for (Habitat habitat : tipoJaulaHab) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el habitat que desea eliminar: \n");
+                        eleccion = input.nextInt();
+                        hab = tipoJaulaHab.get(eleccion - 1);
+
+                        while (true) {
+                            System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        break;
+                                    case "N":
+                                        return;
+                                }
+                                break;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                        for (Bioma bioma : biomas) {
+                            Habitat finalHab = habitat;
+                            bioma.habitats.removeIf(habitat1 -> habitat1.id == finalHab.id);
+
+                        }
+                        for (Tecnico tecnico : tecnicos) {
+                            Habitat finalHab = habitat;
+                            tecnico.habitats.removeIf(habitat1 -> habitat1.id == finalHab.id);
+
+                        }
+                        for (Animal animal : animales) {
+                            if (animal.habitat != null && animal.habitat.id == habitat.id) {
+                                animal.habitat = null;
+                            }
+                        }
+                        habitats.remove(habitat);
+
+                        System.out.println("El habitat se ha eliminado correctamente");
+                    }
+                }
+
+                else return;
+            }
+            else {
                 System.out.println("Opcion incorrecta");
             }
         }
@@ -17136,6 +17807,7 @@ public class SistemaZoologico {
         }
     }
     public static void mostrarTodosHabitats() {
+        Habitat hab = null;
         int i=0;
         ArrayList<Habitat> copiaHabitat = new ArrayList<>(habitats);
         String option;
@@ -17163,6 +17835,116 @@ public class SistemaZoologico {
                     i++;
                     System.out.println(i+". "+habitat);
                 }
+                //Menu editar - eliminar
+                String accion;
+                System.out.println("-----------------------------------------");
+                System.out.println("\nIndique la accion que desea realizar:\n");
+                System.out.println("1. Editar ");
+                System.out.println("2. Eliminar ");
+                System.out.println("0. Regresar al menú anterior" + "\n");
+                accion = input.next();
+                System.out.println("----------------------------------");
+
+//Codigo editar
+                if (accion.equals("1")) {
+                    for (Habitat habitat : copiaHabitat) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el habitat que desea editar: \n");
+                        eleccion = input.nextInt();
+                        hab = copiaHabitat.get(eleccion - 1);
+
+                        input.nextLine();
+                        System.out.println("\nID: " + habitat.id);
+                        String nuevoID1 = input.nextLine();
+
+                        System.out.println("Tipo de suelo: " + habitat.tipoSuelo);
+                        String nuevoSuelo = input.nextLine();
+
+                        System.out.println("Vegetacion: " + habitat.vegetacion);
+                        String nuevaVege = input.nextLine();
+
+                        System.out.println("Tipo de jaula: " + habitat.tipoJaula);
+                        String nuevaJau = input.nextLine();
+
+                        while (true) {
+                            System.out.print("Desea guardar?:[Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        if (nuevoID1.isEmpty()) {
+                                        } else {
+                                            habitat.id = Integer.parseInt(nuevoID1);
+                                        }
+                                        if (nuevoSuelo.isEmpty()) {
+                                        } else habitat.tipoSuelo = nuevoSuelo;
+                                        if (nuevaVege.isEmpty()) {
+                                        } else habitat.vegetacion = nuevaVege;
+                                        if (nuevaJau.isEmpty()) {
+                                        } else habitat.tipoJaula = nuevaJau;
+                                    case "N":
+                                        break;
+                                }
+
+                                return;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                    }
+                    return;
+                }
+
+
+//Codigo eliminar
+                else if(accion.equals("2")) {
+                    for (Habitat habitat : copiaHabitat) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el habitat que desea eliminar: \n");
+                        eleccion = input.nextInt();
+                        hab = copiaHabitat.get(eleccion - 1);
+
+                        while (true) {
+                            System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        break;
+                                    case "N":
+                                        return;
+                                }
+                                break;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                        for (Bioma bioma : biomas) {
+                            Habitat finalHab = habitat;
+                            bioma.habitats.removeIf(habitat1 -> habitat1.id == finalHab.id);
+
+                        }
+                        for (Tecnico tecnico : tecnicos) {
+                            Habitat finalHab = habitat;
+                            tecnico.habitats.removeIf(habitat1 -> habitat1.id == finalHab.id);
+
+                        }
+                        for (Animal animal : animales) {
+                            if (animal.habitat != null && animal.habitat.id == habitat.id) {
+                                animal.habitat = null;
+                            }
+                        }
+                        habitats.remove(habitat);
+
+                        System.out.println("El habitat se ha eliminado correctamente");
+                    }
+                }
+
+                else return;
                 return;
             }
 
@@ -17173,11 +17955,123 @@ public class SistemaZoologico {
                     i++;
                     System.out.println(i+". "+habitat);
                 }
+                //Menu editar - eliminar
+                String accion;
+                System.out.println("-----------------------------------------");
+                System.out.println("\nIndique la accion que desea realizar:\n");
+                System.out.println("1. Editar ");
+                System.out.println("2. Eliminar ");
+                System.out.println("0. Regresar al menú anterior" + "\n");
+                accion = input.next();
+                System.out.println("----------------------------------");
+
+//Codigo editar
+                if (accion.equals("1")) {
+                    for (Habitat habitat : copiaHabitat) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el habitat que desea editar: \n");
+                        eleccion = input.nextInt();
+                        hab = copiaHabitat.get(eleccion - 1);
+
+                        input.nextLine();
+                        System.out.println("\nID: " + habitat.id);
+                        String nuevoID1 = input.nextLine();
+
+                        System.out.println("Tipo de suelo: " + habitat.tipoSuelo);
+                        String nuevoSuelo = input.nextLine();
+
+                        System.out.println("Vegetacion: " + habitat.vegetacion);
+                        String nuevaVege = input.nextLine();
+
+                        System.out.println("Tipo de jaula: " + habitat.tipoJaula);
+                        String nuevaJau = input.nextLine();
+
+                        while (true) {
+                            System.out.print("Desea guardar?:[Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        if (nuevoID1.isEmpty()) {
+                                        } else {
+                                            habitat.id = Integer.parseInt(nuevoID1);
+                                        }
+                                        if (nuevoSuelo.isEmpty()) {
+                                        } else habitat.tipoSuelo = nuevoSuelo;
+                                        if (nuevaVege.isEmpty()) {
+                                        } else habitat.vegetacion = nuevaVege;
+                                        if (nuevaJau.isEmpty()) {
+                                        } else habitat.tipoJaula = nuevaJau;
+                                    case "N":
+                                        break;
+                                }
+
+                                return;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                    }
+                    return;
+                }
+
+
+//Codigo eliminar
+                else if(accion.equals("2")) {
+                    for (Habitat habitat : copiaHabitat) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el habitat que desea eliminar: \n");
+                        eleccion = input.nextInt();
+                        hab = copiaHabitat.get(eleccion - 1);
+
+                        while (true) {
+                            System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        break;
+                                    case "N":
+                                        return;
+                                }
+                                break;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                        for (Bioma bioma : biomas) {
+                            Habitat finalHab = habitat;
+                            bioma.habitats.removeIf(habitat1 -> habitat1.id == finalHab.id);
+
+                        }
+                        for (Tecnico tecnico : tecnicos) {
+                            Habitat finalHab = habitat;
+                            tecnico.habitats.removeIf(habitat1 -> habitat1.id == finalHab.id);
+
+                        }
+                        for (Animal animal : animales) {
+                            if (animal.habitat != null && animal.habitat.id == habitat.id) {
+                                animal.habitat = null;
+                            }
+                        }
+                        habitats.remove(habitat);
+
+                        System.out.println("El habitat se ha eliminado correctamente");
+                    }
+                }
+
+                else return;
                 return;
-            }else{
+            }
+            else{
                 System.out.println("Opcion incorrecta");
             }
-        }else if (option.equals("2")) {
+        }
+        else if (option.equals("2")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
@@ -17191,6 +18085,116 @@ public class SistemaZoologico {
                     i++;
                     System.out.println(i+". "+habitat);
                 }
+                //Menu editar - eliminar
+                String accion;
+                System.out.println("-----------------------------------------");
+                System.out.println("\nIndique la accion que desea realizar:\n");
+                System.out.println("1. Editar ");
+                System.out.println("2. Eliminar ");
+                System.out.println("0. Regresar al menú anterior" + "\n");
+                accion = input.next();
+                System.out.println("----------------------------------");
+
+//Codigo editar
+                if (accion.equals("1")) {
+                    for (Habitat habitat : copiaHabitat) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el habitat que desea editar: \n");
+                        eleccion = input.nextInt();
+                        hab = copiaHabitat.get(eleccion - 1);
+
+                        input.nextLine();
+                        System.out.println("\nID: " + habitat.id);
+                        String nuevoID1 = input.nextLine();
+
+                        System.out.println("Tipo de suelo: " + habitat.tipoSuelo);
+                        String nuevoSuelo = input.nextLine();
+
+                        System.out.println("Vegetacion: " + habitat.vegetacion);
+                        String nuevaVege = input.nextLine();
+
+                        System.out.println("Tipo de jaula: " + habitat.tipoJaula);
+                        String nuevaJau = input.nextLine();
+
+                        while (true) {
+                            System.out.print("Desea guardar?:[Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        if (nuevoID1.isEmpty()) {
+                                        } else {
+                                            habitat.id = Integer.parseInt(nuevoID1);
+                                        }
+                                        if (nuevoSuelo.isEmpty()) {
+                                        } else habitat.tipoSuelo = nuevoSuelo;
+                                        if (nuevaVege.isEmpty()) {
+                                        } else habitat.vegetacion = nuevaVege;
+                                        if (nuevaJau.isEmpty()) {
+                                        } else habitat.tipoJaula = nuevaJau;
+                                    case "N":
+                                        break;
+                                }
+
+                                return;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                    }
+                    return;
+                }
+
+
+//Codigo eliminar
+                else if(accion.equals("2")) {
+                    for (Habitat habitat : copiaHabitat) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el habitat que desea eliminar: \n");
+                        eleccion = input.nextInt();
+                        hab = copiaHabitat.get(eleccion - 1);
+
+                        while (true) {
+                            System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        break;
+                                    case "N":
+                                        return;
+                                }
+                                break;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                        for (Bioma bioma : biomas) {
+                            Habitat finalHab = habitat;
+                            bioma.habitats.removeIf(habitat1 -> habitat1.id == finalHab.id);
+
+                        }
+                        for (Tecnico tecnico : tecnicos) {
+                            Habitat finalHab = habitat;
+                            tecnico.habitats.removeIf(habitat1 -> habitat1.id == finalHab.id);
+
+                        }
+                        for (Animal animal : animales) {
+                            if (animal.habitat != null && animal.habitat.id == habitat.id) {
+                                animal.habitat = null;
+                            }
+                        }
+                        habitats.remove(habitat);
+
+                        System.out.println("El habitat se ha eliminado correctamente");
+                    }
+                }
+
+                else return;
                 return;
             }
             else if (option2.equals("2")) {
@@ -17200,8 +18204,119 @@ public class SistemaZoologico {
                     i++;
                     System.out.println(i+". "+habitat);
                 }
+                //Menu editar - eliminar
+                String accion;
+                System.out.println("-----------------------------------------");
+                System.out.println("\nIndique la accion que desea realizar:\n");
+                System.out.println("1. Editar ");
+                System.out.println("2. Eliminar ");
+                System.out.println("0. Regresar al menú anterior" + "\n");
+                accion = input.next();
+                System.out.println("----------------------------------");
+
+//Codigo editar
+                if (accion.equals("1")) {
+                    for (Habitat habitat : copiaHabitat) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el habitat que desea editar: \n");
+                        eleccion = input.nextInt();
+                        hab = copiaHabitat.get(eleccion - 1);
+
+                        input.nextLine();
+                        System.out.println("\nID: " + habitat.id);
+                        String nuevoID1 = input.nextLine();
+
+                        System.out.println("Tipo de suelo: " + habitat.tipoSuelo);
+                        String nuevoSuelo = input.nextLine();
+
+                        System.out.println("Vegetacion: " + habitat.vegetacion);
+                        String nuevaVege = input.nextLine();
+
+                        System.out.println("Tipo de jaula: " + habitat.tipoJaula);
+                        String nuevaJau = input.nextLine();
+
+                        while (true) {
+                            System.out.print("Desea guardar?:[Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        if (nuevoID1.isEmpty()) {
+                                        } else {
+                                            habitat.id = Integer.parseInt(nuevoID1);
+                                        }
+                                        if (nuevoSuelo.isEmpty()) {
+                                        } else habitat.tipoSuelo = nuevoSuelo;
+                                        if (nuevaVege.isEmpty()) {
+                                        } else habitat.vegetacion = nuevaVege;
+                                        if (nuevaJau.isEmpty()) {
+                                        } else habitat.tipoJaula = nuevaJau;
+                                    case "N":
+                                        break;
+                                }
+
+                                return;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                    }
+                    return;
+                }
+
+
+//Codigo eliminar
+                else if(accion.equals("2")) {
+                    for (Habitat habitat : copiaHabitat) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el habitat que desea eliminar: \n");
+                        eleccion = input.nextInt();
+                        hab = copiaHabitat.get(eleccion - 1);
+
+                        while (true) {
+                            System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        break;
+                                    case "N":
+                                        return;
+                                }
+                                break;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                        for (Bioma bioma : biomas) {
+                            Habitat finalHab = habitat;
+                            bioma.habitats.removeIf(habitat1 -> habitat1.id == finalHab.id);
+
+                        }
+                        for (Tecnico tecnico : tecnicos) {
+                            Habitat finalHab = habitat;
+                            tecnico.habitats.removeIf(habitat1 -> habitat1.id == finalHab.id);
+
+                        }
+                        for (Animal animal : animales) {
+                            if (animal.habitat != null && animal.habitat.id == habitat.id) {
+                                animal.habitat = null;
+                            }
+                        }
+                        habitats.remove(habitat);
+
+                        System.out.println("El habitat se ha eliminado correctamente");
+                    }
+                }
+
+                else return;
                 return;
-            }else{
+            }
+            else{
                 System.out.println("Opcion incorrecta");
             }
         }
@@ -17219,6 +18334,116 @@ public class SistemaZoologico {
                     i++;
                     System.out.println(i+". "+habitat);
                 }
+                //Menu editar - eliminar
+                String accion;
+                System.out.println("-----------------------------------------");
+                System.out.println("\nIndique la accion que desea realizar:\n");
+                System.out.println("1. Editar ");
+                System.out.println("2. Eliminar ");
+                System.out.println("0. Regresar al menú anterior" + "\n");
+                accion = input.next();
+                System.out.println("----------------------------------");
+
+//Codigo editar
+                if (accion.equals("1")) {
+                    for (Habitat habitat : copiaHabitat) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el habitat que desea editar: \n");
+                        eleccion = input.nextInt();
+                        hab = copiaHabitat.get(eleccion - 1);
+
+                        input.nextLine();
+                        System.out.println("\nID: " + habitat.id);
+                        String nuevoID1 = input.nextLine();
+
+                        System.out.println("Tipo de suelo: " + habitat.tipoSuelo);
+                        String nuevoSuelo = input.nextLine();
+
+                        System.out.println("Vegetacion: " + habitat.vegetacion);
+                        String nuevaVege = input.nextLine();
+
+                        System.out.println("Tipo de jaula: " + habitat.tipoJaula);
+                        String nuevaJau = input.nextLine();
+
+                        while (true) {
+                            System.out.print("Desea guardar?:[Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        if (nuevoID1.isEmpty()) {
+                                        } else {
+                                            habitat.id = Integer.parseInt(nuevoID1);
+                                        }
+                                        if (nuevoSuelo.isEmpty()) {
+                                        } else habitat.tipoSuelo = nuevoSuelo;
+                                        if (nuevaVege.isEmpty()) {
+                                        } else habitat.vegetacion = nuevaVege;
+                                        if (nuevaJau.isEmpty()) {
+                                        } else habitat.tipoJaula = nuevaJau;
+                                    case "N":
+                                        break;
+                                }
+
+                                return;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                    }
+                    return;
+                }
+
+
+//Codigo eliminar
+                else if(accion.equals("2")) {
+                    for (Habitat habitat : copiaHabitat) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el habitat que desea eliminar: \n");
+                        eleccion = input.nextInt();
+                        hab = copiaHabitat.get(eleccion - 1);
+
+                        while (true) {
+                            System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        break;
+                                    case "N":
+                                        return;
+                                }
+                                break;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                        for (Bioma bioma : biomas) {
+                            Habitat finalHab = habitat;
+                            bioma.habitats.removeIf(habitat1 -> habitat1.id == finalHab.id);
+
+                        }
+                        for (Tecnico tecnico : tecnicos) {
+                            Habitat finalHab = habitat;
+                            tecnico.habitats.removeIf(habitat1 -> habitat1.id == finalHab.id);
+
+                        }
+                        for (Animal animal : animales) {
+                            if (animal.habitat != null && animal.habitat.id == habitat.id) {
+                                animal.habitat = null;
+                            }
+                        }
+                        habitats.remove(habitat);
+
+                        System.out.println("El habitat se ha eliminado correctamente");
+                    }
+                }
+
+                else return;
                 return;
             }
             else if (option2.equals("2")) {
@@ -17228,8 +18453,119 @@ public class SistemaZoologico {
                     i++;
                     System.out.println(i+". "+habitat);
                 }
+                //Menu editar - eliminar
+                String accion;
+                System.out.println("-----------------------------------------");
+                System.out.println("\nIndique la accion que desea realizar:\n");
+                System.out.println("1. Editar ");
+                System.out.println("2. Eliminar ");
+                System.out.println("0. Regresar al menú anterior" + "\n");
+                accion = input.next();
+                System.out.println("----------------------------------");
+
+//Codigo editar
+                if (accion.equals("1")) {
+                    for (Habitat habitat : copiaHabitat) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el habitat que desea editar: \n");
+                        eleccion = input.nextInt();
+                        hab = copiaHabitat.get(eleccion - 1);
+
+                        input.nextLine();
+                        System.out.println("\nID: " + habitat.id);
+                        String nuevoID1 = input.nextLine();
+
+                        System.out.println("Tipo de suelo: " + habitat.tipoSuelo);
+                        String nuevoSuelo = input.nextLine();
+
+                        System.out.println("Vegetacion: " + habitat.vegetacion);
+                        String nuevaVege = input.nextLine();
+
+                        System.out.println("Tipo de jaula: " + habitat.tipoJaula);
+                        String nuevaJau = input.nextLine();
+
+                        while (true) {
+                            System.out.print("Desea guardar?:[Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        if (nuevoID1.isEmpty()) {
+                                        } else {
+                                            habitat.id = Integer.parseInt(nuevoID1);
+                                        }
+                                        if (nuevoSuelo.isEmpty()) {
+                                        } else habitat.tipoSuelo = nuevoSuelo;
+                                        if (nuevaVege.isEmpty()) {
+                                        } else habitat.vegetacion = nuevaVege;
+                                        if (nuevaJau.isEmpty()) {
+                                        } else habitat.tipoJaula = nuevaJau;
+                                    case "N":
+                                        break;
+                                }
+
+                                return;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                    }
+                    return;
+                }
+
+
+//Codigo eliminar
+                else if(accion.equals("2")) {
+                    for (Habitat habitat : copiaHabitat) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el habitat que desea eliminar: \n");
+                        eleccion = input.nextInt();
+                        hab = copiaHabitat.get(eleccion - 1);
+
+                        while (true) {
+                            System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        break;
+                                    case "N":
+                                        return;
+                                }
+                                break;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                        for (Bioma bioma : biomas) {
+                            Habitat finalHab = habitat;
+                            bioma.habitats.removeIf(habitat1 -> habitat1.id == finalHab.id);
+
+                        }
+                        for (Tecnico tecnico : tecnicos) {
+                            Habitat finalHab = habitat;
+                            tecnico.habitats.removeIf(habitat1 -> habitat1.id == finalHab.id);
+
+                        }
+                        for (Animal animal : animales) {
+                            if (animal.habitat != null && animal.habitat.id == habitat.id) {
+                                animal.habitat = null;
+                            }
+                        }
+                        habitats.remove(habitat);
+
+                        System.out.println("El habitat se ha eliminado correctamente");
+                    }
+                }
+
+                else return;
                 return;
-            }else{
+            }
+            else{
                 System.out.println("Opcion incorrecta");
             }
         }
@@ -17247,6 +18583,116 @@ public class SistemaZoologico {
                     i++;
                     System.out.println(i+". "+habitat);
                 }
+                //Menu editar - eliminar
+                String accion;
+                System.out.println("-----------------------------------------");
+                System.out.println("\nIndique la accion que desea realizar:\n");
+                System.out.println("1. Editar ");
+                System.out.println("2. Eliminar ");
+                System.out.println("0. Regresar al menú anterior" + "\n");
+                accion = input.next();
+                System.out.println("----------------------------------");
+
+//Codigo editar
+                if (accion.equals("1")) {
+                    for (Habitat habitat : copiaHabitat) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el habitat que desea editar: \n");
+                        eleccion = input.nextInt();
+                        hab = copiaHabitat.get(eleccion - 1);
+
+                        input.nextLine();
+                        System.out.println("\nID: " + habitat.id);
+                        String nuevoID1 = input.nextLine();
+
+                        System.out.println("Tipo de suelo: " + habitat.tipoSuelo);
+                        String nuevoSuelo = input.nextLine();
+
+                        System.out.println("Vegetacion: " + habitat.vegetacion);
+                        String nuevaVege = input.nextLine();
+
+                        System.out.println("Tipo de jaula: " + habitat.tipoJaula);
+                        String nuevaJau = input.nextLine();
+
+                        while (true) {
+                            System.out.print("Desea guardar?:[Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        if (nuevoID1.isEmpty()) {
+                                        } else {
+                                            habitat.id = Integer.parseInt(nuevoID1);
+                                        }
+                                        if (nuevoSuelo.isEmpty()) {
+                                        } else habitat.tipoSuelo = nuevoSuelo;
+                                        if (nuevaVege.isEmpty()) {
+                                        } else habitat.vegetacion = nuevaVege;
+                                        if (nuevaJau.isEmpty()) {
+                                        } else habitat.tipoJaula = nuevaJau;
+                                    case "N":
+                                        break;
+                                }
+
+                                return;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                    }
+                    return;
+                }
+
+
+//Codigo eliminar
+                else if(accion.equals("2")) {
+                    for (Habitat habitat : copiaHabitat) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el habitat que desea eliminar: \n");
+                        eleccion = input.nextInt();
+                        hab = copiaHabitat.get(eleccion - 1);
+
+                        while (true) {
+                            System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        break;
+                                    case "N":
+                                        return;
+                                }
+                                break;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                        for (Bioma bioma : biomas) {
+                            Habitat finalHab = habitat;
+                            bioma.habitats.removeIf(habitat1 -> habitat1.id == finalHab.id);
+
+                        }
+                        for (Tecnico tecnico : tecnicos) {
+                            Habitat finalHab = habitat;
+                            tecnico.habitats.removeIf(habitat1 -> habitat1.id == finalHab.id);
+
+                        }
+                        for (Animal animal : animales) {
+                            if (animal.habitat != null && animal.habitat.id == habitat.id) {
+                                animal.habitat = null;
+                            }
+                        }
+                        habitats.remove(habitat);
+
+                        System.out.println("El habitat se ha eliminado correctamente");
+                    }
+                }
+
+                else return;
                 return;
             }
             else if (option2.equals("2")) {
@@ -17255,12 +18701,123 @@ public class SistemaZoologico {
                 for (Habitat habitat : copiaHabitat) {
                     i++;
                     System.out.println(i+". "+habitat);
+                }//Menu editar - eliminar
+                String accion;
+                System.out.println("-----------------------------------------");
+                System.out.println("\nIndique la accion que desea realizar:\n");
+                System.out.println("1. Editar ");
+                System.out.println("2. Eliminar ");
+                System.out.println("0. Regresar al menú anterior" + "\n");
+                accion = input.next();
+                System.out.println("----------------------------------");
+
+//Codigo editar
+                if (accion.equals("1")) {
+                    for (Habitat habitat : copiaHabitat) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el habitat que desea editar: \n");
+                        eleccion = input.nextInt();
+                        hab = copiaHabitat.get(eleccion - 1);
+
+                        input.nextLine();
+                        System.out.println("\nID: " + habitat.id);
+                        String nuevoID1 = input.nextLine();
+
+                        System.out.println("Tipo de suelo: " + habitat.tipoSuelo);
+                        String nuevoSuelo = input.nextLine();
+
+                        System.out.println("Vegetacion: " + habitat.vegetacion);
+                        String nuevaVege = input.nextLine();
+
+                        System.out.println("Tipo de jaula: " + habitat.tipoJaula);
+                        String nuevaJau = input.nextLine();
+
+                        while (true) {
+                            System.out.print("Desea guardar?:[Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        if (nuevoID1.isEmpty()) {
+                                        } else {
+                                            habitat.id = Integer.parseInt(nuevoID1);
+                                        }
+                                        if (nuevoSuelo.isEmpty()) {
+                                        } else habitat.tipoSuelo = nuevoSuelo;
+                                        if (nuevaVege.isEmpty()) {
+                                        } else habitat.vegetacion = nuevaVege;
+                                        if (nuevaJau.isEmpty()) {
+                                        } else habitat.tipoJaula = nuevaJau;
+                                    case "N":
+                                        break;
+                                }
+
+                                return;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                    }
+                    return;
                 }
+
+
+//Codigo eliminar
+                else if(accion.equals("2")) {
+                    for (Habitat habitat : copiaHabitat) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el habitat que desea eliminar: \n");
+                        eleccion = input.nextInt();
+                        hab = copiaHabitat.get(eleccion - 1);
+
+                        while (true) {
+                            System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        break;
+                                    case "N":
+                                        return;
+                                }
+                                break;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                        for (Bioma bioma : biomas) {
+                            Habitat finalHab = habitat;
+                            bioma.habitats.removeIf(habitat1 -> habitat1.id == finalHab.id);
+
+                        }
+                        for (Tecnico tecnico : tecnicos) {
+                            Habitat finalHab = habitat;
+                            tecnico.habitats.removeIf(habitat1 -> habitat1.id == finalHab.id);
+
+                        }
+                        for (Animal animal : animales) {
+                            if (animal.habitat != null && animal.habitat.id == habitat.id) {
+                                animal.habitat = null;
+                            }
+                        }
+                        habitats.remove(habitat);
+
+                        System.out.println("El habitat se ha eliminado correctamente");
+                    }
+                }
+
+                else return;
                 return;
-            }else{
+            }
+            else{
                 System.out.println("Opcion incorrecta");
             }
-        } else {
+        }
+        else {
             return;
         }
     }
@@ -17292,7 +18849,8 @@ public class SistemaZoologico {
                     option1 = input.next();
                     if (!option1.equals("1") && !option1.equals("2") && !option1.equals("3") && !option1.equals("4")) {
                         System.out.println("Opcion incorrecta");
-                    } else if (option1.equals("1")) {
+                    }
+                    else if (option1.equals("1")) {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         int idBus = input.nextInt();
@@ -17734,6 +19292,7 @@ public class SistemaZoologico {
         }
     }
     public static void especieAnimal(int opcionValor, String especieBus) {
+        Animal ani = null;
         int i=0;
         ArrayList<Animal> especieAnimal = new ArrayList<>();
         for (Animal animal : animales) {
@@ -17763,19 +19322,231 @@ public class SistemaZoologico {
                 Collections.sort(especieAnimal, (comparadoresAnimal[0]));
                 for (Animal animal : especieAnimal) {
                     i++;
-                    System.out.println(i+". "+animal);
+                    System.out.println(i + ". " + animal);
                 }
-            } else if (option2.equals("2")) {
+                //Menu editar - eliminar
+                String accion;
+                System.out.println("-----------------------------------------");
+                System.out.println("\nIndique la accion que desea realizar:\n");
+                System.out.println("1. Editar ");
+                System.out.println("2. Eliminar ");
+                System.out.println("0. Regresar al menú anterior" + "\n");
+                accion = input.next();
+                System.out.println("----------------------------------");
+
+//Codigo editar
+                if (accion.equals("1")) {
+                    for (Animal animal : especieAnimal) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el animal que desea editar: \n");
+                        eleccion = input.nextInt();
+                        ani = especieAnimal.get(eleccion - 1);
+
+                        input.nextLine();
+                        System.out.println("\nID: " + animal.id);
+                        String nuevoID = input.nextLine();
+
+                        System.out.println("Nombre: " + animal.especie);
+                        String nuevoEspecie = input.nextLine();
+
+                        System.out.println("Nivel de agresividad: " + animal.nivelAgresividad);
+                        String nuevonivelAgresividad = input.nextLine();
+
+                        System.out.println("Alimentacion: " + animal.alimentacion);
+                        String nuevoAlimentacion = input.nextLine();
+
+                        while (true) {
+                            System.out.print("Desea guardar?:[Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        if (nuevoID.isEmpty()) {
+                                        } else animal.id = Integer.parseInt(nuevoID);
+                                        if (nuevoEspecie.isEmpty()) {
+                                        } else animal.especie = nuevoEspecie;
+                                        if (nuevonivelAgresividad.isEmpty()) {
+                                        } else animal.nivelAgresividad = Integer.parseInt(nuevonivelAgresividad);
+                                        if (nuevoAlimentacion.isEmpty()) {
+                                        } else animal.alimentacion = nuevoAlimentacion;
+                                    case "N":
+                                        break;
+                                }
+
+                                return;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                    }
+                    return;
+
+                }
+
+//Codigo eliminar
+                else if (accion.equals("2")) {
+                    for (Animal animal : especieAnimal) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el animal que desea eliminar: \n");
+                        eleccion = input.nextInt();
+                        ani = especieAnimal.get(eleccion - 1);
+
+                        while (true) {
+                            System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        break;
+                                    case "N":
+                                        return;
+                                }
+                                break;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                        for (Habitat habitat : habitats) {
+                            Animal finalAni = ani;
+                            habitat.animales.removeIf(animal1 -> animal1.id == finalAni.id);
+
+                        }
+                        for (ZooAmigo zooAmigo : zooAmigos) {
+                            Animal finalAni = ani;
+                            zooAmigo.animales.removeIf(animal1 -> animal1.id == finalAni.id);
+
+                        }
+
+                        habitats.remove(ani);
+
+                        System.out.println("El habitat se ha eliminado correctamente");
+                    }
+                }
+
+                else return;
+            }
+
+            else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(especieAnimal, Collections.reverseOrder(comparadoresAnimal[0]));
                 for (Animal animal : especieAnimal) {
                     i++;
                     System.out.println(i+". "+animal);
                 }
-            } else {
+                //Menu editar - eliminar
+                String accion;
+                System.out.println("-----------------------------------------");
+                System.out.println("\nIndique la accion que desea realizar:\n");
+                System.out.println("1. Editar ");
+                System.out.println("2. Eliminar ");
+                System.out.println("0. Regresar al menú anterior" + "\n");
+                accion = input.next();
+                System.out.println("----------------------------------");
+
+//Codigo editar
+                if (accion.equals("1")) {
+                    for (Animal animal : especieAnimal) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el animal que desea editar: \n");
+                        eleccion = input.nextInt();
+                        ani = especieAnimal.get(eleccion - 1);
+
+                        input.nextLine();
+                        System.out.println("\nID: " + animal.id);
+                        String nuevoID = input.nextLine();
+
+                        System.out.println("Nombre: " + animal.especie);
+                        String nuevoEspecie = input.nextLine();
+
+                        System.out.println("Nivel de agresividad: " + animal.nivelAgresividad);
+                        String nuevonivelAgresividad = input.nextLine();
+
+                        System.out.println("Alimentacion: " + animal.alimentacion);
+                        String nuevoAlimentacion = input.nextLine();
+
+                        while (true) {
+                            System.out.print("Desea guardar?:[Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        if (nuevoID.isEmpty()) {
+                                        } else animal.id = Integer.parseInt(nuevoID);
+                                        if (nuevoEspecie.isEmpty()) {
+                                        } else animal.especie = nuevoEspecie;
+                                        if (nuevonivelAgresividad.isEmpty()) {
+                                        } else animal.nivelAgresividad = Integer.parseInt(nuevonivelAgresividad);
+                                        if (nuevoAlimentacion.isEmpty()) {
+                                        } else animal.alimentacion = nuevoAlimentacion;
+                                    case "N":
+                                        break;
+                                }
+
+                                return;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                    }
+                    return;
+
+                }
+
+//Codigo eliminar
+                else if (accion.equals("2")) {
+                    for (Animal animal : especieAnimal) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el animal que desea eliminar: \n");
+                        eleccion = input.nextInt();
+                        ani = especieAnimal.get(eleccion - 1);
+
+                        while (true) {
+                            System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        break;
+                                    case "N":
+                                        return;
+                                }
+                                break;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                        for (Habitat habitat : habitats) {
+                            Animal finalAni = ani;
+                            habitat.animales.removeIf(animal1 -> animal1.id == finalAni.id);
+
+                        }
+                        for (ZooAmigo zooAmigo : zooAmigos) {
+                            Animal finalAni = ani;
+                            zooAmigo.animales.removeIf(animal1 -> animal1.id == finalAni.id);
+
+                        }
+
+                        habitats.remove(ani);
+
+                        System.out.println("El habitat se ha eliminado correctamente");
+                    }
+                }
+
+                else return;
+            }
+            else {
                 System.out.println("Opcion incorrecta");
             }
-        } else if (option.equals("2")) {
+        }
+        else if (option.equals("2")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
@@ -17789,17 +19560,228 @@ public class SistemaZoologico {
                     i++;
                     System.out.println(i+". "+animal);
                 }
-            } else if (option2.equals("2")) {
+                //Menu editar - eliminar
+                String accion;
+                System.out.println("-----------------------------------------");
+                System.out.println("\nIndique la accion que desea realizar:\n");
+                System.out.println("1. Editar ");
+                System.out.println("2. Eliminar ");
+                System.out.println("0. Regresar al menú anterior" + "\n");
+                accion = input.next();
+                System.out.println("----------------------------------");
+
+//Codigo editar
+                if (accion.equals("1")) {
+                    for (Animal animal : especieAnimal) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el animal que desea editar: \n");
+                        eleccion = input.nextInt();
+                        ani = especieAnimal.get(eleccion - 1);
+
+                        input.nextLine();
+                        System.out.println("\nID: " + animal.id);
+                        String nuevoID = input.nextLine();
+
+                        System.out.println("Nombre: " + animal.especie);
+                        String nuevoEspecie = input.nextLine();
+
+                        System.out.println("Nivel de agresividad: " + animal.nivelAgresividad);
+                        String nuevonivelAgresividad = input.nextLine();
+
+                        System.out.println("Alimentacion: " + animal.alimentacion);
+                        String nuevoAlimentacion = input.nextLine();
+
+                        while (true) {
+                            System.out.print("Desea guardar?:[Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        if (nuevoID.isEmpty()) {
+                                        } else animal.id = Integer.parseInt(nuevoID);
+                                        if (nuevoEspecie.isEmpty()) {
+                                        } else animal.especie = nuevoEspecie;
+                                        if (nuevonivelAgresividad.isEmpty()) {
+                                        } else animal.nivelAgresividad = Integer.parseInt(nuevonivelAgresividad);
+                                        if (nuevoAlimentacion.isEmpty()) {
+                                        } else animal.alimentacion = nuevoAlimentacion;
+                                    case "N":
+                                        break;
+                                }
+
+                                return;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                    }
+                    return;
+
+                }
+
+//Codigo eliminar
+                else if (accion.equals("2")) {
+                    for (Animal animal : especieAnimal) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el animal que desea eliminar: \n");
+                        eleccion = input.nextInt();
+                        ani = especieAnimal.get(eleccion - 1);
+
+                        while (true) {
+                            System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        break;
+                                    case "N":
+                                        return;
+                                }
+                                break;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                        for (Habitat habitat : habitats) {
+                            Animal finalAni = ani;
+                            habitat.animales.removeIf(animal1 -> animal1.id == finalAni.id);
+
+                        }
+                        for (ZooAmigo zooAmigo : zooAmigos) {
+                            Animal finalAni = ani;
+                            zooAmigo.animales.removeIf(animal1 -> animal1.id == finalAni.id);
+
+                        }
+
+                        habitats.remove(ani);
+
+                        System.out.println("El habitat se ha eliminado correctamente");
+                    }
+                }
+
+                else return;
+            }
+            else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(especieAnimal, Collections.reverseOrder(comparadoresAnimal[2]));
                 for (Animal animal : especieAnimal) {
                     i++;
                     System.out.println(i+". "+animal);
                 }
-            } else {
+                //Menu editar - eliminar
+                String accion;
+                System.out.println("-----------------------------------------");
+                System.out.println("\nIndique la accion que desea realizar:\n");
+                System.out.println("1. Editar ");
+                System.out.println("2. Eliminar ");
+                System.out.println("0. Regresar al menú anterior" + "\n");
+                accion = input.next();
+                System.out.println("----------------------------------");
+
+//Codigo editar
+                if (accion.equals("1")) {
+                    for (Animal animal : especieAnimal) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el animal que desea editar: \n");
+                        eleccion = input.nextInt();
+                        ani = especieAnimal.get(eleccion - 1);
+
+                        input.nextLine();
+                        System.out.println("\nID: " + animal.id);
+                        String nuevoID = input.nextLine();
+
+                        System.out.println("Nombre: " + animal.especie);
+                        String nuevoEspecie = input.nextLine();
+
+                        System.out.println("Nivel de agresividad: " + animal.nivelAgresividad);
+                        String nuevonivelAgresividad = input.nextLine();
+
+                        System.out.println("Alimentacion: " + animal.alimentacion);
+                        String nuevoAlimentacion = input.nextLine();
+
+                        while (true) {
+                            System.out.print("Desea guardar?:[Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        if (nuevoID.isEmpty()) {
+                                        } else animal.id = Integer.parseInt(nuevoID);
+                                        if (nuevoEspecie.isEmpty()) {
+                                        } else animal.especie = nuevoEspecie;
+                                        if (nuevonivelAgresividad.isEmpty()) {
+                                        } else animal.nivelAgresividad = Integer.parseInt(nuevonivelAgresividad);
+                                        if (nuevoAlimentacion.isEmpty()) {
+                                        } else animal.alimentacion = nuevoAlimentacion;
+                                    case "N":
+                                        break;
+                                }
+
+                                return;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                    }
+                    return;
+
+                }
+
+//Codigo eliminar
+                else if (accion.equals("2")) {
+                    for (Animal animal : especieAnimal) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el animal que desea eliminar: \n");
+                        eleccion = input.nextInt();
+                        ani = especieAnimal.get(eleccion - 1);
+
+                        while (true) {
+                            System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        break;
+                                    case "N":
+                                        return;
+                                }
+                                break;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                        for (Habitat habitat : habitats) {
+                            Animal finalAni = ani;
+                            habitat.animales.removeIf(animal1 -> animal1.id == finalAni.id);
+
+                        }
+                        for (ZooAmigo zooAmigo : zooAmigos) {
+                            Animal finalAni = ani;
+                            zooAmigo.animales.removeIf(animal1 -> animal1.id == finalAni.id);
+
+                        }
+
+                        habitats.remove(ani);
+
+                        System.out.println("El habitat se ha eliminado correctamente");
+                    }
+                }
+
+                else return;
+            }
+            else {
                 System.out.println("Opcion incorrecta");
             }
-        } else if (option.equals("3")) {
+        }
+        else if (option.equals("3")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
@@ -17813,14 +19795,224 @@ public class SistemaZoologico {
                     i++;
                     System.out.println(i+". "+animal);
                 }
-            } else if (option2.equals("2")) {
+                //Menu editar - eliminar
+                String accion;
+                System.out.println("-----------------------------------------");
+                System.out.println("\nIndique la accion que desea realizar:\n");
+                System.out.println("1. Editar ");
+                System.out.println("2. Eliminar ");
+                System.out.println("0. Regresar al menú anterior" + "\n");
+                accion = input.next();
+                System.out.println("----------------------------------");
+
+//Codigo editar
+                if (accion.equals("1")) {
+                    for (Animal animal : especieAnimal) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el animal que desea editar: \n");
+                        eleccion = input.nextInt();
+                        ani = especieAnimal.get(eleccion - 1);
+
+                        input.nextLine();
+                        System.out.println("\nID: " + animal.id);
+                        String nuevoID = input.nextLine();
+
+                        System.out.println("Nombre: " + animal.especie);
+                        String nuevoEspecie = input.nextLine();
+
+                        System.out.println("Nivel de agresividad: " + animal.nivelAgresividad);
+                        String nuevonivelAgresividad = input.nextLine();
+
+                        System.out.println("Alimentacion: " + animal.alimentacion);
+                        String nuevoAlimentacion = input.nextLine();
+
+                        while (true) {
+                            System.out.print("Desea guardar?:[Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        if (nuevoID.isEmpty()) {
+                                        } else animal.id = Integer.parseInt(nuevoID);
+                                        if (nuevoEspecie.isEmpty()) {
+                                        } else animal.especie = nuevoEspecie;
+                                        if (nuevonivelAgresividad.isEmpty()) {
+                                        } else animal.nivelAgresividad = Integer.parseInt(nuevonivelAgresividad);
+                                        if (nuevoAlimentacion.isEmpty()) {
+                                        } else animal.alimentacion = nuevoAlimentacion;
+                                    case "N":
+                                        break;
+                                }
+
+                                return;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                    }
+                    return;
+
+                }
+
+//Codigo eliminar
+                else if (accion.equals("2")) {
+                    for (Animal animal : especieAnimal) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el animal que desea eliminar: \n");
+                        eleccion = input.nextInt();
+                        ani = especieAnimal.get(eleccion - 1);
+
+                        while (true) {
+                            System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        break;
+                                    case "N":
+                                        return;
+                                }
+                                break;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                        for (Habitat habitat : habitats) {
+                            Animal finalAni = ani;
+                            habitat.animales.removeIf(animal1 -> animal1.id == finalAni.id);
+
+                        }
+                        for (ZooAmigo zooAmigo : zooAmigos) {
+                            Animal finalAni = ani;
+                            zooAmigo.animales.removeIf(animal1 -> animal1.id == finalAni.id);
+
+                        }
+
+                        habitats.remove(ani);
+
+                        System.out.println("El habitat se ha eliminado correctamente");
+                    }
+                }
+
+                else return;
+            }
+            else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(especieAnimal, Collections.reverseOrder(comparadoresAnimal[3]));
                 for (Animal animal : especieAnimal) {
                     i++;
                     System.out.println(i+". "+animal);
                 }
-            } else {
+                //Menu editar - eliminar
+                String accion;
+                System.out.println("-----------------------------------------");
+                System.out.println("\nIndique la accion que desea realizar:\n");
+                System.out.println("1. Editar ");
+                System.out.println("2. Eliminar ");
+                System.out.println("0. Regresar al menú anterior" + "\n");
+                accion = input.next();
+                System.out.println("----------------------------------");
+
+//Codigo editar
+                if (accion.equals("1")) {
+                    for (Animal animal : especieAnimal) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el animal que desea editar: \n");
+                        eleccion = input.nextInt();
+                        ani = especieAnimal.get(eleccion - 1);
+
+                        input.nextLine();
+                        System.out.println("\nID: " + animal.id);
+                        String nuevoID = input.nextLine();
+
+                        System.out.println("Nombre: " + animal.especie);
+                        String nuevoEspecie = input.nextLine();
+
+                        System.out.println("Nivel de agresividad: " + animal.nivelAgresividad);
+                        String nuevonivelAgresividad = input.nextLine();
+
+                        System.out.println("Alimentacion: " + animal.alimentacion);
+                        String nuevoAlimentacion = input.nextLine();
+
+                        while (true) {
+                            System.out.print("Desea guardar?:[Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        if (nuevoID.isEmpty()) {
+                                        } else animal.id = Integer.parseInt(nuevoID);
+                                        if (nuevoEspecie.isEmpty()) {
+                                        } else animal.especie = nuevoEspecie;
+                                        if (nuevonivelAgresividad.isEmpty()) {
+                                        } else animal.nivelAgresividad = Integer.parseInt(nuevonivelAgresividad);
+                                        if (nuevoAlimentacion.isEmpty()) {
+                                        } else animal.alimentacion = nuevoAlimentacion;
+                                    case "N":
+                                        break;
+                                }
+
+                                return;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                    }
+                    return;
+
+                }
+
+//Codigo eliminar
+                else if (accion.equals("2")) {
+                    for (Animal animal : especieAnimal) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el animal que desea eliminar: \n");
+                        eleccion = input.nextInt();
+                        ani = especieAnimal.get(eleccion - 1);
+
+                        while (true) {
+                            System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        break;
+                                    case "N":
+                                        return;
+                                }
+                                break;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                        for (Habitat habitat : habitats) {
+                            Animal finalAni = ani;
+                            habitat.animales.removeIf(animal1 -> animal1.id == finalAni.id);
+
+                        }
+                        for (ZooAmigo zooAmigo : zooAmigos) {
+                            Animal finalAni = ani;
+                            zooAmigo.animales.removeIf(animal1 -> animal1.id == finalAni.id);
+
+                        }
+
+                        habitats.remove(ani);
+
+                        System.out.println("El habitat se ha eliminado correctamente");
+                    }
+                }
+
+                else return;
+            }
+            else {
                 System.out.println("Opcion incorrecta");
             }
         }
@@ -17885,21 +20077,24 @@ public class SistemaZoologico {
                         i++;
                         System.out.println(i+". "+animal);
                     }
-                } else if (opcionValor == 2) {
+                }
+                else if (opcionValor == 2) {
                     System.out.println("Ascendente");
                     Collections.sort(nivelAgrMax, (comparadoresAnimal[0]));
                     for (Animal animal : nivelAgrMax) {
                         i++;
                         System.out.println(i+". "+animal);
                     }
-                } else if (opcionValor == 3) {
+                }
+                else if (opcionValor == 3) {
                     System.out.println("Ascendente");
                     Collections.sort(nivelAgrMin, (comparadoresAnimal[0]));
                     for (Animal animal : nivelAgrMin) {
                         i++;
                         System.out.println(i+". "+animal);
                     }
-                } else {
+                }
+                else {
                     System.out.println("Ascendente");
                     Collections.sort(nivelAgrRan, (comparadoresAnimal[0]));
                     for (Animal animal : nivelAgrRan) {
@@ -17907,7 +20102,8 @@ public class SistemaZoologico {
                         System.out.println(i+". "+animal);
                     }
                 }
-            } else if (option2.equals("2")) {
+            }
+            else if (option2.equals("2")) {
                 if (opcionValor == 1) {
                     System.out.println("Descendente");
                     Collections.sort(nivelAgrEx, Collections.reverseOrder(comparadoresAnimal[0]));
@@ -17938,7 +20134,8 @@ public class SistemaZoologico {
                     }
                 }
             }
-        } else if (option.equals("2")) {
+        }
+        else if (option.equals("2")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
@@ -18148,6 +20345,7 @@ public class SistemaZoologico {
         }
     }
     public static void alimentacionAnimal(int opcionValor, String alimentacionBus) {
+        Animal ani = null;
         ArrayList<Animal> alimentacionAni = new ArrayList<>();
         int i=0;
         for (Animal animal : animales) {
@@ -18179,17 +20377,228 @@ public class SistemaZoologico {
                     i++;
                     System.out.println(i+". "+animal);
                 }
-            } else if (option2.equals("2")) {
+                //Menu editar - eliminar
+                String accion;
+                System.out.println("-----------------------------------------");
+                System.out.println("\nIndique la accion que desea realizar:\n");
+                System.out.println("1. Editar ");
+                System.out.println("2. Eliminar ");
+                System.out.println("0. Regresar al menú anterior" + "\n");
+                accion = input.next();
+                System.out.println("----------------------------------");
+
+//Codigo editar
+                if (accion.equals("1")) {
+                    for (Animal animal : alimentacionAni) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el animal que desea editar: \n");
+                        eleccion = input.nextInt();
+                        ani = alimentacionAni.get(eleccion - 1);
+
+                        input.nextLine();
+                        System.out.println("\nID: " + animal.id);
+                        String nuevoID = input.nextLine();
+
+                        System.out.println("Nombre: " + animal.especie);
+                        String nuevoEspecie = input.nextLine();
+
+                        System.out.println("Nivel de agresividad: " + animal.nivelAgresividad);
+                        String nuevonivelAgresividad = input.nextLine();
+
+                        System.out.println("Alimentacion: " + animal.alimentacion);
+                        String nuevoAlimentacion = input.nextLine();
+
+                        while (true) {
+                            System.out.print("Desea guardar?:[Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        if (nuevoID.isEmpty()) {
+                                        } else animal.id = Integer.parseInt(nuevoID);
+                                        if (nuevoEspecie.isEmpty()) {
+                                        } else animal.especie = nuevoEspecie;
+                                        if (nuevonivelAgresividad.isEmpty()) {
+                                        } else animal.nivelAgresividad = Integer.parseInt(nuevonivelAgresividad);
+                                        if (nuevoAlimentacion.isEmpty()) {
+                                        } else animal.alimentacion = nuevoAlimentacion;
+                                    case "N":
+                                        break;
+                                }
+
+                                return;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                    }
+                    return;
+
+                }
+
+//Codigo eliminar
+                else if (accion.equals("2")) {
+                    for (Animal animal : alimentacionAni) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el animal que desea eliminar: \n");
+                        eleccion = input.nextInt();
+                        ani = alimentacionAni.get(eleccion - 1);
+
+                        while (true) {
+                            System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        break;
+                                    case "N":
+                                        return;
+                                }
+                                break;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                        for (Habitat habitat : habitats) {
+                            Animal finalAni = ani;
+                            habitat.animales.removeIf(animal1 -> animal1.id == finalAni.id);
+
+                        }
+                        for (ZooAmigo zooAmigo : zooAmigos) {
+                            Animal finalAni = ani;
+                            zooAmigo.animales.removeIf(animal1 -> animal1.id == finalAni.id);
+
+                        }
+
+                        habitats.remove(ani);
+
+                        System.out.println("El habitat se ha eliminado correctamente");
+                    }
+                }
+
+                else return;
+            }
+            else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(alimentacionAni, Collections.reverseOrder(comparadoresAnimal[0]));
                 for (Animal animal : alimentacionAni) {
                     i++;
                     System.out.println(i+". "+animal);
                 }
-            } else {
+                //Menu editar - eliminar
+                String accion;
+                System.out.println("-----------------------------------------");
+                System.out.println("\nIndique la accion que desea realizar:\n");
+                System.out.println("1. Editar ");
+                System.out.println("2. Eliminar ");
+                System.out.println("0. Regresar al menú anterior" + "\n");
+                accion = input.next();
+                System.out.println("----------------------------------");
+
+//Codigo editar
+                if (accion.equals("1")) {
+                    for (Animal animal : alimentacionAni) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el animal que desea editar: \n");
+                        eleccion = input.nextInt();
+                        ani = alimentacionAni.get(eleccion - 1);
+
+                        input.nextLine();
+                        System.out.println("\nID: " + animal.id);
+                        String nuevoID = input.nextLine();
+
+                        System.out.println("Nombre: " + animal.especie);
+                        String nuevoEspecie = input.nextLine();
+
+                        System.out.println("Nivel de agresividad: " + animal.nivelAgresividad);
+                        String nuevonivelAgresividad = input.nextLine();
+
+                        System.out.println("Alimentacion: " + animal.alimentacion);
+                        String nuevoAlimentacion = input.nextLine();
+
+                        while (true) {
+                            System.out.print("Desea guardar?:[Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        if (nuevoID.isEmpty()) {
+                                        } else animal.id = Integer.parseInt(nuevoID);
+                                        if (nuevoEspecie.isEmpty()) {
+                                        } else animal.especie = nuevoEspecie;
+                                        if (nuevonivelAgresividad.isEmpty()) {
+                                        } else animal.nivelAgresividad = Integer.parseInt(nuevonivelAgresividad);
+                                        if (nuevoAlimentacion.isEmpty()) {
+                                        } else animal.alimentacion = nuevoAlimentacion;
+                                    case "N":
+                                        break;
+                                }
+
+                                return;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                    }
+                    return;
+
+                }
+
+//Codigo eliminar
+                else if (accion.equals("2")) {
+                    for (Animal animal : alimentacionAni) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el animal que desea eliminar: \n");
+                        eleccion = input.nextInt();
+                        ani = alimentacionAni.get(eleccion - 1);
+
+                        while (true) {
+                            System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        break;
+                                    case "N":
+                                        return;
+                                }
+                                break;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                        for (Habitat habitat : habitats) {
+                            Animal finalAni = ani;
+                            habitat.animales.removeIf(animal1 -> animal1.id == finalAni.id);
+
+                        }
+                        for (ZooAmigo zooAmigo : zooAmigos) {
+                            Animal finalAni = ani;
+                            zooAmigo.animales.removeIf(animal1 -> animal1.id == finalAni.id);
+
+                        }
+
+                        habitats.remove(ani);
+
+                        System.out.println("El habitat se ha eliminado correctamente");
+                    }
+                }
+
+                else return;
+            }
+            else {
                 System.out.println("Opcion incorrecta");
             }
-        } else if (option.equals("2")) {
+        }
+        else if (option.equals("2")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
@@ -18203,17 +20612,228 @@ public class SistemaZoologico {
                     i++;
                     System.out.println(i+". "+animal);
                 }
-            } else if (option2.equals("2")) {
+                //Menu editar - eliminar
+                String accion;
+                System.out.println("-----------------------------------------");
+                System.out.println("\nIndique la accion que desea realizar:\n");
+                System.out.println("1. Editar ");
+                System.out.println("2. Eliminar ");
+                System.out.println("0. Regresar al menú anterior" + "\n");
+                accion = input.next();
+                System.out.println("----------------------------------");
+
+//Codigo editar
+                if (accion.equals("1")) {
+                    for (Animal animal : alimentacionAni) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el animal que desea editar: \n");
+                        eleccion = input.nextInt();
+                        ani = alimentacionAni.get(eleccion - 1);
+
+                        input.nextLine();
+                        System.out.println("\nID: " + animal.id);
+                        String nuevoID = input.nextLine();
+
+                        System.out.println("Nombre: " + animal.especie);
+                        String nuevoEspecie = input.nextLine();
+
+                        System.out.println("Nivel de agresividad: " + animal.nivelAgresividad);
+                        String nuevonivelAgresividad = input.nextLine();
+
+                        System.out.println("Alimentacion: " + animal.alimentacion);
+                        String nuevoAlimentacion = input.nextLine();
+
+                        while (true) {
+                            System.out.print("Desea guardar?:[Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        if (nuevoID.isEmpty()) {
+                                        } else animal.id = Integer.parseInt(nuevoID);
+                                        if (nuevoEspecie.isEmpty()) {
+                                        } else animal.especie = nuevoEspecie;
+                                        if (nuevonivelAgresividad.isEmpty()) {
+                                        } else animal.nivelAgresividad = Integer.parseInt(nuevonivelAgresividad);
+                                        if (nuevoAlimentacion.isEmpty()) {
+                                        } else animal.alimentacion = nuevoAlimentacion;
+                                    case "N":
+                                        break;
+                                }
+
+                                return;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                    }
+                    return;
+
+                }
+
+//Codigo eliminar
+                else if (accion.equals("2")) {
+                    for (Animal animal : alimentacionAni) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el animal que desea eliminar: \n");
+                        eleccion = input.nextInt();
+                        ani = alimentacionAni.get(eleccion - 1);
+
+                        while (true) {
+                            System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        break;
+                                    case "N":
+                                        return;
+                                }
+                                break;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                        for (Habitat habitat : habitats) {
+                            Animal finalAni = ani;
+                            habitat.animales.removeIf(animal1 -> animal1.id == finalAni.id);
+
+                        }
+                        for (ZooAmigo zooAmigo : zooAmigos) {
+                            Animal finalAni = ani;
+                            zooAmigo.animales.removeIf(animal1 -> animal1.id == finalAni.id);
+
+                        }
+
+                        habitats.remove(ani);
+
+                        System.out.println("El habitat se ha eliminado correctamente");
+                    }
+                }
+
+                else return;
+            }
+            else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(alimentacionAni, Collections.reverseOrder(comparadoresAnimal[1]));
                 for (Animal animal : alimentacionAni) {
                     i++;
                     System.out.println(i+". "+animal);
                 }
-            } else {
+                //Menu editar - eliminar
+                String accion;
+                System.out.println("-----------------------------------------");
+                System.out.println("\nIndique la accion que desea realizar:\n");
+                System.out.println("1. Editar ");
+                System.out.println("2. Eliminar ");
+                System.out.println("0. Regresar al menú anterior" + "\n");
+                accion = input.next();
+                System.out.println("----------------------------------");
+
+//Codigo editar
+                if (accion.equals("1")) {
+                    for (Animal animal : alimentacionAni) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el animal que desea editar: \n");
+                        eleccion = input.nextInt();
+                        ani = alimentacionAni.get(eleccion - 1);
+
+                        input.nextLine();
+                        System.out.println("\nID: " + animal.id);
+                        String nuevoID = input.nextLine();
+
+                        System.out.println("Nombre: " + animal.especie);
+                        String nuevoEspecie = input.nextLine();
+
+                        System.out.println("Nivel de agresividad: " + animal.nivelAgresividad);
+                        String nuevonivelAgresividad = input.nextLine();
+
+                        System.out.println("Alimentacion: " + animal.alimentacion);
+                        String nuevoAlimentacion = input.nextLine();
+
+                        while (true) {
+                            System.out.print("Desea guardar?:[Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        if (nuevoID.isEmpty()) {
+                                        } else animal.id = Integer.parseInt(nuevoID);
+                                        if (nuevoEspecie.isEmpty()) {
+                                        } else animal.especie = nuevoEspecie;
+                                        if (nuevonivelAgresividad.isEmpty()) {
+                                        } else animal.nivelAgresividad = Integer.parseInt(nuevonivelAgresividad);
+                                        if (nuevoAlimentacion.isEmpty()) {
+                                        } else animal.alimentacion = nuevoAlimentacion;
+                                    case "N":
+                                        break;
+                                }
+
+                                return;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                    }
+                    return;
+
+                }
+
+//Codigo eliminar
+                else if (accion.equals("2")) {
+                    for (Animal animal : alimentacionAni) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el animal que desea eliminar: \n");
+                        eleccion = input.nextInt();
+                        ani = alimentacionAni.get(eleccion - 1);
+
+                        while (true) {
+                            System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        break;
+                                    case "N":
+                                        return;
+                                }
+                                break;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                        for (Habitat habitat : habitats) {
+                            Animal finalAni = ani;
+                            habitat.animales.removeIf(animal1 -> animal1.id == finalAni.id);
+
+                        }
+                        for (ZooAmigo zooAmigo : zooAmigos) {
+                            Animal finalAni = ani;
+                            zooAmigo.animales.removeIf(animal1 -> animal1.id == finalAni.id);
+
+                        }
+
+                        habitats.remove(ani);
+
+                        System.out.println("El habitat se ha eliminado correctamente");
+                    }
+                }
+
+                else return;
+            }
+            else {
                 System.out.println("Opcion incorrecta");
             }
-        } else if (option.equals("3")) {
+        }
+        else if (option.equals("3")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
@@ -18227,14 +20847,224 @@ public class SistemaZoologico {
                     i++;
                     System.out.println(i+". "+animal);
                 }
-            } else if (option2.equals("2")) {
+                //Menu editar - eliminar
+                String accion;
+                System.out.println("-----------------------------------------");
+                System.out.println("\nIndique la accion que desea realizar:\n");
+                System.out.println("1. Editar ");
+                System.out.println("2. Eliminar ");
+                System.out.println("0. Regresar al menú anterior" + "\n");
+                accion = input.next();
+                System.out.println("----------------------------------");
+
+//Codigo editar
+                if (accion.equals("1")) {
+                    for (Animal animal : alimentacionAni) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el animal que desea editar: \n");
+                        eleccion = input.nextInt();
+                        ani = alimentacionAni.get(eleccion - 1);
+
+                        input.nextLine();
+                        System.out.println("\nID: " + animal.id);
+                        String nuevoID = input.nextLine();
+
+                        System.out.println("Nombre: " + animal.especie);
+                        String nuevoEspecie = input.nextLine();
+
+                        System.out.println("Nivel de agresividad: " + animal.nivelAgresividad);
+                        String nuevonivelAgresividad = input.nextLine();
+
+                        System.out.println("Alimentacion: " + animal.alimentacion);
+                        String nuevoAlimentacion = input.nextLine();
+
+                        while (true) {
+                            System.out.print("Desea guardar?:[Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        if (nuevoID.isEmpty()) {
+                                        } else animal.id = Integer.parseInt(nuevoID);
+                                        if (nuevoEspecie.isEmpty()) {
+                                        } else animal.especie = nuevoEspecie;
+                                        if (nuevonivelAgresividad.isEmpty()) {
+                                        } else animal.nivelAgresividad = Integer.parseInt(nuevonivelAgresividad);
+                                        if (nuevoAlimentacion.isEmpty()) {
+                                        } else animal.alimentacion = nuevoAlimentacion;
+                                    case "N":
+                                        break;
+                                }
+
+                                return;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                    }
+                    return;
+
+                }
+
+//Codigo eliminar
+                else if (accion.equals("2")) {
+                    for (Animal animal : alimentacionAni) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el animal que desea eliminar: \n");
+                        eleccion = input.nextInt();
+                        ani = alimentacionAni.get(eleccion - 1);
+
+                        while (true) {
+                            System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        break;
+                                    case "N":
+                                        return;
+                                }
+                                break;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                        for (Habitat habitat : habitats) {
+                            Animal finalAni = ani;
+                            habitat.animales.removeIf(animal1 -> animal1.id == finalAni.id);
+
+                        }
+                        for (ZooAmigo zooAmigo : zooAmigos) {
+                            Animal finalAni = ani;
+                            zooAmigo.animales.removeIf(animal1 -> animal1.id == finalAni.id);
+
+                        }
+
+                        habitats.remove(ani);
+
+                        System.out.println("El habitat se ha eliminado correctamente");
+                    }
+                }
+
+                else return;
+            }
+            else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(alimentacionAni, Collections.reverseOrder(comparadoresAnimal[2]));
                 for (Animal animal : alimentacionAni) {
                     i++;
                     System.out.println(i+". "+animal);
                 }
-            } else {
+                //Menu editar - eliminar
+                String accion;
+                System.out.println("-----------------------------------------");
+                System.out.println("\nIndique la accion que desea realizar:\n");
+                System.out.println("1. Editar ");
+                System.out.println("2. Eliminar ");
+                System.out.println("0. Regresar al menú anterior" + "\n");
+                accion = input.next();
+                System.out.println("----------------------------------");
+
+//Codigo editar
+                if (accion.equals("1")) {
+                    for (Animal animal : alimentacionAni) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el animal que desea editar: \n");
+                        eleccion = input.nextInt();
+                        ani = alimentacionAni.get(eleccion - 1);
+
+                        input.nextLine();
+                        System.out.println("\nID: " + animal.id);
+                        String nuevoID = input.nextLine();
+
+                        System.out.println("Nombre: " + animal.especie);
+                        String nuevoEspecie = input.nextLine();
+
+                        System.out.println("Nivel de agresividad: " + animal.nivelAgresividad);
+                        String nuevonivelAgresividad = input.nextLine();
+
+                        System.out.println("Alimentacion: " + animal.alimentacion);
+                        String nuevoAlimentacion = input.nextLine();
+
+                        while (true) {
+                            System.out.print("Desea guardar?:[Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        if (nuevoID.isEmpty()) {
+                                        } else animal.id = Integer.parseInt(nuevoID);
+                                        if (nuevoEspecie.isEmpty()) {
+                                        } else animal.especie = nuevoEspecie;
+                                        if (nuevonivelAgresividad.isEmpty()) {
+                                        } else animal.nivelAgresividad = Integer.parseInt(nuevonivelAgresividad);
+                                        if (nuevoAlimentacion.isEmpty()) {
+                                        } else animal.alimentacion = nuevoAlimentacion;
+                                    case "N":
+                                        break;
+                                }
+
+                                return;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                    }
+                    return;
+
+                }
+
+//Codigo eliminar
+                else if (accion.equals("2")) {
+                    for (Animal animal : alimentacionAni) {
+                        int eleccion;
+                        System.out.println("------------------------------------------");
+                        System.out.println("Escoja el animal que desea eliminar: \n");
+                        eleccion = input.nextInt();
+                        ani = alimentacionAni.get(eleccion - 1);
+
+                        while (true) {
+                            System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+                            String optionE = input.next();
+                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                switch (optionE.toUpperCase()) {
+                                    case "Y":
+                                        break;
+                                    case "N":
+                                        return;
+                                }
+                                break;
+                            } else {
+                                System.out.println("Opcion invalida\n");
+                            }
+                        }
+
+                        for (Habitat habitat : habitats) {
+                            Animal finalAni = ani;
+                            habitat.animales.removeIf(animal1 -> animal1.id == finalAni.id);
+
+                        }
+                        for (ZooAmigo zooAmigo : zooAmigos) {
+                            Animal finalAni = ani;
+                            zooAmigo.animales.removeIf(animal1 -> animal1.id == finalAni.id);
+
+                        }
+
+                        habitats.remove(ani);
+
+                        System.out.println("El habitat se ha eliminado correctamente");
+                    }
+                }
+
+                else return;
+            }
+            else {
                 System.out.println("Opcion incorrecta");
             }
         }
