@@ -325,10 +325,12 @@ public class SistemaZoologico {
         input.nextLine();
         System.out.println("\nNIT: "+ zoologico.nit);
         String nuevoNIT = input.nextLine();
-        for (Zoologico zoo : zoologicos) {
-            if (zoo.nit.replace(".", "").equals(nuevoNIT.replace(".", ""))){
-                System.out.println("ERROR: Ya existe un zoologico registrado con este NIT.");
-                return;
+        if (!nuevoNIT.isEmpty()) {
+            for (Zoologico zoo : zoologicos) {
+                if (zoo.nit.replace(".", "").equals(nuevoNIT.replace(".", ""))){
+                    System.out.println("ERROR: Ya existe un zoologico registrado con este NIT.");
+                    return;
+                }
             }
         }
 
@@ -337,10 +339,12 @@ public class SistemaZoologico {
 
         System.out.println("Siglas: "+ zoologico.siglas);
         String nuevoSiglas = input.nextLine();
-        for (Zoologico zoo : zoologicos) {
-            if (zoo.siglas.equalsIgnoreCase(nuevoSiglas)){
-                System.out.println("ERROR: Ya existe un zoologico registrado con estas siglas.");
-                return;
+        if (!nuevoSiglas.isEmpty()) {
+            for (Zoologico zoo : zoologicos) {
+                if (zoo.siglas.equalsIgnoreCase(nuevoSiglas)){
+                    System.out.println("ERROR: Ya existe un zoologico registrado con estas siglas.");
+                    return;
+                }
             }
         }
 
@@ -641,10 +645,12 @@ public class SistemaZoologico {
         input.nextLine();
         System.out.println("\nID: "+ bioma.id);
         String nuevoID1 = input.nextLine();
-        for (Bioma bio : biomas) {
-            if (bio.id == Integer.parseInt(nuevoID1)){
-                System.out.println("ERROR: Ya existe un bioma registrado con este ID.");
-                return;
+        if (!nuevoID1.isEmpty()) {
+            for (Bioma bio : biomas) {
+                if (bio.id == Integer.parseInt(nuevoID1)){
+                    System.out.println("ERROR: Ya existe un bioma registrado con este ID.");
+                    return;
+                }
             }
         }
 
@@ -944,10 +950,12 @@ public class SistemaZoologico {
         input.nextLine();
         System.out.println("\nID: "+ habitat.id);
         String nuevoID1 = input.nextLine();
-        for (Habitat hab : habitats) {
-            if (hab.id == Integer.parseInt(nuevoID1)){
-                System.out.println("ERROR: Ya existe un habitat registrado con este ID.");
-                return;
+        if (!nuevoID1.isEmpty()) {
+            for (Habitat hab : habitats) {
+                if (hab.id == Integer.parseInt(nuevoID1)){
+                    System.out.println("ERROR: Ya existe un habitat registrado con este ID.");
+                    return;
+                }
             }
         }
 
