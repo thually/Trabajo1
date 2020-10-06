@@ -34,8 +34,26 @@ public class Testing {
         JSONObject aniDetails = (JSONObject) aniJSON.get("animal");
         System.out.println(aniDetails +"\n");
         String idHab = (String) aniDetails.get("ID Habitat");
+        int idAnimal = (int) aniDetails.get("id");
         System.out.println(idHab);
+        System.out.println(idAnimal);
         System.out.println(new Animal(aniJSON));
-        System.out.println("--------------");
+
+        System.out.println("----------------\n");
+
+        Bioma bioma = new Bioma(301, 123.542,"ffff","gggg");
+        bioma.profesionales.add(new Profesional(201, "eee", "1200", "4000"));
+        bioma.profesionales.add(new Profesional(202, "eee", "1200", "4000"));
+        bioma.profesionales.add(new Profesional(203, "eee", "1200", "4000"));
+        bioma.zoologico = zoologico;
+        bioma.habitats.add(new Habitat(40, "qqqq", "rrrrr","pppp"));
+        bioma.habitats.add(new Habitat(41, "qqqq", "rrrrr","pppp"));
+        bioma.habitats.add(new Habitat(42, "qqqq", "rrrrr","pppp"));
+
+        JSONObject bioObj = bioma.toJSONObj();
+        System.out.println(bioObj);
+        System.out.println(bioma);
+        Bioma biomaJava = new Bioma(bioObj);
+        System.out.println(biomaJava);
     }
 }
