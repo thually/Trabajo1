@@ -325,12 +325,24 @@ public class SistemaZoologico {
         input.nextLine();
         System.out.println("\nNIT: "+ zoologico.nit);
         String nuevoNIT = input.nextLine();
+        for (Zoologico zoo : zoologicos) {
+            if (zoo.nit.replace(".", "").equals(nuevoNIT.replace(".", ""))){
+                System.out.println("ERROR: Ya existe un zoologico registrado con este NIT.");
+                return;
+            }
+        }
 
         System.out.println("Nombre: "+ zoologico.nombre);
         String nuevoNombre = input.nextLine();
 
         System.out.println("Siglas: "+ zoologico.siglas);
         String nuevoSiglas = input.nextLine();
+        for (Zoologico zoo : zoologicos) {
+            if (zoo.siglas.equalsIgnoreCase(nuevoSiglas)){
+                System.out.println("ERROR: Ya existe un zoologico registrado con estas siglas.");
+                return;
+            }
+        }
 
         System.out.println("Ciudad: "+ zoologico.ciudad);
         String nuevoCiudad = input.nextLine();
@@ -629,6 +641,12 @@ public class SistemaZoologico {
         input.nextLine();
         System.out.println("\nID: "+ bioma.id);
         String nuevoID1 = input.nextLine();
+        for (Bioma bio : biomas) {
+            if (bio.id == Integer.parseInt(nuevoID1)){
+                System.out.println("ERROR: Ya existe un bioma registrado con este ID.");
+                return;
+            }
+        }
 
         System.out.println("Temperatura: "+ bioma.temperatura);
         String nuevaTemp1 = input.nextLine();
@@ -926,6 +944,12 @@ public class SistemaZoologico {
         input.nextLine();
         System.out.println("\nID: "+ habitat.id);
         String nuevoID1 = input.nextLine();
+        for (Habitat hab : habitats) {
+            if (hab.id == Integer.parseInt(nuevoID1)){
+                System.out.println("ERROR: Ya existe un habitat registrado con este ID.");
+                return;
+            }
+        }
 
         System.out.println("Tipo de suelo: "+ habitat.tipoSuelo);
         String nuevoSuelo = input.nextLine();
