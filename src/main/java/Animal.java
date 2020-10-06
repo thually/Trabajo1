@@ -1,10 +1,14 @@
+import org.json.simple.*;
+
 public class Animal {
     int id;
     String especie; // Sea un Leon, foca, etc
     int nivelAgresividad; // Se mide del 0 al 5, siendo por ejemplo 0 un gorrion y 5 un leon
     String alimentacion; // Carnivoro, Hervivoro, Omnivoro.
     Habitat habitat;
+    String idHab = "";
     ZooAmigo zooAmigo;
+    String idZooA = "";
 
     public Animal(int id, String especie, int nivelAgresividad, String alimentacion) {
         this.id = id;
@@ -20,6 +24,36 @@ public class Animal {
     public static void setZooAmigo(ZooAmigo nuevoZooAmigo, Animal animal){
        nuevoZooAmigo.animales.add(animal);
         animal.zooAmigo = nuevoZooAmigo;
+    }
+
+    public Animal(JSONObject toJavaObj){
+        JSONObject animal = (JSONObject) toJavaObj.get("animal");
+        this.id = (int) animal.get("id");
+        this.especie = (String) animal.get("especie");
+        this.nivelAgresividad = (int) animal.get("nivelAgresividad");
+        this.alimentacion = (String) animal.get("alimentacion");
+        this.idHab = (String) animal.get("ID Habitat");
+        this.idZooA = (String) animal.get("ID zooAmi");
+    }
+
+    public JSONObject toJSONObj(){
+        if (habitat == null) idHab = "N/A";
+        else idHab = Integer.toString(habitat.id);
+        if (zooAmigo == null) idZooA = "N/A";
+        else idZooA = Integer.toString(zooAmigo.cedula);
+
+        JSONObject aniDetails = new JSONObject();
+        aniDetails.put("id", id);
+        aniDetails.put("especie", especie);
+        aniDetails.put("nivelAgresividad", nivelAgresividad);
+        aniDetails.put("alimentacion", alimentacion);
+        aniDetails.put("ID Habitat", idHab);
+        aniDetails.put("ID zooAmi", idZooA);
+
+        JSONObject animalObj = new JSONObject();
+        animalObj.put("animal", aniDetails);
+
+        return animalObj;
     }
 
     @Override

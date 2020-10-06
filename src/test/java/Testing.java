@@ -22,5 +22,20 @@ public class Testing {
         String StrBiomas = (String) zooDetails.get("ID Biomas");
         String[] a = StrBiomas.split(" ");
         System.out.println(Arrays.toString(a));
+        System.out.println(new Zoologico(zooJSON));
+
+        System.out.println("--------");
+        Animal animal = new Animal(123, "sss",4,"jjjj");
+        animal.habitat = new Habitat(10, "www", "tttt","rrrr");
+        animal.zooAmigo = new ZooAmigo(11, "zzzz1", "3103129103");
+
+        JSONObject aniJSON = animal.toJSONObj();
+        System.out.println(aniJSON +"\n");
+        JSONObject aniDetails = (JSONObject) aniJSON.get("animal");
+        System.out.println(aniDetails +"\n");
+        String idHab = (String) aniDetails.get("ID Habitat");
+        System.out.println(idHab);
+        System.out.println(new Animal(aniJSON));
+        System.out.println("--------------");
     }
 }
