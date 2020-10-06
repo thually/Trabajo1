@@ -426,6 +426,9 @@ public class SistemaZoologico {
                         Bioma finalBiomaNuevo = biomaNuevo;
                         zoo.biomas.removeIf(bio -> (bio.id == finalBiomaNuevo.id)); // elimina relacion existente entre bioma y zoo
                     }
+                    for (Profesional pro : biomaNuevo.profesionales){ //Si relaciono un biomaNuevo con zoologico, todos los prof. asociados a dicho bioma tendran que estar asociados al mismo zoologico
+                        pro.zoologico = zoologico;
+                    }
                     zoologico.setBiomas(biomaNuevo, zoologico);
                     System.out.println("\nMENSAJE: Zoologico y bioma relacionados correctamente");
                     break;
@@ -458,6 +461,10 @@ public class SistemaZoologico {
                         Profesional finalProNuevo = proNuevo;
                         zoo.profesionales.removeIf(pro -> (pro.cedula == finalProNuevo.cedula));
                     }
+                    Zoologico finalZoologico1 = zoologico;
+                    proNuevo.biomas.removeIf(bio -> bio.zoologico != null && !bio.zoologico.nit.replace(".", "").equals(finalZoologico1.nit.replace(".", "")));
+                    // Si asocio zoologico con proNuevo, voy a eliminar los biomas en los que trabaja proNuevo si estos NO pertenecen a zoologico.
+
                     zoologico.setProfesional(proNuevo, zoologico);
                     System.out.println("\nMENSAJE: Zoologico y profesional relacionados correctamente");
                     break;
@@ -490,6 +497,11 @@ public class SistemaZoologico {
                         ZooAmigo finalZANuevo = nuevoZooAmigo;
                         zoo.zooAmigos.removeIf(za -> (za.cedula == finalZANuevo.cedula));
                     }
+                    Zoologico finalZoologico = zoologico;
+                    nuevoZooAmigo.animales.removeIf(ani -> ani.habitat != null && ani.habitat.bioma != null && ani.habitat.bioma.zoologico != null &&
+                            !ani.habitat.bioma.zoologico.nit.replace(".", "").equals(finalZoologico.nit.replace(".", "")));
+                    // Si asocio zoologico con nuevoZooAmigo, voy a eliminar los animales con los que esta relacionado el zooamigo si estos NO pertenecen a zoologico.
+
                     zoologico.setZooAmigo(nuevoZooAmigo, zoologico);
                     System.out.println("\nMENSAJE: Zoologico y zooAmigo relacionados correctamente");
                     break;
@@ -740,6 +752,10 @@ public class SistemaZoologico {
                         Bioma finalBiomaNuevo = bioma;
                         zoo.biomas.removeIf(bio -> (bio.id == finalBiomaNuevo.id));
                     }
+                    for (Profesional pro : bioma.profesionales){ //Si relaciono un bioma con ZooNuevo, todos los prof. asociados a dicho bioma tendran que estar asociados al mismo zoologico
+                        pro.zoologico = ZooNuevo;
+                    }
+
                     bioma.setZoo(ZooNuevo, bioma);
                     System.out.println("\nMENSAJE: Bioma y zoologico relacionados correctamente");
                     break;
@@ -772,6 +788,10 @@ public class SistemaZoologico {
                     bioma.profesionales.removeIf(pro -> (pro.cedula == finalProNuevo.cedula));
                     Bioma finalBioma = bioma;
                     proNuevo.biomas.removeIf(bio -> (bio.id == finalBioma.id));
+
+                    if (bioma.zoologico != null) proNuevo.zoologico = bioma.zoologico; // El nuevo zoologico de proNuevo sera el zoologico al que pertenece el bioma al que entrara a trabajar.
+                    proNuevo.biomas.removeIf(bio -> bio.zoologico != null && !bio.zoologico.nit.replace(".", "").equals(finalBioma.zoologico.nit.replace(".", "")));
+                    // Si asocio bioma con proNuevo, voy a eliminar los biomas en los que trabaja proNuevo si estos NO pertenecen al zoologico al que pertenece bioma.
 
                     bioma.setProfesional(proNuevo, bioma);
                     System.out.println("\nMENSAJE: Bioma y profesional relacionados correctamente");
@@ -1820,6 +1840,12 @@ public class SistemaZoologico {
                     Profesional finalProfesional = profesional;
                     biomaNuevo.profesionales.removeIf(profesional1 -> profesional1.cedula == finalProfesional.cedula);
 
+                    if (biomaNuevo.zoologico != null) profesional.zoologico = biomaNuevo.zoologico; //Asocio a profesional el zoologico al que pertenece biomaNuevo
+                    Bioma finalBiomaNuevo1 = biomaNuevo;
+                    profesional.biomas.removeIf(bio -> bio.zoologico != null && !bio.zoologico.nit.replace(".", "").equals(finalBiomaNuevo1.zoologico.nit.replace(".", "")));
+                    // Si profesional entra a trabajar a biomaNuevo, estara relacionado al zoologico al que pertenece biomaNuevo.
+                    // Ademas, debe parar de trabajar en biomas que no pertenezcan al zoologico al que trabajara actualmente.
+
                     Profesional.setBiomas(biomaNuevo, profesional);
                     System.out.println("\n MENSAJE: Zoologico y el Profesional se han relacionado correctamente");
 
@@ -1871,6 +1897,12 @@ public class SistemaZoologico {
                     for (Zoologico zoologico1: zoologicos){
                         zoologico1.profesionales.remove(profesional);
                     }
+
+                    Zoologico finalZoologico = zoologico;
+                    profesional.biomas.removeIf(bio -> bio.zoologico != null && !bio.zoologico.nit.replace(".", "").equals(finalZoologico.nit.replace(".", "")));
+                    // Si asocio zoologico con profesional, voy a eliminar los biomas en los que trabaja profesional si estos NO pertenecen al nuevo zoologico en el que trabajara profesional.
+
+
                     Profesional.setZoologicos(zoologico, profesional);
                     System.out.println("\n MENSAJE: Zoologico y el Profesional se han relacionado correctamente");
                     break;
