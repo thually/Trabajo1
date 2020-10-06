@@ -67,7 +67,7 @@ public class SistemaZoologico {
                     //diagnostico();
                     break;
                 case "4":
-                    //guardar();
+                    guardar();
                     break;
                 case "0":
                     //salircancelar();
@@ -76,6 +76,9 @@ public class SistemaZoologico {
             System.out.println("----------------------------------");
         }
 
+    }
+
+    private static void guardar() {
     }
 
     public static void cargarUsuario(){
