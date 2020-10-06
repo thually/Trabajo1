@@ -54,7 +54,8 @@ public class Habitat {
 
     public Habitat(JSONObject toJavaObj){
         JSONObject habitat = (JSONObject) toJavaObj.get("habitat");
-        this.id = (int) habitat.get("id");
+        Long preid = (Long) habitat.get("id");
+        this.id = preid.intValue();
         this.tipoSuelo = (String) habitat.get("tipoSuelo");
         this.vegetacion = (String) habitat.get("vegetacion");
         this.tipoJaula = (String) habitat.get("tipoJaula");
@@ -64,11 +65,13 @@ public class Habitat {
     }
 
     public JSONObject toJSONObj(){
-        if (bioma == null) IDBio = "N/A";
+        IDTecs = "";
+        IDAnis = "";
+        if (bioma == null) IDBio = "NA";
         else IDBio = Integer.toString(bioma.id);
-        if (tecnicos.isEmpty()) IDTecs = "N/A";
+        if (tecnicos.isEmpty()) IDTecs = "NA";
         else for (Tecnico tec : tecnicos) { IDTecs += tec.cedula + " "; }
-        if (animales.isEmpty()) IDAnis = "N/A";
+        if (animales.isEmpty()) IDAnis = "NA";
         else for (Animal ani : animales) { IDAnis += ani.id + " "; }
 
         JSONObject habDetails = new JSONObject();

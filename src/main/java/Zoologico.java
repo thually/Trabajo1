@@ -73,11 +73,14 @@ public class Zoologico {
     }
 
     public JSONObject toJSONObj(){
-        if (biomas.isEmpty()) IDBios = "N/A";
+        IDBios = "";
+        IDPros = "";
+        IDZooA = "";
+        if (biomas.isEmpty()) IDBios = "NA";
         else for (Bioma bioma : biomas) { IDBios += bioma.id + " "; }
-        if (profesionales.isEmpty()) IDPros = "N/A";
+        if (profesionales.isEmpty()) IDPros = "NA";
         else for (Profesional pro : profesionales) { IDPros += pro.cedula + " "; }
-        if (zooAmigos.isEmpty()) IDZooA = "N/A";
+        if (zooAmigos.isEmpty()) IDZooA = "NA";
         else for (ZooAmigo zooA : zooAmigos) { IDZooA += zooA.cedula + " "; }
 
         JSONObject zooDetails = new JSONObject();

@@ -28,18 +28,20 @@ public class Animal {
 
     public Animal(JSONObject toJavaObj){
         JSONObject animal = (JSONObject) toJavaObj.get("animal");
-        this.id = (int) animal.get("id");
+        Long preid = (Long) animal.get("id");
+        this.id = preid.intValue();
         this.especie = (String) animal.get("especie");
-        this.nivelAgresividad = (int) animal.get("nivelAgresividad");
+        Long preNA = (Long) animal.get("nivelAgresividad");
+        this.nivelAgresividad = preNA.intValue();
         this.alimentacion = (String) animal.get("alimentacion");
         this.idHab = (String) animal.get("ID Habitat");
         this.idZooA = (String) animal.get("ID zooAmi");
     }
 
     public JSONObject toJSONObj(){
-        if (habitat == null) idHab = "N/A";
+        if (habitat == null) idHab = "NA";
         else idHab = Integer.toString(habitat.id);
-        if (zooAmigo == null) idZooA = "N/A";
+        if (zooAmigo == null) idZooA = "NA";
         else idZooA = Integer.toString(zooAmigo.cedula);
 
         JSONObject aniDetails = new JSONObject();

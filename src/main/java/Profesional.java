@@ -38,7 +38,8 @@ public class Profesional {
 
     public Profesional(JSONObject toJavaObj){
         JSONObject profesional = (JSONObject) toJavaObj.get("profesional");
-        this.cedula = (int) profesional.get("cedula");
+        Long preid = (Long) profesional.get("cedula");
+        this.cedula = preid.intValue();
         this.area = (String) profesional.get("area");
         this.horaInicio = (String) profesional.get("horaInicio");
         this.horaSalida = (String) profesional.get("horaSalida");
@@ -48,9 +49,10 @@ public class Profesional {
     }
 
     public JSONObject toJSONObj(){
-        if (biomas.isEmpty()) IDBios = "N/A";
+        IDBios ="";
+        if (biomas.isEmpty()) IDBios = "NA";
         else for (Bioma bioma : biomas) { IDBios += bioma.id + " "; }
-        if (zoologico == null) IDZoo = "N/A";
+        if (zoologico == null) IDZoo = "NA";
         else IDZoo = zoologico.nit;
 
         JSONObject proDetails = new JSONObject();

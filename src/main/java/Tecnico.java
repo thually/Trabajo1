@@ -32,7 +32,8 @@ public class Tecnico {
 
     public Tecnico(JSONObject toJavaObj){
         JSONObject tecnico = (JSONObject) toJavaObj.get("tecnico");
-        this.cedula = (int) tecnico.get("cedula");
+        Long preid = (Long) tecnico.get("cedula");
+        this.cedula = preid.intValue();
         this.area = (String) tecnico.get("area");
         this.horaInicio = (String) tecnico.get("horaInicio");
         this.horaSalida = (String) tecnico.get("horaSalida");
@@ -40,7 +41,8 @@ public class Tecnico {
     }
 
     public JSONObject toJSONObj(){
-        if (habitats.isEmpty()) IDHab = "N/A";
+        IDHab = "";
+        if (habitats.isEmpty()) IDHab = "NA";
         else for (Habitat hab : habitats) { IDHab += hab.id + " "; }
 
         JSONObject tecDetails = new JSONObject();

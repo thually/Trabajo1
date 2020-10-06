@@ -54,7 +54,8 @@ public class Bioma {
 
     public Bioma(JSONObject toJavaObj){
         JSONObject bioma = (JSONObject) toJavaObj.get("bioma");
-        this.id = (int) bioma.get("id");
+        Long preid = (Long) bioma.get("id");
+        this.id = preid.intValue();
         this.temperatura = (double) bioma.get("temperatura");
         this.humedad = (String) bioma.get("humedad");
         this.tipo = (String) bioma.get("tipo");
@@ -64,11 +65,13 @@ public class Bioma {
     }
 
     public JSONObject toJSONObj(){
-        if (zoologico == null) IDZoo = "N/A";
+        IDPros = "";
+        IDHab = "";
+        if (zoologico == null) IDZoo = "NA";
         else IDZoo = zoologico.nit;
-        if (profesionales.isEmpty()) IDPros = "N/A";
+        if (profesionales.isEmpty()) IDPros = "NA";
         else for (Profesional pro : profesionales) { IDPros += pro.cedula + " "; }
-        if (habitats.isEmpty()) IDHab = "N/A";
+        if (habitats.isEmpty()) IDHab = "NA";
         else for (Habitat hab : habitats) { IDHab += hab.id + " "; }
 
         JSONObject bioDetails = new JSONObject();

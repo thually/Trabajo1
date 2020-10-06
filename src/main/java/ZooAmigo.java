@@ -27,7 +27,8 @@ public class ZooAmigo {
 
     public ZooAmigo(JSONObject toJavaObj){
         JSONObject zooAmigo = (JSONObject) toJavaObj.get("zooAmigo");
-        this.cedula = (int) zooAmigo.get("cedula");
+        Long preid = (Long) zooAmigo.get("cedula");
+        this.cedula = preid.intValue();
         this.nombre = (String) zooAmigo.get("nombre");
         this.telefono = (String) zooAmigo.get("telefono");
         this.IDZoo = (String) zooAmigo.get("ID Zoologico");
@@ -35,9 +36,10 @@ public class ZooAmigo {
     }
 
     public JSONObject toJSONObj(){
-        if (zoologico == null) IDZoo = "N/A";
+        IDAnis = "";
+        if (zoologico == null) IDZoo = "NA";
         else IDZoo = zoologico.nit;
-        if (animales.isEmpty()) IDAnis = "N/A";
+        if (animales.isEmpty()) IDAnis = "NA";
         else for (Animal ani : animales) { IDAnis += ani.id + " "; }
 
         JSONObject zooAmiDetails = new JSONObject();
