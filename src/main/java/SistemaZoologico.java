@@ -192,6 +192,102 @@ public class SistemaZoologico {
     }
 
     private static void fijarRelaciones() {
+        for (Zoologico zoo : zoologicos){
+            if (!zoo.IDBios.equals("NA")) {
+                String[] idBiomas = zoo.IDBios.split(" ");
+                for (String id : idBiomas){
+                    int ID = Integer.parseInt(id);
+                    for (Bioma bio : biomas){
+                        if (bio.id == ID){
+                            zoo.setBiomas(bio,zoo);
+                        }
+                    }
+                }
+            }
+            if (!zoo.IDPros.equals("NA")) {
+                String[] idProfesionales = zoo.IDPros.split(" ");
+                for (String id : idProfesionales){
+                    int ID = Integer.parseInt(id);
+                    for (Profesional pro : profesionales){
+                        if (pro.cedula == ID){
+                            zoo.setProfesional(pro,zoo);
+                        }
+                    }
+                }
+            }
+            if (!zoo.IDZooA.equals("NA")) {
+                String[] idZooAmigos = zoo.IDZooA.split(" ");
+                for (String id : idZooAmigos){
+                    int ID = Integer.parseInt(id);
+                    for (ZooAmigo zooA : zooAmigos){
+                        if (zooA.cedula == ID){
+                            zoo.setZooAmigo(zooA,zoo);
+                        }
+                    }
+                }
+            }
+        }
+        for (Bioma bio : biomas) {
+            if (!bio.IDPros.equals("NA")) {
+                String[] idProfesionales = bio.IDPros.split(" ");
+                for (String id : idProfesionales) {
+                    int ID = Integer.parseInt(id);
+                    for (Profesional pro : profesionales) {
+                        if (pro.cedula == ID) {
+                            bio.setProfesional(pro, bio);
+                        }
+                    }
+                }
+            }
+            if (!bio.IDHab.equals("NA")) {
+                String[] idHabitats = bio.IDHab.split(" ");
+                for (String id : idHabitats) {
+                    int ID = Integer.parseInt(id);
+                    for (Habitat hab : habitats) {
+                        if (hab.id == ID) {
+                            bio.setHabitat(hab, bio);
+                        }
+                    }
+                }
+            }
+        }
+        for (Habitat hab : habitats) {
+            if (!hab.IDTecs.equals("NA")) {
+                String[] idTecnicos = hab.IDTecs.split(" ");
+                for (String id : idTecnicos) {
+                    int ID = Integer.parseInt(id);
+                    for (Tecnico tec : tecnicos) {
+                        if (tec.cedula == ID) {
+                            hab.setTecnico(tec, hab);
+                        }
+                    }
+                }
+            }
+            if (!hab.IDAnis.equals("NA")) {
+                String[] idAnimales = hab.IDAnis.split(" ");
+                for (String id : idAnimales) {
+                    int ID = Integer.parseInt(id);
+                    for (Animal ani : animales) {
+                        if (ani.id == ID) {
+                            hab.setAni(ani, hab);
+                        }
+                    }
+                }
+            }
+        }
+        for (ZooAmigo zooA : zooAmigos){
+            if (!zooA.IDAnis.equals("NA")) {
+                String[] idAnimales = zooA.IDAnis.split(" ");
+                for (String id : idAnimales) {
+                    int ID = Integer.parseInt(id);
+                    for (Animal ani : animales) {
+                        if (ani.id == ID) {
+                            zooA.setAnimal(ani, zooA);
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public static void parseAnimalObj( JSONObject jsonObject){
