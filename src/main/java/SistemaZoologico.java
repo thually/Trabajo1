@@ -19,6 +19,7 @@ public class SistemaZoologico {
 
     public static void main(String[] args) {
 
+        cargarSistema();
         cargarUsuario(); //Llama a metodo para cargar todos los usuarios registrados desde src/database/usuarios.json
         label: while (true) {
             System.out.println("----------------------------------");
@@ -56,7 +57,7 @@ public class SistemaZoologico {
             System.out.println("0. Salir y cancelar.");
             String opcion = input.next();
             System.out.println();
-            switch (opcion){
+            label2 : switch (opcion){
                 case "1":
                     administrar();
                     break;
@@ -67,15 +68,344 @@ public class SistemaZoologico {
                     //diagnostico();
                     break;
                 case "4":
-                    //guardar();
+                    guardar();
                     break;
                 case "0":
-                    //salircancelar();
-                    break label;
+                    while (true){
+                        System.out.println("MENSAJE: si sale se perderan los cambios sin guardar");
+                        System.out.print("Esta seguro que desea salir?: [Y/N] ");
+                        String option = input.next();
+                        if (option.equalsIgnoreCase("Y") || option.equalsIgnoreCase("N")){
+                            switch (option.toUpperCase()){
+                                case "Y":
+                                    break label;
+                                case "N":
+                                    break label2;
+                            }
+                            break;
+                        }
+                        else {
+                            System.out.println("Opcion invalida\n");
+                        }
+                    }
             }
             System.out.println("----------------------------------");
         }
 
+    }
+
+    private static void cargarSistema() {
+        JSONParser jsonParser = new JSONParser();
+
+        File animales = new File("src/database/animales.json");
+        if (animales.length() != 0){
+            try (FileReader reader = new FileReader("src/database/animales.json")) {
+                Object obj = jsonParser.parse(reader);
+
+                JSONArray animalesJava = (JSONArray) obj;
+                animalesJava.forEach(ani -> parseAnimalObj( (JSONObject) ani));
+
+            } catch (IOException | ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
+        File biomas = new File("src/database/biomas.json");
+        if (biomas.length() != 0){
+            try (FileReader reader = new FileReader("src/database/biomas.json")) {
+                Object obj = jsonParser.parse(reader);
+
+                JSONArray biomasJava = (JSONArray) obj;
+                biomasJava.forEach(bio -> parseBiomaObj( (JSONObject) bio));
+
+            } catch (IOException | ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
+        File habitats = new File("src/database/habitats.json");
+        if (habitats.length() != 0){
+            try (FileReader reader = new FileReader("src/database/habitats.json")) {
+                Object obj = jsonParser.parse(reader);
+
+                JSONArray habitatsJava = (JSONArray) obj;
+                habitatsJava.forEach(hab -> parseHabitatObj( (JSONObject) hab));
+
+            } catch (IOException | ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
+        File profesionales = new File("src/database/profesionales.json");
+        if (profesionales.length() != 0){
+            try (FileReader reader = new FileReader("src/database/profesionales.json")) {
+                Object obj = jsonParser.parse(reader);
+
+                JSONArray profesionalesJava = (JSONArray) obj;
+                profesionalesJava.forEach(pro -> parseProfesionalesObj( (JSONObject) pro));
+
+            } catch (IOException | ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
+        File tecnicos = new File("src/database/tecnicos.json");
+        if (tecnicos.length() != 0){
+            try (FileReader reader = new FileReader("src/database/tecnicos.json")) {
+                Object obj = jsonParser.parse(reader);
+
+                JSONArray tecnicosJava = (JSONArray) obj;
+                tecnicosJava.forEach(tec -> parseTecnicoObj( (JSONObject) tec));
+
+            } catch (IOException | ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
+        File zooAmigo = new File("src/database/zooamigos.json");
+        if (zooAmigo.length() != 0){
+            try (FileReader reader = new FileReader("src/database/zooamigos.json")) {
+                Object obj = jsonParser.parse(reader);
+
+                JSONArray zooAmigosJava = (JSONArray) obj;
+                zooAmigosJava.forEach(zooA -> parseZooAmigoObj( (JSONObject) zooA));
+
+            } catch (IOException | ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
+        File zoologicos = new File("src/database/zoologicos.json");
+        if (zoologicos.length() != 0){
+            try (FileReader reader = new FileReader("src/database/zoologicos.json")) {
+                Object obj = jsonParser.parse(reader);
+
+                JSONArray zoologicosJava = (JSONArray) obj;
+                zoologicosJava.forEach(zoo -> parseZoologicoObj( (JSONObject) zoo));
+
+            } catch (IOException | ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        
+        fijarRelaciones();
+    }
+
+    private static void fijarRelaciones() {
+        for (Zoologico zoo : zoologicos){
+            if (!zoo.IDBios.equals("NA")) {
+                String[] idBiomas = zoo.IDBios.split(" ");
+                for (String id : idBiomas){
+                    int ID = Integer.parseInt(id);
+                    for (Bioma bio : biomas){
+                        if (bio.id == ID){
+                            zoo.setBiomas(bio,zoo);
+                        }
+                    }
+                }
+            }
+            if (!zoo.IDPros.equals("NA")) {
+                String[] idProfesionales = zoo.IDPros.split(" ");
+                for (String id : idProfesionales){
+                    int ID = Integer.parseInt(id);
+                    for (Profesional pro : profesionales){
+                        if (pro.cedula == ID){
+                            zoo.setProfesional(pro,zoo);
+                        }
+                    }
+                }
+            }
+            if (!zoo.IDZooA.equals("NA")) {
+                String[] idZooAmigos = zoo.IDZooA.split(" ");
+                for (String id : idZooAmigos){
+                    int ID = Integer.parseInt(id);
+                    for (ZooAmigo zooA : zooAmigos){
+                        if (zooA.cedula == ID){
+                            zoo.setZooAmigo(zooA,zoo);
+                        }
+                    }
+                }
+            }
+        }
+        for (Bioma bio : biomas) {
+            if (!bio.IDPros.equals("NA")) {
+                String[] idProfesionales = bio.IDPros.split(" ");
+                for (String id : idProfesionales) {
+                    int ID = Integer.parseInt(id);
+                    for (Profesional pro : profesionales) {
+                        if (pro.cedula == ID) {
+                            bio.setProfesional(pro, bio);
+                        }
+                    }
+                }
+            }
+            if (!bio.IDHab.equals("NA")) {
+                String[] idHabitats = bio.IDHab.split(" ");
+                for (String id : idHabitats) {
+                    int ID = Integer.parseInt(id);
+                    for (Habitat hab : habitats) {
+                        if (hab.id == ID) {
+                            bio.setHabitat(hab, bio);
+                        }
+                    }
+                }
+            }
+        }
+        for (Habitat hab : habitats) {
+            if (!hab.IDTecs.equals("NA")) {
+                String[] idTecnicos = hab.IDTecs.split(" ");
+                for (String id : idTecnicos) {
+                    int ID = Integer.parseInt(id);
+                    for (Tecnico tec : tecnicos) {
+                        if (tec.cedula == ID) {
+                            hab.setTecnico(tec, hab);
+                        }
+                    }
+                }
+            }
+            if (!hab.IDAnis.equals("NA")) {
+                String[] idAnimales = hab.IDAnis.split(" ");
+                for (String id : idAnimales) {
+                    int ID = Integer.parseInt(id);
+                    for (Animal ani : animales) {
+                        if (ani.id == ID) {
+                            hab.setAni(ani, hab);
+                        }
+                    }
+                }
+            }
+        }
+        for (ZooAmigo zooA : zooAmigos){
+            if (!zooA.IDAnis.equals("NA")) {
+                String[] idAnimales = zooA.IDAnis.split(" ");
+                for (String id : idAnimales) {
+                    int ID = Integer.parseInt(id);
+                    for (Animal ani : animales) {
+                        if (ani.id == ID) {
+                            zooA.setAnimal(ani, zooA);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public static void parseAnimalObj( JSONObject jsonObject){
+        Animal nuevoAni = new Animal(jsonObject);
+        animales.add(nuevoAni);
+    }
+    public static void parseBiomaObj( JSONObject jsonObject){
+        Bioma nuevoBio = new Bioma(jsonObject);
+        biomas.add(nuevoBio);
+    }
+    public static void parseHabitatObj( JSONObject jsonObject){
+        Habitat nuevoHab = new Habitat(jsonObject);
+        habitats.add(nuevoHab);
+    }
+    public static void parseProfesionalesObj( JSONObject jsonObject){
+        Profesional nuevoPro = new Profesional(jsonObject);
+        profesionales.add(nuevoPro);
+    }
+    public static void parseTecnicoObj( JSONObject jsonObject){
+        Tecnico nuevoTec = new Tecnico(jsonObject);
+        tecnicos.add(nuevoTec);
+    }
+    public static void parseZooAmigoObj( JSONObject jsonObject){
+        ZooAmigo nuevoZooAmi = new ZooAmigo(jsonObject);
+        zooAmigos.add(nuevoZooAmi);
+    }
+    public static void parseZoologicoObj( JSONObject jsonObject){
+        Zoologico nuevoZoo = new Zoologico(jsonObject);
+        zoologicos.add(nuevoZoo);
+    }
+
+    private static void guardar() {
+        JSONArray animalesJSON = new JSONArray();
+        for (Animal animal : animales) {
+            animalesJSON.add(animal.toJSONObj());
+        }
+        try (FileWriter file = new FileWriter("src/database/animales.json")) {
+
+            file.write(animalesJSON.toJSONString());
+            file.flush();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        JSONArray biomasJSON = new JSONArray();
+        for (Bioma bioma : biomas) {
+            biomasJSON.add(bioma.toJSONObj());
+        }
+        try (FileWriter file = new FileWriter("src/database/biomas.json")) {
+
+            file.write(biomasJSON.toJSONString());
+            file.flush();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        JSONArray habitatsJSON = new JSONArray();
+        for (Habitat habitat : habitats) {
+            habitatsJSON.add(habitat.toJSONObj());
+        }
+        try (FileWriter file = new FileWriter("src/database/habitats.json")) {
+
+            file.write(habitatsJSON.toJSONString());
+            file.flush();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        JSONArray profesionalesJSON = new JSONArray();
+        for (Profesional profesional : profesionales) {
+            profesionalesJSON.add(profesional.toJSONObj());
+        }
+        try (FileWriter file = new FileWriter("src/database/profesionales.json")) {
+
+            file.write(profesionalesJSON.toJSONString());
+            file.flush();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        JSONArray tecnicosJSON = new JSONArray();
+        for (Tecnico tecnico : tecnicos) {
+            tecnicosJSON.add(tecnico.toJSONObj());
+        }
+        try (FileWriter file = new FileWriter("src/database/tecnicos.json")) {
+
+            file.write(tecnicosJSON.toJSONString());
+            file.flush();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        JSONArray zooamigosJSON = new JSONArray();
+        for (ZooAmigo zooAmigo : zooAmigos) {
+            zooamigosJSON.add(zooAmigo.toJSONObj());
+        }
+        try (FileWriter file = new FileWriter("src/database/zooamigos.json")) {
+
+            file.write(zooamigosJSON.toJSONString());
+            file.flush();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        JSONArray zoologicosJSON = new JSONArray();
+        for (Zoologico zoologico : zoologicos) {
+            zoologicosJSON.add(zoologico.toJSONObj());
+        }
+        try (FileWriter file = new FileWriter("src/database/zoologicos.json")) {
+
+            file.write(zoologicosJSON.toJSONString());
+            file.flush();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Guardado exitosamente");
     }
 
     public static void cargarUsuario(){
@@ -1305,7 +1635,7 @@ public class SistemaZoologico {
             }
         }
 
-        System.out.println("Nombre: " + animal.especie);
+        System.out.println("Especie: " + animal.especie);
         String nuevoEspecie = input.nextLine();
 
         System.out.println("Nivel de agresividad: " + animal.nivelAgresividad);

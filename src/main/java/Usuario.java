@@ -1,4 +1,4 @@
-import org.json.simple.JSONObject;
+import org.json.simple.*;
 
 public class Usuario {
     public String Documento;
