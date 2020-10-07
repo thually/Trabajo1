@@ -2524,7 +2524,9 @@ public class SistemaZoologico {
 
                     for (Animal animal1 :
                             animales) {
-                        animal1.zooAmigo=null;
+                        if (animal1.zooAmigo==zooAmigo){
+                            animal1.zooAmigo=null;
+                        }
                     }
                     zooAmigo.setAnimal(animalNuevo, zooAmigo);
                     System.out.println("\n MENSAJE: ZooAmigo y Animal se han relacionado correctamente");
