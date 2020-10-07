@@ -25,48 +25,7 @@ public class SistemaZoologico {
     public static Comparator<ZooAmigo>[] comparadoresZooAmigo = new Comparator[3];
 
     public static void main(String[] args) {
-        Zoologico zoo1 = new Zoologico("1", "aaaa", "AAAA", "appp");
-        zoologicos.add(zoo1);
-        Zoologico zoo2 = new Zoologico("2", "aaaa", "bbbb", "bppp");
-        zoologicos.add(zoo2);
-        Zoologico zoo3 = new Zoologico("3", "aaaa", "cbbb", "cppp");
-        zoologicos.add(zoo3);
-        Habitat hab1 = new Habitat(10, "errr", "dooo", "dwww");
-        habitats.add(hab1);
-        Habitat hab2 = new Habitat(11, "errr", "eooo", "ewww");
-        habitats.add(hab2);
-        Habitat hab3 = new Habitat(12, "errr", "fooo", "fwww");
-        habitats.add(hab3);
-        Profesional pro1 = new Profesional(101, "axx", "700", "1600");
-        profesionales.add(pro1);
-        Profesional pro2 = new Profesional(102, "bxx", "800", "1700");
-        profesionales.add(pro2);
-        Profesional pro3 = new Profesional(103, "cxx", "900", "1800");
-        profesionales.add(pro3);
-        Bioma bio1 = new Bioma(20, 2.321, "aeee", "aYYY");
-        biomas.add(bio1);
-        Bioma bio2 = new Bioma(21, 30.321, "beee", "bYYY");
-        biomas.add(bio2);
-        Bioma bio3 = new Bioma(22, 312.321, "ceee", "cYYY");
-        biomas.add(bio3);
-        Tecnico tec1 = new Tecnico(201, "axx", "700", "1600");
-        tecnicos.add(tec1);
-        Tecnico tec2 = new Tecnico(202, "bxx", "800", "1700");
-        tecnicos.add(tec2);
-        Tecnico tec3 = new Tecnico(203, "cxx", "900", "1800");
-        tecnicos.add(tec3);
-        Animal ani1 = new Animal(30, "avvv", 1, "auuu");
-        animales.add(ani1);
-        Animal ani2 = new Animal(31, "avvv", 4, "buuuu");
-        animales.add(ani2);
-        Animal ani3 = new Animal(32, "avvv", 10, "cuuuu");
-        animales.add(ani3);
-        ZooAmigo zooA1 = new ZooAmigo(40, "aqqq", "133121");
-        zooAmigos.add(zooA1);
-        ZooAmigo zooA2 = new ZooAmigo(41, "bqqq", "133122");
-        zooAmigos.add(zooA2);
-        ZooAmigo zooA3 = new ZooAmigo(42, "cqqq", "133123");
-        zooAmigos.add(zooA3);
+
 
 
         comparadoresZoologico[0] = new zNitComparator();
@@ -144,7 +103,7 @@ public class SistemaZoologico {
                     busqueda();
                     break;
                 case "3":
-                   //diagnostico();
+                diagnosticoDeIncosistencias();
                     break;
                 case "4":
                     //guardar();
