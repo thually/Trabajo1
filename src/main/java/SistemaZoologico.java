@@ -2449,7 +2449,7 @@ public class SistemaZoologico {
                 }
             }
 
-            //Menu para editar o elimimar
+            //Menu para editar o eliminar
             String accion;
             System.out.println("-----------------------------------------");
             System.out.println("\nIndique la accion que desea realizar:\n");
@@ -2520,7 +2520,6 @@ public class SistemaZoologico {
                 }
                 return;
             }
-
             //Codigo para eliminar
             else if(accion.equals("2")){
                 for (Zoologico zoologico : copiaZoo) {
@@ -2566,15 +2565,12 @@ public class SistemaZoologico {
                     System.out.println("El zoologico se ha eliminado correctamente");
                     return;
                 }
-
             }
             //else que denota la opcion cero para devolverse
             else{
                 return;
             }
-
-        }
-        else if (opcionValor == 2) {
+        }else if (opcionValor == 2) {
             //Impresión del zoologico de acuerdo al nit sin importar puntos
             for (Zoologico zoologico : zoologicos) {
                 if (nitBus.equals(zoologico.nit.replace(".", ""))) {
@@ -2648,14 +2644,11 @@ public class SistemaZoologico {
 
                 }
                 return;
-            }
-
-            //Codigo para eliminar
-            else if(accion.equals("2")){
+            }else if(accion.equals("2")){
                 for (Zoologico zoologico : copiaZoo) {
                     int eleccion;
                     System.out.println("------------------------------------------");
-                    System.out.println("Escoja el zoologico que desea editar: \n");
+                    System.out.println("Escoja el zoologico que desea eliminar: \n");
                     eleccion = input.nextInt();
                     zoo = copiaZoo.get(eleccion - 1);
 
@@ -2695,7 +2688,6 @@ public class SistemaZoologico {
                     System.out.println("El zoologico se ha eliminado correctamente");
                     return;
                 }
-
             }
             //else que denota la opcion cero para devolverse
             else{
@@ -2704,7 +2696,6 @@ public class SistemaZoologico {
         }
     }
     public static void nombreZoologico(int opcionValor, String nombreBus) {
-        ArrayList<Zoologico> copiaZoo = new ArrayList<>(zoologicos);
         Zoologico zoo = null;
         int i=0;
         //Crear lista para no afectar la principal y que se agreguen los elementos que cumplen las condiciones
@@ -2815,12 +2806,11 @@ public class SistemaZoologico {
                         }
 
                     }
-
                     //Codigo para eliminar
                     else if(accion.equals("2")){
                             int eleccion;
                             System.out.println("------------------------------------------");
-                            System.out.println("Escoja el zoologico que desea editar: \n");
+                            System.out.println("Escoja el zoologico que desea eliminar: \n");
                             eleccion = input.nextInt();
                             zoo = nombreZoo.get(eleccion - 1);
 
@@ -2860,14 +2850,12 @@ public class SistemaZoologico {
                             System.out.println("El zoologico se ha eliminado correctamente");
                             return;
                     }
-
                     //Regresar al menu anterior
                     else{
                         return;
                     }
                 }
             }
-
             //Ordenar descendentemente
             else if (option2.equals("2")) {
                 System.out.println("Descendente");
@@ -2942,14 +2930,11 @@ public class SistemaZoologico {
                         }return;
 
                     }
-
-
-
                     //Codigo para eliminar
                     else if(accion.equals("2")){
                             int eleccion;
                             System.out.println("------------------------------------------");
-                            System.out.println("Escoja el zoologico que desea editar: \n");
+                            System.out.println("Escoja el zoologico que desea eliminar: \n");
                             eleccion = input.nextInt();
                             zoo = nombreZoo.get(eleccion - 1);
 
@@ -2989,19 +2974,16 @@ public class SistemaZoologico {
                             System.out.println("El zoologico se ha eliminado correctamente");
                             return;
                         }
-
                     //Regresar
                     else{
                         return;
                     }
                 }
             }
-
             else {
                 System.out.println("Opcion incorrecta");
             }
         }
-
         //Ordenar por siglas
         else if (option.equals("2")) {
             System.out.println("--------------------------------------------------");
@@ -3019,7 +3001,6 @@ public class SistemaZoologico {
                     i++;
                     System.out.println(i+". "+zoologico);
                 }
-
                 //Menu editar o eliminar
                 for(Zoologico zoologico: nombreZoo){
                     String accion;
@@ -3089,7 +3070,7 @@ public class SistemaZoologico {
                     else if(accion.equals("2")){
                         int eleccion;
                         System.out.println("------------------------------------------");
-                        System.out.println("Escoja el zoologico que desea editar: \n");
+                        System.out.println("Escoja el zoologico que desea eliminar: \n");
                         eleccion = input.nextInt();
                         zoo = nombreZoo.get(eleccion - 1);
 
@@ -3129,7 +3110,6 @@ public class SistemaZoologico {
                         System.out.println("El zoologico se ha eliminado correctamente");
                         return;
                     }
-
                     //Regresar
                     else{
                         return;
@@ -3209,12 +3189,11 @@ public class SistemaZoologico {
                             }
                         }
                     }
-
                     //Codigo para eliminar
                     else if(accion.equals("2")){
                         int eleccion;
                         System.out.println("------------------------------------------");
-                        System.out.println("Escoja el zoologico que desea editar: \n");
+                        System.out.println("Escoja el zoologico que desea eliminar: \n");
                         eleccion = input.nextInt();
                         zoo = nombreZoo.get(eleccion - 1);
 
@@ -3254,17 +3233,15 @@ public class SistemaZoologico {
                         System.out.println("El zoologico se ha eliminado correctamente");
                         return;
                     }
-
                     //regresar
                     else{
                         return;
                     }
                 }
-            } else {
+            }else{
                 System.out.println("Opcion incorrecta");
             }
         }
-
         //Ordenar por ciudad
         else if (option.equals("3")) {
             //Menu ascendente - descendete
@@ -3348,12 +3325,11 @@ public class SistemaZoologico {
                             }
                         }
                     }
-
                     //Codigo para eliminar
                     else if(accion.equals("2")){
                         int eleccion;
                         System.out.println("------------------------------------------");
-                        System.out.println("Escoja el zoologico que desea editar: \n");
+                        System.out.println("Escoja el zoologico que desea eliminar: \n");
                         eleccion = input.nextInt();
                         zoo = nombreZoo.get(eleccion - 1);
 
@@ -3400,7 +3376,6 @@ public class SistemaZoologico {
                     }
                 }
             }
-
             //organizar descendente
             else if (option2.equals("2")) {
                 System.out.println("Descendente");
@@ -3475,12 +3450,11 @@ public class SistemaZoologico {
                             }
                         }
                     }
-
                     //Codigo para eliminar
                     else if(accion.equals("2")){
                         int eleccion;
                         System.out.println("------------------------------------------");
-                        System.out.println("Escoja el zoologico que desea editar: \n");
+                        System.out.println("Escoja el zoologico que desea eliminar: \n");
                         eleccion = input.nextInt();
                         zoo = nombreZoo.get(eleccion - 1);
 
@@ -3526,11 +3500,10 @@ public class SistemaZoologico {
                         return;
                     }
                 }
-            } else {
+            }else {
                 System.out.println("Opcion incorrecta");
             }
         }
-
         //Regresar al menú anterior
         else {
             return;
@@ -3613,7 +3586,7 @@ public class SistemaZoologico {
                 for (Zoologico zoologico : copiaZoo) {
                     int eleccion;
                     System.out.println("------------------------------------------");
-                    System.out.println("Escoja el zoologico que desea editar: \n");
+                    System.out.println("Escoja el zoologico que desea eliminar: \n");
                     eleccion = input.nextInt();
                     zoo = copiaZoo.get(eleccion - 1);
 
@@ -3734,7 +3707,7 @@ public class SistemaZoologico {
                 for (Zoologico zoologico : copiaZoo) {
                     int eleccion;
                     System.out.println("------------------------------------------");
-                    System.out.println("Escoja el zoologico que desea editar: \n");
+                    System.out.println("Escoja el zoologico que desea eliminar: \n");
                     eleccion = input.nextInt();
                     zoo = copiaZoo.get(eleccion - 1);
 
@@ -3894,7 +3867,7 @@ public class SistemaZoologico {
                     else if(accion.equals("2")){
                         int eleccion;
                         System.out.println("------------------------------------------");
-                        System.out.println("Escoja el zoologico que desea editar: \n");
+                        System.out.println("Escoja el zoologico que desea eliminar: \n");
                         eleccion = input.nextInt();
                         zoo = ciudadZoo.get(eleccion - 1);
 
@@ -4507,7 +4480,7 @@ public class SistemaZoologico {
 
             //Organizar x nit descendente
             else if (option2.equals("2")) {
-                System.out.println("Descente");
+                System.out.println("Descendente");
                 Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[0]));
                 for (Zoologico zoologico : copiaZoo) {
                     i++;
@@ -17808,7 +17781,7 @@ public class SistemaZoologico {
     }
     public static void mostrarTodosHabitats() {
         Habitat hab = null;
-        int i=0;
+        int i = 0;
         ArrayList<Habitat> copiaHabitat = new ArrayList<>(habitats);
         String option;
         String option2;
@@ -17833,7 +17806,7 @@ public class SistemaZoologico {
                 Collections.sort(copiaHabitat, (comparadoresHabitat[0]));
                 for (Habitat habitat : copiaHabitat) {
                     i++;
-                    System.out.println(i+". "+habitat);
+                    System.out.println(i + ". " + habitat);
                 }
                 //Menu editar - eliminar
                 String accion;
@@ -17892,14 +17865,11 @@ public class SistemaZoologico {
                                 System.out.println("Opcion invalida\n");
                             }
                         }
-
                     }
                     return;
                 }
-
-
 //Codigo eliminar
-                else if(accion.equals("2")) {
+                else if (accion.equals("2")) {
                     for (Habitat habitat : copiaHabitat) {
                         int eleccion;
                         System.out.println("------------------------------------------");
@@ -17942,18 +17912,15 @@ public class SistemaZoologico {
 
                         System.out.println("El habitat se ha eliminado correctamente");
                     }
+                } else {
+                    return;
                 }
-
-                else return;
-                return;
-            }
-
-            else if (option2.equals("2")) {
+            } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresHabitat[0]));
                 for (Habitat habitat : copiaHabitat) {
                     i++;
-                    System.out.println(i+". "+habitat);
+                    System.out.println(i + ". " + habitat);
                 }
                 //Menu editar - eliminar
                 String accion;
@@ -18006,20 +17973,16 @@ public class SistemaZoologico {
                                     case "N":
                                         break;
                                 }
-
                                 return;
                             } else {
                                 System.out.println("Opcion invalida\n");
                             }
                         }
-
                     }
                     return;
                 }
-
-
 //Codigo eliminar
-                else if(accion.equals("2")) {
+                else if (accion.equals("2")) {
                     for (Habitat habitat : copiaHabitat) {
                         int eleccion;
                         System.out.println("------------------------------------------");
@@ -18062,16 +18025,13 @@ public class SistemaZoologico {
 
                         System.out.println("El habitat se ha eliminado correctamente");
                     }
+                } else {
+                    return;
                 }
-
-                else return;
-                return;
-            }
-            else{
+            } else {
                 System.out.println("Opcion incorrecta");
             }
-        }
-        else if (option.equals("2")) {
+        } else if (option.equals("2")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
@@ -18083,7 +18043,7 @@ public class SistemaZoologico {
                 Collections.sort(copiaHabitat, (comparadoresHabitat[1]));
                 for (Habitat habitat : copiaHabitat) {
                     i++;
-                    System.out.println(i+". "+habitat);
+                    System.out.println(i + ". " + habitat);
                 }
                 //Menu editar - eliminar
                 String accion;
@@ -18142,14 +18102,11 @@ public class SistemaZoologico {
                                 System.out.println("Opcion invalida\n");
                             }
                         }
-
                     }
                     return;
                 }
-
-
 //Codigo eliminar
-                else if(accion.equals("2")) {
+                else if (accion.equals("2")) {
                     for (Habitat habitat : copiaHabitat) {
                         int eleccion;
                         System.out.println("------------------------------------------");
@@ -18192,17 +18149,15 @@ public class SistemaZoologico {
 
                         System.out.println("El habitat se ha eliminado correctamente");
                     }
+                } else {
+                    return;
                 }
-
-                else return;
-                return;
-            }
-            else if (option2.equals("2")) {
+            } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresHabitat[1]));
                 for (Habitat habitat : copiaHabitat) {
                     i++;
-                    System.out.println(i+". "+habitat);
+                    System.out.println(i + ". " + habitat);
                 }
                 //Menu editar - eliminar
                 String accion;
@@ -18255,20 +18210,16 @@ public class SistemaZoologico {
                                     case "N":
                                         break;
                                 }
-
                                 return;
                             } else {
                                 System.out.println("Opcion invalida\n");
                             }
                         }
-
                     }
                     return;
                 }
-
-
 //Codigo eliminar
-                else if(accion.equals("2")) {
+                else if (accion.equals("2")) {
                     for (Habitat habitat : copiaHabitat) {
                         int eleccion;
                         System.out.println("------------------------------------------");
@@ -18311,16 +18262,13 @@ public class SistemaZoologico {
 
                         System.out.println("El habitat se ha eliminado correctamente");
                     }
+                } else {
+                    return;
                 }
-
-                else return;
-                return;
-            }
-            else{
+            } else {
                 System.out.println("Opcion incorrecta");
             }
-        }
-        else if (option.equals("3")) {
+        } else if (option.equals("3")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
@@ -18332,7 +18280,7 @@ public class SistemaZoologico {
                 Collections.sort(copiaHabitat, (comparadoresHabitat[2]));
                 for (Habitat habitat : copiaHabitat) {
                     i++;
-                    System.out.println(i+". "+habitat);
+                    System.out.println(i + ". " + habitat);
                 }
                 //Menu editar - eliminar
                 String accion;
@@ -18385,20 +18333,16 @@ public class SistemaZoologico {
                                     case "N":
                                         break;
                                 }
-
                                 return;
                             } else {
                                 System.out.println("Opcion invalida\n");
                             }
                         }
-
                     }
                     return;
                 }
-
-
 //Codigo eliminar
-                else if(accion.equals("2")) {
+                else if (accion.equals("2")) {
                     for (Habitat habitat : copiaHabitat) {
                         int eleccion;
                         System.out.println("------------------------------------------");
@@ -18441,17 +18385,15 @@ public class SistemaZoologico {
 
                         System.out.println("El habitat se ha eliminado correctamente");
                     }
+                } else {
+                    return;
                 }
-
-                else return;
-                return;
-            }
-            else if (option2.equals("2")) {
+            } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresHabitat[2]));
                 for (Habitat habitat : copiaHabitat) {
                     i++;
-                    System.out.println(i+". "+habitat);
+                    System.out.println(i + ". " + habitat);
                 }
                 //Menu editar - eliminar
                 String accion;
@@ -18510,14 +18452,11 @@ public class SistemaZoologico {
                                 System.out.println("Opcion invalida\n");
                             }
                         }
-
                     }
                     return;
                 }
-
-
 //Codigo eliminar
-                else if(accion.equals("2")) {
+                else if (accion.equals("2")) {
                     for (Habitat habitat : copiaHabitat) {
                         int eleccion;
                         System.out.println("------------------------------------------");
@@ -18560,16 +18499,13 @@ public class SistemaZoologico {
 
                         System.out.println("El habitat se ha eliminado correctamente");
                     }
+                } else {
+                    return;
                 }
-
-                else return;
-                return;
-            }
-            else{
+            } else {
                 System.out.println("Opcion incorrecta");
             }
-        }
-        else if (option.equals("4")) {
+        } else if (option.equals("4")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
@@ -18581,7 +18517,7 @@ public class SistemaZoologico {
                 Collections.sort(copiaHabitat, (comparadoresHabitat[3]));
                 for (Habitat habitat : copiaHabitat) {
                     i++;
-                    System.out.println(i+". "+habitat);
+                    System.out.println(i + ". " + habitat);
                 }
                 //Menu editar - eliminar
                 String accion;
@@ -18644,10 +18580,8 @@ public class SistemaZoologico {
                     }
                     return;
                 }
-
-
 //Codigo eliminar
-                else if(accion.equals("2")) {
+                else if (accion.equals("2")) {
                     for (Habitat habitat : copiaHabitat) {
                         int eleccion;
                         System.out.println("------------------------------------------");
@@ -18690,17 +18624,15 @@ public class SistemaZoologico {
 
                         System.out.println("El habitat se ha eliminado correctamente");
                     }
+                } else {
+                    return;
                 }
-
-                else return;
-                return;
-            }
-            else if (option2.equals("2")) {
+            } else if (option2.equals("2")) {
                 System.out.println("Descendente");
                 Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresHabitat[3]));
                 for (Habitat habitat : copiaHabitat) {
                     i++;
-                    System.out.println(i+". "+habitat);
+                    System.out.println(i + ". " + habitat);
                 }//Menu editar - eliminar
                 String accion;
                 System.out.println("-----------------------------------------");
@@ -18758,69 +18690,63 @@ public class SistemaZoologico {
                                 System.out.println("Opcion invalida\n");
                             }
                         }
-
                     }
                     return;
-                }
-
-
 //Codigo eliminar
-                else if(accion.equals("2")) {
-                    for (Habitat habitat : copiaHabitat) {
-                        int eleccion;
-                        System.out.println("------------------------------------------");
-                        System.out.println("Escoja el habitat que desea eliminar: \n");
-                        eleccion = input.nextInt();
-                        hab = copiaHabitat.get(eleccion - 1);
+                }else if (accion.equals("2")) {
+                        for (Habitat habitat : copiaHabitat) {
+                            int eleccion;
+                            System.out.println("------------------------------------------");
+                            System.out.println("Escoja el habitat que desea eliminar: \n");
+                            eleccion = input.nextInt();
+                            hab = copiaHabitat.get(eleccion - 1);
 
-                        while (true) {
-                            System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
-                            String optionE = input.next();
-                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                                switch (optionE.toUpperCase()) {
-                                    case "Y":
-                                        break;
-                                    case "N":
-                                        return;
+                            while (true) {
+                                System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+                                String optionE = input.next();
+                                if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                                    switch (optionE.toUpperCase()) {
+                                        case "Y":
+                                            break;
+                                        case "N":
+                                            return;
+                                    }
+                                    break;
+                                } else {
+                                    System.out.println("Opcion invalida\n");
                                 }
-                                break;
-                            } else {
-                                System.out.println("Opcion invalida\n");
                             }
-                        }
 
-                        for (Bioma bioma : biomas) {
-                            Habitat finalHab = habitat;
-                            bioma.habitats.removeIf(habitat1 -> habitat1.id == finalHab.id);
+                            for (Bioma bioma : biomas) {
+                                Habitat finalHab = habitat;
+                                bioma.habitats.removeIf(habitat1 -> habitat1.id == finalHab.id);
 
-                        }
-                        for (Tecnico tecnico : tecnicos) {
-                            Habitat finalHab = habitat;
-                            tecnico.habitats.removeIf(habitat1 -> habitat1.id == finalHab.id);
-
-                        }
-                        for (Animal animal : animales) {
-                            if (animal.habitat != null && animal.habitat.id == habitat.id) {
-                                animal.habitat = null;
                             }
-                        }
-                        habitats.remove(habitat);
+                            for (Tecnico tecnico : tecnicos) {
+                                Habitat finalHab = habitat;
+                                tecnico.habitats.removeIf(habitat1 -> habitat1.id == finalHab.id);
 
-                        System.out.println("El habitat se ha eliminado correctamente");
+                            }
+                            for (Animal animal : animales) {
+                                if (animal.habitat != null && animal.habitat.id == habitat.id) {
+                                    animal.habitat = null;
+                                }
+                            }
+                            habitats.remove(habitat);
+
+                            System.out.println("El habitat se ha eliminado correctamente");
+                        }
+                    } else {
+                        return;
                     }
+                } else {
+                    System.out.println("Opcion incorrecta");
                 }
-
-                else return;
+            } else {
                 return;
             }
-            else{
-                System.out.println("Opcion incorrecta");
-            }
         }
-        else {
-            return;
-        }
-    }
+
 
     public static void busquedaAnimal() {
         String option;
