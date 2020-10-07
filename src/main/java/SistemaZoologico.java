@@ -103,7 +103,7 @@ public class SistemaZoologico {
                     busqueda();
                     break;
                 case "3":
-                diagnosticoDeIncosistencias();
+                    //diagnostico();
                     break;
                 case "4":
                     //guardar();
