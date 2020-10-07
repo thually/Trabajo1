@@ -1294,6 +1294,16 @@ public class SistemaZoologico {
         input.nextLine();
         System.out.println("\nID: " + animal.id);
         String nuevoID = input.nextLine();
+        
+        if (!nuevoID.isEmpty()){
+            for (Animal animal1 :
+                    animales) {
+                if (animal1.id == Integer.parseInt(nuevoID)) {
+                    System.out.println("El ID INGRESADO YA ESTÁ EN USO");
+                    return;
+                }
+            }
+        }
 
         System.out.println("Nombre: " + animal.especie);
         String nuevoEspecie = input.nextLine();
@@ -1430,19 +1440,35 @@ public class SistemaZoologico {
 
     }
     public static void eliminarAnimal() {
-        System.out.println("Ingrese el ID del animal que desea eliminar: ");
-        int id = input.nextInt();
-        if (id<0){
-            System.out.println("ID invalido");
-            return;
+        int id = 0;
+        while (true){
+            System.out.println("Ingrese el ID del animal que desea eliminar: ");
+            id = input.nextInt();
+            if (id<0){
+                System.out.println("ID invalido");
+                return;
+            }
+            Animal animaltempo = null;
+            for (Animal animal1 :
+                    animales) {
+                if (animal1.id==id){
+                    animaltempo = animal1;
+                }
+            }
+            if (animaltempo==null){
+                System.out.println("El animal ingresado no existe");
+            }
+            else break;
         }
+
         while (true){
             System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
             String option = input.next();
             if (option.equalsIgnoreCase("Y") || option.equalsIgnoreCase("N")){
                 switch (option.toUpperCase()){
                     case "Y":
-                        Boolean eliminar = animales.removeIf(animal -> animal.id == id); // Elimina el animal por ID, devuelve True o False
+                        int finalId2 = id;
+                        Boolean eliminar = animales.removeIf(animal -> animal.id == finalId2); // Elimina el animal por ID, devuelve True o False
 
                         if (eliminar==false){
                             System.out.println("ERROR: El animal no se encuentra registrado");
@@ -1450,11 +1476,13 @@ public class SistemaZoologico {
                         }
                         for (Habitat habitat :
                                 habitats) {
-                            habitat.animales.removeIf(animal -> animal.id == id); //Elimando la relación con Habitat
+                            int finalId = id;
+                            habitat.animales.removeIf(animal -> animal.id == finalId); //Elimando la relación con Habitat
                         }
                         for (ZooAmigo zooAmigo :
                                 zooAmigos) {
-                            zooAmigo.animales.removeIf(animal -> animal.id == id); //Elimando la relación con ZooAmigo
+                            int finalId1 = id;
+                            zooAmigo.animales.removeIf(animal -> animal.id == finalId1); //Elimando la relación con ZooAmigo
                         }
                         System.out.println("El animal se ha eliminado correctamente");
                         break;
@@ -1544,6 +1572,16 @@ public class SistemaZoologico {
         input.nextLine();
         System.out.println("\nCedula: " + tecnico.cedula);
         String nuevoCedula = input.nextLine();
+
+        if (!nuevoCedula.isEmpty()){
+            for (Tecnico tecnico1 :
+                    tecnicos) {
+                if (tecnico1.cedula == Integer.parseInt(nuevoCedula)) {
+                    System.out.println("LA CEDULA INGRESADA YA ESTÁ EN USO");
+                    return;
+                }
+            }
+        }
 
         System.out.println("Area : " + tecnico.area);
         String nuevoArea = input.nextLine();
@@ -1643,26 +1681,42 @@ public class SistemaZoologico {
         System.out.println("------------------------------------------");
     }
     public static void eliminarTecnico(){
-        System.out.println("Ingrese la cedula del tecnico que desea eliminar: ");
-        int cedula = input.nextInt();
-        if (cedula<0){
-            System.out.println("Cedula invalida");
-            return;
+        int cedula =0;
+        while (true){
+            System.out.println("Ingrese la cedula del tecnico que desea eliminar: ");
+            cedula = input.nextInt();
+            if (cedula<0){
+                System.out.println("Cedula invalida");
+                return;
+            }
+            Tecnico tecnicotempo = null;
+            for (Tecnico tecnico1 :
+                    tecnicos) {
+                if (tecnico1.cedula==cedula){
+                    tecnicotempo=tecnico1;
+                }
+            }
+            if (tecnicotempo==null){
+                System.out.println("El Tecnico ingresado no existe");
+            }else break;
         }
+
         while (true){
             System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
             String option = input.next();
             if (option.equalsIgnoreCase("Y") || option.equalsIgnoreCase("N")){
                 switch (option.toUpperCase()){
                     case "Y":
-                        boolean eliminar = tecnicos.removeIf(tecnico ->  tecnico.cedula== cedula); // Elimina el animal por ID, devuelve True o False
+                        int finalCedula = cedula;
+                        boolean eliminar = tecnicos.removeIf(tecnico ->  tecnico.cedula== finalCedula); // Elimina el animal por ID, devuelve True o False
                         if (!eliminar){
                             System.out.println("ERROR: El Tecnico no se encuentra registrado");
                             return;
                         }
                         for (Habitat habitat :
                                 habitats) {
-                            habitat.tecnicos.removeIf(tecnico ->  tecnico.cedula== cedula); //Elimando la relación con Habitat
+                            int finalCedula1 = cedula;
+                            habitat.tecnicos.removeIf(tecnico ->  tecnico.cedula== finalCedula1); //Elimando la relación con Habitat
                         }
                         System.out.println("El tecnico se ha eliminado correctamente");
                         break;
@@ -1747,12 +1801,22 @@ public class SistemaZoologico {
                 }
             }
             if (profesional == null) {
-                System.out.println("No se encontro un animal con el ID ingresado");
+                System.out.println("No se encontro un profesional con la cedula ingresada");
             } else break;
         }
         input.nextLine();
         System.out.println("\nCedula: " + profesional.cedula);
         String nuevoCedula = input.nextLine();
+
+        if (!nuevoCedula.isEmpty()){
+            for (Profesional profesional1 :
+                    profesionales) {
+                if (profesional1.cedula == Integer.parseInt(nuevoCedula)) {
+                    System.out.println("LA CEDULA INGRESADA YA ESTÁ EN USO");
+                    return;
+                }
+            }
+        }
 
         System.out.println("Area : " + profesional.area);
         String nuevoArea = input.nextLine();
@@ -1917,30 +1981,47 @@ public class SistemaZoologico {
         System.out.println("------------------------------------------");
     }
     public static void  eliminarProfesional(){
-        System.out.println("Ingrese la cedula del profesional que desea eliminar: ");
-        int cedula = input.nextInt();
-        if (cedula<0){
-            System.out.println("Cedula invalida");
-            return;
+        int cedula =0;
+        while (true){
+            System.out.println("Ingrese la cedula del profesional que desea eliminar: ");
+            cedula = input.nextInt();
+            if (cedula<0){
+                System.out.println("Cedula invalida");
+                return;
+            }
+            Profesional profesionalTempo =null;
+            for (Profesional profesional1 :
+                    profesionales) {
+                if (profesional1.cedula == cedula){
+                    profesionalTempo = profesional1;
+                }
+            }
+            if (profesionalTempo == null){
+                System.out.println("El Profesional ingresado no existe");
+            } else break;
         }
+
         while (true){
             System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
             String option = input.next();
             if (option.equalsIgnoreCase("Y") || option.equalsIgnoreCase("N")){
                 switch (option.toUpperCase()){
                     case "Y":
-                        boolean eliminar = profesionales.removeIf(profesional ->  profesional.cedula== cedula); // Elimina el profesional por cedula, devuelve True o False
+                        int finalCedula = cedula;
+                        boolean eliminar = profesionales.removeIf(profesional ->  profesional.cedula== finalCedula); // Elimina el profesional por cedula, devuelve True o False
                         if (!eliminar){
                             System.out.println("ERROR: El Tecnico no se encuentra registrado");
                             return;
                         }
                         for (Bioma bioma :
                                 biomas) {
-                            bioma.profesionales.removeIf(profesional ->  profesional.cedula== cedula); //Elimando la relación con Bioma
+                            int finalCedula1 = cedula;
+                            bioma.profesionales.removeIf(profesional ->  profesional.cedula== finalCedula1); //Elimando la relación con Bioma
                         }
                         for (Zoologico zoologico :
                                 zoologicos) {
-                            zoologico.profesionales.removeIf(profesional ->  profesional.cedula== cedula); //Elimando la relación con Bioma
+                            int finalCedula2 = cedula;
+                            zoologico.profesionales.removeIf(profesional ->  profesional.cedula== finalCedula2); //Elimando la relación con Bioma
                         }
                         System.out.println("El profesional se ha eliminado correctamente");
                         break;
@@ -2029,6 +2110,16 @@ public class SistemaZoologico {
         input.nextLine();
         System.out.println("\nCedula: " + zooAmigo.cedula);
         String nuevoCedula = input.nextLine();
+
+        if (!nuevoCedula.isEmpty()){
+            for (ZooAmigo zooAmigo1 :
+                    zooAmigos) {
+                if (zooAmigo1.cedula == Integer.parseInt(nuevoCedula)) {
+                    System.out.println("LA CEDULA INGRESADA YA ESTÁ EN USO");
+                    return;
+                }
+            }
+        }
 
         System.out.println("Nombre : " + zooAmigo.nombre);
         String nuevoNombre = input.nextLine();
@@ -2172,19 +2263,34 @@ public class SistemaZoologico {
         System.out.println("------------------------------------------");
     }
     public static void eliminarZooAmigo(){
-        System.out.println("Ingrese la cedula del ZooAmigo que desea eliminar: ");
-        int cedula = input.nextInt();
-        if (cedula<0){
-            System.out.println("Cedula invalida");
-            return;
+        int cedula = 0;
+        while (true){
+            System.out.println("Ingrese la cedula del ZooAmigo que desea eliminar: ");
+            cedula = input.nextInt();
+            if (cedula<0){
+                System.out.println("Cedula invalida");
+                return;
+            }
+            ZooAmigo zooAmigoTempo = null;
+            for (ZooAmigo zooAmigo1 :
+                    zooAmigos) {
+                if (zooAmigo1.cedula == cedula) {
+                    zooAmigoTempo = zooAmigo1;
+                }
+            }
+            if (zooAmigoTempo==null){
+                System.out.println("El ZooAmigo ingresado no exsite");
+            } else break;
         }
+
         while (true){
             System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
             String option = input.next();
             if (option.equalsIgnoreCase("Y") || option.equalsIgnoreCase("N")){
                 switch (option.toUpperCase()){
                     case "Y":
-                        boolean eliminar = zooAmigos.removeIf(zooAmigo ->  zooAmigo.cedula== cedula); // Elimina el profesional por cedula, devuelve True o False
+                        int finalCedula = cedula;
+                        boolean eliminar = zooAmigos.removeIf(zooAmigo ->  zooAmigo.cedula== finalCedula); // Elimina el profesional por cedula, devuelve True o False
                         if (!eliminar){
                             System.out.println("ERROR: El ZooAmigo no se encuentra registrado");
                             return;
@@ -2198,7 +2304,8 @@ public class SistemaZoologico {
                         }
                         for (Zoologico zoologico :
                                 zoologicos) {
-                            zoologico.zooAmigos.removeIf(zooAmigo->  zooAmigo.cedula== cedula); //Elimando la relación con Bioma
+                            int finalCedula1 = cedula;
+                            zoologico.zooAmigos.removeIf(zooAmigo->  zooAmigo.cedula== finalCedula1); //Elimando la relación con Bioma
                         }
                         System.out.println("El ZooAmigo se ha eliminado correctamente");
                         break;
