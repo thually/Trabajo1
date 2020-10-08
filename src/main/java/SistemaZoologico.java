@@ -2861,7 +2861,6 @@ public class SistemaZoologico {
             }
             //Codigo para eliminar
             else if(accion.equals("2")) {
-                for (Zoologico zoologico : siglasZoo) {
                     int eleccion;
                     System.out.println("------------------------------------------");
                     System.out.println("Escoja el zoologico que desea eliminar: \n");
@@ -2904,7 +2903,7 @@ public class SistemaZoologico {
                     System.out.println("El zoologico se ha eliminado correctamente");
                     return;
                 }
-            }//Regresar
+            //Regresar
             else{
                 return;
             }
@@ -3085,10 +3084,8 @@ public class SistemaZoologico {
                     }
                 }
             }
-            return;
             //Codigo para eliminar
             else if(accion.equals("2")){
-                for (Zoologico zoologico : ciudadZoo) {
                     int eleccion;
                     System.out.println("------------------------------------------");
                     System.out.println("Escoja el zoologico que desea eliminar: \n");
@@ -3130,7 +3127,6 @@ public class SistemaZoologico {
                     System.out.println("El zoologico se ha eliminado correctamente");
                     return;
                 }
-            }
             //else que denota la opcion cero para devolverse
             else{
                 return;
@@ -3141,6 +3137,7 @@ public class SistemaZoologico {
         ArrayList<Zoologico> copiaZoo = new ArrayList<>(zoologicos);
         Zoologico zoo = null;
         int i=0;
+        int eleccion =0;
         //menu para ordenar x atributo
         String option;
         String option2;
@@ -3212,7 +3209,7 @@ public class SistemaZoologico {
                     System.out.println(i+". "+zoologico);
                 }
             }else{
-                System.pur.println("Opcion incorrecta");
+                System.out.println("Opcion incorrecta");
                 return;
             }
         }//Menu organizar x siglas ascendente - descendente
@@ -3292,7 +3289,6 @@ public class SistemaZoologico {
 
             //Codigo editar
             if (accion.equals("1")) {
-                int eleccion;
                 System.out.println("------------------------------------------");
                 System.out.println("Escoja el zoologico que desea editar: \n");
                 eleccion = input.nextInt();
@@ -3344,8 +3340,6 @@ public class SistemaZoologico {
             }
             //Codigo para eliminar
             else if(accion.equals("2")){
-                int eleccion;
-                for (Zoologico zoologico: copiaZoo){
                     System.out.println("------------------------------------------");
                     System.out.println("Escoja el zoologico que desea editar: \n");
                     eleccion = input.nextInt();
@@ -3385,13 +3379,14 @@ public class SistemaZoologico {
 
                     System.out.println("El zoologico se ha eliminado correctamente");
                     return;
-                }//Regresar
-                else{
-                    return;
                 }
+            //Regresar
+            else{
+                return;
             }
         }
     }
+
 
     public static void busquedaBioma() {
         String option;
@@ -3544,6 +3539,7 @@ public class SistemaZoologico {
     public static void idBioma(int opcionValor, int idBusMin, int idBusMax) {
         Bioma bio = null;
         int i = 0;
+        int eleccion;
         //Crear listas para no afectar la principal y que se agreguen los elementos que cumplen las condiciones
         ArrayList<Bioma> idBiomaEx = new ArrayList<>();
         ArrayList<Bioma> idBiomaMax = new ArrayList<>();
@@ -3555,7 +3551,7 @@ public class SistemaZoologico {
                 if (idBusMin == bioma.id) {
                     idBiomaEx.add(bioma);
                 }else{
-                System.out.println("La temperatura no se encuentra registrada")
+                System.out.println("El id no se encuentra registrado");
                 }
             }
         }
@@ -3565,7 +3561,7 @@ public class SistemaZoologico {
                 if (idBusMin >= bioma.id) {
                     idBiomaMax.add(bioma);
                 }else{
-                System.out.println("La temperatura no se encuentra registrada")
+                System.out.println("El id no se encuentra registrado");
                 }
             }
         }
@@ -3575,7 +3571,7 @@ public class SistemaZoologico {
                 if (idBusMin <= bioma.id) {
                     idBiomaMin.add(bioma);
                 }else{
-                System.out.println("La temperatura no se encuentra registrada")
+                System.out.println("El id no se encuentra registrado");
                 }
             }
         }
@@ -3585,7 +3581,7 @@ public class SistemaZoologico {
                 if (idBusMin <= bioma.id && bioma.id <= idBusMax) {
                     idBiomaRan.add(bioma);
                 }else{
-                System.out.println("La temperatura no se encuentra registrada")
+                System.out.println("El id no se encuentra registrado");
                 }
             }
         }
@@ -3863,7 +3859,6 @@ public class SistemaZoologico {
                 //Codigo editar
                 if (accion.equals("1")) {
                     for (Bioma bioma : idBiomaEx) {
-                        int eleccion;
                         System.out.println("------------------------------------------");
                         System.out.println("Escoja el bioma que desea editar: \n");
                         eleccion = input.nextInt();
@@ -3912,7 +3907,6 @@ public class SistemaZoologico {
                 }//Codigo eliminar
                 else if(accion.equals("2")){
                     for (Bioma bioma : idBiomaEx) {
-                        int eleccion;
                         System.out.println("------------------------------------------");
                         System.out.println("Escoja el bioma que desea eliminar: \n");
                         eleccion = input.nextInt();
@@ -3960,7 +3954,6 @@ public class SistemaZoologico {
             //Codigo editar
                 if (accion.equals("1")) {
                     for (Bioma bioma : idBiomaMax) {
-                        int eleccion;
                         System.out.println("------------------------------------------");
                         System.out.println("Escoja el bioma que desea editar: \n");
                         eleccion = input.nextInt();
@@ -4009,7 +4002,6 @@ public class SistemaZoologico {
                 }//Codigo eliminar
                 else if(accion.equals("2")){
                     for (Bioma bioma : idBiomaMax) {
-                        int eleccion;
                         System.out.println("------------------------------------------");
                         System.out.println("Escoja el bioma que desea eliminar: \n");
                         eleccion = input.nextInt();
@@ -4057,7 +4049,6 @@ public class SistemaZoologico {
                 //Codigo editar
                 if (accion.equals("1")) {
                     for (Bioma bioma : idBiomaMin) {
-                        int eleccion;
                         System.out.println("------------------------------------------");
                         System.out.println("Escoja el bioma que desea editar: \n");
                         eleccion = input.nextInt();
@@ -4106,7 +4097,6 @@ public class SistemaZoologico {
                 }//Codigo eliminar
                 else if(accion.equals("2")){
                     for (Bioma bioma : tempBiomaMin) {
-                        int eleccion;
                         System.out.println("------------------------------------------");
                         System.out.println("Escoja el bioma que desea eliminar: \n");
                         eleccion = input.nextInt();
@@ -4154,7 +4144,6 @@ public class SistemaZoologico {
                 //Codigo editar
                 if (accion.equals("1")) {
                     for (Bioma bioma : idBiomaRan) {
-                        int eleccion;
                         System.out.println("------------------------------------------");
                         System.out.println("Escoja el bioma que desea editar: \n");
                         eleccion = input.nextInt();
@@ -4203,7 +4192,6 @@ public class SistemaZoologico {
                 }//Codigo eliminar
                 else if(accion.equals("2")){
                     for (Bioma bioma : idBiomaRan) {
-                        int eleccion;
                         System.out.println("------------------------------------------");
                         System.out.println("Escoja el bioma que desea eliminar: \n");
                         eleccion = input.nextInt();
