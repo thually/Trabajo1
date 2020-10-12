@@ -3342,7 +3342,7 @@ public class SistemaZoologico {
             //Codigo para eliminar
             else if(accion.equals("2")){
                     System.out.println("------------------------------------------");
-                    System.out.println("Escoja el zoologico que desea editar: \n");
+                    System.out.println("Escoja el zoologico que desea eliminar: \n");
                     eleccion = input.nextInt();
                     zoo = copiaZoo.get(eleccion - 1);
 
@@ -3542,65 +3542,52 @@ public class SistemaZoologico {
         int i = 0;
         int eleccion;
         //Crear listas para no afectar la principal y que se agreguen los elementos que cumplen las condiciones
-        ArrayList<Bioma> idBiomaEx = new ArrayList<>();
-        ArrayList<Bioma> idBiomaMax = new ArrayList<>();
-        ArrayList<Bioma> idBiomaMin = new ArrayList<>();
-        ArrayList<Bioma> idBiomaRan = new ArrayList<>();
         ArrayList<Bioma> idBiomaGen = new ArrayList<>();
-
         //Valor exacto
         if (opcionValor == 1) {
             for (Bioma bioma : biomas) {
                 if (idBusMin == bioma.id) {
-                    idBiomaEx.add(bioma);
+                    idBiomaGen.add(bioma);
 
                 }else{
                     System.out.println("El ID no se encuentra registrado");
                     return;
                 }
             }
-            idBiomaGen = idBiomaEx;
         }
         //Valor maximo
         else if (opcionValor == 2) {
             for (Bioma bioma : biomas) {
                 if (idBusMin >= bioma.id) {
-                    idBiomaMax.add(bioma);
+                    idBiomaGen.add(bioma);
                 }else{
                     System.out.println("El ID no se encuentra registrado");
                     return;
                 }
             }
-            idBiomaGen = idBiomaMax;
         }
         //Valor minimo
         else if (opcionValor == 3) {
             for (Bioma bioma : biomas) {
                 if (idBusMin <= bioma.id) {
-                    idBiomaMin.add(bioma);
+                    idBiomaGen.add(bioma);
                 }else{
                     System.out.println("El ID no se encuentra registrado");
                     return;
                 }
             }
-            idBiomaGen = idBiomaMin;
         }
         //Rango
         else {
             for (Bioma bioma : biomas) {
                 if (idBusMin <= bioma.id && bioma.id <= idBusMax) {
-                    idBiomaRan.add(bioma);
+                    idBiomaGen.add(bioma);
                 }else{
                     System.out.println("El ID no se encuentra registrado");
                     return;
                 }
             }
-            idBiomaGen = idBiomaRan;
         }
-
-
-
-
         //Menu organizar id x atributo
         String option;
         String option2;
@@ -3644,7 +3631,7 @@ public class SistemaZoologico {
             }
         }
         //Menu organizar x temperatura ascendente - descendente
-        if (option.equals("2")) {
+        else if (option.equals("2")) {
             System.out.println("--------------------------------------------------");
             System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
             System.out.println("1. Ascendente.");
@@ -3739,7 +3726,6 @@ public class SistemaZoologico {
         else{
             return;
         }
-
         //Menu editar-eliminar
         for(Bioma bioma: biomas){
             String accion;
@@ -4051,9 +4037,7 @@ public class SistemaZoologico {
         }
         else {
             return;
-        }
-
-                            //Menu editar - eliminar
+        }//Menu editar - eliminar
         String accion;
         System.out.println("-----------------------------------------");
         System.out.println("\nIndique la accion que desea realizar:\n");
@@ -5257,9 +5241,8 @@ public class SistemaZoologico {
         System.out.println("--------------------------------------------------");
         System.out.println("Por favor, seleccione el atributo por el que desea ordenar: \n");
         System.out.println("1. ID.");
-        System.out.println("2. Tipo de suelo.");
-        System.out.println("3. Vegetacion.");
-        System.out.println("4. Tipo de jaula.");
+        System.out.println("2. Vegetacion.");
+        System.out.println("3. Tipo de jaula.");
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
