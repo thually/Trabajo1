@@ -2548,7 +2548,7 @@ public class SistemaZoologico {
         //Crear lista para no afectar la principal y que se agreguen los elementos que cumplen las condiciones
         ArrayList<Zoologico> nombreZoo = new ArrayList<>();
         for (Zoologico zoologico : zoologicos) {
-            if (nombreBus.equals(zoologico.nombre) || nombreBus.equals(zoologico.nombre.toLowerCase())) {
+            if (nombreBus.equalsIgnoreCase(zoologico.nombre)){
                 nombreZoo.add(zoologico);
             }
         }
@@ -2774,7 +2774,7 @@ public class SistemaZoologico {
     public static void siglasZoologico(String siglasBus) {
         ArrayList<Zoologico> siglasZoo = new ArrayList<>(zoologicos);
         for (Zoologico zoologico : zoologicos) {
-            if (siglasBus.equals(zoologico.siglas) || siglasBus.equals(zoologico.siglas.toLowerCase())) {
+            if (siglasBus.equalsIgnoreCase(zoologico.siglas)) {
                 siglasZoo.add(zoologico);
             }
         }
@@ -2901,7 +2901,7 @@ public class SistemaZoologico {
         ArrayList<Zoologico> ciudadZoo = new ArrayList<>();
         //Crear lista para no afectar la principal y que se agreguen los elementos que cumplen las condiciones
         for (Zoologico zoologico : zoologicos) {
-            if (ciudadBus.equals(zoologico.ciudad) || ciudadBus.equals(zoologico.ciudad.toLowerCase())) {
+            if (ciudadBus.equalsIgnoreCase(zoologico.ciudad)) {
                 ciudadZoo.add(zoologico);
             }
         }
@@ -4028,7 +4028,7 @@ public class SistemaZoologico {
         int i =0;
         ArrayList<Bioma> humedadBio = new ArrayList<>();
         for (Bioma bioma : biomas) {
-            if (humedadBus.equals(bioma.humedad) || humedadBus.equals(bioma.humedad.toLowerCase())) {
+            if (humedadBus.equalsIgnoreCase(bioma.humedad)) {
                 humedadBio.add(bioma);
             }
         }
@@ -4233,7 +4233,7 @@ public class SistemaZoologico {
         int i=0;
         ArrayList<Bioma> tipoBio = new ArrayList<>();
         for (Bioma bioma : biomas) {
-            if (tipoBus.equals(bioma.humedad) || tipoBus.equals(bioma.humedad.toLowerCase())) {
+            if (tipoBus.equalsIgnoreCase(bioma.tipo)) {
                 tipoBio.add(bioma);
             }
         }
@@ -5041,7 +5041,7 @@ public class SistemaZoologico {
         int i=0;
         ArrayList<Habitat> tipoSueloHab = new ArrayList<>();
         for (Habitat habitat : habitats) {
-            if (tipoSueloBus.equals(habitat.tipoSuelo) || tipoSueloBus.equals(habitat.tipoSuelo.toLowerCase())) {
+            if (tipoSueloBus.equalsIgnoreCase(habitat.tipoSuelo)) {
                 tipoSueloHab.add(habitat);
             }
         }
@@ -5243,7 +5243,7 @@ public class SistemaZoologico {
         int i=0;
         ArrayList<Habitat> vegetacionHab = new ArrayList<>();
         for (Habitat habitat : habitats) {
-            if (vegetacionBus.equals(habitat.vegetacion) || vegetacionBus.equals(habitat.vegetacion.toLowerCase())) {
+            if (vegetacionBus.equalsIgnoreCase(habitat.vegetacion)) {
                 vegetacionHab.add(habitat);
             }
         }
@@ -5443,7 +5443,7 @@ public class SistemaZoologico {
         int i=0;
         ArrayList<Habitat> tipoJaulaHab = new ArrayList<>();
         for (Habitat habitat : habitats) {
-            if (tipoJaulaBus.equals(habitat.tipoJaula) || tipoJaulaBus.equals(habitat.tipoJaula.toLowerCase())) {
+            if (tipoJaulaBus.equalsIgnoreCase(habitat.tipoJaula)) {
                 tipoJaulaHab.add(habitat);
             }
         }
@@ -6261,7 +6261,7 @@ public class SistemaZoologico {
         int i=0;
         ArrayList<Animal> especieAnimal = new ArrayList<>();
         for (Animal animal : animales) {
-            if (especieBus.equals(animal.especie) || especieBus.equals(animal.especie.toLowerCase())) {
+            if (especieBus.equalsIgnoreCase(animal.especie)) {
                 especieAnimal.add(animal);
             }
         }
@@ -6700,7 +6700,7 @@ public class SistemaZoologico {
         ArrayList<Animal> alimentacionAni = new ArrayList<>();
         int i=0;
         for (Animal animal : animales) {
-            if (alimentacionBus.equals(animal.especie) || alimentacionBus.equals(animal.especie.toLowerCase())) {
+            if (alimentacionBus.equalsIgnoreCase(animal.alimentacion)) {
                 alimentacionAni.add(animal);
             }
         }
@@ -7522,7 +7522,7 @@ public class SistemaZoologico {
         int i=0;
         ArrayList<Tecnico> areaTec = new ArrayList<>();
         for (Tecnico tecnico : tecnicos) {
-            if (areaBus.equals(tecnico.area) || areaBus.equals(tecnico.area.toLowerCase())) {
+            if (areaBus.equalsIgnoreCase(tecnico.area)) {
                 areaTec.add(tecnico);
             }
         }
@@ -8829,7 +8829,7 @@ public class SistemaZoologico {
         int i=0;
         ArrayList<Profesional> areaPro = new ArrayList<>();
         for (Profesional profesional : profesionales) {
-            if (areaBus.equals(profesional.area) || areaBus.equals(profesional.area.toLowerCase())) {
+            if (areaBus.equalsIgnoreCase(profesional.area)) {
                 areaPro.add(profesional);
             }
         }
@@ -10140,7 +10140,7 @@ public class SistemaZoologico {
         int i=0;
         ArrayList<ZooAmigo> nombreZA = new ArrayList<>();
         for (ZooAmigo zooAmigo : zooAmigos) {
-            if (nombreBus.equals(zooAmigo.nombre) || nombreBus.equals(zooAmigo.nombre.toLowerCase())) {
+            if (nombreBus.equalsIgnoreCase(zooAmigo.nombre)) {
                 nombreZA.add(zooAmigo);
             }
         }
