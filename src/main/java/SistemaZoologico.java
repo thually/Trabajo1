@@ -2422,11 +2422,13 @@ public class SistemaZoologico {
         for (Zoologico zoologico : zoologicos) {
             if (nitBus.equals(zoologico.nit) || nitBus.equals(zoologico.nit.replace(".",""))) {
                 nitZoo.add(zoologico);
-            }else{
+            }
+            else {
                 System.out.println("El nit no se encuentra registrado");
                 return;
             }
         }
+
         Zoologico zoo;
         int i = 0;
         for (Zoologico zoologico : nitZoo) {
@@ -3700,8 +3702,7 @@ public class SistemaZoologico {
                 input.nextLine();
                 System.out.println("\nID: " + bio.id);
                 String nuevoID = input.nextLine();
-                int nuevoIDint = Integer.parseInt(nuevoID);
-                if (bioma.id == nuevoIDint){
+                if (nuevoID.equals(Integer.toString(bioma.id))){
                     System.out.println("ERROR: Ya existe un bioma registrado con este ID.");
                     return;
                 }
@@ -3983,8 +3984,7 @@ public class SistemaZoologico {
 
                 System.out.println("\nID: " + bio.id);
                 String nuevoID1 = input.nextLine();
-                int nuevoIDint1 = Integer.parseInt(nuevoID1);
-                if (bioma.id == nuevoIDint1) {
+                if (nuevoID1.equals(Integer.toString(bioma.id))) {
                     System.out.println("ERROR: Ya existe un bioma registrado con este ID.");
                     return;
                 }
@@ -4183,8 +4183,7 @@ public class SistemaZoologico {
                 input.nextLine();
                 System.out.println("\nID: " + bio.id);
                 String nuevoID = input.nextLine();
-                int nuevoIDint = Integer.parseInt(nuevoID);
-                if (bioma.id == nuevoIDint) {
+                if (nuevoID.equals(Integer.toString(bioma.id))) {
                     System.out.println("ERROR: Ya existe un bioma registrado con este ID.");
                     return;
                 }
@@ -4387,8 +4386,7 @@ public class SistemaZoologico {
                 input.nextLine();
                 System.out.println("\nID: " + bio.id);
                 String nuevoID1 = input.nextLine();
-                int nuevoIDint1 = Integer.parseInt(nuevoID1);
-                if (bioma.id == nuevoIDint1) {
+                if (nuevoID1.equals(Integer.toString(bioma.id))) {
                     System.out.println("ERROR: Ya existe un bioma registrado con este ID.");
                     return;
                 }
@@ -4609,8 +4607,7 @@ public class SistemaZoologico {
                 input.nextLine();
                 System.out.println("\nID: " + bio.id);
                 String nuevoID1 = input.nextLine();
-                int nuevoIDint = Integer.parseInt(nuevoID1);
-                if (bioma.id == nuevoIDint) {
+                if (nuevoID1.equals(Integer.toString(bioma.id))) {
                     System.out.println("ERROR: Ya existe un bioma registrado con este ID.");
                     return;
                 }
@@ -4896,7 +4893,7 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")) {
                     System.out.println("Ascendente");
-                    idHabitatGen.sort((comparadoresHabitat[0]));
+                    idHabitatGen.sort((comparadoresHabitat[1]));
                     for (Habitat habitat : idHabitatGen) {
                         i++;
                         System.out.println(i + ". " + habitat);
@@ -4994,8 +4991,7 @@ public class SistemaZoologico {
                 input.nextLine();
                 System.out.println("\nID: " + hab.id);
                 String nuevoID1 = input.nextLine();
-                int nuevoIDint1 = Integer.parseInt(nuevoID1);
-                if (habitat.id == nuevoIDint1) {
+                if (nuevoID1.equals(Integer.toString(habitat.id))) {
                     System.out.println("ERROR: Ya existe un habitat registrado con este ID.");
                     return;
                 }
@@ -5199,8 +5195,7 @@ public class SistemaZoologico {
                 input.nextLine();
                 System.out.println("\nID: " + hab.id);
                 String nuevoID1 = input.nextLine();
-                int nuevoIDint1 = Integer.parseInt(nuevoID1);
-                if (habitat.id == nuevoIDint1) {
+                if (nuevoID1.equals(Integer.toString(habitat.id))) {
                     System.out.println("ERROR: Ya existe un habitat registrado con este ID.");
                     return;
                 }
@@ -5362,32 +5357,6 @@ public class SistemaZoologico {
                 System.out.println();
                 if (option2.equals("1")) {
                     System.out.println("Ascendente");
-                    vegetacionHab.sort((comparadoresHabitat[2]));
-                    for (Habitat habitat : vegetacionHab) {
-                        i++;
-                        System.out.println(i + ". " + habitat);
-                    }
-                } else if (option2.equals("2")) {
-                    System.out.println("Descendente");
-                    vegetacionHab.sort(Collections.reverseOrder(comparadoresHabitat[2]));
-                    for (Habitat habitat : vegetacionHab) {
-                        i++;
-                        System.out.println(i + ". " + habitat);
-                    }
-                } else {
-                    System.out.println("Opcion incorrecta");
-                    return;
-                }
-                break;
-            case "4":
-                System.out.println("--------------------------------------------------");
-                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-                System.out.println("1. Ascendente.");
-                System.out.println("2. Descendente.");
-                option2 = input.next();
-                System.out.println();
-                if (option2.equals("1")) {
-                    System.out.println("Ascendente");
                     vegetacionHab.sort((comparadoresHabitat[3]));
                     for (Habitat habitat : vegetacionHab) {
                         i++;
@@ -5429,8 +5398,7 @@ public class SistemaZoologico {
                 input.nextLine();
                 System.out.println("\nID: " + hab.id);
                 String nuevoID1 = input.nextLine();
-                int nuevoIDint1 = Integer.parseInt(nuevoID1);
-                if (habitat.id == nuevoIDint1) {
+                if (nuevoID1.equals(Integer.toString(habitat.id))) {
                     System.out.println("ERROR: Ya existe un habitat registrado con este ID.");
                     return;
                 }
@@ -5629,8 +5597,7 @@ public class SistemaZoologico {
                 input.nextLine();
                 System.out.println("\nID: " + hab.id);
                 String nuevoID1 = input.nextLine();
-                int nuevoIDint1 = Integer.parseInt(nuevoID1);
-                if (habitat.id == nuevoIDint1) {
+                if (nuevoID1.equals(Integer.toString(habitat.id))) {
                     System.out.println("ERROR: Ya existe un habitat registrado con este ID.");
                     return;
                 }
@@ -5851,8 +5818,7 @@ public class SistemaZoologico {
                 input.nextLine();
                 System.out.println("\nID: " + hab.id);
                 String nuevoID1 = input.nextLine();
-                int nuevoIDint1 = Integer.parseInt(nuevoID1);
-                if (habitat.id == nuevoIDint1){
+                if (nuevoID1.equals(Integer.toString(habitat.id))){
                     System.out.println("ERROR: Ya existe un habitat registrado con este ID.");
                     return;
                 }
@@ -6254,8 +6220,7 @@ public class SistemaZoologico {
                 input.nextLine();
                 System.out.println("\nID: " + ani.id);
                 String nuevoID = input.nextLine();
-                int nuevoIDInt= Integer.parseInt(nuevoID);
-                if(nuevoIDInt==animal.id){
+                if(nuevoID.equals(Integer.toString(animal.id))){
                     System.out.println("ERROR: El ID ya se encuentra registrado");
                 }
 
@@ -6450,8 +6415,7 @@ public class SistemaZoologico {
                 input.nextLine();
                 System.out.println("\nID: " + ani.id);
                 String nuevoID = input.nextLine();
-                int nuevoIDint = Integer.parseInt(nuevoID);
-                if (animal.id == nuevoIDint) {
+                if(nuevoID.equals(Integer.toString(animal.id))){
                     System.out.println("ERROR: Ya existe un animal registrado con este ID.");
                     return;
                 }
@@ -6694,8 +6658,7 @@ public class SistemaZoologico {
                 input.nextLine();
                 System.out.println("\nID: " + ani.id);
                 String nuevoID = input.nextLine();
-                int nuevoIDint = Integer.parseInt(nuevoID);
-                if (animal.id == nuevoIDint) {
+                if(nuevoID.equals(Integer.toString(animal.id))){
                     System.out.println("ERROR: Ya existe un animal registrado con este NIT");
                     return;
                 }
@@ -6891,8 +6854,7 @@ public class SistemaZoologico {
                 input.nextLine();
                 System.out.println("\nID: " + ani.id);
                 String nuevoID = input.nextLine();
-                int nuevoIDInt= Integer.parseInt(nuevoID);
-                if(nuevoIDInt==animal.id){
+                if(nuevoID.equals(Integer.toString(animal.id))){
                     System.out.println("ERROR: El ID ya se encuentra registrado");
                 }
 
@@ -7111,8 +7073,7 @@ public class SistemaZoologico {
                 input.nextLine();
                 System.out.println("\nID: " + ani.id);
                 String nuevoID = input.nextLine();
-                int nuevoIDint= Integer.parseInt(nuevoID);
-                if(nuevoIDint==animal.id){
+                if(nuevoID.equals(Integer.toString(animal.id))){
                     System.out.println("ERROR: El id ya se encuentra regustrado");
                 }
 
@@ -7523,8 +7484,7 @@ public class SistemaZoologico {
                 input.nextLine();
                 System.out.println("\nCedula: " + tec.cedula);
                 String nuevoCedula = input.nextLine();
-                int nuevoCedulaInt=Integer.parseInt(nuevoCedula);
-                if (nuevoCedulaInt==tecnico.cedula){
+                if(nuevoCedula.equals(Integer.toString(tecnico.cedula))){
                     System.out.println("ERROR: La cedula ya se encuentra registrada");
                 }
 
@@ -7716,8 +7676,7 @@ public class SistemaZoologico {
                 input.nextLine();
                 System.out.println("\nCedula: " + tec.cedula);
                 String nuevoCedula = input.nextLine();
-                int nuevoCedulaInt= Integer.parseInt(nuevoCedula);
-                if(nuevoCedulaInt==tecnico.cedula){
+                if(nuevoCedula.equals(Integer.toString(tecnico.cedula))){
                     System.out.println("ERROR: La cedula ya se encuentra registrada");
                 }
 
@@ -7968,8 +7927,7 @@ public class SistemaZoologico {
                 input.nextLine();
                 System.out.println("\nCedula: " + tec.cedula);
                 String nuevoCedula = input.nextLine();
-                int nuevoCedulaInt= Integer.parseInt(nuevoCedula);
-                if(nuevoCedulaInt==tecnico.cedula){
+                if(nuevoCedula.equals(Integer.toString(tecnico.cedula))){
                     System.out.println("ERROR: La cedula ya se encuentra registrada");
                 }
 
@@ -8217,8 +8175,7 @@ public class SistemaZoologico {
                 input.nextLine();
                 System.out.println("\nCedula: " + tec.cedula);
                 String nuevoCedula = input.nextLine();
-                int nuevoCedulaInt= Integer.parseInt(nuevoCedula);
-                if(nuevoCedulaInt==tecnico.cedula){
+                if(nuevoCedula.equals(Integer.toString(tecnico.cedula))){
                     System.out.println("ERROR: La cedula ya se encuentra registrada");
                 }
 
@@ -8425,8 +8382,7 @@ public class SistemaZoologico {
                 input.nextLine();
                 System.out.println("\nCedula: " + tec.cedula);
                 String nuevoCedula = input.nextLine();
-                int nuevoCedulaInt= Integer.parseInt(nuevoCedula);
-                if(nuevoCedulaInt==tecnico.cedula){
+                if(nuevoCedula.equals(Integer.toString(tecnico.cedula))){
                     System.out.println("ERROR: La cedula ya se encuentra registrada");
                 }
 
@@ -8832,8 +8788,7 @@ public class SistemaZoologico {
                 input.nextLine();
                 System.out.println("\nCedula: " + pro.cedula);
                 String nuevoCedula = input.nextLine();
-                int nuevoCedulaInt= Integer.parseInt(nuevoCedula);
-                if(nuevoCedulaInt==profesional.cedula){
+                if(nuevoCedula.equals(Integer.toString(profesional.cedula))){
                     System.out.println("ERROR: La cedula ya se encuentra registrada");
                 }
 
@@ -9056,8 +9011,7 @@ public class SistemaZoologico {
                 input.nextLine();
                 System.out.println("\nCedula: " + pro.cedula);
                 String nuevoCedula = input.nextLine();
-                int nuevoCedulaInt= Integer.parseInt(nuevoCedula);
-                if(nuevoCedulaInt==profesional.cedula){
+                if(nuevoCedula.equals(Integer.toString(profesional.cedula))){
                     System.out.println("ERROR: La cedula ya se encuentra registrada");
                 }
 
@@ -9311,8 +9265,7 @@ public class SistemaZoologico {
                 input.nextLine();
                 System.out.println("\nCedula: " + pro.cedula);
                 String nuevoCedula = input.nextLine();
-                int nuevoCedulaInt= Integer.parseInt(nuevoCedula);
-                if(nuevoCedulaInt==profesional.cedula){
+                if(nuevoCedula.equals(Integer.toString(profesional.cedula))){
                     System.out.println("ERROR: La cedula ya se encuentra registrada");
                 }
 
@@ -9566,8 +9519,7 @@ public class SistemaZoologico {
                 input.nextLine();
                 System.out.println("\nCedula: " + pro.cedula);
                 String nuevoCedula = input.nextLine();
-                int nuevoCedulaInt= Integer.parseInt(nuevoCedula);
-                if(nuevoCedulaInt==profesional.cedula){
+                if(nuevoCedula.equals(Integer.toString(profesional.cedula))){
                     System.out.println("ERROR: La cedula ya se encuentra registrada");
                 }
 
@@ -9784,8 +9736,7 @@ public class SistemaZoologico {
                 input.nextLine();
                 System.out.println("\nCedula: " + pro.cedula);
                 String nuevoCedula = input.nextLine();
-                int nuevoCedulaInt= Integer.parseInt(nuevoCedula);
-                if(nuevoCedulaInt==profesional.cedula){
+                if(nuevoCedula.equals(Integer.toString(profesional.cedula))){
                     System.out.println("ERROR: La cedula ya se encuentra registrada");
                 }
 
@@ -10151,8 +10102,7 @@ public class SistemaZoologico {
                 input.nextLine();
                 System.out.println("\nCedula: " + zooA.cedula);
                 String nuevoCedula = input.nextLine();
-                int nuevoCedulaInt= Integer.parseInt(nuevoCedula);
-                if(nuevoCedulaInt==zooAmigo.cedula){
+                if(nuevoCedula.equals(Integer.toString(zooAmigo.cedula))){
                     System.out.println("ERROR: La cedula ya se encuentra registrada");
                 }
 
@@ -10320,8 +10270,7 @@ public class SistemaZoologico {
                 input.nextLine();
                 System.out.println("\nCedula: " + zooA.cedula);
                 String nuevoCedula = input.nextLine();
-                int nuevoCedulaInt= Integer.parseInt(nuevoCedula);
-                if(nuevoCedulaInt==zooAmigo.cedula){
+                if(nuevoCedula.equals(Integer.toString(zooAmigo.cedula))){
                     System.out.println("ERROR: La cedula ya se encuentra registrada");
                 }
 
@@ -10542,8 +10491,7 @@ public class SistemaZoologico {
                 input.nextLine();
                 System.out.println("\nCedula: " + zooA.cedula);
                 String nuevoCedula = input.nextLine();
-                int nuevoCedulaInt= Integer.parseInt(nuevoCedula);
-                if(nuevoCedulaInt==zooAmigo.cedula){
+                if(nuevoCedula.equals(Integer.toString(zooAmigo.cedula))){
                     System.out.println("ERROR: La cedula ya se encuentra registrada");
                 }
 
@@ -10729,8 +10677,7 @@ public class SistemaZoologico {
                 input.nextLine();
                 System.out.println("\nCedula: " + zooA.cedula);
                 String nuevoCedula = input.nextLine();
-                int nuevoCedulaInt= Integer.parseInt(nuevoCedula);
-                if(nuevoCedulaInt==zooAmigo.cedula){
+                if(nuevoCedula.equals(Integer.toString(zooAmigo.cedula))){
                     System.out.println("ERROR: La cedula ya se encuentra registrada");
                 }
 
@@ -10803,62 +10750,166 @@ public class SistemaZoologico {
     }
 
     public static void diagnosticoDeInconsistencias(){
-        System.out.println("A los siguientes zoologicos les falta algunas de sus relaciones:");
+        System.out.println("Zoologicos: ");
         for(Zoologico zoologico : zoologicos){
-            if(zoologico.biomas.isEmpty()){
-                System.out.println("El zoologico con NIT " + zoologico.nit + " no tiene asociado ningún bioma");
+            if(zoologico.biomas.isEmpty() && zoologico.profesionales.isEmpty() && zoologico.zooAmigos.isEmpty()){
+                System.out.println("El zoologico con NIT " + zoologico.nit + " no tiene asociado ningún bioma, profesional o zooAmigo.");
             }
-            if(zoologico.profesionales.isEmpty()){
-                System.out.println("El zoologico con NIT " + zoologico.nit + " no tiene asociado ningún profesional");
+            if(zoologico.biomas.isEmpty() && zoologico.profesionales.isEmpty() && !zoologico.zooAmigos.isEmpty()){
+                System.out.println("El zoologico con NIT " + zoologico.nit + " no tiene asociado ningún bioma o profesional.");
 
             }
-            if(zoologico.zooAmigos.isEmpty()){
-                System.out.println("El zoologico con NIT " + zoologico.nit + " no tiene asociado ningún zooAmigo");
+            if(zoologico.biomas.isEmpty() && !zoologico.profesionales.isEmpty() && zoologico.zooAmigos.isEmpty()){
+                System.out.println("El zoologico con NIT " + zoologico.nit + " no tiene asociado ningún bioma o zooAmigo.");
+
             }
-            else System.out.println("Todos los biomas, profesionales y zooAmigos están relacionados por lo menos a un zoologico." +  "\n");
+            if(zoologico.biomas.isEmpty() && !zoologico.profesionales.isEmpty() && !zoologico.zooAmigos.isEmpty()){
+                System.out.println("El zoologico con NIT " + zoologico.nit + " no tiene asociado ningún bioma.");
+
+            }
+            if(!zoologico.biomas.isEmpty() && zoologico.profesionales.isEmpty() && !zoologico.zooAmigos.isEmpty()){
+                System.out.println("El zoologico con NIT " + zoologico.nit + " no tiene asociado ningún profesional.");
+
+            }
+            if(!zoologico.biomas.isEmpty() && zoologico.profesionales.isEmpty() && zoologico.zooAmigos.isEmpty()){
+                System.out.println("El zoologico con NIT " + zoologico.nit + " no tiene asociado ningún zooAmigo o profesional.");
+
+            }
+            if(!zoologico.biomas.isEmpty() && !zoologico.profesionales.isEmpty() && zoologico.zooAmigos.isEmpty()){
+                System.out.println("El zoologico con NIT " + zoologico.nit + " no tiene asociado ningún zooAmigo.");
+
+            }
+            else if (!zoologico.biomas.isEmpty() && !zoologico.profesionales.isEmpty() && !zoologico.zooAmigos.isEmpty()) {
+                System.out.println("El zoologico con NIT" + zoologico.nit + " tiene al menos un bioma, profesional y zooAigo asociado");
+            }
         }
-        for(Bioma bioma : biomas){
-            System.out.println("A los siguientes biomas les falta algunas de sus relaciones:");
+        System.out.println("");
 
-
-                if(bioma.zoologico == null) {
-                    System.out.println("El bioma con ID " +bioma.id);
-                }
-
-
-             if(bioma.habitats.isEmpty()){
-                System.out.println("El siguiente bioma no tiene ningún habitat asociado: ");
-                System.out.println("El bioma con ID " +bioma.id);
+        System.out.println("Biomas: ");
+        for(Bioma bioma : biomas) {
+            if (bioma.zoologico == null && bioma.profesionales.isEmpty() && bioma.habitats.isEmpty()) {
+                System.out.println("El bioma con ID " + bioma.id + " no tiene zoologicos, profesionales, ni habitats asociados");
             }
-            if(bioma.profesionales.isEmpty()){
-                System.out.println("El siguiente bioma no tiene ningún profesional asociado: ");
-                System.out.println("El bioma con ID " +bioma.id);
+            if (bioma.zoologico == null && bioma.profesionales.isEmpty() && !bioma.habitats.isEmpty()) {
+                System.out.println("El bioma con ID " + bioma.id + " no tiene zoologicos, ni profesionales asociados");
             }
-            else System.out.println("Todos los biomas están relacionados como mínimo a un zoologico, un habitat y un profesional");
+            if (bioma.zoologico == null && !bioma.profesionales.isEmpty() && bioma.habitats.isEmpty()) {
+                System.out.println("El bioma con ID " + bioma.id + " no tiene zoologicos, ni habitats asociados");
+            }
+            if (bioma.zoologico == null && !bioma.profesionales.isEmpty() && !bioma.habitats.isEmpty()) {
+                System.out.println("El bioma con ID " + bioma.id + " no tiene zoologicos asociados");
+            }
+            if (bioma.zoologico != null && bioma.profesionales.isEmpty() && bioma.habitats.isEmpty()) {
+                System.out.println("El bioma con ID " + bioma.id + " no tiene profesionales, ni habitats asociados");
+            }
+            if (bioma.zoologico != null && bioma.profesionales.isEmpty() && !bioma.habitats.isEmpty()) {
+                System.out.println("El bioma con ID " + bioma.id + " no tiene profesionales asociados");
+            }
+            if (bioma.zoologico != null && !bioma.profesionales.isEmpty() && bioma.habitats.isEmpty()) {
+                System.out.println("El bioma con ID " + bioma.id + " no tiene habitats asociados");
+            }
+            if (bioma.zoologico != null && !bioma.profesionales.isEmpty() && !bioma.habitats.isEmpty()) {
+                System.out.println("El bioma con ID " + bioma.id + " tiene al menos un zoologico, profesional y habitat asociado");
+            }
         }
+        System.out.println("");
+
+        System.out.println("Habitats: ");
         for(Habitat habitat : habitats){
-            if(habitat.tecnicos.isEmpty()){
-                System.out.println("El siguiente habitat no tiene ningún técnico asociado: ");
-                System.out.println(habitat);
+            if(habitat.bioma == null && habitat.animales.isEmpty() && habitat.tecnicos.isEmpty()){
+                System.out.println("El habitat con ID " + habitat.id + " no tiene asociado ningún bioma, animal o tecnico");
+            }
+
+            if(habitat.bioma == null && habitat.animales.isEmpty() && !habitat.tecnicos.isEmpty()){
+                System.out.println("El habitat con ID " + habitat.id + " no tiene asociado ningún bioma o animal");
+            }
+
+            if(habitat.bioma == null && !habitat.animales.isEmpty() && habitat.tecnicos.isEmpty()){
+                System.out.println("El habitat con ID " + habitat.id + " no tiene asociado ningún bioma o tecnico");
+            }
+
+            if(habitat.bioma == null && !habitat.animales.isEmpty() && !habitat.tecnicos.isEmpty()){
+                System.out.println("El habitat con ID " + habitat.id + " no tiene asociado ningún bioma");
+            }
+
+            if(habitat.bioma != null && habitat.animales.isEmpty() && habitat.tecnicos.isEmpty()){
+                System.out.println("El habitat con ID " + habitat.id + " no tiene asociado ningún animal o tecnico");
+            }
+
+            if(habitat.bioma != null && habitat.animales.isEmpty() && !habitat.tecnicos.isEmpty()){
+                System.out.println("El habitat con ID " + habitat.id + " no tiene asociado ningún animal");
+            }
+
+            if(habitat.bioma != null && !habitat.animales.isEmpty() && habitat.tecnicos.isEmpty()){
+                System.out.println("El habitat con ID " + habitat.id + " no tiene asociado ningún tecnico");
+            }
+
+            if(habitat.bioma != null && !habitat.animales.isEmpty() && !habitat.tecnicos.isEmpty()){
+                System.out.println("El habitat con ID " + habitat.id + " tiene asociado al menos un bioma, animal y tecnico");
             }
         }
+        System.out.println("");
+
+        System.out.println("Animales: ");
         for(Animal animal : animales){
-
+            if(animal.habitat==null && animal.zooAmigo == null){
+                System.out.println("El animal con ID " + animal.id + " no tiene asociado ningún habitat o zooAmigo");
+            }
+            if(animal.habitat==null && animal.zooAmigo != null){
+                System.out.println("El animal con ID " + animal.id + " no tiene asociado ningún habitat");
+            }
+            if(animal.habitat != null && animal.zooAmigo == null){
+                System.out.println("El animal con ID " + animal.id + " no tiene asociado ningún zooAmigo");
+            }
+            if(animal.habitat!=null && animal.zooAmigo != null){
+                System.out.println("El animal con ID " + animal.id + " tiene asociado al menos un habitat y zooAmigo");
+            }
         }
+        System.out.println("");
 
+        System.out.println("Tecnicos: ");
         for(Tecnico tecnico : tecnicos){
             if(tecnico.habitats.isEmpty()){
-                System.out.println("El siguiente tecnico no tiene ningún habitat asociado: ");
-                System.out.println(tecnico);
+                System.out.println("El tecnico con cedula # " + tecnico.cedula + " no tiene ningún habitat asociado");
             }
-        }
-        for(ZooAmigo zooAmigo : zooAmigos){
-            if(zooAmigo.animales.isEmpty()){
-                System.out.println("El siguiente zooAmigo no tiene ningún animales asociado: ");
-                System.out.println(zooAmigo);
-            }
-        }
+            else System.out.println("El tecnico con cedula # " + tecnico.cedula + " tiene por lo menos un habitat asociado");
 
+        }
+        System.out.println("");
+
+        System.out.println("Profesionales: ");
+        for(Profesional profesional : profesionales){
+            if(profesional.zoologico == null && profesional.biomas.isEmpty()){
+                System.out.println("El profesional con cedula # " + profesional.cedula + " no tiene zoologicos o biomas asociados");
+            }
+            if(profesional.zoologico == null && !profesional.biomas.isEmpty()){
+                System.out.println("El profesional con cedula # " + profesional.cedula + " no tiene zoologicos asociados");
+            }
+            if(profesional.zoologico != null && profesional.biomas.isEmpty()){
+                System.out.println("El profesional con cedula # " + profesional.cedula + " no tiene biomas asociados");
+            }
+            if(profesional.zoologico != null && !profesional.biomas.isEmpty()){
+                System.out.println("El profesional con cedula # " + profesional.cedula + " tiene al menos un zoologico y bioma asociado");
+            }
+        }
+        System.out.println("");
+
+        System.out.println("ZooAmigos: ");
+        for(ZooAmigo zooAmigo : zooAmigos){
+            if(zooAmigo.zoologico == null && zooAmigo.animales.isEmpty()){
+                System.out.println("El zooAmigo con cedula # " + zooAmigo.cedula + " no tiene ningun zoologico o animal asociado");
+            }
+            if(zooAmigo.zoologico == null && !zooAmigo.animales.isEmpty()){
+                System.out.println("El zooAmigo con cedula # " + zooAmigo.cedula + " no tiene ningun zoologico asociado");
+            }
+            if(zooAmigo.zoologico != null && zooAmigo.animales.isEmpty()){
+                System.out.println("El zooAmigo con cedula # " + zooAmigo.cedula + " no tiene ningun animal asociado");
+            }
+            if(zooAmigo.zoologico != null && !zooAmigo.animales.isEmpty()){
+                System.out.println("El zooAmigo con cedula # " + zooAmigo.cedula + " tiene al menos un zoologico y animal asociado");
+            }
+        }
+        System.out.println("");
     }
 
 }
