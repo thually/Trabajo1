@@ -125,7 +125,7 @@ public class SistemaZoologico {
                     busqueda();
                     break;
                 case "3":
-                    //diagnostico();
+                    diagnosticoDeInconsistencias();
                     break;
                 case "4":
                     //guardar();
@@ -2329,13 +2329,13 @@ public class SistemaZoologico {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String nitBus = input.next();
-                        nitZoologico(1, nitBus);
+                        nitZoologico(nitBus);
                         break;
                     } else {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String nitBus = input.next();
-                        nitZoologico(2, nitBus);
+                        nitZoologico( nitBus);
                         break;
                     }
                     break;
@@ -2352,13 +2352,13 @@ public class SistemaZoologico {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String nombreBus = input.next();
-                        nombreZoologico(1, nombreBus);
+                        nombreZoologico(nombreBus);
                         break;
                     } else {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String nombreBus = input.next();
-                        nombreZoologico(2, nombreBus);
+                        nombreZoologico(nombreBus);
                         break;
                     }
                     break;
@@ -2375,13 +2375,13 @@ public class SistemaZoologico {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String siglasBus = input.next();
-                        siglasZoologico(1, siglasBus);
+                        siglasZoologico(siglasBus);
                         break;
                     } else {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String siglasBus = input.next();
-                        siglasZoologico(2, siglasBus);
+                        siglasZoologico(siglasBus);
                         break;
                     }
                     break;
@@ -2398,13 +2398,13 @@ public class SistemaZoologico {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String ciudadBus = input.next();
-                        ciudadZoologico(1, ciudadBus);
+                        ciudadZoologico(ciudadBus);
                         break;
                     } else {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String ciudadBus = input.next();
-                        ciudadZoologico(2, ciudadBus);
+                        ciudadZoologico(ciudadBus);
                         break;
                     }
                     break;
@@ -2417,7 +2417,7 @@ public class SistemaZoologico {
             System.out.println("--------------------------------------------------");
         }
     }
-    public static void nitZoologico(int opcionValor, String nitBus) {
+    public static void nitZoologico(String nitBus) {
         ArrayList<Zoologico> nitZoo = new ArrayList<>(zoologicos);
         for (Zoologico zoologico : zoologicos) {
             if (nitBus.equals(zoologico.nit) || nitBus.equals(zoologico.nit.replace(".",""))) {
@@ -2427,7 +2427,7 @@ public class SistemaZoologico {
                 return;
             }
         }
-        Zoologico zoo = null;
+        Zoologico zoo;
         int i = 0;
         for (Zoologico zoologico : nitZoo) {
             if (nitBus.equals(zoologico.nit)) {
@@ -2463,7 +2463,7 @@ public class SistemaZoologico {
 
                 System.out.println("Siglas: " + zoo.siglas);
                 String nuevoSiglas = input.nextLine();
-                if (zoo.siglas.equalsIgnoreCase(nuevoSiglas)) {
+                if (zoologico.siglas.equalsIgnoreCase(nuevoSiglas)) {
                     System.out.println("ERROR: Ya existe un zoologico registrado con estas siglas.");
                     return;
                 }
@@ -2490,14 +2490,12 @@ public class SistemaZoologico {
 
                             case "N":
                                  break;
-                        }
-                        return;
+                        }return;
                     }else{
                         System.out.println("Opcion invalida\n");
                     }
                     return;
                 }
-
             }//Codigo para eliminar
             else if(accion.equals("2")){
                 int eleccion;
@@ -2547,7 +2545,7 @@ public class SistemaZoologico {
             }
         }
     }
-    public static void nombreZoologico(int opcionValor, String nombreBus) {
+    public static void nombreZoologico(String nombreBus) {
         //Crear lista para no afectar la principal y que se agreguen los elementos que cumplen las condiciones
         ArrayList<Zoologico> nombreZoo = new ArrayList<>();
         for (Zoologico zoologico : zoologicos) {
@@ -2558,7 +2556,7 @@ public class SistemaZoologico {
                 return;
             }
         }
-        Zoologico zoo = null;
+        Zoologico zoo;
         int i=0;
         //Menu para ordenar
         String option;
@@ -2573,111 +2571,110 @@ public class SistemaZoologico {
         System.out.println();
 
         //Ordenar por nit
-        if (option.equals("1")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
+        switch (option) {
+            case "1":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
 
-            //Ordenar ascendentemente
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(nombreZoo, (comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
-                    i++;
-                    System.out.println(i + ". " + zoologico );
+                //Ordenar ascendentemente
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    nombreZoo.sort((comparadoresZoologico[0]));
+                    for (Zoologico zoologico : nombreZoo) {
+                        i++;
+                        System.out.println(i + ". " + zoologico);
+                    }
                 }
-            }
-            //Ordenar descendentemente
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : nombreZoo) {
-                    i++;
-                    System.out.println(i+". "+zoologico);
+                //Ordenar descendentemente
+                else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    nombreZoo.sort(Collections.reverseOrder(comparadoresZoologico[0]));
+                    for (Zoologico zoologico : nombreZoo) {
+                        i++;
+                        System.out.println(i + ". " + zoologico);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            }
-            else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        //Ordenar por siglas
-        else if (option.equals("2")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            //Ordenar ascendentemente
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(nombreZoo, (comparadoresZoologico[2]));
-                for (Zoologico zoologico : nombreZoo) {
-                    i++;
-                    System.out.println(i+". "+zoologico);
+                break;
+            //Ordenar por siglas
+            case "2":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                //Ordenar ascendentemente
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    nombreZoo.sort((comparadoresZoologico[2]));
+                    for (Zoologico zoologico : nombreZoo) {
+                        i++;
+                        System.out.println(i + ". " + zoologico);
+                    }
                 }
-            }
-            //Organizar descedente
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                for (Zoologico zoologico : nombreZoo) {
-                    i++;
-                    System.out.println(i+". "+zoologico);
+                //Organizar descedente
+                else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    nombreZoo.sort(Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : nombreZoo) {
+                        i++;
+                        System.out.println(i + ". " + zoologico);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            }else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }//Ordenar por ciudad
-        else if (option.equals("3")) {
-            //Menu ascendente - descendete
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
+                break;
+            case "3":
+                //Menu ascendente - descendete
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
 
-            //organizar ascendente
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(nombreZoo, (comparadoresZoologico[3]));
-                for (Zoologico zoologico : nombreZoo) {
-                    i++;
-                    System.out.println(i+". "+zoologico);
+                //organizar ascendente
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    nombreZoo.sort((comparadoresZoologico[3]));
+                    for (Zoologico zoologico : nombreZoo) {
+                        i++;
+                        System.out.println(i + ". " + zoologico);
+                    }
                 }
-            }
-            //organizar descendente
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(nombreZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                for (Zoologico zoologico : nombreZoo) {
-                    i++;
-                    System.out.println(i+". "+zoologico);
+                //organizar descendente
+                else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    nombreZoo.sort(Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : nombreZoo) {
+                        i++;
+                        System.out.println(i + ". " + zoologico);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            }else {
-                System.out.println("Opcion incorrecta");
+                break;
+            default:
                 return;
-            }
-        }//Regresar al menú anterior
-        else {
-            return;
-        }
+        }//Menu para editar o eliminar
+        String accion;
+        System.out.println("-----------------------------------------");
+        System.out.println("\nIndique la accion que desea realizar:\n");
+        System.out.println("1. Editar ");
+        System.out.println("2. Eliminar ");
+        System.out.println("0. Regresar al menú anterior" + "\n");
+        accion = input.next();
+        System.out.println("----------------------------------");
         for(Zoologico zoologico: nombreZoo) {
-            //Menu para editar o eliminar
-            String accion;
-            System.out.println("-----------------------------------------");
-            System.out.println("\nIndique la accion que desea realizar:\n");
-            System.out.println("1. Editar ");
-            System.out.println("2. Eliminar ");
-            System.out.println("0. Regresar al menú anterior" + "\n");
-            accion = input.next();
-            System.out.println("----------------------------------");
             //Codigo para editar
             if (accion.equals("1")) {
                 int eleccion;
@@ -2686,6 +2683,7 @@ public class SistemaZoologico {
                 eleccion = input.nextInt();
                 zoo = nombreZoo.get(eleccion - 1);
                 input.nextLine();
+
                 System.out.println("NIT: " + zoo.nit);
                 String nuevoNIT = input.nextLine();
                 if (zoologico.nit.replace(".", "").equals(nuevoNIT)) {
@@ -2697,7 +2695,7 @@ public class SistemaZoologico {
 
                 System.out.println("Siglas: " + zoo.siglas);
                 String nuevoSiglas = input.nextLine();
-                if (zoo.siglas.equalsIgnoreCase(nuevoSiglas)) {
+                if (zoologico.siglas.equalsIgnoreCase(nuevoSiglas)) {
                     System.out.println("ERROR: Ya existe un zoologico registrado con estas siglas.");
                     return;
                 }
@@ -2724,12 +2722,10 @@ public class SistemaZoologico {
 
                             case "N":
                                 break;
-                        }
-                        return;
+                        }return;
                     } else {
                         System.out.println("Opcion invalida\n");
-                    }
-                    return;
+                    }return;
                 }
             }//Codigo para eliminar
             else if(accion.equals("2")){
@@ -2779,7 +2775,7 @@ public class SistemaZoologico {
             }
         }
     }
-    public static void siglasZoologico(int opcionValor, String siglasBus) {
+    public static void siglasZoologico(String siglasBus) {
         ArrayList<Zoologico> siglasZoo = new ArrayList<>(zoologicos);
         for (Zoologico zoologico : zoologicos) {
             if (siglasBus.equals(zoologico.siglas) || siglasBus.equals(zoologico.siglas.toLowerCase())) {
@@ -2789,7 +2785,7 @@ public class SistemaZoologico {
                 return;
             }
         }
-        Zoologico zoo = null;
+        Zoologico zoo;
         int i = 0;
         for (Zoologico zoologico : siglasZoo) {
             if (siglasBus.equals(zoologico.siglas)) {
@@ -2824,7 +2820,7 @@ public class SistemaZoologico {
 
                 System.out.println("Siglas: " + zoo.siglas);
                 String nuevoSiglas = input.nextLine();
-                if (zoo.siglas.equalsIgnoreCase(nuevoSiglas)) {
+                if (zoologico.siglas.equalsIgnoreCase(nuevoSiglas)) {
                     System.out.println("ERROR: Ya existe un zoologico registrado con estas siglas.");
                     return;
                 }
@@ -2902,14 +2898,13 @@ public class SistemaZoologico {
 
                     System.out.println("El zoologico se ha eliminado correctamente");
                     return;
-                }
-            //Regresar
-            else{
+                }//Regresar
+                else{
                 return;
             }
         }
     }
-    public static void ciudadZoologico(int opcionValor, String ciudadBus) {
+    public static void ciudadZoologico(String ciudadBus) {
         ArrayList<Zoologico> ciudadZoo = new ArrayList<>();
         //Crear lista para no afectar la principal y que se agreguen los elementos que cumplen las condiciones
         for (Zoologico zoologico : zoologicos) {
@@ -2920,7 +2915,7 @@ public class SistemaZoologico {
                 return;
             }
         }
-        Zoologico zoo = null;
+        Zoologico zoo;
         int i = 0;
         //Menu para ordenar
         String option;
@@ -2935,102 +2930,102 @@ public class SistemaZoologico {
         System.out.println();
 
         //Organizar x nit
-        if (option.equals("1")) {
-            //Menu ordenar ascendente - descendente
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
+        switch (option) {
+            case "1":
+                //Menu ordenar ascendente - descendente
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
 
-            //Organizar ascendente
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(ciudadZoo, (comparadoresZoologico[0]));
-                for (Zoologico zoologico : ciudadZoo) {
-                    i++;
-                    System.out.println(i + ". " + zoologico);
+                //Organizar ascendente
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    ciudadZoo.sort((comparadoresZoologico[0]));
+                    for (Zoologico zoologico : ciudadZoo) {
+                        i++;
+                        System.out.println(i + ". " + zoologico);
+                    }
+                }//Organizar descendente
+                else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    ciudadZoo.sort(Collections.reverseOrder(comparadoresZoologico[0]));
+                    for (Zoologico zoologico : ciudadZoo) {
+                        i++;
+                        System.out.println(i + ". " + zoologico);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            }//Organizar descendente
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(ciudadZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : ciudadZoo) {
-                    i++;
-                    System.out.println(i + ". " + zoologico);
+                break;
+            case "2":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    ciudadZoo.sort((comparadoresZoologico[1]));
+                    for (Zoologico zoologico : ciudadZoo) {
+                        i++;
+                        System.out.println(i + ". " + zoologico);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    ciudadZoo.sort(Collections.reverseOrder(comparadoresZoologico[1]));
+                    for (Zoologico zoologico : ciudadZoo) {
+                        i++;
+                        System.out.println(i + ". " + zoologico);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            }else{
-                System.out.println("Opcion incorrecta");
+                break;
+            //Organizar x siglas
+            case "3":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    ciudadZoo.sort((comparadoresZoologico[2]));
+                    for (Zoologico zoologico : ciudadZoo) {
+                        i++;
+                        System.out.println(i + ". " + zoologico);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    ciudadZoo.sort(Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : ciudadZoo) {
+                        i++;
+                        System.out.println(i + ". " + zoologico);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
+                }
+                break;
+            default:
                 return;
-            }
-        }
-        else if (option.equals("2")){
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(ciudadZoo, (comparadoresZoologico[1]));
-                for (Zoologico zoologico : ciudadZoo) {
-                    i++;
-                    System.out.println(i + ". " + zoologico);
-                }
-            }else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(ciudadZoo, Collections.reverseOrder(comparadoresZoologico[1]));
-                for (Zoologico zoologico : ciudadZoo) {
-                    i++;
-                    System.out.println(i + ". " + zoologico);
-                }
-            }else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        //Organizar x siglas
-        else if (option.equals("3")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(ciudadZoo, (comparadoresZoologico[2]));
-                for (Zoologico zoologico : ciudadZoo) {
-                    i++;
-                    System.out.println(i + ". " + zoologico);
-                }
-            }else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(ciudadZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                for (Zoologico zoologico : ciudadZoo) {
-                    i++;
-                    System.out.println(i + ". " + zoologico);
-                }
-            }else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }//Regresar
-        else {
-            return;
-        }
+        }//Menu para editar o eliminar
+        String accion;
+        System.out.println("-----------------------------------------");
+        System.out.println("\nIndique la accion que desea realizar:\n");
+        System.out.println("1. Editar ");
+        System.out.println("2. Eliminar ");
+        System.out.println("0. Regresar al menú anterior" + "\n");
+        accion = input.next();
+        System.out.println("----------------------------------");
         for (Zoologico zoologico : zoologicos) {
-            //Menu para editar o eliminar
-            String accion;
-            System.out.println("-----------------------------------------");
-            System.out.println("\nIndique la accion que desea realizar:\n");
-            System.out.println("1. Editar ");
-            System.out.println("2. Eliminar ");
-            System.out.println("0. Regresar al menú anterior" + "\n");
-            accion = input.next();
-            System.out.println("----------------------------------");
             //Codigo para editar
             if (accion.equals("1")) {
                 int eleccion;
@@ -3051,7 +3046,7 @@ public class SistemaZoologico {
 
                 System.out.println("Siglas: " + zoo.siglas);
                 String nuevoSiglas = input.nextLine();
-                if (zoo.siglas.equalsIgnoreCase(nuevoSiglas)) {
+                if (zoologico.siglas.equalsIgnoreCase(nuevoSiglas)) {
                     System.out.println("ERROR: Ya existe un zoologico registrado con estas siglas.");
                     return;
                 }
@@ -3074,61 +3069,56 @@ public class SistemaZoologico {
                                 } else zoo.ciudad = nuevoCiudad;
                                 System.out.println("Zoologico editado exitosamente");
                                 break;
-
                             case "N":
                                 break;
-                        }
-                        return;
+                        }return;
                     }
                     else {
                         System.out.println("Opcion invalida\n");
                     }
                 }
-            }
-            //Codigo para eliminar
+            }//Codigo para eliminar
             else if(accion.equals("2")){
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el zoologico que desea eliminar: \n");
-                    eleccion = input.nextInt();
-                    zoo = ciudadZoo.get(eleccion - 1);
+                int eleccion;
+                System.out.println("------------------------------------------");
+                System.out.println("Escoja el zoologico que desea eliminar: \n");
+                eleccion = input.nextInt();
+                zoo = ciudadZoo.get(eleccion - 1);
 
-                    while (true) {
-                        System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    break;
-                                case "N":
-                                    return;
-                            }
-                            break;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
+                while (true) {
+                    System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+                    String optionE = input.next();
+                    if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                        switch (optionE.toUpperCase()) {
+                            case "Y":
+                                break;
+                            case "N":
+                                return;
+                        }break;
+                    } else {
+                        System.out.println("Opcion invalida\n");
                     }
-                    for (Profesional profesional : profesionales) {
-                        if (profesional.zoologico != null && profesional.zoologico.nit.replace(".", "").equals(zoo.nit.replace(".", ""))) {
-                            profesional.zoologico = null;
-                        }
-                    }
-                    for (ZooAmigo zooAmigo : zooAmigos) {
-                        if (zooAmigo.zoologico != null && zooAmigo.zoologico.nit.replace(".", "").equals(zoo.nit.replace(".", ""))) {
-                            zooAmigo.zoologico = null;
-                        }
-                    }
-                    for (Bioma bioma : biomas) {
-                        if (bioma.zoologico != null && bioma.zoologico.nit.replace(".", "").equals(zoo.nit.replace(".", ""))) {
-                            bioma.zoologico = null;
-                        }
-                    }
-                    zoologicos.remove(zoo);
-
-                    System.out.println("El zoologico se ha eliminado correctamente");
-                    return;
                 }
-            //else que denota la opcion cero para devolverse
+                for (Profesional profesional : profesionales) {
+                    if (profesional.zoologico != null && profesional.zoologico.nit.replace(".", "").equals(zoo.nit.replace(".", ""))) {
+                        profesional.zoologico = null;
+                    }
+                }
+                for (ZooAmigo zooAmigo : zooAmigos) {
+                    if (zooAmigo.zoologico != null && zooAmigo.zoologico.nit.replace(".", "").equals(zoo.nit.replace(".", ""))) {
+                        zooAmigo.zoologico = null;
+                    }
+                }
+                for (Bioma bioma : biomas) {
+                    if (bioma.zoologico != null && bioma.zoologico.nit.replace(".", "").equals(zoo.nit.replace(".", ""))) {
+                        bioma.zoologico = null;
+                    }
+                }
+                zoologicos.remove(zoo);
+
+                System.out.println("El zoologico se ha eliminado correctamente");
+                return;
+            }//else que denota la opcion cero para devolverse
             else{
                 return;
             }
@@ -3136,9 +3126,9 @@ public class SistemaZoologico {
     }
     public static void mostarTodosZoologicos() {
         ArrayList<Zoologico> copiaZoo = new ArrayList<>(zoologicos);
-        Zoologico zoo = null;
+        Zoologico zoo;
         int i=0;
-        int eleccion =0;
+        int eleccion;
         //menu para ordenar x atributo
         String option;
         String option2;
@@ -3153,141 +3143,141 @@ public class SistemaZoologico {
         System.out.println();
 
         //Menu organizar x nit ascendente - descendente
-        if (option.equals("1")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
+        switch (option) {
+            case "1":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
 
-            //Organizar x nit ascendente
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(copiaZoo, (comparadoresZoologico[0]));
-                for (Zoologico zoologico : copiaZoo) {
-                    i++;
-                    System.out.println(i+". "+zoologico);
+                //Organizar x nit ascendente
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    copiaZoo.sort((comparadoresZoologico[0]));
+                    for (Zoologico zoologico : copiaZoo) {
+                        i++;
+                        System.out.println(i + ". " + zoologico);
+                    }
                 }
-            }
-            //Organizar x nit descendente
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[0]));
-                for (Zoologico zoologico : copiaZoo) {
-                    i++;
-                    System.out.println(i+". "+zoologico);
+                //Organizar x nit descendente
+                else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    copiaZoo.sort(Collections.reverseOrder(comparadoresZoologico[0]));
+                    for (Zoologico zoologico : copiaZoo) {
+                        i++;
+                        System.out.println(i + ". " + zoologico);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            }
-            else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }//Menu organizar x nombre ascendente - descendente
-        else if (option.equals("2")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
+                break;
+            case "2":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
 
-            //Organizar ascendente
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(copiaZoo, (comparadoresZoologico[1]));
-                for (Zoologico zoologico : copiaZoo) {
-                    i++;
-                    System.out.println(i+". "+zoologico);
+                //Organizar ascendente
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    copiaZoo.sort((comparadoresZoologico[1]));
+                    for (Zoologico zoologico : copiaZoo) {
+                        i++;
+                        System.out.println(i + ". " + zoologico);
+                    }
                 }
-            }
-            //Organizar descendente
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[1]));
-                for (Zoologico zoologico : copiaZoo) {
-                    i++;
-                    System.out.println(i+". "+zoologico);
+                //Organizar descendente
+                else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    copiaZoo.sort(Collections.reverseOrder(comparadoresZoologico[1]));
+                    for (Zoologico zoologico : copiaZoo) {
+                        i++;
+                        System.out.println(i + ". " + zoologico);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            }else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }//Menu organizar x siglas ascendente - descendente
-        else if (option.equals("3")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
+                break;
+            case "3":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
 
-            //Organizar ascendente
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(copiaZoo, (comparadoresZoologico[2]));
-                for (Zoologico zoologico : copiaZoo) {
-                    i++;
-                    System.out.println(i+". "+zoologico);
+                //Organizar ascendente
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    copiaZoo.sort((comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaZoo) {
+                        i++;
+                        System.out.println(i + ". " + zoologico);
+                    }
                 }
-            }
-            //Organizar descendente
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[2]));
-                for (Zoologico zoologico : copiaZoo) {
-                    i++;
-                    System.out.println(i+". "+zoologico);
+                //Organizar descendente
+                else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    copiaZoo.sort(Collections.reverseOrder(comparadoresZoologico[2]));
+                    for (Zoologico zoologico : copiaZoo) {
+                        i++;
+                        System.out.println(i + ". " + zoologico);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            }else{
-                System.out.println("Opcion incorrecta");
+                break;
+            //Menu organizar x ciudad ascendente - descendente
+            case "4":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+
+                //Organizar ascendente
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    copiaZoo.sort((comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaZoo) {
+                        i++;
+                        System.out.println(i + ". " + zoologico);
+                    }
+                }
+                //Organizar descendente
+                else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    copiaZoo.sort(Collections.reverseOrder(comparadoresZoologico[3]));
+                    for (Zoologico zoologico : copiaZoo) {
+                        i++;
+                        System.out.println(i + ". " + zoologico);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
+                }
+                break;
+            default:
                 return;
-            }
         }
-        //Menu organizar x ciudad ascendente - descendente
-        else if (option.equals("4")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
+        String accion;
+        System.out.println("-----------------------------------------");
+        System.out.println("\nIndique la accion que desea realizar:\n");
+        System.out.println("1. Editar ");
+        System.out.println("2. Eliminar " );
+        System.out.println("0. Regresar al menú anterior" + "\n");
+        accion = input.next();
+        System.out.println("----------------------------------");
 
-            //Organizar ascendente
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(copiaZoo, (comparadoresZoologico[3]));
-                for (Zoologico zoologico : copiaZoo) {
-                    i++;
-                    System.out.println(i+". "+zoologico);
-                }
-            }
-            //Organizar descendente
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(copiaZoo, Collections.reverseOrder(comparadoresZoologico[3]));
-                for (Zoologico zoologico : copiaZoo) {
-                    i++;
-                    System.out.println(i+". "+zoologico);
-                }
-            }else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }//Regresar
-        else {
-            return;
-        }//Menu editar - eliminar
         for(Zoologico zoologico: zoologicos){
-            String accion;
-            System.out.println("-----------------------------------------");
-            System.out.println("\nIndique la accion que desea realizar:\n");
-            System.out.println("1. Editar ");
-            System.out.println("2. Eliminar " );
-            System.out.println("0. Regresar al menú anterior" + "\n");
-            accion = input.next();
-            System.out.println("----------------------------------");
-
             //Codigo editar
             if (accion.equals("1")) {
                 System.out.println("------------------------------------------");
@@ -3298,7 +3288,7 @@ public class SistemaZoologico {
                 input.nextLine();
                 System.out.println("NIT: " + zoo.nit);
                 String nuevoNIT = input.nextLine();
-                if (zoo.nit.replace(".", "").equals(nuevoNIT)) {
+                if (zoologico.nit.replace(".", "").equals(nuevoNIT)) {
                     System.out.println("ERROR: Ya existe un zoologico registrado con este NIT.");
                     return;
                 }
@@ -3338,56 +3328,52 @@ public class SistemaZoologico {
                         System.out.println("Opcion invalida\n");
                     }
                 }
-            }
-            //Codigo para eliminar
+            }//Codigo para eliminar
             else if(accion.equals("2")){
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el zoologico que desea eliminar: \n");
-                    eleccion = input.nextInt();
-                    zoo = copiaZoo.get(eleccion - 1);
+                System.out.println("------------------------------------------");
+                System.out.println("Escoja el zoologico que desea eliminar: \n");
+                eleccion = input.nextInt();
+                zoo = copiaZoo.get(eleccion - 1);
 
-                    while (true) {
-                        System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    break;
-                                case "N":
-                                    return;
-                            }
-                            break;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
+                while (true) {
+                    System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+                    String optionE = input.next();
+                    if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                        switch (optionE.toUpperCase()) {
+                            case "Y":
+                                break;
+                            case "N":
+                                return;
+                        }break;
+                    } else {
+                        System.out.println("Opcion invalida\n");
                     }
-                    for (Profesional profesional : profesionales) {
-                        if (profesional.zoologico != null && profesional.zoologico.nit.replace(".", "").equals(zoo.nit.replace(".", ""))) {
-                            profesional.zoologico = null;
-                        }
-                    }
-                    for (ZooAmigo zooAmigo : zooAmigos) {
-                        if (zooAmigo.zoologico != null && zooAmigo.zoologico.nit.replace(".", "").equals(zoo.nit.replace(".", ""))) {
-                            zooAmigo.zoologico = null;
-                        }
-                    }
-                    for (Bioma bioma : biomas) {
-                        if (bioma.zoologico != null && bioma.zoologico.nit.replace(".", "").equals(zoo.nit.replace(".", ""))) {
-                            bioma.zoologico = null;
-                        }
-                    }
-                    zoologicos.remove(zoo);
-
-                    System.out.println("El zoologico se ha eliminado correctamente");
-                    return;
                 }
-            //Regresar
+                for (Profesional profesional : profesionales) {
+                    if (profesional.zoologico != null && profesional.zoologico.nit.replace(".", "").equals(zoo.nit.replace(".", ""))) {
+                        profesional.zoologico = null;
+                    }
+                }
+                for (ZooAmigo zooAmigo : zooAmigos) {
+                    if (zooAmigo.zoologico != null && zooAmigo.zoologico.nit.replace(".", "").equals(zoo.nit.replace(".", ""))) {
+                        zooAmigo.zoologico = null;
+                    }
+                }
+                for (Bioma bioma : biomas) {
+                    if (bioma.zoologico != null && bioma.zoologico.nit.replace(".", "").equals(zoo.nit.replace(".", ""))) {
+                        bioma.zoologico = null;
+                    }
+                }
+                zoologicos.remove(zoo);
+
+                System.out.println("El zoologico se ha eliminado correctamente");
+                return;
+            }//Regresar
             else{
                 return;
             }
         }
     }
-
 
     public static void busquedaBioma() {
         String option;
@@ -3495,13 +3481,13 @@ public class SistemaZoologico {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String humedadBus = input.next();
-                        humedadBioma(1, humedadBus);
+                        humedadBioma(humedadBus);
                         break;
                     } else {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String humedadBus = input.next();
-                        humedadBioma(2, humedadBus);
+                        humedadBioma(humedadBus);
                         break;
                     }
                     break;
@@ -3518,13 +3504,13 @@ public class SistemaZoologico {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String tipoBus = input.next();
-                        tipoBioma(1, tipoBus);
+                        tipoBioma(tipoBus);
                         break;
                     } else {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String tipoBus = input.next();
-                        tipoBioma(2, tipoBus);
+                        tipoBioma(tipoBus);
                         break;
                     }
                     break;
@@ -3538,7 +3524,7 @@ public class SistemaZoologico {
         }
     }
     public static void idBioma(int opcionValor, int idBusMin, int idBusMax) {
-        Bioma bio = null;
+        Bioma bio;
         int i = 0;
         int eleccion;
         //Crear listas para no afectar la principal y que se agreguen los elementos que cumplen las condiciones
@@ -3600,143 +3586,110 @@ public class SistemaZoologico {
         option = input.next();
         System.out.println();
 
-        if (option.equals("1")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            //Organizar ascendente
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(idBiomaGen, comparadoresBioma[0]);
-                for (Bioma bioma : idBiomaGen) {
-                    i++;
-                    System.out.println(i + ". " + bioma);
+        switch (option) {
+            case "1":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                //Organizar ascendente
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    idBiomaGen.sort(comparadoresBioma[0]);
+                    for (Bioma bioma : idBiomaGen) {
+                        i++;
+                        System.out.println(i + ". " + bioma);
+                    }
                 }
-            }
-            //Organizar x temperatura descendente
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(idBiomaGen, Collections.reverseOrder(comparadoresBioma[0]));
-                for (Bioma bioma : idBiomaGen) {
-                    i++;
-                    System.out.println(i + ". " + bioma);
+                //Organizar x temperatura descendente
+                else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    idBiomaGen.sort(Collections.reverseOrder(comparadoresBioma[0]));
+                    for (Bioma bioma : idBiomaGen) {
+                        i++;
+                        System.out.println(i + ". " + bioma);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            }
-            else{
-                System.out.println("Opcion incorrecta");
+                break;
+            //Menu organizar x temperatura ascendente - descendente
+            case "2":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                //Organizar ascendente
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    idBiomaGen.sort(comparadoresBioma[1]);
+                    for (Bioma bioma : idBiomaGen) {
+                        i++;
+                        System.out.println(i + ". " + bioma);
+                    }
+                }
+                //Organizar x temperatura descendente
+                else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    idBiomaGen.sort(Collections.reverseOrder(comparadoresBioma[1]));
+                    for (Bioma bioma : idBiomaGen) {
+                        i++;
+                        System.out.println(i + ". " + bioma);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
+                }
+                break;
+            //Menu organizar x humedad ascendente - descendente
+            case "3":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                //Organizar ascendente
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    idBiomaGen.sort(comparadoresBioma[2]);
+                    for (Bioma bioma : idBiomaGen) {
+                        i++;
+                        System.out.println(i + ". " + bioma);
+                    }
+                }
+                //Organizar x temperatura descendente
+                else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    idBiomaGen.sort(Collections.reverseOrder(comparadoresBioma[2]));
+                    for (Bioma bioma : idBiomaGen) {
+                        i++;
+                        System.out.println(i + ". " + bioma);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
+                }
+                break;
+            default:
                 return;
-            }
-        }
-        //Menu organizar x temperatura ascendente - descendente
-        else if (option.equals("2")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            //Organizar ascendente
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(idBiomaGen, comparadoresBioma[1]);
-                for (Bioma bioma : idBiomaGen) {
-                    i++;
-                    System.out.println(i + ". " + bioma);
-                }
-            }
-            //Organizar x temperatura descendente
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(idBiomaGen, Collections.reverseOrder(comparadoresBioma[1]));
-                for (Bioma bioma : idBiomaGen) {
-                    i++;
-                    System.out.println(i + ". " + bioma);
-                }
-            }
-                else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        //Menu organizar x humedad ascendente - descendente
-        else if (option.equals("3")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            //Organizar ascendente
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(idBiomaGen, comparadoresBioma[2]);
-                for (Bioma bioma : idBiomaGen) {
-                    i++;
-                    System.out.println(i + ". " + bioma);
-                }
-            }
-            //Organizar x temperatura descendente
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(idBiomaGen, Collections.reverseOrder(comparadoresBioma[2]));
-                for (Bioma bioma : idBiomaGen) {
-                    i++;
-                    System.out.println(i + ". " + bioma);
-                }
-            }
-            else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        //Menu organizar x tipo ascendente - descendente
-        else if (option.equals("4")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            //Organizar ascendente
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(idBiomaGen, comparadoresBioma[2]);
-                for (Bioma bioma : idBiomaGen) {
-                    i++;
-                    System.out.println(i + ". " + bioma);
-                }
-            }
-            //Organizar x temperatura descendente
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(idBiomaGen, Collections.reverseOrder(comparadoresBioma[2]));
-                for (Bioma bioma : idBiomaGen) {
-                    i++;
-                    System.out.println(i + ". " + bioma);
-                }
-            }
-            else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else{
-            return;
         }
         //Menu editar-eliminar
-        for(Bioma bioma: biomas){
-            String accion;
-            System.out.println("-----------------------------------------");
-            System.out.println("\nIndique la accion que desea realizar:\n");
-            System.out.println("1. Editar ");
-            System.out.println("2. Eliminar " );
-            System.out.println("0. Regresar al menú anterior" + "\n");
-            accion = input.next();
-            System.out.println("----------------------------------");
+        String accion;
+        System.out.println("-----------------------------------------");
+        System.out.println("\nIndique la accion que desea realizar:\n");
+        System.out.println("1. Editar ");
+        System.out.println("2. Eliminar " );
+        System.out.println("0. Regresar al menú anterior" + "\n");
+        accion = input.next();
+        System.out.println("----------------------------------");
 
+        for(Bioma bioma: biomas){
             //Codigo editar
             if (accion.equals("1")) {
                 System.out.println("------------------------------------------");
@@ -3748,7 +3701,7 @@ public class SistemaZoologico {
                 System.out.println("\nID: " + bio.id);
                 String nuevoID = input.nextLine();
                 int nuevoIDint = Integer.parseInt(nuevoID);
-                if (bio.id == nuevoIDint){
+                if (bioma.id == nuevoIDint){
                     System.out.println("ERROR: Ya existe un bioma registrado con este ID.");
                     return;
                 }
@@ -3756,144 +3709,125 @@ public class SistemaZoologico {
                 System.out.println("Temperatura: " + bio.temperatura);
                 String nuevaTemp = input.nextLine();
 
-                        System.out.println("Humedad: " + bio.humedad);
-                        String nuevoHume = input.nextLine();
+                System.out.println("Humedad: " + bio.humedad);
+                String nuevoHume = input.nextLine();
 
-                        System.out.println("Tipo: " + bio.tipo);
-                        String nuevoTipo = input.nextLine();
+                System.out.println("Tipo: " + bio.tipo);
+                String nuevoTipo = input.nextLine();
 
-                        while (true) {
-                            System.out.print("Desea guardar?:[Y/N] ");
-                            String optionE = input.next();
-                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                                switch (optionE.toUpperCase()) {
-                                    case "Y":
-                                        if (nuevoID.isEmpty()) {
-                                        } else bio.id = Integer.parseInt(nuevoID);
-                                        if (nuevaTemp.isEmpty()) {
-                                        } else bio.temperatura = Double.parseDouble(nuevaTemp);
-                                        if (nuevoHume.isEmpty()) {
-                                        } else bio.humedad = nuevoHume;
-                                        if (nuevoTipo.isEmpty()) {
-                                        } else bio.tipo = nuevoTipo;
-                                        System.out.println("Bioma editado exitosamente");
-                                        break;
-
-                                    case "N":
-                                        break;
-                                }
-                                return;
-                            }
-                            else {
-                                System.out.println("Opcion invalida\n");
-                            }
-                            return;
-                        }
-
-                }//Codigo eliminar
-                else if(accion.equals("2")){
-                        System.out.println("------------------------------------------");
-                        System.out.println("Escoja el bioma que desea eliminar: \n");
-                        eleccion = input.nextInt();
-                        bio = idBiomaGen.get(eleccion - 1);
-
-                        while (true) {
-                            System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
-                            String optionE = input.next();
-                            if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                                switch (optionE.toUpperCase()) {
-                                    case "Y":
-                                        break;
-                                    case "N":
-                                        return;
-                                }
+                while (true) {
+                    System.out.print("Desea guardar?:[Y/N] ");
+                    String optionE = input.next();
+                    if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                        switch (optionE.toUpperCase()) {
+                            case "Y":
+                                if (nuevoID.isEmpty()) {
+                                } else bio.id = Integer.parseInt(nuevoID);
+                                if (nuevaTemp.isEmpty()) {
+                                } else bio.temperatura = Double.parseDouble(nuevaTemp);
+                                if (nuevoHume.isEmpty()) {
+                                } else bio.humedad = nuevoHume;
+                                if (nuevoTipo.isEmpty()) {
+                                } else bio.tipo = nuevoTipo;
+                                System.out.println("Bioma editado exitosamente");
                                 break;
-                            } else {
-                                System.out.println("Opcion invalida\n");
-                            }
-                        }
 
-                        for (Zoologico zoologico : zoologicos) {
-                            Bioma finalBioma = bio;
-                            zoologico.biomas.removeIf(bioma1 -> bioma1.id == finalBioma.id);
-
-                        }
-                        for (Profesional profesional : profesionales) {
-                            Bioma finalBioma = bio;
-                            profesional.biomas.removeIf(bioma1 -> bioma1.id == finalBioma.id);
-
-                        }
-                        for (Habitat habitat : habitats) {
-                           if (habitat.bioma != null && habitat.bioma.id == bioma.id) {
-                               habitat.bioma = null;
-                           }
-                        }
-                        biomas.remove(bio);
-
-                        System.out.println("El bioma se ha eliminado correctamente");
-                        return;
-
+                            case "N":
+                                break;
+                        }return;
+                    }
+                    else {
+                        System.out.println("Opcion invalida\n");
+                    }return;
                 }
-                else return;
+            }//Codigo eliminar
+            else if(accion.equals("2")){
+                System.out.println("------------------------------------------");
+                System.out.println("Escoja el bioma que desea eliminar: \n");
+                eleccion = input.nextInt();
+                bio = idBiomaGen.get(eleccion - 1);
 
+                while (true) {
+                    System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+                    String optionE = input.next();
+                    if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                        switch (optionE.toUpperCase()) {
+                            case "Y":
+                                break;
+                            case "N":
+                                return;
+                        }break;
+                    } else {
+                        System.out.println("Opcion invalida\n");
+                    }
+                }
+                for (Zoologico zoologico : zoologicos) {
+                    zoologico.biomas.removeIf(bioma1 -> bioma1.id == bio.id);
+                }
+                for (Profesional profesional : profesionales) {
+                    profesional.biomas.removeIf(bioma1 -> bioma1.id == bio.id);
+                }
+                for (Habitat habitat : habitats) {
+                    if (habitat.bioma != null && habitat.bioma.id == bioma.id) {
+                        habitat.bioma = null;
+                    }
+                }
+                biomas.remove(bio);
+
+                System.out.println("El bioma se ha eliminado correctamente");
+                return;
+
+            }else return;
         }
     }
     public static void temperaturaBioma(int opcionValor, double temperaturaBusMin, double temperaturaBusMax) {
-        Bioma bio = null;
+        Bioma bio;
         int i=0;
         //Crear listas para no afectar la principal y que se agreguen los elementos que cumplen las condiciones
-        ArrayList<Bioma> tempBiomaEx = new ArrayList<>();
-        ArrayList<Bioma> tempBiomaMax = new ArrayList<>();
-        ArrayList<Bioma> tempBiomaMin = new ArrayList<>();
-        ArrayList<Bioma> tempBiomaRan = new ArrayList<>();
         ArrayList<Bioma> tempBiomaGen = new ArrayList<>();
         //Valor exacto
         if (opcionValor == 1) {
             for (Bioma bioma : biomas) {
                 if (temperaturaBusMin == bioma.temperatura) {
-                    tempBiomaEx.add(bioma);
+                    tempBiomaGen.add(bioma);
                 }else{
                     System.out.println("La temperatura no se encuentra registrada");
                     return;
                 }
             }
-            tempBiomaGen = tempBiomaEx;
         }
         //Valor maximo
         else if (opcionValor == 2) {
             for (Bioma bioma : biomas) {
                 if (temperaturaBusMin >= bioma.temperatura) {
-                    tempBiomaMax.add(bioma);
+                    tempBiomaGen.add(bioma);
                 }else{
                     System.out.println("La temperatura no se encuentra registrada");
                     return;
                 }
             }
-            tempBiomaGen = tempBiomaMax;
         }
         //Valor minimo
         else if (opcionValor == 3) {
             for (Bioma bioma : biomas) {
                 if (temperaturaBusMin <= bioma.temperatura) {
-                    tempBiomaMin.add(bioma);
+                    tempBiomaGen.add(bioma);
                 }else{
                     System.out.println("La temperatura no se encuentra registrada");
                     return;
                 }
             }
-            tempBiomaGen = tempBiomaMin;
         }
         //Rango
         else {
             for (Bioma bioma : biomas) {
                 if (temperaturaBusMin <= bioma.temperatura && bioma.temperatura <= temperaturaBusMax) {
-                    tempBiomaRan.add(bioma);
+                    tempBiomaGen.add(bioma);
                 }else{
                     System.out.println("La temperatura no se encuentra registrada");
                     return;
                 }
             }
-            tempBiomaGen = tempBiomaRan;
         }
         //Menu de atributo a organizar
         String option;
@@ -3909,135 +3843,125 @@ public class SistemaZoologico {
         System.out.println();
 
         //Menu orgnizar x id ascendente - descendente
-        if (option.equals("1")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
+        switch (option) {
+            case "1":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
 
-            //Organizar ascendente
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(tempBiomaGen, comparadoresBioma[0]);
-                for (Bioma bioma : tempBiomaGen) {
-                    i++;
-                    System.out.println(i+". "+bioma);
-                }
-            }
-
-            //organizar descendente
-            else if (option2.equals("2")) {
-                //valor exacto
-                System.out.println("Descendente");
-                Collections.sort(tempBiomaGen, Collections.reverseOrder(comparadoresBioma[0]));
-                for (Bioma bioma : tempBiomaGen) {
-                    i++;
-                    System.out.println(i + ". " + bioma);
-                }
-            }
-
-                else{
-                System.out.print("Opcion incorrecta");
-                return;
-            }
-        }
-        //Menu organizar x temperatura ascendente - descendente
-        else if (option.equals("2")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            //Organizar ascendente
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(tempBiomaGen, (comparadoresBioma[1]));
-                for (Bioma bioma : tempBiomaGen) {
-                        i++;
-                        System.out.println(i+". "+bioma);
-                }
-
-            }
-            //Organizar descendente
-            else if (option2.equals("2")) {
-                    System.out.println("Descendente");
-                    Collections.sort(tempBiomaGen, Collections.reverseOrder(comparadoresBioma[1]));
-                    for (Bioma bioma : tempBiomaGen) {
-                        i++;
-                        System.out.println(i+". "+bioma);
-                    }
-            }
-            else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        //Menu organizar x humedad ascendente - descendente
-        else if (option.equals("3")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
+                //Organizar ascendente
+                if (option2.equals("1")) {
                     System.out.println("Ascendente");
-                    Collections.sort(tempBiomaGen, (comparadoresBioma[2]));
+                    tempBiomaGen.sort(comparadoresBioma[0]);
                     for (Bioma bioma : tempBiomaGen) {
                         i++;
-                        System.out.println(i+". "+bioma);
+                        System.out.println(i + ". " + bioma);
                     }
-
-            }
-            else if (option2.equals("2")) {
-                    System.out.println("Descendente");
-                    Collections.sort(tempBiomaGen, Collections.reverseOrder(comparadoresBioma[2]));
-                    for (Bioma bioma : tempBiomaGen) {
-                        i++;
-                        System.out.println(i+". "+bioma);
-                    }
-
-            }
-                else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else if (option.equals("4")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(tempBiomaGen, (comparadoresBioma[3]));
-                for (Bioma bioma : tempBiomaGen) {
-                    i++;
-                    System.out.println(i + ". " + bioma);
                 }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                    Collections.sort(tempBiomaGen, Collections.reverseOrder(comparadoresBioma[3]));
+
+                //organizar descendente
+                else if (option2.equals("2")) {
+                    //valor exacto
+                    System.out.println("Descendente");
+                    tempBiomaGen.sort(Collections.reverseOrder(comparadoresBioma[0]));
                     for (Bioma bioma : tempBiomaGen) {
                         i++;
-                        System.out.println(i+". "+bioma);
+                        System.out.println(i + ". " + bioma);
                     }
-
-            }
-            else{
-                System.out.println("Opcion incorrecta");
+                } else {
+                    System.out.print("Opcion incorrecta");
+                    return;
+                }
+                break;
+            //Menu organizar x temperatura ascendente - descendente
+            case "2":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                //Organizar ascendente
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    tempBiomaGen.sort((comparadoresBioma[1]));
+                    for (Bioma bioma : tempBiomaGen) {
+                        i++;
+                        System.out.println(i + ". " + bioma);
+                    }
+                }
+                //Organizar descendente
+                else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    tempBiomaGen.sort(Collections.reverseOrder(comparadoresBioma[1]));
+                    for (Bioma bioma : tempBiomaGen) {
+                        i++;
+                        System.out.println(i + ". " + bioma);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
+                }
+                break;
+            //Menu organizar x humedad ascendente - descendente
+            case "3":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    tempBiomaGen.sort((comparadoresBioma[2]));
+                    for (Bioma bioma : tempBiomaGen) {
+                        i++;
+                        System.out.println(i + ". " + bioma);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    tempBiomaGen.sort(Collections.reverseOrder(comparadoresBioma[2]));
+                    for (Bioma bioma : tempBiomaGen) {
+                        i++;
+                        System.out.println(i + ". " + bioma);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
+                }
+                break;
+            case "4":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    tempBiomaGen.sort((comparadoresBioma[3]));
+                    for (Bioma bioma : tempBiomaGen) {
+                        i++;
+                        System.out.println(i + ". " + bioma);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    tempBiomaGen.sort(Collections.reverseOrder(comparadoresBioma[3]));
+                    for (Bioma bioma : tempBiomaGen) {
+                        i++;
+                        System.out.println(i + ". " + bioma);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
+                }
+                break;
+            default:
                 return;
-            }
         }
-        else {
-            return;
-        }//Menu editar - eliminar
         String accion;
         System.out.println("-----------------------------------------");
         System.out.println("\nIndique la accion que desea realizar:\n");
@@ -4047,19 +3971,20 @@ public class SistemaZoologico {
         accion = input.next();
         System.out.println("----------------------------------");
 
-//Codigo editar
-        if (accion.equals("1")) {
-            for (Bioma bioma : tempBiomaGen) {
+        for (Bioma bioma : tempBiomaGen) {
+            //Codigo editar
+            if (accion.equals("1")) {
                 int eleccion;
                 System.out.println("------------------------------------------");
                 System.out.println("Escoja el bioma que desea editar: \n");
                 eleccion = input.nextInt();
                 bio = tempBiomaGen.get(eleccion - 1);
                 input.nextLine();
+
                 System.out.println("\nID: " + bio.id);
                 String nuevoID1 = input.nextLine();
                 int nuevoIDint1 = Integer.parseInt(nuevoID1);
-                if (bio.id == nuevoIDint1){
+                if (bioma.id == nuevoIDint1) {
                     System.out.println("ERROR: Ya existe un bioma registrado con este ID.");
                     return;
                 }
@@ -4078,85 +4003,65 @@ public class SistemaZoologico {
                         switch (optionE.toUpperCase()) {
                             case "Y":
                                 if (nuevoID1.isEmpty()) {
-                                            } else {
-                                    bio.id = Integer.parseInt(nuevoID1);
-                                }
-                                if (nuevaTemp1.isEmpty()) {
-                                } else {
-                                    bio.temperatura = Double.parseDouble(nuevaTemp1);
-                                }
-                                if (nuevoHume.isEmpty()) {
+                                } else {bio.id = Integer.parseInt(nuevoID1);
+                                }if (nuevaTemp1.isEmpty()) {
+                                } else {bio.temperatura = Double.parseDouble(nuevaTemp1);
+                                }if (nuevoHume.isEmpty()) {
                                 } else bio.humedad = nuevoHume;
                                 if (nuevoTipo.isEmpty()) {
                                 } else bio.tipo = nuevoTipo;
-                                case "N":
-                                    break;
-                        }
-                                    return;
-                                } else {
-                                    System.out.println("Opcion invalida\n");
-                                }
-                            }
-
+                            case "N":
+                                break;
                         }
                         return;
+                    } else {
+                        System.out.println("Opcion invalida\n");
                     }
+                }
+            }//Codigo eliminar
+            else if(accion.equals("2")){
+                int eleccion;
+                System.out.println("------------------------------------------");
+                System.out.println("Escoja el bioma que desea eliminar: \n");
+                eleccion = input.nextInt();
+                bio = tempBiomaGen.get(eleccion - 1);
 
-
-//Codigo eliminar
-                    else if(accion.equals("2")){
-                        for (Bioma bioma : tempBiomaGen) {
-                            int eleccion;
-                            System.out.println("------------------------------------------");
-                            System.out.println("Escoja el bioma que desea eliminar: \n");
-                            eleccion = input.nextInt();
-                            bio = tempBiomaGen.get(eleccion - 1);
-
-                            while (true) {
-                                System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
-                                String optionE = input.next();
-                                if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                                    switch (optionE.toUpperCase()) {
-                                        case "Y":
-                                            break;
-                                        case "N":
-                                            return;
-                                    }
-                                    break;
-                                } else {
-                                    System.out.println("Opcion invalida\n");
-                                }
-                            }
-
-                            for (Zoologico zoologico : zoologicos) {
-                                Bioma finalBioma = bio;
-                                zoologico.biomas.removeIf(bioma1 -> bioma1.id == finalBioma.id);
-
-                            }
-                            for (Profesional profesional : profesionales) {
-                                Bioma finalBioma = bioma;
-                                profesional.biomas.removeIf(bioma1 -> bioma1.id == finalBioma.id);
-
-                            }
-                            for (Habitat habitat : habitats) {
-                                if (habitat.bioma != null && habitat.bioma.id == bioma.id) {
-                                    habitat.bioma = null;
-                                }
-                            }
-                            biomas.remove(bioma);
-
-                            System.out.println("El bioma se ha eliminado correctamente");
-                            return;
+                while (true) {
+                    System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+                    String optionE = input.next();
+                    if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                        switch (optionE.toUpperCase()) {
+                            case "Y":
+                                break;
+                            case "N":
+                                return;
                         }
-
+                        break;
+                    }else {
+                        System.out.println("Opcion invalida\n");
                     }
-                    else return;
+                }
 
+                for (Zoologico zoologico : zoologicos) {
+                    zoologico.biomas.removeIf(bioma1 -> bioma1.id == bio.id);
+                }
+                for (Profesional profesional : profesionales) {
+                    profesional.biomas.removeIf(bioma1 -> bioma1.id == bioma.id);
+                }
+                for (Habitat habitat : habitats) {
+                    if (habitat.bioma != null && habitat.bioma.id == bioma.id) {
+                        habitat.bioma = null;
+                    }
+                }
+                biomas.remove(bio);
 
-
+                System.out.println("El bioma se ha eliminado correctamente");
+                return;
+            }else return;
+        }
     }
-    public static void humedadBioma(int opcionValor, String humedadBus) {
-        Bioma bio = null;
+    public static void humedadBioma(String humedadBus) {
+        Bioma bio;
         int i =0;
         ArrayList<Bioma> humedadBio = new ArrayList<>();
         for (Bioma bioma : biomas) {
@@ -4174,92 +4079,87 @@ public class SistemaZoologico {
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
-        if (option.equals("1")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(humedadBio, (comparadoresBioma[0]));
-                for (Bioma bioma : humedadBio) {
-                    i++;
-                    System.out.println(i+". "+bioma);
+        switch (option) {
+            case "1":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    humedadBio.sort((comparadoresBioma[0]));
+                    for (Bioma bioma : humedadBio) {
+                        i++;
+                        System.out.println(i + ". " + bioma);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    humedadBio.sort(Collections.reverseOrder(comparadoresBioma[0]));
+                    for (Bioma bioma : humedadBio) {
+                        i++;
+                        System.out.println(i + ". " + bioma);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(humedadBio, Collections.reverseOrder(comparadoresBioma[0]));
-                for (Bioma bioma : humedadBio) {
-                    i++;
-                    System.out.println(i+". "+bioma);
+                break;
+            case "2":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    humedadBio.sort((comparadoresBioma[1]));
+                    for (Bioma bioma : humedadBio) {
+                        i++;
+                        System.out.println(i + ". " + bioma);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    humedadBio.sort(Collections.reverseOrder(comparadoresBioma[1]));
+                    for (Bioma bioma : humedadBio) {
+                        i++;
+                        System.out.println(i + ". " + bioma);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            }
-            else {
-                System.out.println("Opcion incorrecta");
+                break;
+            case "3":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    humedadBio.sort((comparadoresBioma[3]));
+                    for (Bioma bioma : humedadBio) {
+                        i++;
+                        System.out.println(i + ". " + bioma);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    humedadBio.sort(Collections.reverseOrder(comparadoresBioma[3]));
+                    for (Bioma bioma : humedadBio) {
+                        i++;
+                        System.out.println(i + ". " + bioma);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
+                }
+                break;
+            default:
                 return;
-            }
-        }
-        else if (option.equals("2")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(humedadBio, (comparadoresBioma[1]));
-                for (Bioma bioma : humedadBio) {
-                    i++;
-                    System.out.println(i+". "+bioma);
-                }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(humedadBio, Collections.reverseOrder(comparadoresBioma[1]));
-                for (Bioma bioma : humedadBio) {
-                    i++;
-                    System.out.println(i+". "+bioma);
-                }
-            }
-            else {
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else if (option.equals("3")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(humedadBio, (comparadoresBioma[3]));
-                for (Bioma bioma : humedadBio) {
-                    i++;
-                    System.out.println(i+". "+bioma);
-                }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(humedadBio, Collections.reverseOrder(comparadoresBioma[3]));
-                for (Bioma bioma : humedadBio) {
-                    i++;
-                    System.out.println(i+". "+bioma);
-                }
-            }
-            else {
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else {
-            return;
         }
         //Menu editar - eliminar
         String accion;
@@ -4271,9 +4171,9 @@ public class SistemaZoologico {
         accion = input.next();
         System.out.println("----------------------------------");
 
-        //Codigo editar
-        if (accion.equals("1")) {
-            for (Bioma bioma : humedadBio) {
+        for (Bioma bioma : humedadBio) {
+            //Codigo editar
+            if (accion.equals("1")) {
                 int eleccion;
                 System.out.println("------------------------------------------");
                 System.out.println("Escoja el bioma que desea editar: \n");
@@ -4284,7 +4184,7 @@ public class SistemaZoologico {
                 System.out.println("\nID: " + bio.id);
                 String nuevoID = input.nextLine();
                 int nuevoIDint = Integer.parseInt(nuevoID);
-                if (bio.id == nuevoIDint){
+                if (bioma.id == nuevoIDint) {
                     System.out.println("ERROR: Ya existe un bioma registrado con este ID.");
                     return;
                 }
@@ -4305,14 +4205,10 @@ public class SistemaZoologico {
                         switch (optionE.toUpperCase()) {
                             case "Y":
                                 if (nuevoID.isEmpty()) {
-                                } else {
-                                bio.id = Integer.parseInt(nuevoID);
-                                }
-                                if (nuevaTemp1.isEmpty()) {
-                                } else {
-                                bio.temperatura = Double.parseDouble(nuevaTemp1);
-                                }
-                                if (nuevoHume.isEmpty()) {
+                                } else { bio.id = Integer.parseInt(nuevoID);
+                                }if (nuevaTemp1.isEmpty()) {
+                                } else { bio.temperatura = Double.parseDouble(nuevaTemp1);
+                                }if (nuevoHume.isEmpty()) {
                                 } else bio.humedad = nuevoHume;
                                 if (nuevoTipo.isEmpty()) {
                                 } else bio.tipo = nuevoTipo;
@@ -4324,12 +4220,8 @@ public class SistemaZoologico {
                         System.out.println("Opcion invalida\n");
                     }
                 }
-
-            }
-            return;
-        }//Codigo eliminar
-        else if(accion.equals("2")){
-            for (Bioma bioma : humedadBio) {
+            }//Codigo eliminar
+            else if (accion.equals("2")) {
                 int eleccion;
                 System.out.println("------------------------------------------");
                 System.out.println("Escoja el bioma que desea eliminar: \n");
@@ -4353,13 +4245,11 @@ public class SistemaZoologico {
                 }
 
                 for (Zoologico zoologico : zoologicos) {
-                    Bioma finalBioma = bio;
-                    zoologico.biomas.removeIf(bioma1 -> bioma1.id == finalBioma.id);
+                    zoologico.biomas.removeIf(bioma1 -> bioma1.id == bio.id);
                 }
 
                 for (Profesional profesional : profesionales) {
-                    Bioma finalBioma = bioma;
-                    profesional.biomas.removeIf(bioma1 -> bioma1.id == finalBioma.id);
+                    profesional.biomas.removeIf(bioma1 -> bioma1.id == bioma.id);
                 }
 
                 for (Habitat habitat : habitats) {
@@ -4367,16 +4257,17 @@ public class SistemaZoologico {
                         habitat.bioma = null;
                     }
                 }
-                biomas.remove(bioma);
+                biomas.remove(bio);
 
                 System.out.println("El bioma se ha eliminado correctamente");
                 return;
+            }else {
+                return;
             }
         }
-        else return;
     }
-    public static void tipoBioma(int opcionValor, String tipoBus) {
-        Bioma bio = null;
+    public static void tipoBioma(String tipoBus) {
+        Bioma bio;
         int i=0;
         ArrayList<Bioma> tipoBio = new ArrayList<>();
         for (Bioma bioma : biomas) {
@@ -4394,93 +4285,88 @@ public class SistemaZoologico {
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
-        if (option.equals("1")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(tipoBio, (comparadoresBioma[0]));
-                for (Bioma bioma : tipoBio) {
-                    i++;
-                    System.out.println(i+". "+bioma);
+        switch (option) {
+            case "1":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    tipoBio.sort((comparadoresBioma[0]));
+                    for (Bioma bioma : tipoBio) {
+                        i++;
+                        System.out.println(i + ". " + bioma);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    tipoBio.sort(Collections.reverseOrder(comparadoresBioma[0]));
+                    for (Bioma bioma : tipoBio) {
+                        i++;
+                        System.out.println(i + ". " + bioma);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(tipoBio, Collections.reverseOrder(comparadoresBioma[0]));
-                for (Bioma bioma : tipoBio) {
-                    i++;
-                    System.out.println(i+". "+bioma);
+                break;
+            case "2":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    tipoBio.sort((comparadoresBioma[1]));
+                    for (Bioma bioma : tipoBio) {
+                        i++;
+                        System.out.println(i + ". " + bioma);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    tipoBio.sort(Collections.reverseOrder(comparadoresBioma[1]));
+                    for (Bioma bioma : tipoBio) {
+                        i++;
+                        System.out.println(i + ". " + bioma);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            }
-            else {
-                System.out.println("Opcion incorrecta");
+                break;
+            case "3":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    tipoBio.sort((comparadoresBioma[2]));
+                    for (Bioma bioma : tipoBio) {
+                        i++;
+                        System.out.println(i + ". " + bioma);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    tipoBio.sort(Collections.reverseOrder(comparadoresBioma[2]));
+                    for (Bioma bioma : tipoBio) {
+                        i++;
+                        System.out.println(i + ". " + bioma);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
+                }
+                break;
+            default:
                 return;
-            }
         }
-        else if (option.equals("2")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(tipoBio, (comparadoresBioma[1]));
-                for (Bioma bioma : tipoBio) {
-                    i++;
-                    System.out.println(i+". "+bioma);
-                }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(tipoBio, Collections.reverseOrder(comparadoresBioma[1]));
-                for (Bioma bioma : tipoBio) {
-                    i++;
-                    System.out.println(i+". "+bioma);
-                }
-            }
-            else {
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else if (option.equals("3")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(tipoBio, (comparadoresBioma[2]));
-                for (Bioma bioma : tipoBio) {
-                    i++;
-                    System.out.println(i+". "+bioma);
-                }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(tipoBio, Collections.reverseOrder(comparadoresBioma[2]));
-                for (Bioma bioma : tipoBio) {
-                    i++;
-                    System.out.println(i+". "+bioma);
-                }
-            }
-            else {
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else {
-            return;
-        }//Menu editar - eliminar
         String accion;
         System.out.println("-----------------------------------------");
         System.out.println("\nIndique la accion que desea realizar:\n");
@@ -4489,9 +4375,9 @@ public class SistemaZoologico {
         System.out.println("0. Regresar al menú anterior" + "\n");
         accion = input.next();
         System.out.println("----------------------------------");
-        //Codigo editar
-        if (accion.equals("1")) {
-            for (Bioma bioma : tipoBio) {
+        for (Bioma bioma : tipoBio) {
+            //Codigo editar
+            if (accion.equals("1")) {
                 int eleccion;
                 System.out.println("------------------------------------------");
                 System.out.println("Escoja el bioma que desea editar: \n");
@@ -4502,8 +4388,7 @@ public class SistemaZoologico {
                 System.out.println("\nID: " + bio.id);
                 String nuevoID1 = input.nextLine();
                 int nuevoIDint1 = Integer.parseInt(nuevoID1);
-
-                if (bio.id == nuevoIDint1){
+                if (bioma.id == nuevoIDint1) {
                     System.out.println("ERROR: Ya existe un bioma registrado con este ID.");
                     return;
                 }
@@ -4524,30 +4409,22 @@ public class SistemaZoologico {
                         switch (optionE.toUpperCase()) {
                             case "Y":
                                 if (nuevoID1.isEmpty()) {
-                                } else {
-                                bio.id = Integer.parseInt(nuevoID1);
-                                }
-                                if (nuevaTemp1.isEmpty()) {
-                                } else {
-                                bio.temperatura = Double.parseDouble(nuevaTemp1);
-                                }
-                                if (nuevoHume.isEmpty()) {
+                                } else { bio.id = Integer.parseInt(nuevoID1);
+                                }if (nuevaTemp1.isEmpty()) {
+                                } else { bio.temperatura = Double.parseDouble(nuevaTemp1);
+                                }if (nuevoHume.isEmpty()) {
                                 } else bio.humedad = nuevoHume;
                                 if (nuevoTipo.isEmpty()) {
                                 } else bio.tipo = nuevoTipo;
                             case "N":
                                 break;
-                        }
-                        return;
+                        }return;
                     } else {
                         System.out.println("Opcion invalida\n");
                     }
                 }
-            }
-            return;
-        }//Codigo eliminar
-        else if(accion.equals("2")){
-            for (Bioma bioma : tipoBio) {
+            }//Codigo eliminar
+            else if (accion.equals("2")) {
                 int eleccion;
                 System.out.println("------------------------------------------");
                 System.out.println("Escoja el bioma que desea eliminar: \n");
@@ -4563,36 +4440,34 @@ public class SistemaZoologico {
                                 break;
                             case "N":
                                 return;
-                        }
-                        break;
+                        }break;
                     } else {
                         System.out.println("Opcion invalida\n");
                     }
                 }
 
                 for (Zoologico zoologico : zoologicos) {
-                    Bioma finalBioma = bio;
-                    zoologico.biomas.removeIf(bioma1 -> bioma1.id == finalBioma.id);
+                    zoologico.biomas.removeIf(bioma1 -> bioma1.id == bio.id);
                 }
                 for (Profesional profesional : profesionales) {
-                    Bioma finalBioma = bioma;
-                    profesional.biomas.removeIf(bioma1 -> bioma1.id == finalBioma.id);
+                    profesional.biomas.removeIf(bioma1 -> bioma1.id == bioma.id);
                 }
                 for (Habitat habitat : habitats) {
-                   if (habitat.bioma != null && habitat.bioma.id == bioma.id) {
-                       habitat.bioma = null;
-                   }
+                    if (habitat.bioma != null && habitat.bioma.id == bioma.id) {
+                        habitat.bioma = null;
+                    }
                 }
-                biomas.remove(bioma);
+                biomas.remove(bio);
 
                 System.out.println("El bioma se ha eliminado correctamente");
                 return;
+            }else {
+                return;
             }
         }
-        else return;
     }
     public static void mostrarTodosBiomas() {
-        Bioma bio = null;
+        Bioma bio;
         int i=0;
         ArrayList<Bioma> copiaBio = new ArrayList<>(biomas);
         String option;
@@ -4606,115 +4481,114 @@ public class SistemaZoologico {
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
-        if (option.equals("1")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(copiaBio, (comparadoresBioma[0]));
-                for (Bioma bioma : copiaBio) {
-                    i++;
-                    System.out.println(i+". "+bioma);
+        switch (option) {
+            case "1":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    copiaBio.sort((comparadoresBioma[0]));
+                    for (Bioma bioma : copiaBio) {
+                        i++;
+                        System.out.println(i + ". " + bioma);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    copiaBio.sort(Collections.reverseOrder(comparadoresBioma[0]));
+                    for (Bioma bioma : copiaBio) {
+                        i++;
+                        System.out.println(i + ". " + bioma);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            }else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(copiaBio, Collections.reverseOrder(comparadoresBioma[0]));
-                for (Bioma bioma : copiaBio) {
-                    i++;
-                    System.out.println(i+". "+bioma);
+                break;
+            case "2":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    copiaBio.sort((comparadoresBioma[1]));
+                    for (Bioma bioma : copiaBio) {
+                        i++;
+                        System.out.println(i + ". " + bioma);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    copiaBio.sort(Collections.reverseOrder(comparadoresBioma[1]));
+                    for (Bioma bioma : copiaBio) {
+                        i++;
+                        System.out.println(i + ". " + bioma);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            }else{
-                System.out.println("Opcion incorrecta");
+                break;
+            case "3":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    copiaBio.sort((comparadoresBioma[2]));
+                    for (Bioma bioma : copiaBio) {
+                        i++;
+                        System.out.println(i + ". " + bioma);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    copiaBio.sort(Collections.reverseOrder(comparadoresBioma[2]));
+                    for (Bioma bioma : copiaBio) {
+                        i++;
+                        System.out.println(i + ". " + bioma);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
+                }
+                break;
+            case "4":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    copiaBio.sort((comparadoresBioma[3]));
+                    for (Bioma bioma : copiaBio) {
+                        i++;
+                        System.out.println(i + ". " + bioma);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    copiaBio.sort(Collections.reverseOrder(comparadoresBioma[3]));
+                    for (Bioma bioma : copiaBio) {
+                        i++;
+                        System.out.println(i + ". " + bioma);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
+                }
+                break;
+            default:
                 return;
-            }
         }
-        else if (option.equals("2")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(copiaBio, (comparadoresBioma[1]));
-                for (Bioma bioma : copiaBio) {
-                    i++;
-                    System.out.println(i+". "+bioma);
-                }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(copiaBio, Collections.reverseOrder(comparadoresBioma[1]));
-                for (Bioma bioma : copiaBio) {
-                    i++;
-                    System.out.println(i+". "+bioma);
-                }
-            }else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else if (option.equals("3")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(copiaBio, (comparadoresBioma[2]));
-                for (Bioma bioma : copiaBio) {
-                    i++;
-                    System.out.println(i+". "+bioma);
-                }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(copiaBio, Collections.reverseOrder(comparadoresBioma[2]));
-                for (Bioma bioma : copiaBio) {
-                    i++;
-                    System.out.println(i+". "+bioma);
-                }
-            }else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else if (option.equals("4")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(copiaBio, (comparadoresBioma[3]));
-                for (Bioma bioma : copiaBio) {
-                    i++;
-                    System.out.println(i+". "+bioma);
-                }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(copiaBio, Collections.reverseOrder(comparadoresBioma[3]));
-                for (Bioma bioma : copiaBio) {
-                    i++;
-                    System.out.println(i+". "+bioma);
-                }
-            }else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }else {
-            return;
-        }//Menu editar - eliminar
         String accion;
         System.out.println("-----------------------------------------");
         System.out.println("\nIndique la accion que desea realizar:\n");
@@ -4724,8 +4598,8 @@ public class SistemaZoologico {
         accion = input.next();
         System.out.println("----------------------------------");
         //Codigo editar
-        if (accion.equals("1")) {
-            for (Bioma bioma : copiaBio) {
+        for (Bioma bioma : copiaBio) {
+            if (accion.equals("1")) {
                 int eleccion;
                 System.out.println("------------------------------------------");
                 System.out.println("Escoja el bioma que desea editar: \n");
@@ -4736,8 +4610,7 @@ public class SistemaZoologico {
                 System.out.println("\nID: " + bio.id);
                 String nuevoID1 = input.nextLine();
                 int nuevoIDint = Integer.parseInt(nuevoID1);
-
-                if (bio.id == nuevoIDint){
+                if (bioma.id == nuevoIDint) {
                     System.out.println("ERROR: Ya existe un bioma registrado con este ID.");
                     return;
                 }
@@ -4757,30 +4630,23 @@ public class SistemaZoologico {
                         switch (optionE.toUpperCase()) {
                             case "Y":
                                 if (nuevoID1.isEmpty()) {
-                                } else {
-                                bio.id = Integer.parseInt(nuevoID1);
-                                }
-                                if (nuevaTemp1.isEmpty()) {
-                                } else {
-                                bio.temperatura = Double.parseDouble(nuevaTemp1);
-                                }
-                                if (nuevoHume.isEmpty()) {
+                                } else { bio.id = Integer.parseInt(nuevoID1);
+                                }if (nuevaTemp1.isEmpty()) {
+                                } else { bio.temperatura = Double.parseDouble(nuevaTemp1);
+                                }if (nuevoHume.isEmpty()) {
                                 } else bio.humedad = nuevoHume;
                                 if (nuevoTipo.isEmpty()) {
                                 } else bio.tipo = nuevoTipo;
                             case "N":
-                               break;
+                                break;
                         }
                         return;
                     } else {
                         System.out.println("Opcion invalida\n");
                     }
                 }
-            }
-            return;
-        }//Codigo eliminar
-        else if(accion.equals("2")){
-            for (Bioma bioma : copiaBio) {
+            }//Codigo eliminar
+            else if (accion.equals("2")) {
                 int eleccion;
                 System.out.println("------------------------------------------");
                 System.out.println("Escoja el bioma que desea eliminar: \n");
@@ -4803,26 +4669,22 @@ public class SistemaZoologico {
                     }
                 }
                 for (Zoologico zoologico : zoologicos) {
-                    Bioma finalBioma = bio;
-                    zoologico.biomas.removeIf(bioma1 -> bioma1.id == finalBioma.id);
+                    zoologico.biomas.removeIf(bioma1 -> bioma1.id == bio.id);
                 }
                 for (Profesional profesional : profesionales) {
-                    Bioma finalBioma = bioma;
-                    profesional.biomas.removeIf(bioma1 -> bioma1.id == finalBioma.id);
+                    profesional.biomas.removeIf(bioma1 -> bioma1.id == bioma.id);
                 }
                 for (Habitat habitat : habitats) {
                     if (habitat.bioma != null && habitat.bioma.id == bioma.id) {
                         habitat.bioma = null;
                     }
                 }
-                biomas.remove(bioma);
+                biomas.remove(bio);
 
                 System.out.println("El bioma se ha eliminado correctamente");
                 return;
-            }
+            } else return;
         }
-        else return;
-        return;
     }
 
     public static void busquedaHabitat() {
@@ -4892,13 +4754,13 @@ public class SistemaZoologico {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String tipoSueloBus = input.next();
-                        tipoSueloHabitat(1, tipoSueloBus);
+                        tipoSueloHabitat(tipoSueloBus);
                         break;
                     } else {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String tipoSueloBus = input.next();
-                        tipoSueloHabitat(2, tipoSueloBus);
+                        tipoSueloHabitat(tipoSueloBus);
                         break;
                     }
                     break;
@@ -4915,13 +4777,13 @@ public class SistemaZoologico {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String vegetacionBus = input.next();
-                        vegetacionHabitat(1, vegetacionBus);
+                        vegetacionHabitat(vegetacionBus);
                         break;
                     } else {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String vegetacionBus = input.next();
-                        vegetacionHabitat(2, vegetacionBus);
+                        vegetacionHabitat(vegetacionBus);
                         break;
                     }
                     break;
@@ -4938,13 +4800,13 @@ public class SistemaZoologico {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String tipoJaulaBus = input.next();
-                        tipoSueloHabitat(1, tipoJaulaBus);
+                        tipoSueloHabitat(tipoJaulaBus);
                         break;
                     } else {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String tipoJaulaBus = input.next();
-                        tipoJaulaHabitat(2, tipoJaulaBus);
+                        tipoJaulaHabitat(tipoJaulaBus);
                         break;
                     }
                     break;
@@ -4957,41 +4819,33 @@ public class SistemaZoologico {
         }
     }
     public static void idHabitat(int opcionValor, int idBusMin, int idBusMax) {
-        Habitat hab = null;
+        Habitat hab;
         int i = 0;
-        ArrayList<Habitat> idHabitatEx = new ArrayList<>();
-        ArrayList<Habitat> idHabitatMax = new ArrayList<>();
-        ArrayList<Habitat> idHabitatMin = new ArrayList<>();
-        ArrayList<Habitat> idHabitatRan = new ArrayList<>();
         ArrayList<Habitat> idHabitatGen = new ArrayList<>();
         if (opcionValor == 1) {
             for (Habitat habitat : habitats) {
                 if (idBusMin == habitat.id) {
-                    idHabitatEx.add(habitat);
+                    idHabitatGen.add(habitat);
                 }
             }
-            idHabitatGen = idHabitatEx;
         } else if (opcionValor == 2) {
             for (Habitat habitat : habitats) {
                 if (idBusMin >= habitat.id) {
-                    idHabitatMax.add(habitat);
+                    idHabitatGen.add(habitat);
                 }
             }
-            idHabitatGen = idHabitatMax;
         } else if (opcionValor == 3) {
             for (Habitat habitat : habitats) {
                 if (idBusMin <= habitat.id) {
-                    idHabitatMin.add(habitat);
+                    idHabitatGen.add(habitat);
                 }
             }
-            idHabitatGen = idHabitatMin;
         } else {
             for (Habitat habitat : habitats) {
                 if (idBusMin <= habitat.id && habitat.id <= idBusMax) {
-                    idHabitatRan.add(habitat);
+                    idHabitatGen.add(habitat);
                 }
             }
-            idHabitatGen = idHabitatRan;
         }
         String option;
         String option2;
@@ -5004,25 +4858,52 @@ public class SistemaZoologico {
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
-        if (option.equals("1")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(idHabitatGen, (comparadoresHabitat[0]));
-                for (Habitat habitat : idHabitatGen) {
-                    i++;
-                    System.out.println(i + ". " + habitat);
+        switch (option) {
+            case "1":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    idHabitatGen.sort((comparadoresHabitat[0]));
+                    for (Habitat habitat : idHabitatGen) {
+                        i++;
+                        System.out.println(i + ". " + habitat);
+                    }
+                } else if (option2.equals("2")) {
+                    if (opcionValor == 1) {
+                        System.out.println("Descendente");
+                        idHabitatGen.sort(Collections.reverseOrder(comparadoresHabitat[0]));
+                        for (Habitat habitat : idHabitatGen) {
+                            i++;
+                            System.out.println(i + ". " + habitat);
+                        }
+                    } else {
+                        System.out.println("Opcion incorrecta");
+                        return;
+                    }
                 }
-
-            } else if (option2.equals("2")) {
-                if (opcionValor == 1) {
+                break;
+            case "2":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    idHabitatGen.sort((comparadoresHabitat[0]));
+                    for (Habitat habitat : idHabitatGen) {
+                        i++;
+                        System.out.println(i + ". " + habitat);
+                    }
+                } else if (option2.equals("2")) {
                     System.out.println("Descendente");
-                    Collections.sort(idHabitatGen, Collections.reverseOrder(comparadoresHabitat[0]));
+                    idHabitatGen.sort(Collections.reverseOrder(comparadoresHabitat[1]));
                     for (Habitat habitat : idHabitatGen) {
                         i++;
                         System.out.println(i + ". " + habitat);
@@ -5031,90 +4912,65 @@ public class SistemaZoologico {
                     System.out.println("Opcion incorrecta");
                     return;
                 }
-            }
-        } else if (option.equals("2")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(idHabitatGen, (comparadoresHabitat[0]));
-                for (Habitat habitat : idHabitatGen) {
-                    i++;
-                    System.out.println(i + ". " + habitat);
-                }
+                break;
+            case "3":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    idHabitatGen.sort((comparadoresHabitat[2]));
+                    for (Habitat habitat : idHabitatGen) {
+                        i++;
+                        System.out.println(i + ". " + habitat);
+                    }
 
-            } else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(idHabitatGen, Collections.reverseOrder(comparadoresHabitat[1]));
-                for (Habitat habitat : idHabitatGen) {
-                    i++;
-                    System.out.println(i + ". " + habitat);
-                }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    idHabitatGen.sort(Collections.reverseOrder(comparadoresHabitat[2]));
+                    for (Habitat habitat : idHabitatGen) {
+                        i++;
+                        System.out.println(i + ". " + habitat);
+                    }
 
-            } else {
-                System.out.println("Opcion incorrecta");
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
+                }
+                break;
+            case "4":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    idHabitatGen.sort((comparadoresHabitat[3]));
+                    for (Habitat habitat : idHabitatGen) {
+                        i++;
+                        System.out.println(i + ". " + habitat);
+                    }
+
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    idHabitatGen.sort(Collections.reverseOrder(comparadoresHabitat[3]));
+                    for (Habitat habitat : idHabitatGen) {
+                        i++;
+                        System.out.println(i + ". " + habitat);
+                    }
+
+                } else {
+                    System.out.println("Opcion invalida");
+                    return;
+                }
+                break;
+            default:
                 return;
-            }
-        } else if (option.equals("3")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(idHabitatGen, (comparadoresHabitat[2]));
-                for (Habitat habitat : idHabitatGen) {
-                    i++;
-                    System.out.println(i + ". " + habitat);
-                }
-
-            } else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(idHabitatGen, Collections.reverseOrder(comparadoresHabitat[2]));
-                for (Habitat habitat : idHabitatGen) {
-                    i++;
-                    System.out.println(i + ". " + habitat);
-                }
-
-            } else {
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        } else if (option.equals("4")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(idHabitatGen, (comparadoresHabitat[3]));
-                for (Habitat habitat : idHabitatGen) {
-                    i++;
-                    System.out.println(i + ". " + habitat);
-                }
-
-            } else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(idHabitatGen, Collections.reverseOrder(comparadoresHabitat[3]));
-                for (Habitat habitat : idHabitatGen) {
-                    i++;
-                    System.out.println(i + ". " + habitat);
-                }
-
-            } else {
-                System.out.println("Opcion invalida");
-                return;
-            }
-        } else {
-            return;
         }
         //Menu editar - eliminar
         String accion;
@@ -5126,9 +4982,9 @@ public class SistemaZoologico {
         accion = input.next();
         System.out.println("----------------------------------");
 
-//Codigo editar
-        if (accion.equals("1")) {
-            for (Habitat habitat : idHabitatGen) {
+        //Codigo editar
+        for (Habitat habitat : idHabitatGen) {
+            if (accion.equals("1")) {
                 int eleccion;
                 System.out.println("------------------------------------------");
                 System.out.println("Escoja el habitat que desea editar: \n");
@@ -5138,6 +4994,11 @@ public class SistemaZoologico {
                 input.nextLine();
                 System.out.println("\nID: " + hab.id);
                 String nuevoID1 = input.nextLine();
+                int nuevoIDint1 = Integer.parseInt(nuevoID1);
+                if (habitat.id == nuevoIDint1) {
+                    System.out.println("ERROR: Ya existe un habitat registrado con este ID.");
+                    return;
+                }
 
                 System.out.println("Tipo de suelo: " + hab.tipoSuelo);
                 String nuevoSuelo = input.nextLine();
@@ -5167,21 +5028,13 @@ public class SistemaZoologico {
                             case "N":
                                 break;
                         }
-
                         return;
                     } else {
                         System.out.println("Opcion invalida\n");
                     }
                 }
-
-            }
-            return;
-        }
-
-
-//Codigo eliminar
-        else if (accion.equals("2")) {
-            for (Habitat habitat : idHabitatGen) {
+            }//Codigo eliminar
+            else if (accion.equals("2")) {
                 int eleccion;
                 System.out.println("------------------------------------------");
                 System.out.println("Escoja el habitat que desea eliminar: \n");
@@ -5205,13 +5058,11 @@ public class SistemaZoologico {
                 }
 
                 for (Bioma bioma : biomas) {
-                    Habitat finalHab = hab;
-                    bioma.habitats.removeIf(habitat1 -> habitat1.id == finalHab.id);
+                    bioma.habitats.removeIf(habitat1 -> habitat1.id == hab.id);
 
                 }
                 for (Tecnico tecnico : tecnicos) {
-                    Habitat finalHab = hab;
-                    tecnico.habitats.removeIf(habitat1 -> habitat1.id == finalHab.id);
+                    tecnico.habitats.removeIf(habitat1 -> habitat1.id == hab.id);
 
                 }
                 for (Animal animal : animales) {
@@ -5223,12 +5074,11 @@ public class SistemaZoologico {
 
                 System.out.println("El habitat se ha eliminado correctamente");
                 return;
-            }
-        } else return;
-
+            } else return;
+        }
     }
-    public static void tipoSueloHabitat(int opcionValor, String tipoSueloBus) {
-        Habitat hab = null;
+    public static void tipoSueloHabitat(String tipoSueloBus) {
+        Habitat hab;
         int i=0;
         ArrayList<Habitat> tipoSueloHab = new ArrayList<>();
         for (Habitat habitat : habitats) {
@@ -5246,93 +5096,88 @@ public class SistemaZoologico {
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
-        if (option.equals("1")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(tipoSueloHab, (comparadoresHabitat[0]));
-                for (Habitat habitat : tipoSueloHab) {
-                    i++;
-                    System.out.println(i+". "+habitat);
+        switch (option) {
+            case "1":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    tipoSueloHab.sort((comparadoresHabitat[0]));
+                    for (Habitat habitat : tipoSueloHab) {
+                        i++;
+                        System.out.println(i + ". " + habitat);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    tipoSueloHab.sort(Collections.reverseOrder(comparadoresHabitat[0]));
+                    for (Habitat habitat : tipoSueloHab) {
+                        i++;
+                        System.out.println(i + ". " + habitat);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(tipoSueloHab, Collections.reverseOrder(comparadoresHabitat[0]));
-                for (Habitat habitat : tipoSueloHab) {
-                    i++;
-                    System.out.println(i+". "+habitat);
+                break;
+            case "2":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    tipoSueloHab.sort((comparadoresHabitat[2]));
+                    for (Habitat habitat : tipoSueloHab) {
+                        i++;
+                        System.out.println(i + ". " + habitat);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    tipoSueloHab.sort(Collections.reverseOrder(comparadoresHabitat[2]));
+                    for (Habitat habitat : tipoSueloHab) {
+                        i++;
+                        System.out.println(i + ". " + habitat);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            }
-            else {
-                System.out.println("Opcion incorrecta");
+                break;
+            case "3":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    tipoSueloHab.sort((comparadoresHabitat[3]));
+                    for (Habitat habitat : tipoSueloHab) {
+                        i++;
+                        System.out.println(i + ". " + habitat);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    tipoSueloHab.sort(Collections.reverseOrder(comparadoresHabitat[3]));
+                    for (Habitat habitat : tipoSueloHab) {
+                        i++;
+                        System.out.println(i + ". " + habitat);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
+                }
+                break;
+            default:
                 return;
-            }
         }
-        else if (option.equals("2")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(tipoSueloHab, (comparadoresHabitat[2]));
-                for (Habitat habitat : tipoSueloHab) {
-                    i++;
-                    System.out.println(i+". "+habitat);
-                }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(tipoSueloHab, Collections.reverseOrder(comparadoresHabitat[2]));
-                for (Habitat habitat : tipoSueloHab) {
-                    i++;
-                    System.out.println(i+". "+habitat);
-                }
-            }
-            else {
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else if (option.equals("3")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(tipoSueloHab, (comparadoresHabitat[3]));
-                for (Habitat habitat : tipoSueloHab) {
-                    i++;
-                    System.out.println(i+". "+habitat);
-                }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(tipoSueloHab, Collections.reverseOrder(comparadoresHabitat[3]));
-                for (Habitat habitat : tipoSueloHab) {
-                    i++;
-                    System.out.println(i+". "+habitat);
-                }
-            }
-            else {
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else {
-            return;
-        }//Menu editar - eliminar
         String accion;
         System.out.println("-----------------------------------------");
         System.out.println("\nIndique la accion que desea realizar:\n");
@@ -5342,9 +5187,9 @@ public class SistemaZoologico {
         accion = input.next();
         System.out.println("----------------------------------");
 
-        //Codigo editar
-        if (accion.equals("1")) {
-            for (Habitat habitat : tipoSueloHab) {
+        for (Habitat habitat : tipoSueloHab) {
+            //Codigo editar
+            if (accion.equals("1")) {
                 int eleccion;
                 System.out.println("------------------------------------------");
                 System.out.println("Escoja el habitat que desea editar: \n");
@@ -5352,21 +5197,21 @@ public class SistemaZoologico {
                 hab = tipoSueloHab.get(eleccion - 1);
 
                 input.nextLine();
-                System.out.println("\nID: " + habitat.id);
+                System.out.println("\nID: " + hab.id);
                 String nuevoID1 = input.nextLine();
                 int nuevoIDint1 = Integer.parseInt(nuevoID1);
-                if (hab.id == nuevoIDint1){
+                if (habitat.id == nuevoIDint1) {
                     System.out.println("ERROR: Ya existe un habitat registrado con este ID.");
                     return;
                 }
 
-                System.out.println("Tipo de suelo: " + habitat.tipoSuelo);
+                System.out.println("Tipo de suelo: " + hab.tipoSuelo);
                 String nuevoSuelo = input.nextLine();
 
-                System.out.println("Vegetacion: " + habitat.vegetacion);
+                System.out.println("Vegetacion: " + hab.vegetacion);
                 String nuevaVege = input.nextLine();
 
-                System.out.println("Tipo de jaula: " + habitat.tipoJaula);
+                System.out.println("Tipo de jaula: " + hab.tipoJaula);
                 String nuevaJau = input.nextLine();
 
                 while (true) {
@@ -5376,15 +5221,13 @@ public class SistemaZoologico {
                         switch (optionE.toUpperCase()) {
                             case "Y":
                                 if (nuevoID1.isEmpty()) {
-                                } else {
-                                habitat.id = Integer.parseInt(nuevoID1);
-                                }
-                                if (nuevoSuelo.isEmpty()) {
-                                } else habitat.tipoSuelo = nuevoSuelo;
+                                } else {hab.id = Integer.parseInt(nuevoID1);
+                                }if (nuevoSuelo.isEmpty()) {
+                                } else hab.tipoSuelo = nuevoSuelo;
                                 if (nuevaVege.isEmpty()) {
-                                } else habitat.vegetacion = nuevaVege;
+                                } else hab.vegetacion = nuevaVege;
                                 if (nuevaJau.isEmpty()) {
-                                } else habitat.tipoJaula = nuevaJau;
+                                } else hab.tipoJaula = nuevaJau;
                             case "N":
                                 break;
                         }
@@ -5393,11 +5236,8 @@ public class SistemaZoologico {
                         System.out.println("Opcion invalida\n");
                     }
                 }
-            }
-            return;
-        }//Codigo eliminar
-        else if(accion.equals("2")) {
-            for (Habitat habitat : tipoSueloHab) {
+            }//Codigo eliminar
+            else if (accion.equals("2")) {
                 int eleccion;
                 System.out.println("------------------------------------------");
                 System.out.println("Escoja el habitat que desea eliminar: \n");
@@ -5421,30 +5261,27 @@ public class SistemaZoologico {
                 }
 
                 for (Bioma bioma : biomas) {
-                    Habitat finalHab = habitat;
-                    bioma.habitats.removeIf(habitat1 -> habitat1.id == finalHab.id);
+                    bioma.habitats.removeIf(habitat1 -> habitat1.id == habitat.id);
 
                 }
                 for (Tecnico tecnico : tecnicos) {
-                    Habitat finalHab = habitat;
-                    tecnico.habitats.removeIf(habitat1 -> habitat1.id == finalHab.id);
+                    tecnico.habitats.removeIf(habitat1 -> habitat1.id == habitat.id);
 
                 }
                 for (Animal animal : animales) {
                     if (animal.habitat != null && animal.habitat.id == habitat.id) {
-                    animal.habitat = null;
+                        animal.habitat = null;
                     }
                 }
-                habitats.remove(habitat);
+                habitats.remove(hab);
 
                 System.out.println("El habitat se ha eliminado correctamente");
                 return;
-            }
+            } else return;
         }
-        else return;
     }
-    public static void vegetacionHabitat(int opcionValor, String vegetacionBus) {
-        Habitat hab = null;
+    public static void vegetacionHabitat(String vegetacionBus) {
+        Habitat hab;
         int i=0;
         ArrayList<Habitat> vegetacionHab = new ArrayList<>();
         for (Habitat habitat : habitats) {
@@ -5463,121 +5300,114 @@ public class SistemaZoologico {
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
-        if (option.equals("1")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(vegetacionHab, (comparadoresHabitat[0]));
-                for (Habitat habitat : vegetacionHab) {
-                    i++;
-                    System.out.println(i+". "+habitat);
+        switch (option) {
+            case "1":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    vegetacionHab.sort((comparadoresHabitat[0]));
+                    for (Habitat habitat : vegetacionHab) {
+                        i++;
+                        System.out.println(i + ". " + habitat);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    vegetacionHab.sort(Collections.reverseOrder(comparadoresHabitat[0]));
+                    for (Habitat habitat : vegetacionHab) {
+                        i++;
+                        System.out.println(i + ". " + habitat);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(vegetacionHab, Collections.reverseOrder(comparadoresHabitat[0]));
-                for (Habitat habitat : vegetacionHab) {
-                    i++;
-                    System.out.println(i+". "+habitat);
+                break;
+            case "2":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    vegetacionHab.sort((comparadoresHabitat[1]));
+                    for (Habitat habitat : vegetacionHab) {
+                        i++;
+                        System.out.println(i + ". " + habitat);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    vegetacionHab.sort(Collections.reverseOrder(comparadoresHabitat[1]));
+                    for (Habitat habitat : vegetacionHab) {
+                        i++;
+                        System.out.println(i + ". " + habitat);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            }
-            else {
-                System.out.println("Opcion incorrecta");
+                break;
+            case "3":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    vegetacionHab.sort((comparadoresHabitat[2]));
+                    for (Habitat habitat : vegetacionHab) {
+                        i++;
+                        System.out.println(i + ". " + habitat);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    vegetacionHab.sort(Collections.reverseOrder(comparadoresHabitat[2]));
+                    for (Habitat habitat : vegetacionHab) {
+                        i++;
+                        System.out.println(i + ". " + habitat);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
+                }
+                break;
+            case "4":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    vegetacionHab.sort((comparadoresHabitat[3]));
+                    for (Habitat habitat : vegetacionHab) {
+                        i++;
+                        System.out.println(i + ". " + habitat);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    vegetacionHab.sort(Collections.reverseOrder(comparadoresHabitat[3]));
+                    for (Habitat habitat : vegetacionHab) {
+                        i++;
+                        System.out.println(i + ". " + habitat);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
+                }
+                break;
+            default:
                 return;
-            }
         }
-        else if (option.equals("2")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(vegetacionHab, (comparadoresHabitat[1]));
-                for (Habitat habitat : vegetacionHab) {
-                    i++;
-                    System.out.println(i+". "+habitat);
-                }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(vegetacionHab, Collections.reverseOrder(comparadoresHabitat[1]));
-                for (Habitat habitat : vegetacionHab) {
-                    i++;
-                    System.out.println(i+". "+habitat);
-                }
-            }
-            else {
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else if (option.equals("3")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(vegetacionHab, (comparadoresHabitat[2]));
-                for (Habitat habitat : vegetacionHab) {
-                    i++;
-                    System.out.println(i+". "+habitat);
-                }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(vegetacionHab, Collections.reverseOrder(comparadoresHabitat[2]));
-                for (Habitat habitat : vegetacionHab) {
-                    i++;
-                    System.out.println(i+". "+habitat);
-                }
-            }
-            else {
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else if (option.equals("4")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(vegetacionHab, (comparadoresHabitat[3]));
-                for (Habitat habitat : vegetacionHab) {
-                    i++;
-                    System.out.println(i+". "+habitat);
-                }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(vegetacionHab, Collections.reverseOrder(comparadoresHabitat[3]));
-                for (Habitat habitat : vegetacionHab) {
-                    i++;
-                    System.out.println(i+". "+habitat);
-                }
-            }
-            else {
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else {
-            return;
-        }//Menu editar - eliminar
         String accion;
         System.out.println("-----------------------------------------");
         System.out.println("\nIndique la accion que desea realizar:\n");
@@ -5587,9 +5417,9 @@ public class SistemaZoologico {
         accion = input.next();
         System.out.println("----------------------------------");
 
-        //Codigo editar
-        if (accion.equals("1")) {
-            for (Habitat habitat : vegetacionHab) {
+        for (Habitat habitat : vegetacionHab) {
+            //Codigo editar
+            if (accion.equals("1")) {
                 int eleccion;
                 System.out.println("------------------------------------------");
                 System.out.println("Escoja el habitat que desea editar: \n");
@@ -5597,21 +5427,21 @@ public class SistemaZoologico {
                 hab = vegetacionHab.get(eleccion - 1);
 
                 input.nextLine();
-                System.out.println("\nID: " + habitat.id);
+                System.out.println("\nID: " + hab.id);
                 String nuevoID1 = input.nextLine();
                 int nuevoIDint1 = Integer.parseInt(nuevoID1);
-                if (hab.id == nuevoIDint1){
+                if (habitat.id == nuevoIDint1) {
                     System.out.println("ERROR: Ya existe un habitat registrado con este ID.");
                     return;
                 }
 
-                System.out.println("Tipo de suelo: " + habitat.tipoSuelo);
+                System.out.println("Tipo de suelo: " + hab.tipoSuelo);
                 String nuevoSuelo = input.nextLine();
 
-                System.out.println("Vegetacion: " + habitat.vegetacion);
+                System.out.println("Vegetacion: " + hab.vegetacion);
                 String nuevaVege = input.nextLine();
 
-                System.out.println("Tipo de jaula: " + habitat.tipoJaula);
+                System.out.println("Tipo de jaula: " + hab.tipoJaula);
                 String nuevaJau = input.nextLine();
 
                 while (true) {
@@ -5621,15 +5451,13 @@ public class SistemaZoologico {
                         switch (optionE.toUpperCase()) {
                             case "Y":
                                 if (nuevoID1.isEmpty()) {
-                                } else {
-                                habitat.id = Integer.parseInt(nuevoID1);
-                                }
-                                if (nuevoSuelo.isEmpty()) {
-                                } else habitat.tipoSuelo = nuevoSuelo;
+                                } else {hab.id = Integer.parseInt(nuevoID1);
+                                }if (nuevoSuelo.isEmpty()) {
+                                } else hab.tipoSuelo = nuevoSuelo;
                                 if (nuevaVege.isEmpty()) {
-                                } else habitat.vegetacion = nuevaVege;
+                                } else hab.vegetacion = nuevaVege;
                                 if (nuevaJau.isEmpty()) {
-                                } else habitat.tipoJaula = nuevaJau;
+                                } else hab.tipoJaula = nuevaJau;
                             case "N":
                                 break;
                         }
@@ -5638,11 +5466,8 @@ public class SistemaZoologico {
                         System.out.println("Opcion invalida\n");
                     }
                 }
-            }
-            return;
-        }//Codigo eliminar
-        else if(accion.equals("2")) {
-            for (Habitat habitat : vegetacionHab) {
+            }//Codigo eliminar
+            else if (accion.equals("2")) {
                 int eleccion;
                 System.out.println("------------------------------------------");
                 System.out.println("Escoja el habitat que desea eliminar: \n");
@@ -5666,27 +5491,24 @@ public class SistemaZoologico {
                 }
 
                 for (Bioma bioma : biomas) {
-                    Habitat finalHab = habitat;
-                    bioma.habitats.removeIf(habitat1 -> habitat1.id == finalHab.id);
+                    bioma.habitats.removeIf(habitat1 -> habitat1.id == habitat.id);
                 }
                 for (Tecnico tecnico : tecnicos) {
-                   Habitat finalHab = habitat;
-                   tecnico.habitats.removeIf(habitat1 -> habitat1.id == finalHab.id);
+                    tecnico.habitats.removeIf(habitat1 -> habitat1.id == habitat.id);
                 }
                 for (Animal animal : animales) {
-                   if (animal.habitat != null && animal.habitat.id == habitat.id) {
-                       animal.habitat = null;
-                   }
+                    if (animal.habitat != null && animal.habitat.id == habitat.id) {
+                        animal.habitat = null;
+                    }
                 }
-                habitats.remove(habitat);
+                habitats.remove(hab);
 
                 System.out.println("El habitat se ha eliminado correctamente");
-            }
+            } else return;
         }
-        else return;
     }
-    public static void tipoJaulaHabitat(int opcionValor, String tipoJaulaBus) {
-        Habitat hab = null;
+    public static void tipoJaulaHabitat(String tipoJaulaBus) {
+        Habitat hab;
         int i=0;
         ArrayList<Habitat> tipoJaulaHab = new ArrayList<>();
         for (Habitat habitat : habitats) {
@@ -5704,93 +5526,88 @@ public class SistemaZoologico {
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
-        if (option.equals("1")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(tipoJaulaHab, (comparadoresHabitat[0]));
-                for (Habitat habitat : tipoJaulaHab) {
-                    i++;
-                    System.out.println(i+". "+habitat);
+        switch (option) {
+            case "1":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    tipoJaulaHab.sort((comparadoresHabitat[0]));
+                    for (Habitat habitat : tipoJaulaHab) {
+                        i++;
+                        System.out.println(i + ". " + habitat);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    tipoJaulaHab.sort(Collections.reverseOrder(comparadoresHabitat[0]));
+                    for (Habitat habitat : tipoJaulaHab) {
+                        i++;
+                        System.out.println(i + ". " + habitat);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(tipoJaulaHab, Collections.reverseOrder(comparadoresHabitat[0]));
-                for (Habitat habitat : tipoJaulaHab) {
-                    i++;
-                    System.out.println(i+". "+habitat);
+                break;
+            case "2":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    tipoJaulaHab.sort((comparadoresHabitat[1]));
+                    for (Habitat habitat : tipoJaulaHab) {
+                        i++;
+                        System.out.println(i + ". " + habitat);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    tipoJaulaHab.sort(Collections.reverseOrder(comparadoresHabitat[1]));
+                    for (Habitat habitat : tipoJaulaHab) {
+                        i++;
+                        System.out.println(i + ". " + habitat);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            }
-            else {
-                System.out.println("Opcion incorrecta");
+                break;
+            case "3":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    tipoJaulaHab.sort((comparadoresHabitat[2]));
+                    for (Habitat habitat : tipoJaulaHab) {
+                        i++;
+                        System.out.println(i + ". " + habitat);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    tipoJaulaHab.sort(Collections.reverseOrder(comparadoresHabitat[2]));
+                    for (Habitat habitat : tipoJaulaHab) {
+                        i++;
+                        System.out.println(i + ". " + habitat);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
+                }
+                break;
+            default:
                 return;
-            }
         }
-        else if (option.equals("2")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(tipoJaulaHab, (comparadoresHabitat[1]));
-                for (Habitat habitat : tipoJaulaHab) {
-                    i++;
-                    System.out.println(i+". "+habitat);
-                }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(tipoJaulaHab, Collections.reverseOrder(comparadoresHabitat[1]));
-                for (Habitat habitat : tipoJaulaHab) {
-                    i++;
-                    System.out.println(i+". "+habitat);
-                }
-            }
-            else {
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else if (option.equals("3")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(tipoJaulaHab, (comparadoresHabitat[2]));
-                for (Habitat habitat : tipoJaulaHab) {
-                    i++;
-                    System.out.println(i+". "+habitat);
-                }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(tipoJaulaHab, Collections.reverseOrder(comparadoresHabitat[2]));
-                for (Habitat habitat : tipoJaulaHab) {
-                    i++;
-                    System.out.println(i+". "+habitat);
-                }
-            }
-            else {
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else {
-            return;
-        }//Menu editar - eliminar
         String accion;
         System.out.println("-----------------------------------------");
         System.out.println("\nIndique la accion que desea realizar:\n");
@@ -5800,9 +5617,9 @@ public class SistemaZoologico {
         accion = input.next();
         System.out.println("----------------------------------");
 
-        //Codigo editar
-        if (accion.equals("1")) {
-            for (Habitat habitat : tipoJaulaHab) {
+        for (Habitat habitat : tipoJaulaHab) {
+            //Codigo editar
+            if (accion.equals("1")) {
                 int eleccion;
                 System.out.println("------------------------------------------");
                 System.out.println("Escoja el habitat que desea editar: \n");
@@ -5810,21 +5627,21 @@ public class SistemaZoologico {
                 hab = tipoJaulaHab.get(eleccion - 1);
 
                 input.nextLine();
-                System.out.println("\nID: " + habitat.id);
+                System.out.println("\nID: " + hab.id);
                 String nuevoID1 = input.nextLine();
                 int nuevoIDint1 = Integer.parseInt(nuevoID1);
-                if (hab.id == nuevoIDint1){
+                if (habitat.id == nuevoIDint1) {
                     System.out.println("ERROR: Ya existe un habitat registrado con este ID.");
                     return;
                 }
 
-                System.out.println("Tipo de suelo: " + habitat.tipoSuelo);
+                System.out.println("Tipo de suelo: " + hab.tipoSuelo);
                 String nuevoSuelo = input.nextLine();
 
-                System.out.println("Vegetacion: " + habitat.vegetacion);
+                System.out.println("Vegetacion: " + hab.vegetacion);
                 String nuevaVege = input.nextLine();
 
-                System.out.println("Tipo de jaula: " + habitat.tipoJaula);
+                System.out.println("Tipo de jaula: " + hab.tipoJaula);
                 String nuevaJau = input.nextLine();
 
                 while (true) {
@@ -5834,15 +5651,13 @@ public class SistemaZoologico {
                         switch (optionE.toUpperCase()) {
                             case "Y":
                                 if (nuevoID1.isEmpty()) {
-                                } else {
-                                habitat.id = Integer.parseInt(nuevoID1);
-                                }
-                                if (nuevoSuelo.isEmpty()) {
-                                } else habitat.tipoSuelo = nuevoSuelo;
+                                } else { hab.id = Integer.parseInt(nuevoID1);
+                                }if (nuevoSuelo.isEmpty()) {
+                                } else hab.tipoSuelo = nuevoSuelo;
                                 if (nuevaVege.isEmpty()) {
-                                } else habitat.vegetacion = nuevaVege;
+                                } else hab.vegetacion = nuevaVege;
                                 if (nuevaJau.isEmpty()) {
-                                } else habitat.tipoJaula = nuevaJau;
+                                } else hab.tipoJaula = nuevaJau;
                             case "N":
                                 break;
                         }
@@ -5851,11 +5666,8 @@ public class SistemaZoologico {
                         System.out.println("Opcion invalida\n");
                     }
                 }
-            }
-            return;
-        }//Codigo eliminar
-        else if(accion.equals("2")) {
-            for (Habitat habitat : tipoJaulaHab) {
+            }//Codigo eliminar
+            else if (accion.equals("2")) {
                 int eleccion;
                 System.out.println("------------------------------------------");
                 System.out.println("Escoja el habitat que desea eliminar: \n");
@@ -5879,28 +5691,25 @@ public class SistemaZoologico {
                 }
 
                 for (Bioma bioma : biomas) {
-                Habitat finalHab = habitat;
-                bioma.habitats.removeIf(habitat1 -> habitat1.id == finalHab.id);
+                    bioma.habitats.removeIf(habitat1 -> habitat1.id == habitat.id);
 
                 }
                 for (Tecnico tecnico : tecnicos) {
-                Habitat finalHab = habitat;
-                tecnico.habitats.removeIf(habitat1 -> habitat1.id == finalHab.id);
+                    tecnico.habitats.removeIf(habitat1 -> habitat1.id == habitat.id);
                 }
                 for (Animal animal : animales) {
                     if (animal.habitat != null && animal.habitat.id == habitat.id) {
                         animal.habitat = null;
                     }
                 }
-                habitats.remove(habitat);
+                habitats.remove(hab);
 
                 System.out.println("El habitat se ha eliminado correctamente");
-            }
+            } else return;
         }
-        else return;
     }
     public static void mostrarTodosHabitats() {
-        Habitat hab = null;
+        Habitat hab;
         int i = 0;
         ArrayList<Habitat> copiaHabitat = new ArrayList<>(habitats);
         String option;
@@ -5914,109 +5723,114 @@ public class SistemaZoologico {
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
-        if (option.equals("1")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(copiaHabitat, (comparadoresHabitat[0]));
-                for (Habitat habitat : copiaHabitat) {
-                    i++;
-                    System.out.println(i + ". " + habitat);
+        switch (option) {
+            case "1":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    copiaHabitat.sort((comparadoresHabitat[0]));
+                    for (Habitat habitat : copiaHabitat) {
+                        i++;
+                        System.out.println(i + ". " + habitat);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    copiaHabitat.sort(Collections.reverseOrder(comparadoresHabitat[0]));
+                    for (Habitat habitat : copiaHabitat) {
+                        i++;
+                        System.out.println(i + ". " + habitat);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            }else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresHabitat[0]));
-                for (Habitat habitat : copiaHabitat) {
-                    i++;
-                    System.out.println(i + ". " + habitat);
+                break;
+            case "2":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    copiaHabitat.sort((comparadoresHabitat[1]));
+                    for (Habitat habitat : copiaHabitat) {
+                        i++;
+                        System.out.println(i + ". " + habitat);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    copiaHabitat.sort(Collections.reverseOrder(comparadoresHabitat[1]));
+                    for (Habitat habitat : copiaHabitat) {
+                        i++;
+                        System.out.println(i + ". " + habitat);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            }else {
-                System.out.println("Opcion incorrecta");
+                break;
+            case "3":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    copiaHabitat.sort((comparadoresHabitat[2]));
+                    for (Habitat habitat : copiaHabitat) {
+                        i++;
+                        System.out.println(i + ". " + habitat);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    copiaHabitat.sort(Collections.reverseOrder(comparadoresHabitat[2]));
+                    for (Habitat habitat : copiaHabitat) {
+                        i++;
+                        System.out.println(i + ". " + habitat);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
+                }
+                break;
+            case "4":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    copiaHabitat.sort((comparadoresHabitat[3]));
+                    for (Habitat habitat : copiaHabitat) {
+                        i++;
+                        System.out.println(i + ". " + habitat);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    copiaHabitat.sort(Collections.reverseOrder(comparadoresHabitat[3]));
+                    for (Habitat habitat : copiaHabitat) {
+                        i++;
+                        System.out.println(i + ". " + habitat);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
+                }
+                break;
+            default:
                 return;
-            }
-        }else if (option.equals("2")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(copiaHabitat, (comparadoresHabitat[1]));
-                for (Habitat habitat : copiaHabitat) {
-                    i++;
-                    System.out.println(i + ". " + habitat);
-                }
-            }else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresHabitat[1]));
-                for (Habitat habitat : copiaHabitat) {
-                    i++;
-                    System.out.println(i + ". " + habitat);
-                }
-            }else {
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }else if (option.equals("3")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(copiaHabitat, (comparadoresHabitat[2]));
-                for (Habitat habitat : copiaHabitat) {
-                    i++;
-                    System.out.println(i + ". " + habitat);
-                }
-            }else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresHabitat[2]));
-                for (Habitat habitat : copiaHabitat) {
-                    i++;
-                    System.out.println(i + ". " + habitat);
-                }
-            }else {
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }else if (option.equals("4")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(copiaHabitat, (comparadoresHabitat[3]));
-                for (Habitat habitat : copiaHabitat) {
-                    i++;
-                    System.out.println(i + ". " + habitat);
-                }
-            }else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(copiaHabitat, Collections.reverseOrder(comparadoresHabitat[3]));
-                for (Habitat habitat : copiaHabitat) {
-                    i++;
-                    System.out.println(i + ". " + habitat);
-                }
-            }else {
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }else {
-            return;
-        }//Menu editar - eliminar
+        }
         String accion;
         System.out.println("-----------------------------------------");
         System.out.println("\nIndique la accion que desea realizar:\n");
@@ -6025,9 +5839,9 @@ public class SistemaZoologico {
         System.out.println("0. Regresar al menú anterior" + "\n");
         accion = input.next();
         System.out.println("----------------------------------");
+        for (Habitat habitat : copiaHabitat) {
         //Codigo editar
-        if (accion.equals("1")) {
-            for (Habitat habitat : copiaHabitat) {
+            if (accion.equals("1")) {
                 int eleccion;
                 System.out.println("------------------------------------------");
                 System.out.println("Escoja el habitat que desea editar: \n");
@@ -6035,21 +5849,21 @@ public class SistemaZoologico {
                 hab = copiaHabitat.get(eleccion - 1);
 
                 input.nextLine();
-                System.out.println("\nID: " + habitat.id);
+                System.out.println("\nID: " + hab.id);
                 String nuevoID1 = input.nextLine();
                 int nuevoIDint1 = Integer.parseInt(nuevoID1);
-                if (hab.id == nuevoIDint1){
+                if (habitat.id == nuevoIDint1){
                     System.out.println("ERROR: Ya existe un habitat registrado con este ID.");
                     return;
                 }
 
-                System.out.println("Tipo de suelo: " + habitat.tipoSuelo);
+                System.out.println("Tipo de suelo: " + hab.tipoSuelo);
                 String nuevoSuelo = input.nextLine();
 
-                System.out.println("Vegetacion: " + habitat.vegetacion);
+                System.out.println("Vegetacion: " + hab.vegetacion);
                 String nuevaVege = input.nextLine();
 
-                System.out.println("Tipo de jaula: " + habitat.tipoJaula);
+                System.out.println("Tipo de jaula: " + hab.tipoJaula);
                 String nuevaJau = input.nextLine();
 
                 while (true) {
@@ -6059,15 +5873,13 @@ public class SistemaZoologico {
                         switch (optionE.toUpperCase()) {
                             case "Y":
                                 if (nuevoID1.isEmpty()) {
-                                } else {
-                                habitat.id = Integer.parseInt(nuevoID1);
-                                }
-                                if (nuevoSuelo.isEmpty()) {
-                                } else habitat.tipoSuelo = nuevoSuelo;
+                                } else { hab.id = Integer.parseInt(nuevoID1);
+                                }if (nuevoSuelo.isEmpty()) {
+                                } else hab.tipoSuelo = nuevoSuelo;
                                 if (nuevaVege.isEmpty()) {
-                                } else habitat.vegetacion = nuevaVege;
+                                } else hab.vegetacion = nuevaVege;
                                 if (nuevaJau.isEmpty()) {
-                                } else habitat.tipoJaula = nuevaJau;
+                                } else hab.tipoJaula = nuevaJau;
                             case "N":
                                 break;
                         }
@@ -6076,11 +5888,8 @@ public class SistemaZoologico {
                         System.out.println("Opcion invalida\n");
                     }
                 }
-            }
-            return;
-        //Codigo eliminar
-        }else if (accion.equals("2")) {
-            for (Habitat habitat : copiaHabitat) {
+            }//Codigo eliminar
+            else if (accion.equals("2")) {
                 int eleccion;
                 System.out.println("------------------------------------------");
                 System.out.println("Escoja el habitat que desea eliminar: \n");
@@ -6104,24 +5913,20 @@ public class SistemaZoologico {
                 }
 
                 for (Bioma bioma : biomas) {
-                    Habitat finalHab = habitat;
-                    bioma.habitats.removeIf(habitat1 -> habitat1.id == finalHab.id);
+                    bioma.habitats.removeIf(habitat1 -> habitat1.id == habitat.id);
                 }
                 for (Tecnico tecnico : tecnicos) {
-                    Habitat finalHab = habitat;
-                    tecnico.habitats.removeIf(habitat1 -> habitat1.id == finalHab.id);
+                    tecnico.habitats.removeIf(habitat1 -> habitat1.id == habitat.id);
                 }
                 for (Animal animal : animales) {
                     if (animal.habitat != null && animal.habitat.id == habitat.id) {
                         animal.habitat = null;
                     }
                 }
-                habitats.remove(habitat);
+                habitats.remove(hab);
 
                 System.out.println("El habitat se ha eliminado correctamente");
-            }
-        } else {
-            return;
+            }else return;
         }
     }
 
@@ -6194,13 +5999,13 @@ public class SistemaZoologico {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String especieBus = input.next();
-                        especieAnimal(1, especieBus);
+                        especieAnimal(especieBus);
                         break;
                     } else {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String especieBus = input.next();
-                        especieAnimal(2, especieBus);
+                        especieAnimal(especieBus);
                         break;
                     }
                     break;
@@ -6256,13 +6061,13 @@ public class SistemaZoologico {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String alimentacionBus = input.next();
-                        alimentacionAnimal(1, alimentacionBus);
+                        alimentacionAnimal(alimentacionBus);
                         break;
                     } else {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String alimentacionBus = input.next();
-                        alimentacionAnimal(2, alimentacionBus);
+                        alimentacionAnimal(alimentacionBus);
                         break;
                     }
                     break;
@@ -6276,44 +6081,36 @@ public class SistemaZoologico {
         }
     }
     public static void idAnimal(int opcionValor, int idBusMin, int idBusMax) {
-        Animal ani = null;
+        Animal ani;
         int i =0;
-        ArrayList<Animal> idAnimalEx = new ArrayList<>();
-        ArrayList<Animal> idAnimalMax = new ArrayList<>();
-        ArrayList<Animal> idAnimalMin = new ArrayList<>();
-        ArrayList<Animal> idAnimalRan = new ArrayList<>();
         ArrayList<Animal> idAnimalGen = new ArrayList<>();
         if (opcionValor == 1) {
             for (Animal animal : animales) {
                 if (idBusMin == animal.id) {
-                    idAnimalEx.add(animal);
+                    idAnimalGen.add(animal);
                 }
             }
-            idAnimalGen = idAnimalEx;
         }
         else if (opcionValor == 2) {
             for (Animal animal : animales) {
                 if (idBusMin >= animal.id) {
-                    idAnimalMax.add(animal);
+                    idAnimalGen.add(animal);
                 }
             }
-            idAnimalGen = idAnimalMax;
         }
         else if (opcionValor == 3) {
             for (Animal animal : animales) {
                 if (idBusMin <= animal.id) {
-                    idAnimalMin.add(animal);
+                    idAnimalGen.add(animal);
                 }
             }
-            idAnimalGen = idAnimalMin;
         }
         else {
             for (Animal animal : animales) {
                 if (idBusMin <= animal.id && animal.id <= idBusMax) {
-                    idAnimalRan.add(animal);
+                    idAnimalGen.add(animal);
                 }
             }
-            idAnimalGen = idAnimalRan;
         }
         String option;
         String option2;
@@ -6326,231 +6123,213 @@ public class SistemaZoologico {
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
-        if (option.equals("1")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
+        switch (option) {
+            case "1":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
                     System.out.println("Ascendente");
-                    Collections.sort(idAnimalGen, (comparadoresAnimal[0]));
+                    idAnimalGen.sort((comparadoresAnimal[0]));
                     for (Animal animal : idAnimalGen) {
                         i++;
-                        System.out.println(i+". "+animal);
+                        System.out.println(i + ". " + animal);
                     }
-            }
-            else if (option2.equals("2")) {
+                } else if (option2.equals("2")) {
                     System.out.println("Descendente");
-                    Collections.sort(idAnimalGen, Collections.reverseOrder(comparadoresAnimal[0]));
+                    idAnimalGen.sort(Collections.reverseOrder(comparadoresAnimal[0]));
                     for (Animal animal : idAnimalGen) {
                         i++;
-                        System.out.println(i+". "+animal);
+                        System.out.println(i + ". " + animal);
                     }
 
-            }else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else if (option.equals("2")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                    System.out.println("Ascendente");
-                    Collections.sort(idAnimalGen, (comparadoresAnimal[1]));
-                    for (Animal animal : idAnimalGen) {
-                        i++;
-                        System.out.println(i+". "+animal);
-                    }
-
-            }
-            else if (option2.equals("2")) {
-                    System.out.println("Descendente");
-                    Collections.sort(idAnimalGen, Collections.reverseOrder(comparadoresAnimal[1]));
-                    for (Animal animal : idAnimalGen) {
-                        i++;
-                        System.out.println(i+". "+animal);
-                    }
-
-            }
-            else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else if (option.equals("3")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                    System.out.println("Ascendente");
-                    Collections.sort(idAnimalGen, (comparadoresAnimal[2]));
-                    for (Animal animal : idAnimalGen) {
-                        i++;
-                        System.out.println(i+". "+animal);
-                    }
-
-            }
-            else if (option2.equals("2")) {
-                    System.out.println("Descendente");
-                    Collections.sort(idAnimalGen, Collections.reverseOrder(comparadoresAnimal[2]));
-                    for (Animal animal : idAnimalGen) {
-                        i++;
-                        System.out.println(i+". "+animal);
-                    }
-
-            }else{
-                System.out.println("Opcion invalida");
-                return;
-            }
-        }
-        else if (option.equals("4")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                    System.out.println("Ascendente");
-                    Collections.sort(idAnimalGen, (comparadoresAnimal[3]));
-                    for (Animal animal : idAnimalGen) {
-                        i++;
-                        System.out.println(i+". "+animal);
-                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            else if (option2.equals("2")) {
-                    System.out.println("Descendente");
-                    Collections.sort(idAnimalGen, Collections.reverseOrder(comparadoresAnimal[3]));
+                break;
+            case "2":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    idAnimalGen.sort((comparadoresAnimal[1]));
                     for (Animal animal : idAnimalGen) {
                         i++;
-                        System.out.println(i+". "+animal);
+                        System.out.println(i + ". " + animal);
                     }
 
-            }
-        }
-        else {
-            return;
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    idAnimalGen.sort(Collections.reverseOrder(comparadoresAnimal[1]));
+                    for (Animal animal : idAnimalGen) {
+                        i++;
+                        System.out.println(i + ". " + animal);
+                    }
+
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
+                }
+                break;
+            case "3":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    idAnimalGen.sort((comparadoresAnimal[2]));
+                    for (Animal animal : idAnimalGen) {
+                        i++;
+                        System.out.println(i + ". " + animal);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    idAnimalGen.sort(Collections.reverseOrder(comparadoresAnimal[2]));
+                    for (Animal animal : idAnimalGen) {
+                        i++;
+                        System.out.println(i + ". " + animal);
+                    }
+
+                } else {
+                    System.out.println("Opcion invalida");
+                    return;
+                }
+                break;
+            case "4":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    idAnimalGen.sort((comparadoresAnimal[3]));
+                    for (Animal animal : idAnimalGen) {
+                        i++;
+                        System.out.println(i + ". " + animal);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    idAnimalGen.sort(Collections.reverseOrder(comparadoresAnimal[3]));
+                    for (Animal animal : idAnimalGen) {
+                        i++;
+                        System.out.println(i + ". " + animal);
+                    }
+
+                }
+                break;
+            default:
+                return;
         }
          //Menu editar - eliminar
-                    String accion;
-                    System.out.println("-----------------------------------------");
-                    System.out.println("\nIndique la accion que desea realizar:\n");
-                    System.out.println("1. Editar ");
-                    System.out.println("2. Eliminar ");
-                    System.out.println("0. Regresar al menú anterior" + "\n");
-                    accion = input.next();
-                    System.out.println("----------------------------------");
+        String accion;
+        System.out.println("-----------------------------------------");
+        System.out.println("\nIndique la accion que desea realizar:\n");
+        System.out.println("1. Editar ");
+        System.out.println("2. Eliminar ");
+        System.out.println("0. Regresar al menú anterior" + "\n");
+        accion = input.next();
+        System.out.println("----------------------------------");
 
-//Codigo editar
-                    if (accion.equals("1")) {
-                        for (Animal animal : idAnimalGen) {
-                            int eleccion;
-                            System.out.println("------------------------------------------");
-                            System.out.println("Escoja el animal que desea editar: \n");
-                            eleccion = input.nextInt();
-                            ani = idAnimalGen.get(eleccion - 1);
+        for (Animal animal : idAnimalGen) {
+            if (accion.equals("1")) {
+                int eleccion;
+                System.out.println("------------------------------------------");
+                System.out.println("Escoja el animal que desea editar: \n");
+                eleccion = input.nextInt();
+                ani = idAnimalGen.get(eleccion - 1);
 
-                            input.nextLine();
-                            System.out.println("\nID: " + animal.id);
-                            String nuevoID = input.nextLine();
+                input.nextLine();
+                System.out.println("\nID: " + ani.id);
+                String nuevoID = input.nextLine();
+                int nuevoIDInt= Integer.parseInt(nuevoID);
+                if(nuevoIDInt==animal.id){
+                    System.out.println("ERROR: El ID ya se encuentra registrado");
+                }
 
-                            System.out.println("Nombre: " + animal.especie);
-                            String nuevoEspecie = input.nextLine();
+                System.out.println("Nombre: " + ani.especie);
+                String nuevoEspecie = input.nextLine();
 
-                            System.out.println("Nivel de agresividad: " + animal.nivelAgresividad);
-                            String nuevonivelAgresividad = input.nextLine();
+                System.out.println("Nivel de agresividad: " + ani.nivelAgresividad);
+                String nuevonivelAgresividad = input.nextLine();
 
-                            System.out.println("Alimentacion: " + animal.alimentacion);
-                            String nuevoAlimentacion = input.nextLine();
+                System.out.println("Alimentacion: " + ani.alimentacion);
+                String nuevoAlimentacion = input.nextLine();
 
-                            while (true) {
-                                System.out.print("Desea guardar?:[Y/N] ");
-                                String optionE = input.next();
-                                if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                                    switch (optionE.toUpperCase()) {
-                                        case "Y":
-                                            if (nuevoID.isEmpty()) {
-                                            } else animal.id = Integer.parseInt(nuevoID);
-                                            if (nuevoEspecie.isEmpty()) {
-                                            } else animal.especie = nuevoEspecie;
-                                            if (nuevonivelAgresividad.isEmpty()) {
-                                            } else animal.nivelAgresividad = Integer.parseInt(nuevonivelAgresividad);
-                                            if (nuevoAlimentacion.isEmpty()) {
-                                            } else animal.alimentacion = nuevoAlimentacion;
-                                        case "N":
-                                            break;
-                                    }
-
-                                    return;
-                                } else {
-                                    System.out.println("Opcion invalida\n");
-                                }
-                            }
-
+                while (true) {
+                    System.out.print("Desea guardar?:[Y/N] ");
+                    String optionE = input.next();
+                    if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                        switch (optionE.toUpperCase()) {
+                            case "Y":
+                                if (nuevoID.isEmpty()) {
+                                } else ani.id = Integer.parseInt(nuevoID);
+                                if (nuevoEspecie.isEmpty()) {
+                                } else ani.especie = nuevoEspecie;
+                                if (nuevonivelAgresividad.isEmpty()) {
+                                } else ani.nivelAgresividad = Integer.parseInt(nuevonivelAgresividad);
+                                if (nuevoAlimentacion.isEmpty()) {
+                                } else ani.alimentacion = nuevoAlimentacion;
+                            case "N":
+                                break;
                         }
                         return;
-
+                    } else {
+                        System.out.println("Opcion invalida\n");
                     }
+                }
+            }//Codigo eliminar
+            else if (accion.equals("2")) {
+                int eleccion;
+                System.out.println("------------------------------------------");
+                System.out.println("Escoja el animal que desea eliminar: \n");
+                eleccion = input.nextInt();
+                ani = idAnimalGen.get(eleccion - 1);
 
-//Codigo eliminar
-                    else if (accion.equals("2")) {
-                        for (Animal animal : idAnimalGen) {
-                            int eleccion;
-                            System.out.println("------------------------------------------");
-                            System.out.println("Escoja el animal que desea eliminar: \n");
-                            eleccion = input.nextInt();
-                            ani = idAnimalGen.get(eleccion - 1);
-
-                            while (true) {
-                                System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
-                                String optionE = input.next();
-                                if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                                    switch (optionE.toUpperCase()) {
-                                        case "Y":
-                                            break;
-                                        case "N":
-                                            return;
-                                    }
-                                    break;
-                                } else {
-                                    System.out.println("Opcion invalida\n");
-                                }
-                            }
-
-                            for (Habitat habitat : habitats) {
-                                Animal finalAni = ani;
-                                habitat.animales.removeIf(animal1 -> animal1.id == finalAni.id);
-
-                            }
-                            for (ZooAmigo zooAmigo : zooAmigos) {
-                                Animal finalAni = ani;
-                                zooAmigo.animales.removeIf(animal1 -> animal1.id == finalAni.id);
-
-                            }
-
-                            animales.remove(ani);
-
-                            System.out.println("El animal se ha eliminado correctamente");
-                            return;
+                while (true) {
+                    System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+                    String optionE = input.next();
+                    if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                        switch (optionE.toUpperCase()) {
+                            case "Y":
+                                break;
+                            case "N":
+                                return;
                         }
+                        break;
+                    } else {
+                        System.out.println("Opcion invalida\n");
                     }
+                }
 
-                    else return;
+                for (Habitat habitat : habitats) {
+                    habitat.animales.removeIf(animal1 -> animal1.id == ani.id);
+                }
+                for (ZooAmigo zooAmigo : zooAmigos) {
+                    zooAmigo.animales.removeIf(animal1 -> animal1.id == ani.id);
+                }
 
+                animales.remove(ani);
 
+                System.out.println("El animal se ha eliminado correctamente");
+                return;
+            } else return;
+        }
     }
-    public static void especieAnimal(int opcionValor, String especieBus) {
-        Animal ani = null;
+    public static void especieAnimal(String especieBus) {
+        Animal ani;
         int i=0;
         ArrayList<Animal> especieAnimal = new ArrayList<>();
         for (Animal animal : animales) {
@@ -6568,93 +6347,88 @@ public class SistemaZoologico {
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
-        if (option.equals("1")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(especieAnimal, (comparadoresAnimal[0]));
-                for (Animal animal : especieAnimal) {
-                    i++;
-                    System.out.println(i + ". " + animal);
+        switch (option) {
+            case "1":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    especieAnimal.sort((comparadoresAnimal[0]));
+                    for (Animal animal : especieAnimal) {
+                        i++;
+                        System.out.println(i + ". " + animal);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    especieAnimal.sort(Collections.reverseOrder(comparadoresAnimal[0]));
+                    for (Animal animal : especieAnimal) {
+                        i++;
+                        System.out.println(i + ". " + animal);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(especieAnimal, Collections.reverseOrder(comparadoresAnimal[0]));
-                for (Animal animal : especieAnimal) {
-                    i++;
-                    System.out.println(i+". "+animal);
+                break;
+            case "2":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    especieAnimal.sort((comparadoresAnimal[2]));
+                    for (Animal animal : especieAnimal) {
+                        i++;
+                        System.out.println(i + ". " + animal);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    especieAnimal.sort(Collections.reverseOrder(comparadoresAnimal[2]));
+                    for (Animal animal : especieAnimal) {
+                        i++;
+                        System.out.println(i + ". " + animal);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            }
-            else {
-                System.out.println("Opcion incorrecta");
+                break;
+            case "3":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    especieAnimal.sort((comparadoresAnimal[3]));
+                    for (Animal animal : especieAnimal) {
+                        i++;
+                        System.out.println(i + ". " + animal);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    especieAnimal.sort(Collections.reverseOrder(comparadoresAnimal[3]));
+                    for (Animal animal : especieAnimal) {
+                        i++;
+                        System.out.println(i + ". " + animal);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
+                }
+                break;
+            default:
                 return;
-            }
         }
-        else if (option.equals("2")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(especieAnimal, (comparadoresAnimal[2]));
-                for (Animal animal : especieAnimal) {
-                    i++;
-                    System.out.println(i+". "+animal);
-                }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(especieAnimal, Collections.reverseOrder(comparadoresAnimal[2]));
-                for (Animal animal : especieAnimal) {
-                    i++;
-                    System.out.println(i+". "+animal);
-                }
-            }
-            else {
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else if (option.equals("3")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(especieAnimal, (comparadoresAnimal[3]));
-                for (Animal animal : especieAnimal) {
-                    i++;
-                    System.out.println(i+". "+animal);
-                }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(especieAnimal, Collections.reverseOrder(comparadoresAnimal[3]));
-                for (Animal animal : especieAnimal) {
-                    i++;
-                    System.out.println(i+". "+animal);
-                }
-            }
-            else {
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else {
-            return;
-        }//Menu editar - eliminar
         String accion;
         System.out.println("-----------------------------------------");
         System.out.println("\nIndique la accion que desea realizar:\n");
@@ -6664,9 +6438,9 @@ public class SistemaZoologico {
         accion = input.next();
         System.out.println("----------------------------------");
 
-        //Codigo editar
-        if (accion.equals("1")) {
-            for (Animal animal : especieAnimal) {
+        for (Animal animal : especieAnimal) {
+            //Codigo editar
+            if (accion.equals("1")) {
                 int eleccion;
                 System.out.println("------------------------------------------");
                 System.out.println("Escoja el animal que desea editar: \n");
@@ -6674,21 +6448,21 @@ public class SistemaZoologico {
                 ani = especieAnimal.get(eleccion - 1);
 
                 input.nextLine();
-                System.out.println("\nID: " + animal.id);
+                System.out.println("\nID: " + ani.id);
                 String nuevoID = input.nextLine();
                 int nuevoIDint = Integer.parseInt(nuevoID);
-                if (animal.id == nuevoIDint){
+                if (animal.id == nuevoIDint) {
                     System.out.println("ERROR: Ya existe un animal registrado con este ID.");
                     return;
                 }
 
-                System.out.println("Nombre: " + animal.especie);
+                System.out.println("Nombre: " + ani.especie);
                 String nuevoEspecie = input.nextLine();
 
-                System.out.println("Nivel de agresividad: " + animal.nivelAgresividad);
+                System.out.println("Nivel de agresividad: " + ani.nivelAgresividad);
                 String nuevonivelAgresividad = input.nextLine();
 
-                System.out.println("Alimentacion: " + animal.alimentacion);
+                System.out.println("Alimentacion: " + ani.alimentacion);
                 String nuevoAlimentacion = input.nextLine();
 
                 while (true) {
@@ -6698,26 +6472,23 @@ public class SistemaZoologico {
                         switch (optionE.toUpperCase()) {
                             case "Y":
                                 if (nuevoID.isEmpty()) {
-                                } else animal.id = Integer.parseInt(nuevoID);
+                                } else ani.id = Integer.parseInt(nuevoID);
                                 if (nuevoEspecie.isEmpty()) {
-                                } else animal.especie = nuevoEspecie;
+                                } else ani.especie = nuevoEspecie;
                                 if (nuevonivelAgresividad.isEmpty()) {
-                                } else animal.nivelAgresividad = Integer.parseInt(nuevonivelAgresividad);
+                                } else ani.nivelAgresividad = Integer.parseInt(nuevonivelAgresividad);
                                 if (nuevoAlimentacion.isEmpty()) {
-                                } else animal.alimentacion = nuevoAlimentacion;
+                                } else ani.alimentacion = nuevoAlimentacion;
                             case "N":
                                 break;
-                            }
-                            return;
-                        } else{
-                            System.out.println("Opcion invalida\n");
                         }
+                        return;
+                    } else {
+                        System.out.println("Opcion invalida\n");
+                    }
                 }
-            }
-            return;
-        }//Codigo eliminar
-        else if (accion.equals("2")) {
-            for (Animal animal : especieAnimal) {
+            }//Codigo eliminar
+            else if (accion.equals("2")) {
                 int eleccion;
                 System.out.println("------------------------------------------");
                 System.out.println("Escoja el animal que desea eliminar: \n");
@@ -6732,7 +6503,7 @@ public class SistemaZoologico {
                             case "Y":
                                 break;
                             case "N":
-                                 return;
+                                return;
                         }
                         break;
                     } else {
@@ -6751,49 +6522,37 @@ public class SistemaZoologico {
                 animales.remove(ani);
 
                 System.out.println("El animal se ha eliminado correctamente");
-            }
+            } else return;
         }
-        else return;
     }
     public static void nivelAgresividadAnimal(int opcionValor, int nivelAgresividadBusMin, int nivelAgresividadMax) {
-        Animal ani = null;
-        int i =0;
-        ArrayList<Animal> nivelAgrEx = new ArrayList<>();
-        ArrayList<Animal> nivelAgrMax = new ArrayList<>();
-        ArrayList<Animal> nivelAgrMin = new ArrayList<>();
-        ArrayList<Animal> nivelAgrRan = new ArrayList<>();
+        Animal ani;
+        int i = 0;
         ArrayList<Animal> nivelAgrGen = new ArrayList<>();
         if (opcionValor == 1) {
             for (Animal animal : animales) {
                 if (nivelAgresividadBusMin == animal.nivelAgresividad) {
-                    nivelAgrEx.add(animal);
+                    nivelAgrGen.add(animal);
                 }
             }
-            nivelAgrGen = nivelAgrEx;
-        }
-        else if (opcionValor == 2) {
+        } else if (opcionValor == 2) {
             for (Animal animal : animales) {
                 if (nivelAgresividadBusMin >= animal.nivelAgresividad) {
-                    nivelAgrMax.add(animal);
+                    nivelAgrGen.add(animal);
                 }
             }
-            nivelAgrGen = nivelAgrMax;
-        }
-        else if (opcionValor == 3) {
+        } else if (opcionValor == 3) {
             for (Animal animal : animales) {
                 if (nivelAgresividadBusMin <= animal.nivelAgresividad) {
-                    nivelAgrMin.add(animal);
+                    nivelAgrGen.add(animal);
                 }
             }
-            nivelAgrGen = nivelAgrMin;
-        }
-        else {
+        } else {
             for (Animal animal : animales) {
                 if (nivelAgresividadBusMin <= animal.nivelAgresividad && animal.nivelAgresividad <= nivelAgresividadMax) {
-                    nivelAgrRan.add(animal);
+                    nivelAgrGen.add(animal);
                 }
             }
-            nivelAgrGen = nivelAgrRan;
         }
         String option;
         String option2;
@@ -6806,325 +6565,114 @@ public class SistemaZoologico {
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
-        if (option.equals("1")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                if (opcionValor == 1) {
+        switch (option) {
+            case "1":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
                     System.out.println("Ascendente");
-                    Collections.sort(nivelAgrEx, (comparadoresAnimal[0]));
-                    for (Animal animal : nivelAgrEx) {
+                    nivelAgrGen.sort((comparadoresAnimal[0]));
+                    for (Animal animal : nivelAgrGen) {
                         i++;
-                        System.out.println(i+". "+animal);
+                        System.out.println(i + ". " + animal);
                     }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    nivelAgrGen.sort(Collections.reverseOrder(comparadoresAnimal[0]));
+                    for (Animal animal : nivelAgrGen) {
+                        i++;
+                        System.out.println(i + ". " + animal);
+                    }
+                } else {
+                    System.out.println("Opcion invalida");
+                    return;
                 }
-                else if (opcionValor == 2) {
+                break;
+            case "2":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
                     System.out.println("Ascendente");
-                    Collections.sort(nivelAgrMax, (comparadoresAnimal[0]));
-                    for (Animal animal : nivelAgrMax) {
+                    nivelAgrGen.sort((comparadoresAnimal[1]));
+                    for (Animal animal : nivelAgrGen) {
                         i++;
-                        System.out.println(i+". "+animal);
+                        System.out.println(i + ". " + animal);
                     }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    nivelAgrGen.sort(Collections.reverseOrder(comparadoresAnimal[1]));
+                    for (Animal animal : nivelAgrGen) {
+                        i++;
+                        System.out.println(i + ". " + animal);
+                    }
+                } else {
+                    System.out.println("Opcion invalida");
+                    return;
                 }
-                else if (opcionValor == 3) {
+                break;
+            case "3":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
                     System.out.println("Ascendente");
-                    Collections.sort(nivelAgrMin, (comparadoresAnimal[0]));
-                    for (Animal animal : nivelAgrMin) {
+                    nivelAgrGen.sort((comparadoresAnimal[2]));
+                    for (Animal animal : nivelAgrGen) {
                         i++;
-                        System.out.println(i+". "+animal);
+                        System.out.println(i + ". " + animal);
                     }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    nivelAgrGen.sort(Collections.reverseOrder(comparadoresAnimal[2]));
+                    for (Animal animal : nivelAgrGen) {
+                        i++;
+                        System.out.println(i + ". " + animal);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-                else {
+                break;
+            case "4":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
                     System.out.println("Ascendente");
-                    Collections.sort(nivelAgrRan, (comparadoresAnimal[0]));
-                    for (Animal animal : nivelAgrRan) {
+                    nivelAgrGen.sort((comparadoresAnimal[3]));
+                    for (Animal animal : nivelAgrGen) {
                         i++;
-                        System.out.println(i+". "+animal);
+                        System.out.println(i + ". " + animal);
                     }
-                }
-            }
-            else if (option2.equals("2")) {
-                if (opcionValor == 1) {
+                } else if (option2.equals("2")) {
                     System.out.println("Descendente");
-                    Collections.sort(nivelAgrEx, Collections.reverseOrder(comparadoresAnimal[0]));
-                    for (Animal animal : nivelAgrEx) {
+                    nivelAgrGen.sort(Collections.reverseOrder(comparadoresAnimal[3]));
+                    for (Animal animal : nivelAgrGen) {
                         i++;
-                        System.out.println(i+". "+animal);
+                        System.out.println(i + ". " + animal);
                     }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-                else if (opcionValor == 2) {
-                    System.out.println("Descendente");
-                    Collections.sort(nivelAgrMax, Collections.reverseOrder(comparadoresAnimal[0]));
-                    for (Animal animal : nivelAgrMax) {
-                        i++;
-                        System.out.println(i+". "+animal);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Descendente");
-                    Collections.sort(nivelAgrMin, Collections.reverseOrder(comparadoresAnimal[0]));
-                    for (Animal animal : nivelAgrMin) {
-                        i++;
-                        System.out.println(i+". "+animal);
-                    }
-                }
-                else {
-                    System.out.println("Descendente");
-                    Collections.sort(nivelAgrRan, Collections.reverseOrder(comparadoresAnimal[0]));
-                    for (Animal animal : nivelAgrRan) {
-                        i++;
-                        System.out.println(i+". "+animal);
-                    }
-                }
-            }else{
-                System.out.println("Opcion invalida");
+                break;
+            default:
                 return;
-            }
         }
-        else if (option.equals("2")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                if (opcionValor == 1) {
-                    System.out.println("Ascendente");
-                    Collections.sort(nivelAgrEx, (comparadoresAnimal[1]));
-                    for (Animal animal : nivelAgrEx) {
-                        i++;
-                        System.out.println(i+". "+animal);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Ascendente");
-                    Collections.sort(nivelAgrMax, (comparadoresAnimal[1]));
-                    for (Animal animal : nivelAgrMax) {
-                        i++;
-                        System.out.println(i+". "+animal);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Ascendente");
-                    Collections.sort(nivelAgrMin, (comparadoresAnimal[1]));
-                    for (Animal animal : nivelAgrMin) {
-                        i++;
-                        System.out.println(i+". "+animal);
-                    }
-                }
-                else {
-                    System.out.println("Ascendente");
-                    Collections.sort(nivelAgrRan, (comparadoresAnimal[1]));
-                    for (Animal animal : nivelAgrRan) {
-                        i++;
-                        System.out.println(i+". "+animal);
-                    }
-                }
-            }
-            else if (option2.equals("2")) {
-                if (opcionValor == 1) {
-                    System.out.println("Descendente");
-                    Collections.sort(nivelAgrEx, Collections.reverseOrder(comparadoresAnimal[1]));
-                    for (Animal animal : nivelAgrEx) {
-                        i++;
-                        System.out.println(i+". "+animal);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Descendente");
-                    Collections.sort(nivelAgrMax, Collections.reverseOrder(comparadoresAnimal[1]));
-                    for (Animal animal : nivelAgrMax) {
-                        i++;
-                        System.out.println(i+". "+animal);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Descendente");
-                    Collections.sort(nivelAgrMin, Collections.reverseOrder(comparadoresAnimal[1]));
-                    for (Animal animal : nivelAgrMin) {
-                        i++;
-                        System.out.println(i+". "+animal);
-                    }
-                }
-                else {
-                    System.out.println("Descendente");
-                    Collections.sort(nivelAgrRan, Collections.reverseOrder(comparadoresAnimal[1]));
-                    for (Animal animal : nivelAgrRan) {
-                        i++;
-                        System.out.println(i+". "+animal);
-                    }
-                }
-            }else{
-                System.out.println("Opcion invalida");
-                return;
-            }
-        }
-        else if (option.equals("3")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                if (opcionValor == 1) {
-                    System.out.println("Ascendente");
-                    Collections.sort(nivelAgrEx, (comparadoresAnimal[2]));
-                    for (Animal animal : nivelAgrEx) {
-                        i++;
-                        System.out.println(i+". "+animal);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Ascendente");
-                    Collections.sort(nivelAgrMax, (comparadoresAnimal[2]));
-                    for (Animal animal : nivelAgrMax) {
-                        i++;
-                        System.out.println(i+". "+animal);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Ascendente");
-                    Collections.sort(nivelAgrMin, (comparadoresAnimal[2]));
-                    for (Animal animal : nivelAgrMin) {
-                        i++;
-                        System.out.println(i+". "+animal);
-                    }
-                }
-                else {
-                    System.out.println("Ascendente");
-                    Collections.sort(nivelAgrRan, (comparadoresAnimal[2]));
-                    for (Animal animal : nivelAgrRan) {
-                        i++;
-                        System.out.println(i+". "+animal);
-                    }
-                }
-            }
-            else if (option2.equals("2")) {
-                if (opcionValor == 1) {
-                    System.out.println("Descendente");
-                    Collections.sort(nivelAgrEx, Collections.reverseOrder(comparadoresAnimal[2]));
-                    for (Animal animal : nivelAgrEx) {
-                        i++;
-                        System.out.println(i+". "+animal);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Descendente");
-                    Collections.sort(nivelAgrMax, Collections.reverseOrder(comparadoresAnimal[2]));
-                    for (Animal animal : nivelAgrMax) {
-                        i++;
-                        System.out.println(i+". "+animal);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Descendente");
-                    Collections.sort(nivelAgrMin, Collections.reverseOrder(comparadoresAnimal[2]));
-                    for (Animal animal : nivelAgrMin) {
-                        i++;
-                        System.out.println(i+". "+animal);
-                    }
-                }
-                else {
-                    System.out.println("Descendente");
-                    Collections.sort(nivelAgrRan, Collections.reverseOrder(comparadoresAnimal[2]));
-                    for (Animal animal : nivelAgrRan) {
-                        i++;
-                        System.out.println(i+". "+animal);
-                    }
-                }
-            }else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else if (option.equals("4")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                if (opcionValor == 1) {
-                    System.out.println("Ascendente");
-                    Collections.sort(nivelAgrEx, (comparadoresAnimal[3]));
-                    for (Animal animal : nivelAgrEx) {
-                        i++;
-                        System.out.println(i+". "+animal);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Ascendente");
-                    Collections.sort(nivelAgrMax, (comparadoresAnimal[3]));
-                    for (Animal animal : nivelAgrMax) {
-                        i++;
-                        System.out.println(i+". "+animal);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Ascendente");
-                    Collections.sort(nivelAgrMin, (comparadoresAnimal[3]));
-                    for (Animal animal : nivelAgrMin) {
-                        i++;
-                        System.out.println(i+". "+animal);
-                    }
-                }
-                else {
-                    System.out.println("Ascendente");
-                    Collections.sort(nivelAgrRan, (comparadoresAnimal[3]));
-                    for (Animal animal : nivelAgrRan) {
-                        i++;
-                        System.out.println(i+". "+animal);
-                    }
-                }
-            }
-            else if (option2.equals("2")) {
-                if (opcionValor == 1) {
-                    System.out.println("Descendente");
-                    Collections.sort(nivelAgrEx, Collections.reverseOrder(comparadoresAnimal[3]));
-                    for (Animal animal : nivelAgrEx) {
-                        i++;
-                        System.out.println(i+". "+animal);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Descendente");
-                    Collections.sort(nivelAgrMax, Collections.reverseOrder(comparadoresAnimal[3]));
-                    for (Animal animal : nivelAgrMax) {
-                        i++;
-                        System.out.println(i+". "+animal);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Descendente");
-                    Collections.sort(nivelAgrMin, Collections.reverseOrder(comparadoresAnimal[3]));
-                    for (Animal animal : nivelAgrMin) {
-                        i++;
-                        System.out.println(i+". "+animal);
-                    }
-                }
-                else {
-                    System.out.println("Descendente");
-                    Collections.sort(nivelAgrRan, Collections.reverseOrder(comparadoresAnimal[3]));
-                    for (Animal animal : nivelAgrRan) {
-                        i++;
-                        System.out.println(i+". "+animal);
-                    }
-                }
-            }else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else {
-            return;
-        }if(opcionValor==1){//Menu editar - eliminar
         String accion;
         System.out.println("-----------------------------------------");
         System.out.println("\nIndique la accion que desea realizar:\n");
@@ -7134,440 +6682,95 @@ public class SistemaZoologico {
         accion = input.next();
         System.out.println("----------------------------------");
 
-        //Codigo editar
-        if (accion.equals("1")) {
-            for (Animal animal : nivelAgrRan) {
+        for (Animal animal : nivelAgrGen) {
+            //Codigo editar
+            if (accion.equals("1")) {
                 int eleccion;
                 System.out.println("------------------------------------------");
                 System.out.println("Escoja el animal que desea editar: \n");
                 eleccion = input.nextInt();
-                ani = nivelAgrRan.get(eleccion - 1);
+                ani = nivelAgrGen.get(eleccion - 1);
 
                 input.nextLine();
-                System.out.println("\nID: " + animal.id);
+                System.out.println("\nID: " + ani.id);
                 String nuevoID = input.nextLine();
                 int nuevoIDint = Integer.parseInt(nuevoID);
-                if(animal.id==nuevoIDint){
+                if (animal.id == nuevoIDint) {
                     System.out.println("ERROR: Ya existe un animal registrado con este NIT");
                     return;
                 }
 
-                System.out.println("Nombre: " + animal.especie);
+                System.out.println("Nombre: " + ani.especie);
                 String nuevoEspecie = input.nextLine();
 
-                System.out.println("Nivel de agresividad: " + animal.nivelAgresividad);
-                                     String nuevonivelAgresividad = input.nextLine();
+                System.out.println("Nivel de agresividad: " + ani.nivelAgresividad);
+                String nuevonivelAgresividad = input.nextLine();
 
-                                     System.out.println("Alimentacion: " + animal.alimentacion);
-                                     String nuevoAlimentacion = input.nextLine();
+                System.out.println("Alimentacion: " + ani.alimentacion);
+                String nuevoAlimentacion = input.nextLine();
 
-                                     while (true) {
-                                         System.out.print("Desea guardar?:[Y/N] ");
-                                         String optionE = input.next();
-                                         if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                                             switch (optionE.toUpperCase()) {
-                                                 case "Y":
-                                                     if (nuevoID.isEmpty()) {
-                                                     } else animal.id = Integer.parseInt(nuevoID);
-                                                     if (nuevoEspecie.isEmpty()) {
-                                                     } else animal.especie = nuevoEspecie;
-                                                     if (nuevonivelAgresividad.isEmpty()) {
-                                                     } else animal.nivelAgresividad = Integer.parseInt(nuevonivelAgresividad);
-                                                     if (nuevoAlimentacion.isEmpty()) {
-                                                     } else animal.alimentacion = nuevoAlimentacion;
-                                                 case "N":
-                                                     break;
-                                             }
-
-                                             return;
-                                         } else {
-                                             System.out.println("Opcion invalida\n");
-                                         }
-                                     }
-
-                                 }
-                                 return;
-
-                             }
-
-         //Codigo eliminar
-                             else if (accion.equals("2")) {
-                                 for (Animal animal : nivelAgrRan) {
-                                     int eleccion;
-                                     System.out.println("------------------------------------------");
-                                     System.out.println("Escoja el animal que desea eliminar: \n");
-                                     eleccion = input.nextInt();
-                                     ani = nivelAgrRan.get(eleccion - 1);
-
-                                     while (true) {
-                                         System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
-                                         String optionE = input.next();
-                                         if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                                             switch (optionE.toUpperCase()) {
-                                                 case "Y":
-                                                     break;
-                                                 case "N":
-                                                     return;
-                                             }
-                                             break;
-                                         } else {
-                                             System.out.println("Opcion invalida\n");
-                                         }
-                                     }
-
-                                     for (Habitat habitat : habitats) {
-                                         Animal finalAni = ani;
-                                         habitat.animales.removeIf(animal1 -> animal1.id == finalAni.id);
-
-                                     }
-                                     for (ZooAmigo zooAmigo : zooAmigos) {
-                                         Animal finalAni = ani;
-                                         zooAmigo.animales.removeIf(animal1 -> animal1.id == finalAni.id);
-
-                                     }
-
-                                     animales.remove(ani);
-
-                                     System.out.println("El animal se ha eliminado correctamente");
-                                     return;
-                                 }
-                             }
-
-                             else return;
-        }else if(opcionValor==2){
-        //Menu editar - eliminar
-                String accion;
-                System.out.println("-----------------------------------------");
-                System.out.println("\nIndique la accion que desea realizar:\n");
-                System.out.println("1. Editar ");
-                System.out.println("2. Eliminar ");
-                System.out.println("0. Regresar al menú anterior" + "\n");
-                accion = input.next();
-                System.out.println("----------------------------------");
-
-                //Codigo editar
-                if (accion.equals("1")) {
-                    for (Animal animal : nivelAgrRan) {
-                        int eleccion;
-                        System.out.println("------------------------------------------");
-                        System.out.println("Escoja el animal que desea editar: \n");
-                        eleccion = input.nextInt();
-                        ani = nivelAgrRan.get(eleccion - 1);
-
-                        input.nextLine();
-                        System.out.println("\nID: " + animal.id);
-                        String nuevoID = input.nextLine();
-                        if(animal.id== Integer.parseInt(nuevoID)){
-                            System.out.println("ERROR: Ya existe un animal registrado con este NIT");
-                            return;
+                while (true) {
+                    System.out.print("Desea guardar?:[Y/N] ");
+                    String optionE = input.next();
+                    if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                        switch (optionE.toUpperCase()) {
+                            case "Y":
+                                if (nuevoID.isEmpty()) {
+                                } else ani.id = Integer.parseInt(nuevoID);
+                                if (nuevoEspecie.isEmpty()) {
+                                } else ani.especie = nuevoEspecie;
+                                if (nuevonivelAgresividad.isEmpty()) {
+                                } else ani.nivelAgresividad = Integer.parseInt(nuevonivelAgresividad);
+                                if (nuevoAlimentacion.isEmpty()) {
+                                } else ani.alimentacion = nuevoAlimentacion;
+                            case "N":
+                                break;
                         }
+                        return;
+                    } else {
+                        System.out.println("Opcion invalida\n");
+                    }
+                }
+            }//Codigo eliminar
+            else if (accion.equals("2")) {
+                int eleccion;
+                System.out.println("------------------------------------------");
+                System.out.println("Escoja el animal que desea eliminar: \n");
+                eleccion = input.nextInt();
+                ani = nivelAgrGen.get(eleccion - 1);
 
-                        System.out.println("Nombre: " + animal.especie);
-                        String nuevoEspecie = input.nextLine();
-
-                        System.out.println("Nivel de agresividad: " + animal.nivelAgresividad);
-                                             String nuevonivelAgresividad = input.nextLine();
-
-                                             System.out.println("Alimentacion: " + animal.alimentacion);
-                                             String nuevoAlimentacion = input.nextLine();
-
-                                             while (true) {
-                                                 System.out.print("Desea guardar?:[Y/N] ");
-                                                 String optionE = input.next();
-                                                 if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                                                     switch (optionE.toUpperCase()) {
-                                                         case "Y":
-                                                             if (nuevoID.isEmpty()) {
-                                                             } else animal.id = Integer.parseInt(nuevoID);
-                                                             if (nuevoEspecie.isEmpty()) {
-                                                             } else animal.especie = nuevoEspecie;
-                                                             if (nuevonivelAgresividad.isEmpty()) {
-                                                             } else animal.nivelAgresividad = Integer.parseInt(nuevonivelAgresividad);
-                                                             if (nuevoAlimentacion.isEmpty()) {
-                                                             } else animal.alimentacion = nuevoAlimentacion;
-                                                         case "N":
-                                                             break;
-                                                     }
-
-                                                     return;
-                                                 } else {
-                                                     System.out.println("Opcion invalida\n");
-                                                 }
-                                             }
-
-                                         }
-                                         return;
-
-                                     }
-
-                 //Codigo eliminar
-                                     else if (accion.equals("2")) {
-                                         for (Animal animal : nivelAgrRan) {
-                                             int eleccion;
-                                             System.out.println("------------------------------------------");
-                                             System.out.println("Escoja el animal que desea eliminar: \n");
-                                             eleccion = input.nextInt();
-                                             ani = nivelAgrRan.get(eleccion - 1);
-
-                                             while (true) {
-                                                 System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
-                                                 String optionE = input.next();
-                                                 if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                                                     switch (optionE.toUpperCase()) {
-                                                         case "Y":
-                                                             break;
-                                                         case "N":
-                                                             return;
-                                                     }
-                                                     break;
-                                                 } else {
-                                                     System.out.println("Opcion invalida\n");
-                                                 }
-                                             }
-
-                                             for (Habitat habitat : habitats) {
-                                                 Animal finalAni = ani;
-                                                 habitat.animales.removeIf(animal1 -> animal1.id == finalAni.id);
-
-                                             }
-                                             for (ZooAmigo zooAmigo : zooAmigos) {
-                                                 Animal finalAni = ani;
-                                                 zooAmigo.animales.removeIf(animal1 -> animal1.id == finalAni.id);
-
-                                             }
-
-                                             animales.remove(ani);
-
-                                             System.out.println("El animal se ha eliminado correctamente");
-                                             return;
-                                         }
-                                     }
-
-                                     else return;
-        }else if(opcionValor==3){
-        //Menu editar - eliminar
-                String accion;
-                System.out.println("-----------------------------------------");
-                System.out.println("\nIndique la accion que desea realizar:\n");
-                System.out.println("1. Editar ");
-                System.out.println("2. Eliminar ");
-                System.out.println("0. Regresar al menú anterior" + "\n");
-                accion = input.next();
-                System.out.println("----------------------------------");
-
-                //Codigo editar
-                if (accion.equals("1")) {
-                    for (Animal animal : nivelAgrRan) {
-                        int eleccion;
-                        System.out.println("------------------------------------------");
-                        System.out.println("Escoja el animal que desea editar: \n");
-                        eleccion = input.nextInt();
-                        ani = nivelAgrRan.get(eleccion - 1);
-
-                        input.nextLine();
-                        System.out.println("\nID: " + animal.id);
-                        String nuevoID = input.nextLine();
-                        if(animal.id== Integer.parseInt(nuevoID)){
-                            System.out.println("ERROR: Ya existe un animal registrado con este NIT");
-                            return;
+                while (true) {
+                    System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+                    String optionE = input.next();
+                    if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                        switch (optionE.toUpperCase()) {
+                            case "Y":
+                                break;
+                            case "N":
+                                return;
                         }
+                        break;
+                    } else {
+                        System.out.println("Opcion invalida\n");
+                    }
+                }
 
-                        System.out.println("Nombre: " + animal.especie);
-                        String nuevoEspecie = input.nextLine();
+                for (Habitat habitat : habitats) {
+                    habitat.animales.removeIf(animal1 -> animal1.id == ani.id);
+                }
+                for (ZooAmigo zooAmigo : zooAmigos) {
+                    zooAmigo.animales.removeIf(animal1 -> animal1.id == ani.id);
+                }
 
-                        System.out.println("Nivel de agresividad: " + animal.nivelAgresividad);
-                                             String nuevonivelAgresividad = input.nextLine();
+                animales.remove(ani);
 
-                                             System.out.println("Alimentacion: " + animal.alimentacion);
-                                             String nuevoAlimentacion = input.nextLine();
-
-                                             while (true) {
-                                                 System.out.print("Desea guardar?:[Y/N] ");
-                                                 String optionE = input.next();
-                                                 if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                                                     switch (optionE.toUpperCase()) {
-                                                         case "Y":
-                                                             if (nuevoID.isEmpty()) {
-                                                             } else animal.id = Integer.parseInt(nuevoID);
-                                                             if (nuevoEspecie.isEmpty()) {
-                                                             } else animal.especie = nuevoEspecie;
-                                                             if (nuevonivelAgresividad.isEmpty()) {
-                                                             } else animal.nivelAgresividad = Integer.parseInt(nuevonivelAgresividad);
-                                                             if (nuevoAlimentacion.isEmpty()) {
-                                                             } else animal.alimentacion = nuevoAlimentacion;
-                                                         case "N":
-                                                             break;
-                                                     }
-
-                                                     return;
-                                                 } else {
-                                                     System.out.println("Opcion invalida\n");
-                                                 }
-                                             }
-
-                                         }
-                                         return;
-
-                                     }
-
-                 //Codigo eliminar
-                                     else if (accion.equals("2")) {
-                                         for (Animal animal : nivelAgrRan) {
-                                             int eleccion;
-                                             System.out.println("------------------------------------------");
-                                             System.out.println("Escoja el animal que desea eliminar: \n");
-                                             eleccion = input.nextInt();
-                                             ani = nivelAgrRan.get(eleccion - 1);
-
-                                             while (true) {
-                                                 System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
-                                                 String optionE = input.next();
-                                                 if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                                                     switch (optionE.toUpperCase()) {
-                                                         case "Y":
-                                                             break;
-                                                         case "N":
-                                                             return;
-                                                     }
-                                                     break;
-                                                 } else {
-                                                     System.out.println("Opcion invalida\n");
-                                                 }
-                                             }
-
-                                             for (Habitat habitat : habitats) {
-                                                 Animal finalAni = ani;
-                                                 habitat.animales.removeIf(animal1 -> animal1.id == finalAni.id);
-
-                                             }
-                                             for (ZooAmigo zooAmigo : zooAmigos) {
-                                                 Animal finalAni = ani;
-                                                 zooAmigo.animales.removeIf(animal1 -> animal1.id == finalAni.id);
-
-                                             }
-
-                                             animales.remove(ani);
-
-                                             System.out.println("El animal se ha eliminado correctamente");
-                                             return;
-                                         }
-                                     }
-
-                                     else return;
-        }else{
-        //Menu editar - eliminar
-                String accion;
-                System.out.println("-----------------------------------------");
-                System.out.println("\nIndique la accion que desea realizar:\n");
-                System.out.println("1. Editar ");
-                System.out.println("2. Eliminar ");
-                System.out.println("0. Regresar al menú anterior" + "\n");
-                accion = input.next();
-                System.out.println("----------------------------------");
-
-                //Codigo editar
-                if (accion.equals("1")) {
-                    for (Animal animal : nivelAgrRan) {
-                        int eleccion;
-                        System.out.println("------------------------------------------");
-                        System.out.println("Escoja el animal que desea editar: \n");
-                        eleccion = input.nextInt();
-                        ani = nivelAgrRan.get(eleccion - 1);
-
-                        input.nextLine();
-                        System.out.println("\nID: " + animal.id);
-                        String nuevoID = input.nextLine();
-                        if(animal.id==Integer.parseInt(nuevoID)){
-                            System.out.println("ERROR: Ya existe un animal registrado con este NIT");
-                            return;
-                        }
-
-                        System.out.println("Nombre: " + animal.especie);
-                        String nuevoEspecie = input.nextLine();
-
-                        System.out.println("Nivel de agresividad: " + animal.nivelAgresividad);
-                                             String nuevonivelAgresividad = input.nextLine();
-
-                                             System.out.println("Alimentacion: " + animal.alimentacion);
-                                             String nuevoAlimentacion = input.nextLine();
-
-                                             while (true) {
-                                                 System.out.print("Desea guardar?:[Y/N] ");
-                                                 String optionE = input.next();
-                                                 if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                                                     switch (optionE.toUpperCase()) {
-                                                         case "Y":
-                                                             if (nuevoID.isEmpty()) {
-                                                             } else animal.id = Integer.parseInt(nuevoID);
-                                                             if (nuevoEspecie.isEmpty()) {
-                                                             } else animal.especie = nuevoEspecie;
-                                                             if (nuevonivelAgresividad.isEmpty()) {
-                                                             } else animal.nivelAgresividad = Integer.parseInt(nuevonivelAgresividad);
-                                                             if (nuevoAlimentacion.isEmpty()) {
-                                                             } else animal.alimentacion = nuevoAlimentacion;
-                                                         case "N":
-                                                             break;
-                                                     }
-
-                                                     return;
-                                                 } else {
-                                                     System.out.println("Opcion invalida\n");
-                                                 }
-                                             }
-
-                                         }
-                                         return;
-
-                                     }
-
-                 //Codigo eliminar
-                                     else if (accion.equals("2")) {
-                                         for (Animal animal : nivelAgrRan) {
-                                             int eleccion;
-                                             System.out.println("------------------------------------------");
-                                             System.out.println("Escoja el animal que desea eliminar: \n");
-                                             eleccion = input.nextInt();
-                                             ani = nivelAgrRan.get(eleccion - 1);
-
-                                             while (true) {
-                                                 System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
-                                                 String optionE = input.next();
-                                                 if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                                                     switch (optionE.toUpperCase()) {
-                                                         case "Y":
-                                                             break;
-                                                         case "N":
-                                                             return;
-                                                     }
-                                                     break;
-                                                 } else {
-                                                     System.out.println("Opcion invalida\n");
-                                                 }
-                                             }
-
-                                             for (Habitat habitat : habitats) {
-                                                 Animal finalAni = ani;
-                                                 habitat.animales.removeIf(animal1 -> animal1.id == finalAni.id);
-
-                                             }
-                                             for (ZooAmigo zooAmigo : zooAmigos) {
-                                                 Animal finalAni = ani;
-                                                 zooAmigo.animales.removeIf(animal1 -> animal1.id == finalAni.id);
-
-                                             }
-
-                                             animales.remove(ani);
-
-                                             System.out.println("El animal se ha eliminado correctamente");
-                                             return;
-                                         }
-                                     }
-
-                                     else return;
+                System.out.println("El animal se ha eliminado correctamente");
+                return;
+            } else return;
         }
     }
-    public static void alimentacionAnimal(int opcionValor, String alimentacionBus) {
-        Animal ani = null;
+    public static void alimentacionAnimal(String alimentacionBus) {
+        Animal ani;
         ArrayList<Animal> alimentacionAni = new ArrayList<>();
         int i=0;
         for (Animal animal : animales) {
@@ -7585,93 +6788,88 @@ public class SistemaZoologico {
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
-        if (option.equals("1")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(alimentacionAni, (comparadoresAnimal[0]));
-                for (Animal animal : alimentacionAni) {
-                    i++;
-                    System.out.println(i + ". " + animal);
+        switch (option) {
+            case "1":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    alimentacionAni.sort((comparadoresAnimal[0]));
+                    for (Animal animal : alimentacionAni) {
+                        i++;
+                        System.out.println(i + ". " + animal);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    alimentacionAni.sort(Collections.reverseOrder(comparadoresAnimal[0]));
+                    for (Animal animal : alimentacionAni) {
+                        i++;
+                        System.out.println(i + ". " + animal);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(alimentacionAni, Collections.reverseOrder(comparadoresAnimal[0]));
-                for (Animal animal : alimentacionAni) {
-                    i++;
-                    System.out.println(i+". "+animal);
+                break;
+            case "2":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    alimentacionAni.sort((comparadoresAnimal[1]));
+                    for (Animal animal : alimentacionAni) {
+                        i++;
+                        System.out.println(i + ". " + animal);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    alimentacionAni.sort(Collections.reverseOrder(comparadoresAnimal[1]));
+                    for (Animal animal : alimentacionAni) {
+                        i++;
+                        System.out.println(i + ". " + animal);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            }
-            else {
-                System.out.println("Opcion incorrecta");
+                break;
+            case "3":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    alimentacionAni.sort((comparadoresAnimal[2]));
+                    for (Animal animal : alimentacionAni) {
+                        i++;
+                        System.out.println(i + ". " + animal);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    alimentacionAni.sort(Collections.reverseOrder(comparadoresAnimal[2]));
+                    for (Animal animal : alimentacionAni) {
+                        i++;
+                        System.out.println(i + ". " + animal);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
+                }
+                break;
+            default:
                 return;
-            }
         }
-        else if (option.equals("2")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(alimentacionAni, (comparadoresAnimal[1]));
-                for (Animal animal : alimentacionAni) {
-                    i++;
-                    System.out.println(i + ". " + animal);
-                }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(alimentacionAni, Collections.reverseOrder(comparadoresAnimal[1]));
-                for (Animal animal : alimentacionAni) {
-                    i++;
-                    System.out.println(i + ". " + animal);
-                }
-            }
-            else {
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else if (option.equals("3")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(alimentacionAni, (comparadoresAnimal[2]));
-                for (Animal animal : alimentacionAni) {
-                    i++;
-                    System.out.println(i+". "+animal);
-                }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(alimentacionAni, Collections.reverseOrder(comparadoresAnimal[2]));
-                for (Animal animal : alimentacionAni) {
-                    i++;
-                    System.out.println(i+". "+animal);
-                }
-            }
-            else {
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else {
-            return;
-        }//Menu editar - eliminar
         String accion;
         System.out.println("-----------------------------------------");
         System.out.println("\nIndique la accion que desea realizar:\n");
@@ -7681,9 +6879,9 @@ public class SistemaZoologico {
         accion = input.next();
         System.out.println("----------------------------------");
 
-//Codigo editar
-        if (accion.equals("1")) {
-            for (Animal animal : alimentacionAni) {
+        for (Animal animal : alimentacionAni) {
+        //Codigo editar
+            if (accion.equals("1")) {
                 int eleccion;
                 System.out.println("------------------------------------------");
                 System.out.println("Escoja el animal que desea editar: \n");
@@ -7691,16 +6889,20 @@ public class SistemaZoologico {
                 ani = alimentacionAni.get(eleccion - 1);
 
                 input.nextLine();
-                System.out.println("\nID: " + animal.id);
+                System.out.println("\nID: " + ani.id);
                 String nuevoID = input.nextLine();
+                int nuevoIDInt= Integer.parseInt(nuevoID);
+                if(nuevoIDInt==animal.id){
+                    System.out.println("ERROR: El ID ya se encuentra registrado");
+                }
 
-                System.out.println("Nombre: " + animal.especie);
+                System.out.println("Nombre: " + ani.especie);
                 String nuevoEspecie = input.nextLine();
 
-                System.out.println("Nivel de agresividad: " + animal.nivelAgresividad);
+                System.out.println("Nivel de agresividad: " + ani.nivelAgresividad);
                 String nuevonivelAgresividad = input.nextLine();
 
-                System.out.println("Alimentacion: " + animal.alimentacion);
+                System.out.println("Alimentacion: " + ani.alimentacion);
                 String nuevoAlimentacion = input.nextLine();
 
                 while (true) {
@@ -7710,31 +6912,23 @@ public class SistemaZoologico {
                         switch (optionE.toUpperCase()) {
                             case "Y":
                                 if (nuevoID.isEmpty()) {
-                                } else animal.id = Integer.parseInt(nuevoID);
+                                } else ani.id = Integer.parseInt(nuevoID);
                                 if (nuevoEspecie.isEmpty()) {
-                                } else animal.especie = nuevoEspecie;
+                                } else ani.especie = nuevoEspecie;
                                 if (nuevonivelAgresividad.isEmpty()) {
-                                } else animal.nivelAgresividad = Integer.parseInt(nuevonivelAgresividad);
+                                } else ani.nivelAgresividad = Integer.parseInt(nuevonivelAgresividad);
                                 if (nuevoAlimentacion.isEmpty()) {
-                                } else animal.alimentacion = nuevoAlimentacion;
+                                } else ani.alimentacion = nuevoAlimentacion;
                             case "N":
                                 break;
                         }
-
                         return;
                     } else {
                         System.out.println("Opcion invalida\n");
                     }
                 }
 
-            }
-            return;
-
-        }
-
-//Codigo eliminar
-        else if (accion.equals("2")) {
-            for (Animal animal : alimentacionAni) {
+            }else if (accion.equals("2")) {
                 int eleccion;
                 System.out.println("------------------------------------------");
                 System.out.println("Escoja el animal que desea eliminar: \n");
@@ -7758,13 +6952,11 @@ public class SistemaZoologico {
                 }
 
                 for (Habitat habitat : habitats) {
-                    Animal finalAni = ani;
-                    habitat.animales.removeIf(animal1 -> animal1.id == finalAni.id);
+                    habitat.animales.removeIf(animal1 -> animal1.id == ani.id);
 
                 }
                 for (ZooAmigo zooAmigo : zooAmigos) {
-                    Animal finalAni = ani;
-                    zooAmigo.animales.removeIf(animal1 -> animal1.id == finalAni.id);
+                    zooAmigo.animales.removeIf(animal1 -> animal1.id == ani.id);
 
                 }
 
@@ -7772,13 +6964,11 @@ public class SistemaZoologico {
 
                 System.out.println("El animal se ha eliminado correctamente");
                 return;
-            }
+            }else return;
         }
-
-        else return;
     }
     public static void mostrarTodosAnimales() {
-        Animal ani = null;
+        Animal ani;
         int i=0;
         ArrayList<Animal> copiaAnimal = new ArrayList<>(animales);
         String option;
@@ -7792,121 +6982,114 @@ public class SistemaZoologico {
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
-        if (option.equals("1")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(copiaAnimal, (comparadoresAnimal[0]));
-                for (Animal animal : copiaAnimal) {
-                    i++;
-                    System.out.println(i+". "+animal);
+        switch (option) {
+            case "1":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    copiaAnimal.sort((comparadoresAnimal[0]));
+                    for (Animal animal : copiaAnimal) {
+                        i++;
+                        System.out.println(i + ". " + animal);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    copiaAnimal.sort(Collections.reverseOrder(comparadoresAnimal[0]));
+                    for (Animal animal : copiaAnimal) {
+                        i++;
+                        System.out.println(i + ". " + animal);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresAnimal[0]));
-                for (Animal animal : copiaAnimal) {
-                    i++;
-                    System.out.println(i+". "+animal);
+                break;
+            case "2":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    copiaAnimal.sort((comparadoresAnimal[1]));
+                    for (Animal animal : copiaAnimal) {
+                        i++;
+                        System.out.println(i + ". " + animal);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    copiaAnimal.sort(Collections.reverseOrder(comparadoresAnimal[1]));
+                    for (Animal animal : copiaAnimal) {
+                        i++;
+                        System.out.println(i + ". " + animal);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            }
-            else{
-                System.out.println("Opcion incorrecta");
+                break;
+            case "3":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    copiaAnimal.sort((comparadoresAnimal[2]));
+                    for (Animal animal : copiaAnimal) {
+                        i++;
+                        System.out.println(i + ". " + animal);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    copiaAnimal.sort(Collections.reverseOrder(comparadoresAnimal[2]));
+                    for (Animal animal : copiaAnimal) {
+                        i++;
+                        System.out.println(i + ". " + animal);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
+                }
+                break;
+            case "4":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    copiaAnimal.sort((comparadoresAnimal[3]));
+                    for (Animal animal : copiaAnimal) {
+                        i++;
+                        System.out.println(i + ". " + animal);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    copiaAnimal.sort(Collections.reverseOrder(comparadoresAnimal[3]));
+                    for (Animal animal : copiaAnimal) {
+                        i++;
+                        System.out.println(i + ". " + animal);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
+                }
+                break;
+            default:
                 return;
-            }
         }
-        else if (option.equals("2")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(copiaAnimal, (comparadoresAnimal[1]));
-                for (Animal animal : copiaAnimal) {
-                    i++;
-                    System.out.println(i+". "+animal);
-                }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresAnimal[1]));
-                for (Animal animal : copiaAnimal) {
-                    i++;
-                    System.out.println(i+". "+animal);
-                }
-            }
-            else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else if (option.equals("3")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(copiaAnimal, (comparadoresAnimal[2]));
-                for (Animal animal : copiaAnimal) {
-                    i++;
-                    System.out.println(i+". "+animal);
-                }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresAnimal[2]));
-                for (Animal animal : copiaAnimal) {
-                    i++;
-                    System.out.println(i+". "+animal);
-                }
-            }
-            else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else if (option.equals("4")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(copiaAnimal, (comparadoresAnimal[3]));
-                for (Animal animal : copiaAnimal) {
-                    i++;
-                    System.out.println(i+". "+animal);
-                }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(copiaAnimal, Collections.reverseOrder(comparadoresAnimal[3]));
-                for (Animal animal : copiaAnimal) {
-                    i++;
-                    System.out.println(i + ". " + animal);
-                }
-            }
-            else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else {
-            return;
-        }//Menu editar - eliminar
         String accion;
         System.out.println("-----------------------------------------");
         System.out.println("\nIndique la accion que desea realizar:\n");
@@ -7916,9 +7099,9 @@ public class SistemaZoologico {
         accion = input.next();
         System.out.println("----------------------------------");
 
-//Codigo editar
-        if (accion.equals("1")) {
-            for (Animal animal : copiaAnimal) {
+        for (Animal animal : copiaAnimal) {
+            //Codigo editar
+            if (accion.equals("1")) {
                 int eleccion;
                 System.out.println("------------------------------------------");
                 System.out.println("Escoja el animal que desea editar: \n");
@@ -7926,16 +7109,20 @@ public class SistemaZoologico {
                 ani = copiaAnimal.get(eleccion - 1);
 
                 input.nextLine();
-                System.out.println("\nID: " + animal.id);
+                System.out.println("\nID: " + ani.id);
                 String nuevoID = input.nextLine();
+                int nuevoIDint= Integer.parseInt(nuevoID);
+                if(nuevoIDint==animal.id){
+                    System.out.println("ERROR: El id ya se encuentra regustrado");
+                }
 
-                System.out.println("Nombre: " + animal.especie);
+                System.out.println("Nombre: " + ani.especie);
                 String nuevoEspecie = input.nextLine();
 
-                System.out.println("Nivel de agresividad: " + animal.nivelAgresividad);
+                System.out.println("Nivel de agresividad: " + ani.nivelAgresividad);
                 String nuevonivelAgresividad = input.nextLine();
 
-                System.out.println("Alimentacion: " + animal.alimentacion);
+                System.out.println("Alimentacion: " + ani.alimentacion);
                 String nuevoAlimentacion = input.nextLine();
 
                 while (true) {
@@ -7945,30 +7132,24 @@ public class SistemaZoologico {
                         switch (optionE.toUpperCase()) {
                             case "Y":
                                 if (nuevoID.isEmpty()) {
-                                } else animal.id = Integer.parseInt(nuevoID);
+                                } else ani.id = Integer.parseInt(nuevoID);
                                 if (nuevoEspecie.isEmpty()) {
-                                } else animal.especie = nuevoEspecie;
+                                } else ani.especie = nuevoEspecie;
                                 if (nuevonivelAgresividad.isEmpty()) {
-                                } else animal.nivelAgresividad = Integer.parseInt(nuevonivelAgresividad);
+                                } else ani.nivelAgresividad = Integer.parseInt(nuevonivelAgresividad);
                                 if (nuevoAlimentacion.isEmpty()) {
-                                } else animal.alimentacion = nuevoAlimentacion;
+                                } else ani.alimentacion = nuevoAlimentacion;
                             case "N":
                                 break;
                         }
-
                         return;
                     } else {
                         System.out.println("Opcion invalida\n");
                     }
                 }
-
             }
-            return;
-
-        }
-        //Codigo eliminar
-        else if (accion.equals("2")) {
-            for (Animal animal : copiaAnimal) {
+            //Codigo eliminar
+            else if (accion.equals("2")) {
                 int eleccion;
                 System.out.println("------------------------------------------");
                 System.out.println("Escoja el animal que desea eliminar: \n");
@@ -7992,13 +7173,11 @@ public class SistemaZoologico {
                 }
 
                 for (Habitat habitat : habitats) {
-                    Animal finalAni = ani;
-                    habitat.animales.removeIf(animal1 -> animal1.id == finalAni.id);
+                    habitat.animales.removeIf(animal1 -> animal1.id == ani.id);
 
                 }
                 for (ZooAmigo zooAmigo : zooAmigos) {
-                    Animal finalAni = ani;
-                    zooAmigo.animales.removeIf(animal1 -> animal1.id == finalAni.id);
+                    zooAmigo.animales.removeIf(animal1 -> animal1.id == ani.id);
 
                 }
 
@@ -8006,11 +7185,8 @@ public class SistemaZoologico {
 
                 System.out.println("El animal se ha eliminado correctamente");
                 return;
-            }
+            } else return;
         }
-
-        else return;
-        return;
     }
 
     public static void busquedaTecnico() {
@@ -8080,13 +7256,13 @@ public class SistemaZoologico {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String areaBus = input.next();
-                        areaTecnico(1, areaBus);
+                        areaTecnico(areaBus);
                         break;
                     } else {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String areaBus = input.next();
-                        areaTecnico(2, areaBus);
+                        areaTecnico(areaBus);
                         break;
                     }
                     break;
@@ -8178,37 +7354,31 @@ public class SistemaZoologico {
         }
     }
     public static void cedulaTecnico(int opcionValor, int cedulaBusMin, int cedulaBusMax) {
-        Tecnico tec = null;
-        int i=0;
-        ArrayList<Tecnico> cedulaEx = new ArrayList<>();
-        ArrayList<Tecnico> cedulaMax = new ArrayList<>();
-        ArrayList<Tecnico> cedulaMin = new ArrayList<>();
-        ArrayList<Tecnico> cedulaRan = new ArrayList<>();
+        Tecnico tec;
+        int i = 0;
+        ArrayList<Tecnico> cedulaTecnicoGen = new ArrayList<>();
         if (opcionValor == 1) {
             for (Tecnico tecnico : tecnicos) {
                 if (cedulaBusMin == tecnico.cedula) {
-                    cedulaEx.add(tecnico);
+                    cedulaTecnicoGen.add(tecnico);
                 }
             }
-        }
-        else if (opcionValor == 2) {
+        } else if (opcionValor == 2) {
             for (Tecnico tecnico : tecnicos) {
                 if (cedulaBusMin >= tecnico.cedula) {
-                    cedulaMax.add(tecnico);
+                    cedulaTecnicoGen.add(tecnico);
                 }
             }
-        }
-        else if (opcionValor == 3) {
+        } else if (opcionValor == 3) {
             for (Tecnico tecnico : tecnicos) {
                 if (cedulaBusMin <= tecnico.cedula) {
-                    cedulaMin.add(tecnico);
+                    cedulaTecnicoGen.add(tecnico);
                 }
             }
-        }
-        else {
+        } else {
             for (Tecnico tecnico : tecnicos) {
                 if (cedulaBusMin <= tecnico.cedula && tecnico.cedula <= cedulaBusMax) {
-                    cedulaRan.add(tecnico);
+                    cedulaTecnicoGen.add(tecnico);
                 }
             }
         }
@@ -8223,737 +7393,209 @@ public class SistemaZoologico {
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
-        if (option.equals("1")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                if (opcionValor == 1) {
+        switch (option) {
+            case "1":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
                     System.out.println("Ascendente");
-                    Collections.sort(cedulaEx, (comparadoresTecnico[0]));
-                    for (Tecnico tecnico : cedulaEx) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaMax, (comparadoresTecnico[0]));
-                    for (Tecnico tecnico : cedulaMax) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaMin, (comparadoresTecnico[0]));
-                    for (Tecnico tecnico : cedulaMin) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaRan, (comparadoresTecnico[0]));
-                    for (Tecnico tecnico : cedulaRan) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-            }
-            else if (option2.equals("2")) {
-                if (opcionValor == 1) {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaEx, Collections.reverseOrder(comparadoresTecnico[0]));
-                    for (Tecnico tecnico : cedulaEx) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaMax, Collections.reverseOrder(comparadoresTecnico[0]));
-                    for (Tecnico tecnico : cedulaMax) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaMin, Collections.reverseOrder(comparadoresTecnico[0]));
-                    for (Tecnico tecnico : cedulaMin) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaRan, Collections.reverseOrder(comparadoresTecnico[0]));
-                    for (Tecnico tecnico : cedulaRan) {
+                    cedulaTecnicoGen.sort((comparadoresTecnico[0]));
+                    for (Tecnico tecnico : cedulaTecnicoGen) {
                         i++;
                         System.out.println(i + ". " + tecnico);
                     }
-                }
-            }else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else if (option.equals("2")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                if (opcionValor == 1) {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaEx, (comparadoresTecnico[1]));
-                    for (Tecnico tecnico : cedulaEx) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaMax, (comparadoresTecnico[1]));
-                    for (Tecnico tecnico : cedulaMax) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaMin, (comparadoresTecnico[1]));
-                    for (Tecnico tecnico : cedulaMin) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaRan, (comparadoresTecnico[1]));
-                    for (Tecnico tecnico : cedulaRan) {
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    cedulaTecnicoGen.sort(Collections.reverseOrder(comparadoresTecnico[0]));
+                    for (Tecnico tecnico : cedulaTecnicoGen) {
                         i++;
                         System.out.println(i + ". " + tecnico);
                     }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            }
-            else if (option2.equals("2")) {
-                if (opcionValor == 1) {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaEx, Collections.reverseOrder(comparadoresTecnico[1]));
-                    for (Tecnico tecnico : cedulaEx) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaMax, Collections.reverseOrder(comparadoresTecnico[1]));
-                    for (Tecnico tecnico : cedulaMax) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaMin, Collections.reverseOrder(comparadoresTecnico[1]));
-                    for (Tecnico tecnico : cedulaMin) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaRan, Collections.reverseOrder(comparadoresTecnico[1]));
-                    for (Tecnico tecnico : cedulaRan) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-            }else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else if (option.equals("3")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                if (opcionValor == 1) {
+                break;
+            case "2":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
                     System.out.println("Ascendente");
-                    Collections.sort(cedulaEx, (comparadoresTecnico[2]));
-                    for (Tecnico tecnico : cedulaEx) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaMax, (comparadoresTecnico[2]));
-                    for (Tecnico tecnico : cedulaMax) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaMin, (comparadoresTecnico[2]));
-                    for (Tecnico tecnico : cedulaMin) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaRan, (comparadoresTecnico[2]));
-                    for (Tecnico tecnico : cedulaRan) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-            }
-            else if (option2.equals("2")) {
-                if (opcionValor == 1) {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaEx, Collections.reverseOrder(comparadoresTecnico[2]));
-                    for (Tecnico tecnico : cedulaEx) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaMax, Collections.reverseOrder(comparadoresTecnico[2]));
-                    for (Tecnico tecnico : cedulaMax) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaMin, Collections.reverseOrder(comparadoresTecnico[2]));
-                    for (Tecnico tecnico : cedulaMin) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaRan, Collections.reverseOrder(comparadoresTecnico[2]));
-                    for (Tecnico tecnico : cedulaRan) {
+                    cedulaTecnicoGen.sort((comparadoresTecnico[1]));
+                    for (Tecnico tecnico : cedulaTecnicoGen) {
                         i++;
                         System.out.println(i + ". " + tecnico);
                     }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    cedulaTecnicoGen.sort(Collections.reverseOrder(comparadoresTecnico[1]));
+                    for (Tecnico tecnico : cedulaTecnicoGen) {
+                        i++;
+                        System.out.println(i + ". " + tecnico);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            }else{
-                System.out.println("Opcion incorrecta");
+                break;
+            case "3":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    cedulaTecnicoGen.sort((comparadoresTecnico[2]));
+                    for (Tecnico tecnico : cedulaTecnicoGen) {
+                        i++;
+                        System.out.println(i + ". " + tecnico);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    cedulaTecnicoGen.sort(Collections.reverseOrder(comparadoresTecnico[2]));
+                    for (Tecnico tecnico : cedulaTecnicoGen) {
+                        i++;
+                        System.out.println(i + ". " + tecnico);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
+                }
+                break;
+            case "4":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    cedulaTecnicoGen.sort((comparadoresTecnico[3]));
+                    for (Tecnico tecnico : cedulaTecnicoGen) {
+                        i++;
+                        System.out.println(i + ". " + tecnico);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    cedulaTecnicoGen.sort(Collections.reverseOrder(comparadoresTecnico[3]));
+                    for (Tecnico tecnico : cedulaTecnicoGen) {
+                        i++;
+                        System.out.println(i + ". " + tecnico);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
+                }
+                break;
+            default:
                 return;
-            }
         }
-        else if (option.equals("4")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                if (opcionValor == 1) {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaEx, (comparadoresTecnico[3]));
-                    for (Tecnico tecnico : cedulaEx) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaMax, (comparadoresTecnico[3]));
-                    for (Tecnico tecnico : cedulaMax) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaMin, (comparadoresTecnico[3]));
-                    for (Tecnico tecnico : cedulaMin) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaRan, (comparadoresTecnico[3]));
-                    for (Tecnico tecnico : cedulaRan) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-            }
-            else if (option2.equals("2")) {
-                if (opcionValor == 1) {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaEx, Collections.reverseOrder(comparadoresTecnico[3]));
-                    for (Tecnico tecnico : cedulaEx) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaMax, Collections.reverseOrder(comparadoresTecnico[3]));
-                    for (Tecnico tecnico : cedulaMax) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaMin, Collections.reverseOrder(comparadoresTecnico[3]));
-                    for (Tecnico tecnico : cedulaMin) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaRan, Collections.reverseOrder(comparadoresTecnico[3]));
-                    for (Tecnico tecnico : cedulaRan) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-            }else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else {
-            return;
-        }if(opcionValor==1){
-            //Menu editar - eliminar
-            String accion;
-            System.out.println("-----------------------------------------");
-            System.out.println("\nIndique la accion que desea realizar:\n");
-            System.out.println("1. Editar ");
-            System.out.println("2. Eliminar ");
-            System.out.println("0. Regresar al menú anterior" + "\n");
-            accion = input.next();
-            System.out.println("----------------------------------");
+        //Menu editar - eliminar
+        String accion;
+        System.out.println("-----------------------------------------");
+        System.out.println("\nIndique la accion que desea realizar:\n");
+        System.out.println("1. Editar ");
+        System.out.println("2. Eliminar ");
+        System.out.println("0. Regresar al menú anterior" + "\n");
+        accion = input.next();
+        System.out.println("----------------------------------");
 
-//Codigo editar
+        for (Tecnico tecnico : cedulaTecnicoGen) {
+        //Codigo editar
             if (accion.equals("1")) {
-                for (Tecnico tecnico : cedulaEx) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el tecnico que desea editar: \n");
-                    eleccion = input.nextInt();
-                    tec = cedulaEx.get(eleccion - 1);
+                int eleccion;
+                System.out.println("------------------------------------------");
+                System.out.println("Escoja el tecnico que desea editar: \n");
+                eleccion = input.nextInt();
+                tec = cedulaTecnicoGen.get(eleccion - 1);
 
-                    input.nextLine();
-                    System.out.println("\nCedula: " + tecnico.cedula);
-                    String nuevoCedula = input.nextLine();
-
-                    System.out.println("Area : " + tecnico.area);
-                    String nuevoArea = input.nextLine();
-
-                    System.out.println("Hora Inicio: " + tecnico.horaInicio);
-                    String nuevoHoraInicio = input.nextLine();
-
-                    System.out.println("Hora Salida: " + tecnico.horaSalida);
-                    String nuevoHoraSalida = input.nextLine();
-
-                    while (true) {
-                        System.out.print("Desea guardar?:[Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    if (nuevoCedula.isEmpty()) {
-                                    } else tecnico.cedula = Integer.parseInt(nuevoCedula);
-                                    if (nuevoArea.isEmpty()) {
-                                    } else tecnico.area = nuevoArea;
-                                    if (nuevoHoraInicio.isEmpty()) {
-                                    } else tecnico.horaInicio = nuevoHoraInicio;
-                                    if (nuevoHoraSalida.isEmpty()) {
-                                    } else tecnico.horaSalida = nuevoHoraSalida;
-                                case "N":
-                                    break;
-                            }
-
-                            return;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
-                    }
-
+                input.nextLine();
+                System.out.println("\nCedula: " + tec.cedula);
+                String nuevoCedula = input.nextLine();
+                int nuevoCedulaInt=Integer.parseInt(nuevoCedula);
+                if (nuevoCedulaInt==tecnico.cedula){
+                    System.out.println("ERROR: La cedula ya se encuentra registrada");
                 }
+
+                System.out.println("Area : " + tec.area);
+                String nuevoArea = input.nextLine();
+
+                System.out.println("Hora Inicio: " + tec.horaInicio);
+                String nuevoHoraInicio = input.nextLine();
+
+                System.out.println("Hora Salida: " + tec.horaSalida);
+                String nuevoHoraSalida = input.nextLine();
+
+                while (true) {
+                    System.out.print("Desea guardar?:[Y/N] ");
+                    String optionE = input.next();
+                    if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                        switch (optionE.toUpperCase()) {
+                            case "Y":
+                                if (nuevoCedula.isEmpty()) {
+                                } else tec.cedula = Integer.parseInt(nuevoCedula);
+                                if (nuevoArea.isEmpty()) {
+                                } else tec.area = nuevoArea;
+                                if (nuevoHoraInicio.isEmpty()) {
+                                } else tec.horaInicio = nuevoHoraInicio;
+                                if (nuevoHoraSalida.isEmpty()) {
+                                } else tec.horaSalida = nuevoHoraSalida;
+                            case "N":
+                                break;
+                        }
+                        return;
+                    } else {
+                        System.out.println("Opcion invalida\n");
+                    }
+                }
+            }//Codigo eliminar
+            else if (accion.equals("2")) {
+                int eleccion;
+                System.out.println("------------------------------------------");
+                System.out.println("Escoja el tecnico que desea eliminar: \n");
+                eleccion = input.nextInt();
+                tec = cedulaTecnicoGen.get(eleccion - 1);
+
+                while (true) {
+                    System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+                    String optionE = input.next();
+                    if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                        switch (optionE.toUpperCase()) {
+                            case "Y":
+                                break;
+                            case "N":
+                                return;
+                        }
+                        break;
+                    } else {
+                        System.out.println("Opcion invalida\n");
+                    }
+                }
+
+                for (Habitat habitat : habitats) {
+                    habitat.tecnicos.removeIf(tecnico1 -> tecnico1.cedula == tec.cedula);
+                }
+
+                tecnicos.remove(tec);
+
+                System.out.println("El tecnico se ha eliminado correctamente");
                 return;
-
-            }
-
-//Codigo eliminar
-            else if(accion.equals("2")){
-                for (Tecnico tecnico : cedulaEx) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el tecnico que desea eliminar: \n");
-                    eleccion = input.nextInt();
-                    tec = cedulaEx.get(eleccion - 1);
-
-                    while (true) {
-                        System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    break;
-                                case "N":
-                                    return;
-                            }
-                            break;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
-                    }
-
-
-                    for (Habitat habitat : habitats) {
-                        Tecnico finaltec = tec;
-                        habitat.tecnicos.removeIf(tecnico1 -> tecnico1.cedula == finaltec.cedula);
-
-                    }
-
-                    tecnicos.remove(tec);
-
-                    System.out.println("El tecnico se ha eliminado correctamente");
-                    return;
-                }
-
-            }
-            else return;
-        }else if(opcionValor==2){
-            //Menu editar - eliminar
-            String accion;
-            System.out.println("-----------------------------------------");
-            System.out.println("\nIndique la accion que desea realizar:\n");
-            System.out.println("1. Editar ");
-            System.out.println("2. Eliminar ");
-            System.out.println("0. Regresar al menú anterior" + "\n");
-            accion = input.next();
-            System.out.println("----------------------------------");
-
-//Codigo editar
-            if (accion.equals("1")) {
-                for (Tecnico tecnico : cedulaEx) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el tecnico que desea editar: \n");
-                    eleccion = input.nextInt();
-                    tec = cedulaEx.get(eleccion - 1);
-
-                    input.nextLine();
-                    System.out.println("\nCedula: " + tecnico.cedula);
-                    String nuevoCedula = input.nextLine();
-
-                    System.out.println("Area : " + tecnico.area);
-                    String nuevoArea = input.nextLine();
-
-                    System.out.println("Hora Inicio: " + tecnico.horaInicio);
-                    String nuevoHoraInicio = input.nextLine();
-
-                    System.out.println("Hora Salida: " + tecnico.horaSalida);
-                    String nuevoHoraSalida = input.nextLine();
-
-                    while (true) {
-                        System.out.print("Desea guardar?:[Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    if (nuevoCedula.isEmpty()) {
-                                    } else tecnico.cedula = Integer.parseInt(nuevoCedula);
-                                    if (nuevoArea.isEmpty()) {
-                                    } else tecnico.area = nuevoArea;
-                                    if (nuevoHoraInicio.isEmpty()) {
-                                    } else tecnico.horaInicio = nuevoHoraInicio;
-                                    if (nuevoHoraSalida.isEmpty()) {
-                                    } else tecnico.horaSalida = nuevoHoraSalida;
-                                case "N":
-                                    break;
-                            }
-
-                            return;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
-                    }
-
-                }
-                return;
-
-            }
-
-//Codigo eliminar
-            else if(accion.equals("2")){
-                for (Tecnico tecnico : cedulaEx) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el tecnico que desea eliminar: \n");
-                    eleccion = input.nextInt();
-                    tec = cedulaEx.get(eleccion - 1);
-
-                    while (true) {
-                        System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    break;
-                                case "N":
-                                    return;
-                            }
-                            break;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
-                    }
-
-
-                    for (Habitat habitat : habitats) {
-                        Tecnico finaltec = tec;
-                        habitat.tecnicos.removeIf(tecnico1 -> tecnico1.cedula == finaltec.cedula);
-
-                    }
-
-                    tecnicos.remove(tec);
-
-                    System.out.println("El tecnico se ha eliminado correctamente");
-                    return;
-                }
-
-            }
-            else return;
-        }else if(opcionValor==3){
-            //Menu editar - eliminar
-            String accion;
-            System.out.println("-----------------------------------------");
-            System.out.println("\nIndique la accion que desea realizar:\n");
-            System.out.println("1. Editar ");
-            System.out.println("2. Eliminar ");
-            System.out.println("0. Regresar al menú anterior" + "\n");
-            accion = input.next();
-            System.out.println("----------------------------------");
-
-//Codigo editar
-            if (accion.equals("1")) {
-                for (Tecnico tecnico : cedulaEx) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el tecnico que desea editar: \n");
-                    eleccion = input.nextInt();
-                    tec = cedulaEx.get(eleccion - 1);
-
-                    input.nextLine();
-                    System.out.println("\nCedula: " + tecnico.cedula);
-                    String nuevoCedula = input.nextLine();
-
-                    System.out.println("Area : " + tecnico.area);
-                    String nuevoArea = input.nextLine();
-
-                    System.out.println("Hora Inicio: " + tecnico.horaInicio);
-                    String nuevoHoraInicio = input.nextLine();
-
-                    System.out.println("Hora Salida: " + tecnico.horaSalida);
-                    String nuevoHoraSalida = input.nextLine();
-
-                    while (true) {
-                        System.out.print("Desea guardar?:[Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    if (nuevoCedula.isEmpty()) {
-                                    } else tecnico.cedula = Integer.parseInt(nuevoCedula);
-                                    if (nuevoArea.isEmpty()) {
-                                    } else tecnico.area = nuevoArea;
-                                    if (nuevoHoraInicio.isEmpty()) {
-                                    } else tecnico.horaInicio = nuevoHoraInicio;
-                                    if (nuevoHoraSalida.isEmpty()) {
-                                    } else tecnico.horaSalida = nuevoHoraSalida;
-                                case "N":
-                                    break;
-                            }
-
-                            return;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
-                    }
-
-                }
-                return;
-
-            }
-
-//Codigo eliminar
-            else if(accion.equals("2")){
-                for (Tecnico tecnico : cedulaEx) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el tecnico que desea eliminar: \n");
-                    eleccion = input.nextInt();
-                    tec = cedulaEx.get(eleccion - 1);
-
-                    while (true) {
-                        System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    break;
-                                case "N":
-                                    return;
-                            }
-                            break;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
-                    }
-
-
-                    for (Habitat habitat : habitats) {
-                        Tecnico finaltec = tec;
-                        habitat.tecnicos.removeIf(tecnico1 -> tecnico1.cedula == finaltec.cedula);
-
-                    }
-
-                    tecnicos.remove(tec);
-
-                    System.out.println("El tecnico se ha eliminado correctamente");
-                    return;
-                }
-
-            }
-            else return;
-        }else{
-            //Menu editar - eliminar
-            String accion;
-            System.out.println("-----------------------------------------");
-            System.out.println("\nIndique la accion que desea realizar:\n");
-            System.out.println("1. Editar ");
-            System.out.println("2. Eliminar ");
-            System.out.println("0. Regresar al menú anterior" + "\n");
-            accion = input.next();
-            System.out.println("----------------------------------");
-
-//Codigo editar
-            if (accion.equals("1")) {
-                for (Tecnico tecnico : cedulaEx) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el tecnico que desea editar: \n");
-                    eleccion = input.nextInt();
-                    tec = cedulaEx.get(eleccion - 1);
-
-                    input.nextLine();
-                    System.out.println("\nCedula: " + tecnico.cedula);
-                    String nuevoCedula = input.nextLine();
-
-                    System.out.println("Area : " + tecnico.area);
-                    String nuevoArea = input.nextLine();
-
-                    System.out.println("Hora Inicio: " + tecnico.horaInicio);
-                    String nuevoHoraInicio = input.nextLine();
-
-                    System.out.println("Hora Salida: " + tecnico.horaSalida);
-                    String nuevoHoraSalida = input.nextLine();
-
-                    while (true) {
-                        System.out.print("Desea guardar?:[Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    if (nuevoCedula.isEmpty()) {
-                                    } else tecnico.cedula = Integer.parseInt(nuevoCedula);
-                                    if (nuevoArea.isEmpty()) {
-                                    } else tecnico.area = nuevoArea;
-                                    if (nuevoHoraInicio.isEmpty()) {
-                                    } else tecnico.horaInicio = nuevoHoraInicio;
-                                    if (nuevoHoraSalida.isEmpty()) {
-                                    } else tecnico.horaSalida = nuevoHoraSalida;
-                                case "N":
-                                    break;
-                            }
-
-                            return;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
-                    }
-
-                }
-                return;
-
-            }
-
-//Codigo eliminar
-            else if(accion.equals("2")){
-                for (Tecnico tecnico : cedulaEx) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el tecnico que desea eliminar: \n");
-                    eleccion = input.nextInt();
-                    tec = cedulaEx.get(eleccion - 1);
-
-                    while (true) {
-                        System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    break;
-                                case "N":
-                                    return;
-                            }
-                            break;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
-                    }
-
-
-                    for (Habitat habitat : habitats) {
-                        Tecnico finaltec = tec;
-                        habitat.tecnicos.removeIf(tecnico1 -> tecnico1.cedula == finaltec.cedula);
-
-                    }
-
-                    tecnicos.remove(tec);
-
-                    System.out.println("El tecnico se ha eliminado correctamente");
-                    return;
-                }
-
-            }
-            else return;
+            }else return;
         }
     }
-    public static void areaTecnico(int opcionValor, String areaBus) {
-        Tecnico tec = null;
+    public static void areaTecnico(String areaBus) {
+        Tecnico tec;
         int i=0;
         ArrayList<Tecnico> areaTec = new ArrayList<>();
         for (Tecnico tecnico : tecnicos) {
@@ -8971,92 +7613,88 @@ public class SistemaZoologico {
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
-        if (option.equals("1")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(areaTec, (comparadoresTecnico[0]));
-                for (Tecnico tecnico : areaTec) {
-                    i++;
-                    System.out.println(i+". "+tecnico);
+        switch (option) {
+            case "1":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    areaTec.sort((comparadoresTecnico[0]));
+                    for (Tecnico tecnico : areaTec) {
+                        i++;
+                        System.out.println(i + ". " + tecnico);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    areaTec.sort(Collections.reverseOrder(comparadoresTecnico[0]));
+                    for (Tecnico tecnico : areaTec) {
+                        i++;
+                        System.out.println(i + ". " + tecnico);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(areaTec, Collections.reverseOrder(comparadoresTecnico[0]));
-                for (Tecnico tecnico : areaTec) {
-                    i++;
-                    System.out.println(i+". "+tecnico);
+                break;
+            case "2":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    areaTec.sort((comparadoresTecnico[2]));
+                    for (Tecnico tecnico : areaTec) {
+                        i++;
+                        System.out.println(i + ". " + tecnico);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    areaTec.sort(Collections.reverseOrder(comparadoresTecnico[2]));
+                    for (Tecnico tecnico : areaTec) {
+                        i++;
+                        System.out.println(i + ". " + tecnico);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            }
-            else {
-                System.out.println("Opcion incorrecta");
+                break;
+            case "3":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    areaTec.sort((comparadoresTecnico[3]));
+                    for (Tecnico tecnico : areaTec) {
+                        i++;
+                        System.out.println(i + ". " + tecnico);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    areaTec.sort(Collections.reverseOrder(comparadoresTecnico[3]));
+                    for (Tecnico tecnico : areaTec) {
+                        i++;
+                        System.out.println(i + ". " + tecnico);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
+                }
+                break;
+            default:
                 return;
-            }
         }
-        else if (option.equals("2")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(areaTec, (comparadoresTecnico[2]));
-                for (Tecnico tecnico : areaTec) {
-                    i++;
-                    System.out.println(i+". "+tecnico);
-                }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(areaTec, Collections.reverseOrder(comparadoresTecnico[2]));
-                for (Tecnico tecnico : areaTec) {
-                    i++;
-                    System.out.println(i+". "+tecnico);
-                }
-            }
-            else {
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else if (option.equals("3")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(areaTec, (comparadoresTecnico[3]));
-                for (Tecnico tecnico : areaTec) {
-                    i++;
-                    System.out.println(i+". "+tecnico);
-                }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(areaTec, Collections.reverseOrder(comparadoresTecnico[3]));
-                for (Tecnico tecnico : areaTec) {
-                    i++;
-                    System.out.println(i + ". " + tecnico);
-                }
-            }else {
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else {
-            return;
-        }//Menu editar - eliminar
         String accion;
         System.out.println("-----------------------------------------");
         System.out.println("\nIndique la accion que desea realizar:\n");
@@ -9066,9 +7704,9 @@ public class SistemaZoologico {
         accion = input.next();
         System.out.println("----------------------------------");
 
-//Codigo editar
-        if (accion.equals("1")) {
-            for (Tecnico tecnico : areaTec) {
+        for (Tecnico tecnico : areaTec) {
+            //Codigo editar
+            if (accion.equals("1")) {
                 int eleccion;
                 System.out.println("------------------------------------------");
                 System.out.println("Escoja el tecnico que desea editar: \n");
@@ -9076,16 +7714,20 @@ public class SistemaZoologico {
                 tec = areaTec.get(eleccion - 1);
 
                 input.nextLine();
-                System.out.println("\nCedula: " + tecnico.cedula);
+                System.out.println("\nCedula: " + tec.cedula);
                 String nuevoCedula = input.nextLine();
+                int nuevoCedulaInt= Integer.parseInt(nuevoCedula);
+                if(nuevoCedulaInt==tecnico.cedula){
+                    System.out.println("ERROR: La cedula ya se encuentra registrada");
+                }
 
-                System.out.println("Area : " + tecnico.area);
+                System.out.println("Area : " + tec.area);
                 String nuevoArea = input.nextLine();
 
-                System.out.println("Hora Inicio: " + tecnico.horaInicio);
+                System.out.println("Hora Inicio: " + tec.horaInicio);
                 String nuevoHoraInicio = input.nextLine();
 
-                System.out.println("Hora Salida: " + tecnico.horaSalida);
+                System.out.println("Hora Salida: " + tec.horaSalida);
                 String nuevoHoraSalida = input.nextLine();
 
                 while (true) {
@@ -9095,31 +7737,23 @@ public class SistemaZoologico {
                         switch (optionE.toUpperCase()) {
                             case "Y":
                                 if (nuevoCedula.isEmpty()) {
-                                } else tecnico.cedula = Integer.parseInt(nuevoCedula);
+                                } else tec.cedula = Integer.parseInt(nuevoCedula);
                                 if (nuevoArea.isEmpty()) {
-                                } else tecnico.area = nuevoArea;
+                                } else tec.area = nuevoArea;
                                 if (nuevoHoraInicio.isEmpty()) {
-                                } else tecnico.horaInicio = nuevoHoraInicio;
+                                } else tec.horaInicio = nuevoHoraInicio;
                                 if (nuevoHoraSalida.isEmpty()) {
-                                } else tecnico.horaSalida = nuevoHoraSalida;
+                                } else tec.horaSalida = nuevoHoraSalida;
                             case "N":
                                 break;
                         }
-
                         return;
                     } else {
                         System.out.println("Opcion invalida\n");
                     }
                 }
-
-            }
-            return;
-
-        }
-
-//Codigo eliminar
-        else if(accion.equals("2")){
-            for (Tecnico tecnico : areaTec) {
+            }//Codigo eliminar
+            else if (accion.equals("2")) {
                 int eleccion;
                 System.out.println("------------------------------------------");
                 System.out.println("Escoja el tecnico que desea eliminar: \n");
@@ -9142,10 +7776,259 @@ public class SistemaZoologico {
                     }
                 }
 
+                for (Habitat habitat : habitats) {
+                    habitat.tecnicos.removeIf(tecnico1 -> tecnico1.cedula == tec.cedula);
+                }
+
+                tecnicos.remove(tec);
+
+                System.out.println("El tecnico se ha eliminado correctamente");
+                return;
+            } else return;
+        }
+    }
+    public static void horaInicioTecnico(int opcionValor, String horaInicioBusMin, String horaInicioBusMax) {
+        Tecnico tec;
+        int i=0;
+        ArrayList<Tecnico> horaInicioTecnicoGen = new ArrayList<>();
+        if (opcionValor == 1) {
+            for (Tecnico tecnico : tecnicos) {
+                int horaInicio = Integer.parseInt(tecnico.horaInicio.replace(":", ""));
+                int horaInicioB = Integer.parseInt(horaInicioBusMin.replace(":", ""));
+                if (horaInicioB == horaInicio) {
+                    horaInicioTecnicoGen.add(tecnico);
+                }
+            }
+        }
+        else if (opcionValor == 2) {
+            for (Tecnico tecnico : tecnicos) {
+                int horaInicio = Integer.parseInt(tecnico.horaInicio.replace(":", ""));
+                int horaInicioB = Integer.parseInt(horaInicioBusMin.replace(":", ""));
+                if (horaInicioB >= horaInicio) {
+                    horaInicioTecnicoGen.add(tecnico);
+                }
+            }
+        }
+        else if (opcionValor == 3) {
+            for (Tecnico tecnico : tecnicos) {
+                int horaInicio = Integer.parseInt(tecnico.horaInicio.replace(":", ""));
+                int horaInicioB = Integer.parseInt(horaInicioBusMin.replace(":", ""));
+                if (horaInicioB <= horaInicio) {
+                    horaInicioTecnicoGen.add(tecnico);
+                }
+            }
+        }
+        else {
+            for (Tecnico tecnico : tecnicos) {
+                int horaInicio = Integer.parseInt(tecnico.horaInicio.replace(":", ""));
+                int horaInicioBMin = Integer.parseInt(horaInicioBusMin.replace(":", ""));
+                int horaInicioBMax = Integer.parseInt(horaInicioBusMax.replace(":", ""));
+                if (horaInicioBMin <= horaInicio && horaInicioBMax <= horaInicio) {
+                    horaInicioTecnicoGen.add(tecnico);
+                }
+            }
+        }
+        String option;
+        String option2;
+        System.out.println("--------------------------------------------------");
+        System.out.println("Por favor, seleccione el atributo por el que desea ordenar: \n");
+        System.out.println("1. Cedula.");
+        System.out.println("2. Area.");
+        System.out.println("3. Hora inicio.");
+        System.out.println("4. Hora salida.");
+        System.out.println("0. Regresar al menu anterior.");
+        option = input.next();
+        System.out.println();
+        switch (option) {
+            case "1":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    horaInicioTecnicoGen.sort((comparadoresTecnico[0]));
+                    for (Tecnico tecnico : horaInicioTecnicoGen) {
+                        i++;
+                        System.out.println(i + ". " + tecnico);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    horaInicioTecnicoGen.sort(Collections.reverseOrder(comparadoresTecnico[0]));
+                    for (Tecnico tecnico : horaInicioTecnicoGen) {
+                        i++;
+                        System.out.println(i + ". " + tecnico);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
+                }
+                break;
+            case "2":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    horaInicioTecnicoGen.sort((comparadoresTecnico[1]));
+                    for (Tecnico tecnico : horaInicioTecnicoGen) {
+                        i++;
+                        System.out.println(i + ". " + tecnico);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    horaInicioTecnicoGen.sort(Collections.reverseOrder(comparadoresTecnico[1]));
+                    for (Tecnico tecnico : horaInicioTecnicoGen) {
+                        i++;
+                        System.out.println(i + ". " + tecnico);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
+                }
+                break;
+            case "3":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    horaInicioTecnicoGen.sort((comparadoresTecnico[2]));
+                    for (Tecnico tecnico : horaInicioTecnicoGen) {
+                        i++;
+                        System.out.println(i + ". " + tecnico);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    horaInicioTecnicoGen.sort(Collections.reverseOrder(comparadoresTecnico[2]));
+                    for (Tecnico tecnico : horaInicioTecnicoGen) {
+                        i++;
+                        System.out.println(i + ". " + tecnico);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
+                }
+                break;
+            case "4":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    horaInicioTecnicoGen.sort((comparadoresTecnico[3]));
+                    for (Tecnico tecnico : horaInicioTecnicoGen) {
+                        i++;
+                        System.out.println(i + ". " + tecnico);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    horaInicioTecnicoGen.sort(Collections.reverseOrder(comparadoresTecnico[3]));
+                    for (Tecnico tecnico : horaInicioTecnicoGen) {
+                        i++;
+                        System.out.println(i + ". " + tecnico);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
+                }
+                break;
+            default:
+                return;
+        }//Menu editar - eliminar
+        String accion;
+        System.out.println("-----------------------------------------");
+        System.out.println("\nIndique la accion que desea realizar:\n");
+        System.out.println("1. Editar ");
+        System.out.println("2. Eliminar ");
+        System.out.println("0. Regresar al menú anterior" + "\n");
+        accion = input.next();
+        System.out.println("----------------------------------");
+
+        for (Tecnico tecnico : horaInicioTecnicoGen) {
+            //Codigo editar
+            if (accion.equals("1")) {
+                int eleccion;
+                System.out.println("------------------------------------------");
+                System.out.println("Escoja el tecnico que desea editar: \n");
+                eleccion = input.nextInt();
+                tec = horaInicioTecnicoGen.get(eleccion - 1);
+
+                input.nextLine();
+                System.out.println("\nCedula: " + tec.cedula);
+                String nuevoCedula = input.nextLine();
+                int nuevoCedulaInt= Integer.parseInt(nuevoCedula);
+                if(nuevoCedulaInt==tecnico.cedula){
+                    System.out.println("ERROR: La cedula ya se encuentra registrada");
+                }
+
+                System.out.println("Area : " + tec.area);
+                String nuevoArea = input.nextLine();
+
+                System.out.println("Hora Inicio: " + tec.horaInicio);
+                String nuevoHoraInicio = input.nextLine();
+
+                System.out.println("Hora Salida: " + tec.horaSalida);
+                String nuevoHoraSalida = input.nextLine();
+
+                while (true) {
+                    System.out.print("Desea guardar?:[Y/N] ");
+                    String optionE = input.next();
+                    if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                        switch (optionE.toUpperCase()) {
+                            case "Y":
+                                if (nuevoCedula.isEmpty()) {
+                                } else tec.cedula = Integer.parseInt(nuevoCedula);
+                                if (nuevoArea.isEmpty()) {
+                                } else tec.area = nuevoArea;
+                                if (nuevoHoraInicio.isEmpty()) {
+                                } else tec.horaInicio = nuevoHoraInicio;
+                                if (nuevoHoraSalida.isEmpty()) {
+                                } else tec.horaSalida = nuevoHoraSalida;
+                            case "N":
+                                break;
+                        }
+                        return;
+                    } else {
+                        System.out.println("Opcion invalida\n");
+                    }
+                }
+            } else if (accion.equals("2")) {
+                int eleccion;
+                System.out.println("------------------------------------------");
+                System.out.println("Escoja el tecnico que desea eliminar: \n");
+                eleccion = input.nextInt();
+                tec = horaInicioTecnicoGen.get(eleccion - 1);
+
+                while (true) {
+                    System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+                    String optionE = input.next();
+                    if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                        switch (optionE.toUpperCase()) {
+                            case "Y":
+                                break;
+                            case "N":
+                                return;
+                        }
+                        break;
+                    } else {
+                        System.out.println("Opcion invalida\n");
+                    }
+                }
 
                 for (Habitat habitat : habitats) {
-                    Tecnico finaltec = tec;
-                    habitat.tecnicos.removeIf(tecnico1 -> tecnico1.cedula == finaltec.cedula);
+                    habitat.tecnicos.removeIf(tecnico1 -> tecnico1.cedula == tec.cedula);
 
                 }
 
@@ -9153,835 +8036,44 @@ public class SistemaZoologico {
 
                 System.out.println("El tecnico se ha eliminado correctamente");
                 return;
-            }
-
-        }
-        else return;
-    }
-    public static void horaInicioTecnico(int opcionValor, String horaInicioBusMin, String horaInicioBusMax) {
-        Tecnico tec = null;
-        int i=0;
-        ArrayList<Tecnico> horaInicioEx = new ArrayList<>();
-        ArrayList<Tecnico> horaInicioMax = new ArrayList<>();
-        ArrayList<Tecnico> horaInicioMin = new ArrayList<>();
-        ArrayList<Tecnico> horaInicioRan = new ArrayList<>();
-        if (opcionValor == 1) {
-            for (Tecnico tecnico : tecnicos) {
-                int horaInicio = Integer.parseInt(tecnico.horaInicio.replace(":", ""));
-                int horaInicioB = Integer.parseInt(horaInicioBusMin.replace(".", ""));
-                if (horaInicioB == horaInicio) {
-                    horaInicioEx.add(tecnico);
-                }
-            }
-        }
-        else if (opcionValor == 2) {
-            for (Tecnico tecnico : tecnicos) {
-                int horaInicio = Integer.parseInt(tecnico.horaInicio.replace(":", ""));
-                int horaInicioB = Integer.parseInt(horaInicioBusMin.replace(".", ""));
-                if (horaInicioB >= horaInicio) {
-                    horaInicioMax.add(tecnico);
-                }
-            }
-        }
-        else if (opcionValor == 3) {
-            for (Tecnico tecnico : tecnicos) {
-                int horaInicio = Integer.parseInt(tecnico.horaInicio.replace(":", ""));
-                int horaInicioB = Integer.parseInt(horaInicioBusMin.replace(".", ""));
-                if (horaInicioB <= horaInicio) {
-                    horaInicioMin.add(tecnico);
-                }
-            }
-        }
-        else {
-            for (Tecnico tecnico : tecnicos) {
-                int horaInicio = Integer.parseInt(tecnico.horaInicio.replace(":", ""));
-                int horaInicioBMin = Integer.parseInt(horaInicioBusMin.replace(".", ""));
-                int horaInicioBMax = Integer.parseInt(horaInicioBusMax.replace(".", ""));
-                if (horaInicioBMin <= horaInicio && horaInicioBMax <= horaInicio) {
-                    horaInicioRan.add(tecnico);
-                }
-            }
-        }
-        String option;
-        String option2;
-        System.out.println("--------------------------------------------------");
-        System.out.println("Por favor, seleccione el atributo por el que desea ordenar: \n");
-        System.out.println("1. Cedula.");
-        System.out.println("2. Area.");
-        System.out.println("3. Hora inicio.");
-        System.out.println("4. Hora salida.");
-        System.out.println("0. Regresar al menu anterior.");
-        option = input.next();
-        System.out.println();
-        if (option.equals("1")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                if (opcionValor == 1) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaInicioEx, (comparadoresTecnico[0]));
-                    for (Tecnico tecnico : horaInicioEx) {
-                        i++;
-                        System.out.println(i + ". " + tecnico);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaInicioMax, (comparadoresTecnico[0]));
-                    for (Tecnico tecnico : horaInicioMax) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaInicioMin, (comparadoresTecnico[0]));
-                    for (Tecnico tecnico : horaInicioMin) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaInicioRan, (comparadoresTecnico[0]));
-                    for (Tecnico tecnico : horaInicioRan) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-            }
-            else if (option2.equals("2")) {
-                if (opcionValor == 1) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaInicioEx, Collections.reverseOrder(comparadoresTecnico[0]));
-                    for (Tecnico tecnico : horaInicioEx) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaInicioMax, Collections.reverseOrder(comparadoresTecnico[0]));
-                    for (Tecnico tecnico : horaInicioMax) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaInicioMin, Collections.reverseOrder(comparadoresTecnico[0]));
-                    for (Tecnico tecnico : horaInicioMin) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else {
-                    System.out.println("Descendente");
-                    Collections.sort(horaInicioRan, Collections.reverseOrder(comparadoresTecnico[0]));
-                    for (Tecnico tecnico : horaInicioRan) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-            }else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else if (option.equals("2")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                if (opcionValor == 1) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaInicioEx, (comparadoresTecnico[1]));
-                    for (Tecnico tecnico : horaInicioEx) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaInicioMax, (comparadoresTecnico[1]));
-                    for (Tecnico tecnico : horaInicioMax) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaInicioMin, (comparadoresTecnico[1]));
-                    for (Tecnico tecnico : horaInicioMin) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaInicioRan, (comparadoresTecnico[1]));
-                    for (Tecnico tecnico : horaInicioRan) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-            }
-            else if (option2.equals("2")) {
-                if (opcionValor == 1) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaInicioEx, Collections.reverseOrder(comparadoresTecnico[1]));
-                    for (Tecnico tecnico : horaInicioEx) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaInicioMax, Collections.reverseOrder(comparadoresTecnico[1]));
-                    for (Tecnico tecnico : horaInicioMax) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaInicioMin, Collections.reverseOrder(comparadoresTecnico[1]));
-                    for (Tecnico tecnico : horaInicioMin) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else {
-                    System.out.println("Descendente");
-                    Collections.sort(horaInicioRan, Collections.reverseOrder(comparadoresTecnico[1]));
-                    for (Tecnico tecnico : horaInicioRan) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-            }else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else if (option.equals("3")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                if (opcionValor == 1) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaInicioEx, (comparadoresTecnico[2]));
-                    for (Tecnico tecnico : horaInicioEx) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaInicioMax, (comparadoresTecnico[2]));
-                    for (Tecnico tecnico : horaInicioMax) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaInicioMin, (comparadoresTecnico[2]));
-                    for (Tecnico tecnico : horaInicioMin) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaInicioRan, (comparadoresTecnico[2]));
-                    for (Tecnico tecnico : horaInicioRan) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-            }
-            else if (option2.equals("2")) {
-                if (opcionValor == 1) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaInicioEx, Collections.reverseOrder(comparadoresTecnico[2]));
-                    for (Tecnico tecnico : horaInicioEx) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaInicioMax, Collections.reverseOrder(comparadoresTecnico[2]));
-                    for (Tecnico tecnico : horaInicioMax) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaInicioMin, Collections.reverseOrder(comparadoresTecnico[2]));
-                    for (Tecnico tecnico : horaInicioMin) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else {
-                    System.out.println("Descendente");
-                    Collections.sort(horaInicioRan, Collections.reverseOrder(comparadoresTecnico[2]));
-                    for (Tecnico tecnico : horaInicioRan) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-            }else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else if (option.equals("4")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                if (opcionValor == 1) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaInicioEx, (comparadoresTecnico[3]));
-                    for (Tecnico tecnico : horaInicioEx) {
-                        i++;
-                        System.out.println(i + ". " + tecnico);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaInicioMax, (comparadoresTecnico[3]));
-                    for (Tecnico tecnico : horaInicioMax) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaInicioMin, (comparadoresTecnico[3]));
-                    for (Tecnico tecnico : horaInicioMin) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaInicioRan, (comparadoresTecnico[3]));
-                    for (Tecnico tecnico : horaInicioRan) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-            }
-            else if (option2.equals("2")) {
-                if (opcionValor == 1) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaInicioEx, Collections.reverseOrder(comparadoresTecnico[3]));
-                    for (Tecnico tecnico : horaInicioEx) {
-                        i++;
-                        System.out.println(i + ". " + tecnico);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaInicioMax, Collections.reverseOrder(comparadoresTecnico[3]));
-                    for (Tecnico tecnico : horaInicioMax) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaInicioMin, Collections.reverseOrder(comparadoresTecnico[3]));
-                    for (Tecnico tecnico : horaInicioMin) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else {
-                    System.out.println("Descendente");
-                    Collections.sort(horaInicioRan, Collections.reverseOrder(comparadoresTecnico[3]));
-                    for (Tecnico tecnico : horaInicioRan) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-            }else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else {
-            return;
-        }if(opcionValor==1){
-            //Menu editar - eliminar
-            String accion;
-            System.out.println("-----------------------------------------");
-            System.out.println("\nIndique la accion que desea realizar:\n");
-            System.out.println("1. Editar ");
-            System.out.println("2. Eliminar ");
-            System.out.println("0. Regresar al menú anterior" + "\n");
-            accion = input.next();
-            System.out.println("----------------------------------");
-
-//Codigo editar
-            if (accion.equals("1")) {
-                for (Tecnico tecnico : horaInicioRan) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el tecnico que desea editar: \n");
-                    eleccion = input.nextInt();
-                    tec = horaInicioRan.get(eleccion - 1);
-
-                    input.nextLine();
-                    System.out.println("\nCedula: " + tecnico.cedula);
-                    String nuevoCedula = input.nextLine();
-
-                    System.out.println("Area : " + tecnico.area);
-                    String nuevoArea = input.nextLine();
-
-                    System.out.println("Hora Inicio: " + tecnico.horaInicio);
-                    String nuevoHoraInicio = input.nextLine();
-
-                    System.out.println("Hora Salida: " + tecnico.horaSalida);
-                    String nuevoHoraSalida = input.nextLine();
-
-                    while (true) {
-                        System.out.print("Desea guardar?:[Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    if (nuevoCedula.isEmpty()) {
-                                    } else tecnico.cedula = Integer.parseInt(nuevoCedula);
-                                    if (nuevoArea.isEmpty()) {
-                                    } else tecnico.area = nuevoArea;
-                                    if (nuevoHoraInicio.isEmpty()) {
-                                    } else tecnico.horaInicio = nuevoHoraInicio;
-                                    if (nuevoHoraSalida.isEmpty()) {
-                                    } else tecnico.horaSalida = nuevoHoraSalida;
-                                case "N":
-                                    break;
-                            }
-
-                            return;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
-                    }
-
-                }
-                return;
-
-            }
-
-//Codigo eliminar
-            else if(accion.equals("2")){
-                for (Tecnico tecnico : horaInicioRan) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el tecnico que desea eliminar: \n");
-                    eleccion = input.nextInt();
-                    tec = horaInicioRan.get(eleccion - 1);
-
-                    while (true) {
-                        System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    break;
-                                case "N":
-                                    return;
-                            }
-                            break;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
-                    }
-
-
-                    for (Habitat habitat : habitats) {
-                        Tecnico finaltec = tec;
-                        habitat.tecnicos.removeIf(tecnico1 -> tecnico1.cedula == finaltec.cedula);
-
-                    }
-
-                    tecnicos.remove(tec);
-
-                    System.out.println("El tecnico se ha eliminado correctamente");
-                    return;
-                }
-
-            }
-            else return;
-        }else if(opcionValor==2){
-            //Menu editar - eliminar
-            String accion;
-            System.out.println("-----------------------------------------");
-            System.out.println("\nIndique la accion que desea realizar:\n");
-            System.out.println("1. Editar ");
-            System.out.println("2. Eliminar ");
-            System.out.println("0. Regresar al menú anterior" + "\n");
-            accion = input.next();
-            System.out.println("----------------------------------");
-
-//Codigo editar
-            if (accion.equals("1")) {
-                for (Tecnico tecnico : horaInicioRan) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el tecnico que desea editar: \n");
-                    eleccion = input.nextInt();
-                    tec = horaInicioRan.get(eleccion - 1);
-
-                    input.nextLine();
-                    System.out.println("\nCedula: " + tecnico.cedula);
-                    String nuevoCedula = input.nextLine();
-
-                    System.out.println("Area : " + tecnico.area);
-                    String nuevoArea = input.nextLine();
-
-                    System.out.println("Hora Inicio: " + tecnico.horaInicio);
-                    String nuevoHoraInicio = input.nextLine();
-
-                    System.out.println("Hora Salida: " + tecnico.horaSalida);
-                    String nuevoHoraSalida = input.nextLine();
-
-                    while (true) {
-                        System.out.print("Desea guardar?:[Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    if (nuevoCedula.isEmpty()) {
-                                    } else tecnico.cedula = Integer.parseInt(nuevoCedula);
-                                    if (nuevoArea.isEmpty()) {
-                                    } else tecnico.area = nuevoArea;
-                                    if (nuevoHoraInicio.isEmpty()) {
-                                    } else tecnico.horaInicio = nuevoHoraInicio;
-                                    if (nuevoHoraSalida.isEmpty()) {
-                                    } else tecnico.horaSalida = nuevoHoraSalida;
-                                case "N":
-                                    break;
-                            }
-
-                            return;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
-                    }
-
-                }
-                return;
-
-            }
-
-//Codigo eliminar
-            else if(accion.equals("2")){
-                for (Tecnico tecnico : horaInicioRan) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el tecnico que desea eliminar: \n");
-                    eleccion = input.nextInt();
-                    tec = horaInicioRan.get(eleccion - 1);
-
-                    while (true) {
-                        System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    break;
-                                case "N":
-                                    return;
-                            }
-                            break;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
-                    }
-
-
-                    for (Habitat habitat : habitats) {
-                        Tecnico finaltec = tec;
-                        habitat.tecnicos.removeIf(tecnico1 -> tecnico1.cedula == finaltec.cedula);
-
-                    }
-
-                    tecnicos.remove(tec);
-
-                    System.out.println("El tecnico se ha eliminado correctamente");
-                    return;
-                }
-
-            }
-            else return;
-        }else if(opcionValor==3){
-            //Menu editar - eliminar
-            String accion;
-            System.out.println("-----------------------------------------");
-            System.out.println("\nIndique la accion que desea realizar:\n");
-            System.out.println("1. Editar ");
-            System.out.println("2. Eliminar ");
-            System.out.println("0. Regresar al menú anterior" + "\n");
-            accion = input.next();
-            System.out.println("----------------------------------");
-
-//Codigo editar
-            if (accion.equals("1")) {
-                for (Tecnico tecnico : horaInicioRan) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el tecnico que desea editar: \n");
-                    eleccion = input.nextInt();
-                    tec = horaInicioRan.get(eleccion - 1);
-
-                    input.nextLine();
-                    System.out.println("\nCedula: " + tecnico.cedula);
-                    String nuevoCedula = input.nextLine();
-
-                    System.out.println("Area : " + tecnico.area);
-                    String nuevoArea = input.nextLine();
-
-                    System.out.println("Hora Inicio: " + tecnico.horaInicio);
-                    String nuevoHoraInicio = input.nextLine();
-
-                    System.out.println("Hora Salida: " + tecnico.horaSalida);
-                    String nuevoHoraSalida = input.nextLine();
-
-                    while (true) {
-                        System.out.print("Desea guardar?:[Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    if (nuevoCedula.isEmpty()) {
-                                    } else tecnico.cedula = Integer.parseInt(nuevoCedula);
-                                    if (nuevoArea.isEmpty()) {
-                                    } else tecnico.area = nuevoArea;
-                                    if (nuevoHoraInicio.isEmpty()) {
-                                    } else tecnico.horaInicio = nuevoHoraInicio;
-                                    if (nuevoHoraSalida.isEmpty()) {
-                                    } else tecnico.horaSalida = nuevoHoraSalida;
-                                case "N":
-                                    break;
-                            }
-
-                            return;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
-                    }
-
-                }
-                return;
-
-            }
-
-//Codigo eliminar
-            else if(accion.equals("2")){
-                for (Tecnico tecnico : horaInicioRan) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el tecnico que desea eliminar: \n");
-                    eleccion = input.nextInt();
-                    tec = horaInicioRan.get(eleccion - 1);
-
-                    while (true) {
-                        System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    break;
-                                case "N":
-                                    return;
-                            }
-                            break;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
-                    }
-
-
-                    for (Habitat habitat : habitats) {
-                        Tecnico finaltec = tec;
-                        habitat.tecnicos.removeIf(tecnico1 -> tecnico1.cedula == finaltec.cedula);
-
-                    }
-
-                    tecnicos.remove(tec);
-
-                    System.out.println("El tecnico se ha eliminado correctamente");
-                    return;
-                }
-
-            }
-            else return;
-        }else{
-            //Menu editar - eliminar
-            String accion;
-            System.out.println("-----------------------------------------");
-            System.out.println("\nIndique la accion que desea realizar:\n");
-            System.out.println("1. Editar ");
-            System.out.println("2. Eliminar ");
-            System.out.println("0. Regresar al menú anterior" + "\n");
-            accion = input.next();
-            System.out.println("----------------------------------");
-
-//Codigo editar
-            if (accion.equals("1")) {
-                for (Tecnico tecnico : horaInicioRan) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el tecnico que desea editar: \n");
-                    eleccion = input.nextInt();
-                    tec = horaInicioRan.get(eleccion - 1);
-
-                    input.nextLine();
-                    System.out.println("\nCedula: " + tecnico.cedula);
-                    String nuevoCedula = input.nextLine();
-
-                    System.out.println("Area : " + tecnico.area);
-                    String nuevoArea = input.nextLine();
-
-                    System.out.println("Hora Inicio: " + tecnico.horaInicio);
-                    String nuevoHoraInicio = input.nextLine();
-
-                    System.out.println("Hora Salida: " + tecnico.horaSalida);
-                    String nuevoHoraSalida = input.nextLine();
-
-                    while (true) {
-                        System.out.print("Desea guardar?:[Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    if (nuevoCedula.isEmpty()) {
-                                    } else tecnico.cedula = Integer.parseInt(nuevoCedula);
-                                    if (nuevoArea.isEmpty()) {
-                                    } else tecnico.area = nuevoArea;
-                                    if (nuevoHoraInicio.isEmpty()) {
-                                    } else tecnico.horaInicio = nuevoHoraInicio;
-                                    if (nuevoHoraSalida.isEmpty()) {
-                                    } else tecnico.horaSalida = nuevoHoraSalida;
-                                case "N":
-                                    break;
-                            }
-
-                            return;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
-                    }
-
-                }
-                return;
-
-            }
-
-//Codigo eliminar
-            else if(accion.equals("2")){
-                for (Tecnico tecnico : horaInicioRan) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el tecnico que desea eliminar: \n");
-                    eleccion = input.nextInt();
-                    tec = horaInicioRan.get(eleccion - 1);
-
-                    while (true) {
-                        System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    break;
-                                case "N":
-                                    return;
-                            }
-                            break;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
-                    }
-
-
-                    for (Habitat habitat : habitats) {
-                        Tecnico finaltec = tec;
-                        habitat.tecnicos.removeIf(tecnico1 -> tecnico1.cedula == finaltec.cedula);
-
-                    }
-
-                    tecnicos.remove(tec);
-
-                    System.out.println("El tecnico se ha eliminado correctamente");
-                    return;
-                }
-
-            }
-            else return;
+            } else return;
         }
     }
     public static void horaSalidaTecnico(int opcionValor, String horaSalidaBusMin, String horaInicioBusMax) {
-        Tecnico tec = null;
-        int i=0;
-        ArrayList<Tecnico> horaSalidaEx = new ArrayList<>();
-        ArrayList<Tecnico> horaSalidaMax = new ArrayList<>();
-        ArrayList<Tecnico> horaSalidaMin = new ArrayList<>();
-        ArrayList<Tecnico> horaSalidaRan = new ArrayList<>();
+        Tecnico tec;
+        int i = 0;
+        ArrayList<Tecnico> horaSalidaGen = new ArrayList<>();
         if (opcionValor == 1) {
             for (Tecnico tecnico : tecnicos) {
                 int horaSalida = Integer.parseInt(tecnico.horaSalida.replace(":", ""));
-                int horaSalidaB = Integer.parseInt(horaSalidaBusMin.replace(".", ""));
+                int horaSalidaB = Integer.parseInt(horaSalidaBusMin.replace(":", ""));
                 if (horaSalidaB == horaSalida) {
-                    horaSalidaEx.add(tecnico);
+                    horaSalidaGen.add(tecnico);
                 }
             }
-        }
-        else if (opcionValor == 2) {
+        } else if (opcionValor == 2) {
             for (Tecnico tecnico : tecnicos) {
                 int horaSalida = Integer.parseInt(tecnico.horaSalida.replace(":", ""));
-                int horaSalidaB = Integer.parseInt(horaSalidaBusMin.replace(".", ""));
+                int horaSalidaB = Integer.parseInt(horaSalidaBusMin.replace(":", ""));
                 if (horaSalidaB >= horaSalida) {
-                    horaSalidaMax.add(tecnico);
+                    horaSalidaGen.add(tecnico);
                 }
             }
-        }
-        else if (opcionValor == 3) {
+        } else if (opcionValor == 3) {
             for (Tecnico tecnico : tecnicos) {
                 int horaSalida = Integer.parseInt(tecnico.horaSalida.replace(":", ""));
-                int horaSalidaB = Integer.parseInt(horaSalidaBusMin.replace(".", ""));
+                int horaSalidaB = Integer.parseInt(horaSalidaBusMin.replace(":", ""));
                 if (horaSalidaB <= horaSalida) {
-                    horaSalidaMin.add(tecnico);
+                    horaSalidaGen.add(tecnico);
                 }
             }
-        }
-        else {
+        } else {
             for (Tecnico tecnico : tecnicos) {
                 int horaSalida = Integer.parseInt(tecnico.horaSalida.replace(":", ""));
-                int horaSalidaBMin = Integer.parseInt(horaSalidaBusMin.replace(".", ""));
-                int horaSalidaBMax = Integer.parseInt(horaInicioBusMax.replace(".", ""));
+                int horaSalidaBMin = Integer.parseInt(horaSalidaBusMin.replace(":", ""));
+                int horaSalidaBMax = Integer.parseInt(horaInicioBusMax.replace(":", ""));
                 if (horaSalidaBMin <= horaSalida && horaSalidaBMax <= horaSalida) {
-                    horaSalidaRan.add(tecnico);
+                    horaSalidaGen.add(tecnico);
                 }
             }
         }
@@ -9996,736 +8088,207 @@ public class SistemaZoologico {
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
-        if (option.equals("1")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                if (opcionValor == 1) {
+        switch (option) {
+            case "1":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
                     System.out.println("Ascendente");
-                    Collections.sort(horaSalidaEx, (comparadoresTecnico[0]));
-                    for (Tecnico tecnico : horaSalidaEx) {
+                    horaSalidaGen.sort((comparadoresTecnico[0]));
+                    for (Tecnico tecnico : horaSalidaGen) {
                         i++;
                         System.out.println(i + ". " + tecnico);
                     }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaSalidaMax, (comparadoresTecnico[0]));
-                    for (Tecnico tecnico : horaSalidaMax) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaSalidaMin, (comparadoresTecnico[0]));
-                    for (Tecnico tecnico : horaSalidaMin) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaSalidaRan, (comparadoresTecnico[0]));
-                    for (Tecnico tecnico : horaSalidaRan) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-            }
-            else if (option2.equals("2")) {
-                if (opcionValor == 1) {
+                } else if (option2.equals("2")) {
                     System.out.println("Descendente");
-                    Collections.sort(horaSalidaEx, Collections.reverseOrder(comparadoresTecnico[0]));
-                    for (Tecnico tecnico : horaSalidaEx) {
+                    horaSalidaGen.sort(Collections.reverseOrder(comparadoresTecnico[0]));
+                    for (Tecnico tecnico : horaSalidaGen) {
                         i++;
-                        System.out.println(i+". "+tecnico);
+                        System.out.println(i + ". " + tecnico);
                     }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaSalidaMax, Collections.reverseOrder(comparadoresTecnico[0]));
-                    for (Tecnico tecnico : horaSalidaMax) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaSalidaMin, Collections.reverseOrder(comparadoresTecnico[0]));
-                    for (Tecnico tecnico : horaSalidaMin) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else {
-                    System.out.println("Descendente");
-                    Collections.sort(horaSalidaRan, Collections.reverseOrder(comparadoresTecnico[0]));
-                    for (Tecnico tecnico : horaSalidaRan) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-            }else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else if (option.equals("2")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                if (opcionValor == 1) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaSalidaEx, (comparadoresTecnico[1]));
-                    for (Tecnico tecnico : horaSalidaEx) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaSalidaMax, (comparadoresTecnico[1]));
-                    for (Tecnico tecnico : horaSalidaMax) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaSalidaMin, (comparadoresTecnico[1]));
-                    for (Tecnico tecnico : horaSalidaMin) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaSalidaRan, (comparadoresTecnico[1]));
-                    for (Tecnico tecnico : horaSalidaRan) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-            }
-            else if (option2.equals("2")) {
-                if (opcionValor == 1) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaSalidaEx, Collections.reverseOrder(comparadoresTecnico[1]));
-                    for (Tecnico tecnico : horaSalidaEx) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaSalidaMax, Collections.reverseOrder(comparadoresTecnico[1]));
-                    for (Tecnico tecnico : horaSalidaMax) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaSalidaMin, Collections.reverseOrder(comparadoresTecnico[1]));
-                    for (Tecnico tecnico : horaSalidaMin) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else {
-                    System.out.println("Descendente");
-                    Collections.sort(horaSalidaRan, Collections.reverseOrder(comparadoresTecnico[1]));
-                    for (Tecnico tecnico : horaSalidaRan) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-            }else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else if (option.equals("3")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                if (opcionValor == 1) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaSalidaEx, (comparadoresTecnico[2]));
-                    for (Tecnico tecnico : horaSalidaEx) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaSalidaMax, (comparadoresTecnico[2]));
-                    for (Tecnico tecnico : horaSalidaMax) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaSalidaMin, (comparadoresTecnico[2]));
-                    for (Tecnico tecnico : horaSalidaMin) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaSalidaRan, (comparadoresTecnico[2]));
-                    for (Tecnico tecnico : horaSalidaRan) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-            }
-            else if (option2.equals("2")) {
-                if (opcionValor == 1) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaSalidaEx, Collections.reverseOrder(comparadoresTecnico[2]));
-                    for (Tecnico tecnico : horaSalidaEx) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaSalidaMax, Collections.reverseOrder(comparadoresTecnico[2]));
-                    for (Tecnico tecnico : horaSalidaMax) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaSalidaMin, Collections.reverseOrder(comparadoresTecnico[2]));
-                    for (Tecnico tecnico : horaSalidaMin) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else {
-                    System.out.println("Descendente");
-                    Collections.sort(horaSalidaRan, Collections.reverseOrder(comparadoresTecnico[2]));
-                    for (Tecnico tecnico : horaSalidaRan) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-            }else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else if (option.equals("4")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                if (opcionValor == 1) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaSalidaEx, (comparadoresTecnico[3]));
-                    for (Tecnico tecnico : horaSalidaEx) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaSalidaMax, (comparadoresTecnico[3]));
-                    for (Tecnico tecnico : horaSalidaMax) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaSalidaMin, (comparadoresTecnico[3]));
-                    for (Tecnico tecnico : horaSalidaMin) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaSalidaRan, (comparadoresTecnico[3]));
-                    for (Tecnico tecnico : horaSalidaRan) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-            }
-            else if (option2.equals("2")) {
-                if (opcionValor == 1) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaSalidaEx, Collections.reverseOrder(comparadoresTecnico[3]));
-                    for (Tecnico tecnico : horaSalidaEx) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaSalidaMax, Collections.reverseOrder(comparadoresTecnico[3]));
-                    for (Tecnico tecnico : horaSalidaMax) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaSalidaMin, Collections.reverseOrder(comparadoresTecnico[3]));
-                    for (Tecnico tecnico : horaSalidaMin) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-                else {
-                    System.out.println("Descendente");
-                    Collections.sort(horaSalidaRan, Collections.reverseOrder(comparadoresTecnico[3]));
-                    for (Tecnico tecnico : horaSalidaRan) {
-                        i++;
-                        System.out.println(i+". "+tecnico);
-                    }
-                }
-            }else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else {
-            return;
-        }if(opcionValor==1){
-            //Menu editar - eliminar
-            String accion;
-            System.out.println("-----------------------------------------");
-            System.out.println("\nIndique la accion que desea realizar:\n");
-            System.out.println("1. Editar ");
-            System.out.println("2. Eliminar ");
-            System.out.println("0. Regresar al menú anterior" + "\n");
-            accion = input.next();
-            System.out.println("----------------------------------");
-
-//Codigo editar
-            if (accion.equals("1")) {
-                for (Tecnico tecnico : horaSalidaEx) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el tecnico que desea editar: \n");
-                    eleccion = input.nextInt();
-                    tec = horaSalidaEx.get(eleccion - 1);
-
-                    input.nextLine();
-                    System.out.println("\nCedula: " + tecnico.cedula);
-                    String nuevoCedula = input.nextLine();
-
-                    System.out.println("Area : " + tecnico.area);
-                    String nuevoArea = input.nextLine();
-
-                    System.out.println("Hora Inicio: " + tecnico.horaInicio);
-                    String nuevoHoraInicio = input.nextLine();
-
-                    System.out.println("Hora Salida: " + tecnico.horaSalida);
-                    String nuevoHoraSalida = input.nextLine();
-
-                    while (true) {
-                        System.out.print("Desea guardar?:[Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    if (nuevoCedula.isEmpty()) {
-                                    } else tecnico.cedula = Integer.parseInt(nuevoCedula);
-                                    if (nuevoArea.isEmpty()) {
-                                    } else tecnico.area = nuevoArea;
-                                    if (nuevoHoraInicio.isEmpty()) {
-                                    } else tecnico.horaInicio = nuevoHoraInicio;
-                                    if (nuevoHoraSalida.isEmpty()) {
-                                    } else tecnico.horaSalida = nuevoHoraSalida;
-                                case "N":
-                                    break;
-                            }
-
-                            return;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
-                    }
-
-                }
-                return;
-
-            }
-
-//Codigo eliminar
-            else if(accion.equals("2")){
-                for (Tecnico tecnico : horaSalidaEx) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el tecnico que desea eliminar: \n");
-                    eleccion = input.nextInt();
-                    tec = horaSalidaEx.get(eleccion - 1);
-
-                    while (true) {
-                        System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    break;
-                                case "N":
-                                    return;
-                            }
-                            break;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
-                    }
-
-
-                    for (Habitat habitat : habitats) {
-                        Tecnico finaltec = tec;
-                        habitat.tecnicos.removeIf(tecnico1 -> tecnico1.cedula == finaltec.cedula);
-
-                    }
-
-                    tecnicos.remove(tec);
-
-                    System.out.println("El tecnico se ha eliminado correctamente");
+                } else {
+                    System.out.println("Opcion incorrecta");
                     return;
                 }
-
-            }
-            else return;
-        }else if(opcionValor==2){
-            //Menu editar - eliminar
-            String accion;
-            System.out.println("-----------------------------------------");
-            System.out.println("\nIndique la accion que desea realizar:\n");
-            System.out.println("1. Editar ");
-            System.out.println("2. Eliminar ");
-            System.out.println("0. Regresar al menú anterior" + "\n");
-            accion = input.next();
-            System.out.println("----------------------------------");
-
-//Codigo editar
-            if (accion.equals("1")) {
-                for (Tecnico tecnico : horaSalidaEx) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el tecnico que desea editar: \n");
-                    eleccion = input.nextInt();
-                    tec = horaSalidaEx.get(eleccion - 1);
-
-                    input.nextLine();
-                    System.out.println("\nCedula: " + tecnico.cedula);
-                    String nuevoCedula = input.nextLine();
-
-                    System.out.println("Area : " + tecnico.area);
-                    String nuevoArea = input.nextLine();
-
-                    System.out.println("Hora Inicio: " + tecnico.horaInicio);
-                    String nuevoHoraInicio = input.nextLine();
-
-                    System.out.println("Hora Salida: " + tecnico.horaSalida);
-                    String nuevoHoraSalida = input.nextLine();
-
-                    while (true) {
-                        System.out.print("Desea guardar?:[Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    if (nuevoCedula.isEmpty()) {
-                                    } else tecnico.cedula = Integer.parseInt(nuevoCedula);
-                                    if (nuevoArea.isEmpty()) {
-                                    } else tecnico.area = nuevoArea;
-                                    if (nuevoHoraInicio.isEmpty()) {
-                                    } else tecnico.horaInicio = nuevoHoraInicio;
-                                    if (nuevoHoraSalida.isEmpty()) {
-                                    } else tecnico.horaSalida = nuevoHoraSalida;
-                                case "N":
-                                    break;
-                            }
-
-                            return;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
+                break;
+            case "2":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    horaSalidaGen.sort((comparadoresTecnico[1]));
+                    for (Tecnico tecnico : horaSalidaGen) {
+                        i++;
+                        System.out.println(i + ". " + tecnico);
                     }
-
-                }
-                return;
-
-            }
-
-//Codigo eliminar
-            else if(accion.equals("2")){
-                for (Tecnico tecnico : horaSalidaEx) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el tecnico que desea eliminar: \n");
-                    eleccion = input.nextInt();
-                    tec = horaSalidaEx.get(eleccion - 1);
-
-                    while (true) {
-                        System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    break;
-                                case "N":
-                                    return;
-                            }
-                            break;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    horaSalidaGen.sort(Collections.reverseOrder(comparadoresTecnico[1]));
+                    for (Tecnico tecnico : horaSalidaGen) {
+                        i++;
+                        System.out.println(i + ". " + tecnico);
                     }
-
-
-                    for (Habitat habitat : habitats) {
-                        Tecnico finaltec = tec;
-                        habitat.tecnicos.removeIf(tecnico1 -> tecnico1.cedula == finaltec.cedula);
-
-                    }
-
-                    tecnicos.remove(tec);
-
-                    System.out.println("El tecnico se ha eliminado correctamente");
+                } else {
+                    System.out.println("Opcion incorrecta");
                     return;
                 }
-
-            }
-            else return;
-        }else if(opcionValor==3){
-            //Menu editar - eliminar
-            String accion;
-            System.out.println("-----------------------------------------");
-            System.out.println("\nIndique la accion que desea realizar:\n");
-            System.out.println("1. Editar ");
-            System.out.println("2. Eliminar ");
-            System.out.println("0. Regresar al menú anterior" + "\n");
-            accion = input.next();
-            System.out.println("----------------------------------");
-
-//Codigo editar
-            if (accion.equals("1")) {
-                for (Tecnico tecnico : horaSalidaEx) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el tecnico que desea editar: \n");
-                    eleccion = input.nextInt();
-                    tec = horaSalidaEx.get(eleccion - 1);
-
-                    input.nextLine();
-                    System.out.println("\nCedula: " + tecnico.cedula);
-                    String nuevoCedula = input.nextLine();
-
-                    System.out.println("Area : " + tecnico.area);
-                    String nuevoArea = input.nextLine();
-
-                    System.out.println("Hora Inicio: " + tecnico.horaInicio);
-                    String nuevoHoraInicio = input.nextLine();
-
-                    System.out.println("Hora Salida: " + tecnico.horaSalida);
-                    String nuevoHoraSalida = input.nextLine();
-
-                    while (true) {
-                        System.out.print("Desea guardar?:[Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    if (nuevoCedula.isEmpty()) {
-                                    } else tecnico.cedula = Integer.parseInt(nuevoCedula);
-                                    if (nuevoArea.isEmpty()) {
-                                    } else tecnico.area = nuevoArea;
-                                    if (nuevoHoraInicio.isEmpty()) {
-                                    } else tecnico.horaInicio = nuevoHoraInicio;
-                                    if (nuevoHoraSalida.isEmpty()) {
-                                    } else tecnico.horaSalida = nuevoHoraSalida;
-                                case "N":
-                                    break;
-                            }
-
-                            return;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
+                break;
+            case "3":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    horaSalidaGen.sort((comparadoresTecnico[2]));
+                    for (Tecnico tecnico : horaSalidaGen) {
+                        i++;
+                        System.out.println(i + ". " + tecnico);
                     }
-
-                }
-                return;
-
-            }
-
-//Codigo eliminar
-            else if(accion.equals("2")){
-                for (Tecnico tecnico : horaSalidaEx) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el tecnico que desea eliminar: \n");
-                    eleccion = input.nextInt();
-                    tec = horaSalidaEx.get(eleccion - 1);
-
-                    while (true) {
-                        System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    break;
-                                case "N":
-                                    return;
-                            }
-                            break;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    horaSalidaGen.sort(Collections.reverseOrder(comparadoresTecnico[2]));
+                    for (Tecnico tecnico : horaSalidaGen) {
+                        i++;
+                        System.out.println(i + ". " + tecnico);
                     }
-
-
-                    for (Habitat habitat : habitats) {
-                        Tecnico finaltec = tec;
-                        habitat.tecnicos.removeIf(tecnico1 -> tecnico1.cedula == finaltec.cedula);
-
-                    }
-
-                    tecnicos.remove(tec);
-
-                    System.out.println("El tecnico se ha eliminado correctamente");
+                } else {
+                    System.out.println("Opcion incorrecta");
                     return;
                 }
-
-            }
-            else return;
-        }else{
-            //Menu editar - eliminar
-            String accion;
-            System.out.println("-----------------------------------------");
-            System.out.println("\nIndique la accion que desea realizar:\n");
-            System.out.println("1. Editar ");
-            System.out.println("2. Eliminar ");
-            System.out.println("0. Regresar al menú anterior" + "\n");
-            accion = input.next();
-            System.out.println("----------------------------------");
-
-//Codigo editar
-            if (accion.equals("1")) {
-                for (Tecnico tecnico : horaSalidaEx) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el tecnico que desea editar: \n");
-                    eleccion = input.nextInt();
-                    tec = horaSalidaEx.get(eleccion - 1);
-
-                    input.nextLine();
-                    System.out.println("\nCedula: " + tecnico.cedula);
-                    String nuevoCedula = input.nextLine();
-
-                    System.out.println("Area : " + tecnico.area);
-                    String nuevoArea = input.nextLine();
-
-                    System.out.println("Hora Inicio: " + tecnico.horaInicio);
-                    String nuevoHoraInicio = input.nextLine();
-
-                    System.out.println("Hora Salida: " + tecnico.horaSalida);
-                    String nuevoHoraSalida = input.nextLine();
-
-                    while (true) {
-                        System.out.print("Desea guardar?:[Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    if (nuevoCedula.isEmpty()) {
-                                    } else tecnico.cedula = Integer.parseInt(nuevoCedula);
-                                    if (nuevoArea.isEmpty()) {
-                                    } else tecnico.area = nuevoArea;
-                                    if (nuevoHoraInicio.isEmpty()) {
-                                    } else tecnico.horaInicio = nuevoHoraInicio;
-                                    if (nuevoHoraSalida.isEmpty()) {
-                                    } else tecnico.horaSalida = nuevoHoraSalida;
-                                case "N":
-                                    break;
-                            }
-
-                            return;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
+                break;
+            case "4":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    horaSalidaGen.sort((comparadoresTecnico[3]));
+                    for (Tecnico tecnico : horaSalidaGen) {
+                        i++;
+                        System.out.println(i + ". " + tecnico);
                     }
-
-                }
-                return;
-
-            }
-
-//Codigo eliminar
-            else if(accion.equals("2")){
-                for (Tecnico tecnico : horaSalidaEx) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el tecnico que desea eliminar: \n");
-                    eleccion = input.nextInt();
-                    tec = horaSalidaEx.get(eleccion - 1);
-
-                    while (true) {
-                        System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    break;
-                                case "N":
-                                    return;
-                            }
-                            break;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    horaSalidaGen.sort(Collections.reverseOrder(comparadoresTecnico[3]));
+                    for (Tecnico tecnico : horaSalidaGen) {
+                        i++;
+                        System.out.println(i + ". " + tecnico);
                     }
-
-
-                    for (Habitat habitat : habitats) {
-                        Tecnico finaltec = tec;
-                        habitat.tecnicos.removeIf(tecnico1 -> tecnico1.cedula == finaltec.cedula);
-
-                    }
-
-                    tecnicos.remove(tec);
-
-                    System.out.println("El tecnico se ha eliminado correctamente");
+                } else {
+                    System.out.println("Opcion incorrecta");
                     return;
                 }
+                break;
+            default:
+                return;
+        }//Menu editar - eliminar
+        String accion;
+        System.out.println("-----------------------------------------");
+        System.out.println("\nIndique la accion que desea realizar:\n");
+        System.out.println("1. Editar ");
+        System.out.println("2. Eliminar ");
+        System.out.println("0. Regresar al menú anterior" + "\n");
+        accion = input.next();
+        System.out.println("----------------------------------");
 
-            }
-            else return;
+        for (Tecnico tecnico : horaSalidaGen) {
+            //Codigo editar
+            if (accion.equals("1")) {
+                int eleccion;
+                System.out.println("------------------------------------------");
+                System.out.println("Escoja el tecnico que desea editar: \n");
+                eleccion = input.nextInt();
+                tec = horaSalidaGen.get(eleccion - 1);
+
+                input.nextLine();
+                System.out.println("\nCedula: " + tec.cedula);
+                String nuevoCedula = input.nextLine();
+                int nuevoCedulaInt= Integer.parseInt(nuevoCedula);
+                if(nuevoCedulaInt==tecnico.cedula){
+                    System.out.println("ERROR: La cedula ya se encuentra registrada");
+                }
+
+                System.out.println("Area : " + tec.area);
+                String nuevoArea = input.nextLine();
+
+                System.out.println("Hora Inicio: " + tec.horaInicio);
+                String nuevoHoraInicio = input.nextLine();
+
+                System.out.println("Hora Salida: " + tec.horaSalida);
+                String nuevoHoraSalida = input.nextLine();
+
+                while (true) {
+                    System.out.print("Desea guardar?:[Y/N] ");
+                    String optionE = input.next();
+                    if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                        switch (optionE.toUpperCase()) {
+                            case "Y":
+                                if (nuevoCedula.isEmpty()) {
+                                } else tec.cedula = Integer.parseInt(nuevoCedula);
+                                if (nuevoArea.isEmpty()) {
+                                } else tec.area = nuevoArea;
+                                if (nuevoHoraInicio.isEmpty()) {
+                                } else tec.horaInicio = nuevoHoraInicio;
+                                if (nuevoHoraSalida.isEmpty()) {
+                                } else tec.horaSalida = nuevoHoraSalida;
+                            case "N":
+                                break;
+                        }
+                        return;
+                    } else {
+                        System.out.println("Opcion invalida\n");
+                    }
+                }
+            }//Codigo eliminar
+            else if (accion.equals("2")) {
+                int eleccion;
+                System.out.println("------------------------------------------");
+                System.out.println("Escoja el tecnico que desea eliminar: \n");
+                eleccion = input.nextInt();
+                tec = horaSalidaGen.get(eleccion - 1);
+
+                while (true) {
+                    System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+                    String optionE = input.next();
+                    if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                        switch (optionE.toUpperCase()) {
+                            case "Y":
+                                break;
+                            case "N":
+                                return;
+                        }
+                        break;
+                    } else {
+                        System.out.println("Opcion invalida\n");
+                    }
+                }
+                for (Habitat habitat : habitats) {
+                    habitat.tecnicos.removeIf(tecnico1 -> tecnico1.cedula == tec.cedula);
+                }
+
+                tecnicos.remove(tec);
+
+                System.out.println("El tecnico se ha eliminado correctamente");
+                return;
+            } else return;
         }
     }
     public static void mostrarTodosTecnicos() {
-        Tecnico tec = null;
+        Tecnico tec;
         int i =0;
         ArrayList<Tecnico> copiaTec = new ArrayList<>(tecnicos);
         String option;
@@ -10739,115 +8302,107 @@ public class SistemaZoologico {
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
-        if (option.equals("1")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(copiaTec, (comparadoresTecnico[0]));
-                for (Tecnico tecnico : copiaTec) {
-                    i++;
-                    System.out.println(i+". "+tecnico);
+        switch (option) {
+            case "1":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    copiaTec.sort((comparadoresTecnico[0]));
+                    for (Tecnico tecnico : copiaTec) {
+                        i++;
+                        System.out.println(i + ". " + tecnico);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    copiaTec.sort(Collections.reverseOrder(comparadoresTecnico[0]));
+                    for (Tecnico tecnico : copiaTec) {
+                        i++;
+                        System.out.println(i + ". " + tecnico);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(copiaTec, Collections.reverseOrder(comparadoresTecnico[0]));
-                for (Tecnico tecnico : copiaTec) {
-                    i++;
-                    System.out.println(i+". "+tecnico);
-                }
-            }
-            else {
-                System.out.println("Opcion incorrecta");
+                break;
+            case "2":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    copiaTec.sort((comparadoresTecnico[1]));
+                    for (Tecnico tecnico : copiaTec) {
+                        i++;
+                        System.out.println(i + ". " + tecnico);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    copiaTec.sort(Collections.reverseOrder(comparadoresTecnico[1]));
+                    for (Tecnico tecnico : copiaTec) {
+                        i++;
+                        System.out.println(i + ". " + tecnico);
+                    }
+                } else System.out.println("Opcion incorrecta");
                 return;
-            }
-        }
-        else if (option.equals("2")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(copiaTec, (comparadoresTecnico[1]));
-                for (Tecnico tecnico : copiaTec) {
-                    i++;
-                    System.out.println(i+". "+tecnico);
-                }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(copiaTec, Collections.reverseOrder(comparadoresTecnico[1]));
-                for (Tecnico tecnico : copiaTec) {
-                    i++;
-                    System.out.println(i+". "+tecnico);
-                }
-            }
-            else System.out.println("Opcion incorrecta");
-            return;
 
-        }
-        else if (option.equals("3")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(copiaTec, (comparadoresTecnico[2]));
-                for (Tecnico tecnico : copiaTec) {
-                    i++;
-                    System.out.println(i+". "+tecnico);
-                }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(copiaTec, Collections.reverseOrder(comparadoresTecnico[2]));
-                for (Tecnico tecnico : copiaTec) {
-                    i++;
-                    System.out.println(i+". "+tecnico);
-                }
-            }
-            else System.out.println("Opcion incorrecta");
-            return;
-        }
-        else if (option.equals("4")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(copiaTec, (comparadoresTecnico[3]));
-                for (Tecnico tecnico : copiaTec) {
-                    i++;
-                    System.out.println(i+". "+tecnico);
-                }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(copiaTec, Collections.reverseOrder(comparadoresTecnico[3]));
-                for (Tecnico tecnico : copiaTec) {
-                    i++;
-                    System.out.println(i+". "+tecnico);
-                }
-            }
-            else System.out.println("Opcion incorrecta");
-            return;
+            case "3":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    copiaTec.sort((comparadoresTecnico[2]));
+                    for (Tecnico tecnico : copiaTec) {
+                        i++;
+                        System.out.println(i + ". " + tecnico);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    copiaTec.sort(Collections.reverseOrder(comparadoresTecnico[2]));
+                    for (Tecnico tecnico : copiaTec) {
+                        i++;
+                        System.out.println(i + ". " + tecnico);
+                    }
+                } else System.out.println("Opcion incorrecta");
+                return;
+            case "4":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    copiaTec.sort((comparadoresTecnico[3]));
+                    for (Tecnico tecnico : copiaTec) {
+                        i++;
+                        System.out.println(i + ". " + tecnico);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    copiaTec.sort(Collections.reverseOrder(comparadoresTecnico[3]));
+                    for (Tecnico tecnico : copiaTec) {
+                        i++;
+                        System.out.println(i + ". " + tecnico);
+                    }
+                } else System.out.println("Opcion incorrecta");
+                return;
 
+            default:
+                return;
         }
-        else return;
         //Menu editar - eliminar
         String accion;
         System.out.println("-----------------------------------------");
@@ -10859,8 +8414,8 @@ public class SistemaZoologico {
         System.out.println("----------------------------------");
 
 //Codigo editar
-        if (accion.equals("1")) {
-            for (Tecnico tecnico : copiaTec) {
+        for (Tecnico tecnico : copiaTec) {
+            if (accion.equals("1")) {
                 int eleccion;
                 System.out.println("------------------------------------------");
                 System.out.println("Escoja el tecnico que desea editar: \n");
@@ -10868,16 +8423,20 @@ public class SistemaZoologico {
                 tec = copiaTec.get(eleccion - 1);
 
                 input.nextLine();
-                System.out.println("\nCedula: " + tecnico.cedula);
+                System.out.println("\nCedula: " + tec.cedula);
                 String nuevoCedula = input.nextLine();
+                int nuevoCedulaInt= Integer.parseInt(nuevoCedula);
+                if(nuevoCedulaInt==tecnico.cedula){
+                    System.out.println("ERROR: La cedula ya se encuentra registrada");
+                }
 
-                System.out.println("Area : " + tecnico.area);
+                System.out.println("Area : " + tec.area);
                 String nuevoArea = input.nextLine();
 
-                System.out.println("Hora Inicio: " + tecnico.horaInicio);
+                System.out.println("Hora Inicio: " + tec.horaInicio);
                 String nuevoHoraInicio = input.nextLine();
 
-                System.out.println("Hora Salida: " + tecnico.horaSalida);
+                System.out.println("Hora Salida: " + tec.horaSalida);
                 String nuevoHoraSalida = input.nextLine();
 
                 while (true) {
@@ -10887,31 +8446,23 @@ public class SistemaZoologico {
                         switch (optionE.toUpperCase()) {
                             case "Y":
                                 if (nuevoCedula.isEmpty()) {
-                                } else tecnico.cedula = Integer.parseInt(nuevoCedula);
+                                } else tec.cedula = Integer.parseInt(nuevoCedula);
                                 if (nuevoArea.isEmpty()) {
-                                } else tecnico.area = nuevoArea;
+                                } else tec.area = nuevoArea;
                                 if (nuevoHoraInicio.isEmpty()) {
-                                } else tecnico.horaInicio = nuevoHoraInicio;
+                                } else tec.horaInicio = nuevoHoraInicio;
                                 if (nuevoHoraSalida.isEmpty()) {
-                                } else tecnico.horaSalida = nuevoHoraSalida;
+                                } else tec.horaSalida = nuevoHoraSalida;
                             case "N":
                                 break;
                         }
-
                         return;
                     } else {
                         System.out.println("Opcion invalida\n");
                     }
                 }
-
-            }
-            return;
-
-        }
-
-//Codigo eliminar
-        else if(accion.equals("2")){
-            for (Tecnico tecnico : copiaTec) {
+            }//Codigo eliminar
+            else if (accion.equals("2")) {
                 int eleccion;
                 System.out.println("------------------------------------------");
                 System.out.println("Escoja el tecnico que desea eliminar: \n");
@@ -10933,23 +8484,16 @@ public class SistemaZoologico {
                         System.out.println("Opcion invalida\n");
                     }
                 }
-
-
                 for (Habitat habitat : habitats) {
-                    Tecnico finaltec = tec;
-                    habitat.tecnicos.removeIf(tecnico1 -> tecnico1.cedula == finaltec.cedula);
-
+                    habitat.tecnicos.removeIf(tecnico1 -> tecnico1.cedula == tec.cedula);
                 }
 
                 tecnicos.remove(tec);
 
                 System.out.println("El tecnico se ha eliminado correctamente");
                 return;
-            }
-
+            } else return;
         }
-        else return;
-        return;
     }
 
     public static void busquedaProfesional() {
@@ -11019,13 +8563,13 @@ public class SistemaZoologico {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String areaBus = input.next();
-                        areaProfesional(1, areaBus);
+                        areaProfesional(areaBus);
                         break;
                     } else {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String areaBus = input.next();
-                        areaProfesional(2, areaBus);
+                        areaProfesional(areaBus);
                         break;
                     }
                     break;
@@ -11116,37 +8660,34 @@ public class SistemaZoologico {
         }
     }
     public static void cedulaProfesional(int opcionValor, int cedulaBusMin, int cedulaBusMax) {
-        Profesional pro = null;
+        Profesional pro;
         int i=0;
-        ArrayList<Profesional> cedulaEx = new ArrayList<>();
-        ArrayList<Profesional> cedulaMax = new ArrayList<>();
-        ArrayList<Profesional> cedulaMin = new ArrayList<>();
-        ArrayList<Profesional> cedulaRan = new ArrayList<>();
+        ArrayList<Profesional> cedulaProfesionalGen = new ArrayList<>();
         if (opcionValor == 1) {
             for (Profesional profesional : profesionales) {
                 if (cedulaBusMin == profesional.cedula) {
-                    cedulaEx.add(profesional);
+                    cedulaProfesionalGen.add(profesional);
                 }
             }
         }
         else if (opcionValor == 2) {
             for (Profesional profesional : profesionales) {
                 if (cedulaBusMin >= profesional.cedula) {
-                    cedulaMax.add(profesional);
+                    cedulaProfesionalGen.add(profesional);
                 }
             }
         }
         else if (opcionValor == 3) {
             for (Profesional profesional : profesionales) {
                 if (cedulaBusMin <= profesional.cedula) {
-                    cedulaMin.add(profesional);
+                    cedulaProfesionalGen.add(profesional);
                 }
             }
         }
         else {
             for (Profesional profesional : profesionales) {
                 if (cedulaBusMin <= profesional.cedula && profesional.cedula <= cedulaBusMax) {
-                    cedulaRan.add(profesional);
+                    cedulaProfesionalGen.add(profesional);
                 }
             }
         }
@@ -11161,743 +8702,212 @@ public class SistemaZoologico {
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
-        if (option.equals("1")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                if (opcionValor == 1) {
+        switch (option) {
+            case "1":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
                     System.out.println("Ascendente");
-                    Collections.sort(cedulaEx, (comparadoresProfesional[0]));
-                    for (Profesional profesional : cedulaEx) {
+                    cedulaProfesionalGen.sort((comparadoresProfesional[0]));
+                    for (Profesional profesional : cedulaProfesionalGen) {
                         i++;
-                        System.out.println(i+". "+profesional);
+                        System.out.println(i + ". " + profesional);
                     }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaMax, (comparadoresProfesional[0]));
-                    for (Profesional profesional : cedulaMax) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaMin, (comparadoresProfesional[0]));
-                    for (Profesional profesional : cedulaMin) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaRan, (comparadoresProfesional[0]));
-                    for (Profesional profesional : cedulaRan) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-            }
-            else if (option2.equals("2")) {
-                if (opcionValor == 1) {
+                } else if (option2.equals("2")) {
                     System.out.println("Descendente");
-                    Collections.sort(cedulaEx, Collections.reverseOrder(comparadoresProfesional[0]));
-                    for (Profesional profesional : cedulaEx) {
+                    cedulaProfesionalGen.sort(Collections.reverseOrder(comparadoresProfesional[0]));
+                    for (Profesional profesional : cedulaProfesionalGen) {
                         i++;
-                        System.out.println(i+". "+profesional);
+                        System.out.println(i + ". " + profesional);
                     }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaMax, Collections.reverseOrder(comparadoresProfesional[0]));
-                    for (Profesional profesional : cedulaMax) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaMin, Collections.reverseOrder(comparadoresProfesional[0]));
-                    for (Profesional profesional : cedulaMin) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaRan, Collections.reverseOrder(comparadoresProfesional[0]));
-                    for (Profesional profesional : cedulaRan) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-            }else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else if (option.equals("2")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                if (opcionValor == 1) {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaEx, (comparadoresProfesional[1]));
-                    for (Profesional profesional : cedulaEx) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaMax, (comparadoresProfesional[1]));
-                    for (Profesional profesional : cedulaMax) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaMin, (comparadoresProfesional[1]));
-                    for (Profesional profesional : cedulaMin) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaRan, (comparadoresProfesional[1]));
-                    for (Profesional profesional : cedulaRan) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-            }
-            else if (option2.equals("2")) {
-                if (opcionValor == 1) {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaEx, Collections.reverseOrder(comparadoresProfesional[1]));
-                    for (Profesional profesional : cedulaEx) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaMax, Collections.reverseOrder(comparadoresProfesional[1]));
-                    for (Profesional profesional : cedulaMax) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaMin, Collections.reverseOrder(comparadoresProfesional[1]));
-                    for (Profesional profesional : cedulaMin) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaRan, Collections.reverseOrder(comparadoresProfesional[1]));
-                    for (Profesional profesional : cedulaRan) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-            }else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else if (option.equals("3")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                if (opcionValor == 1) {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaEx, (comparadoresProfesional[2]));
-                    for (Profesional profesional : cedulaEx) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaMax, (comparadoresProfesional[2]));
-                    for (Profesional profesional : cedulaMax) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaMin, (comparadoresProfesional[2]));
-                    for (Profesional profesional : cedulaMin) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaRan, (comparadoresProfesional[2]));
-                    for (Profesional profesional : cedulaRan) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-            }
-            else if (option2.equals("2")) {
-                if (opcionValor == 1) {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaEx, Collections.reverseOrder(comparadoresProfesional[2]));
-                    for (Profesional profesional : cedulaEx) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaMax, Collections.reverseOrder(comparadoresProfesional[2]));
-                    for (Profesional profesional : cedulaMax) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaMin, Collections.reverseOrder(comparadoresProfesional[2]));
-                    for (Profesional profesional : cedulaMin) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaRan, Collections.reverseOrder(comparadoresProfesional[2]));
-                    for (Profesional profesional : cedulaRan) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-            }else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else if (option.equals("4")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                if (opcionValor == 1) {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaEx, (comparadoresProfesional[3]));
-                    for (Profesional profesional : cedulaEx) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaMax, (comparadoresProfesional[3]));
-                    for (Profesional profesional : cedulaMax) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaMin, (comparadoresProfesional[3]));
-                    for (Profesional profesional : cedulaMin) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaRan, (comparadoresProfesional[3]));
-                    for (Profesional profesional : cedulaRan) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-            }
-            else if (option2.equals("2")) {
-                if (opcionValor == 1) {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaEx, Collections.reverseOrder(comparadoresProfesional[3]));
-                    for (Profesional profesional : cedulaEx) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaMax, Collections.reverseOrder(comparadoresProfesional[3]));
-                    for (Profesional profesional : cedulaMax) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaMin, Collections.reverseOrder(comparadoresProfesional[3]));
-                    for (Profesional profesional : cedulaMin) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaRan, Collections.reverseOrder(comparadoresProfesional[3]));
-                    for (Profesional profesional : cedulaRan) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-            }else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else return;
-        if(opcionValor==1){
-            //Menu editar - eliminar
-            String accion;
-            System.out.println("-----------------------------------------");
-            System.out.println("\nIndique la accion que desea realizar:\n");
-            System.out.println("1. Editar ");
-            System.out.println("2. Eliminar ");
-            System.out.println("0. Regresar al menú anterior" + "\n");
-            accion = input.next();
-            System.out.println("----------------------------------");
-
-//Codigo editar
-            if (accion.equals("1")) {
-                for (Profesional profesional : cedulaEx) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el profesional que desea editar: \n");
-                    eleccion = input.nextInt();
-                    pro = cedulaEx.get(eleccion - 1);
-
-                    input.nextLine();
-                    System.out.println("\nCedula: " + pro.cedula);
-                    String nuevoCedula = input.nextLine();
-
-                    System.out.println("Area : " + pro.area);
-                    String nuevoArea = input.nextLine();
-
-                    System.out.println("Hora Inicio: " + pro.horaInicio);
-                    String nuevoHoraInicio = input.nextLine();
-
-                    System.out.println("Hora Salida: " + pro.horaSalida);
-                    String nuevoHoraSalida = input.nextLine();
-
-                    while (true) {
-                        System.out.print("Desea guardar?:[Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    if (nuevoCedula.isEmpty()) {
-                                    } else pro.cedula = Integer.parseInt(nuevoCedula);
-                                    if (nuevoArea.isEmpty()) {
-                                    } else pro.area = nuevoArea;
-                                    if (nuevoHoraInicio.isEmpty()) {
-                                    } else pro.horaInicio = nuevoHoraInicio;
-                                    if (nuevoHoraSalida.isEmpty()) {
-                                    } else pro.horaSalida = nuevoHoraSalida;
-                                case "N":
-                                    break;
-                            }
-
-                            return;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
-                    }
-
-                }
-                return;
-
-            }
-
-//Codigo eliminar
-            else if(accion.equals("2")){
-                for (Profesional profesional : cedulaEx) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el profesional que desea eliminar: \n");
-                    eleccion = input.nextInt();
-                    pro = cedulaEx.get(eleccion - 1);
-
-                    while (true) {
-                        System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    break;
-                                case "N":
-                                    return;
-                            }
-                            break;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
-                    }
-                    for (Zoologico zoologico : zoologicos) {
-                        Profesional finalpro = pro;
-                        zoologico.profesionales.removeIf(profesional1 -> profesional1.cedula == finalpro.cedula);
-                    }
-
-                    for (Bioma bioma : biomas) {
-                        Profesional finalpro = pro;
-                        bioma.profesionales.removeIf(profesional1 -> profesional1.cedula == finalpro.cedula);
-                    }
-
-                    profesionales.remove(pro);
-
-                    System.out.println("El profesional se ha eliminado correctamente");
+                } else {
+                    System.out.println("Opcion incorrecta");
                     return;
                 }
-
-            }
-            else return;
-        }else if(opcionValor==2){
-            //Menu editar - eliminar
-            String accion;
-            System.out.println("-----------------------------------------");
-            System.out.println("\nIndique la accion que desea realizar:\n");
-            System.out.println("1. Editar ");
-            System.out.println("2. Eliminar ");
-            System.out.println("0. Regresar al menú anterior" + "\n");
-            accion = input.next();
-            System.out.println("----------------------------------");
-
-//Codigo editar
-            if (accion.equals("1")) {
-                for (Profesional profesional : cedulaEx) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el profesional que desea editar: \n");
-                    eleccion = input.nextInt();
-                    pro = cedulaEx.get(eleccion - 1);
-
-                    input.nextLine();
-                    System.out.println("\nCedula: " + pro.cedula);
-                    String nuevoCedula = input.nextLine();
-
-                    System.out.println("Area : " + pro.area);
-                    String nuevoArea = input.nextLine();
-
-                    System.out.println("Hora Inicio: " + pro.horaInicio);
-                    String nuevoHoraInicio = input.nextLine();
-
-                    System.out.println("Hora Salida: " + pro.horaSalida);
-                    String nuevoHoraSalida = input.nextLine();
-
-                    while (true) {
-                        System.out.print("Desea guardar?:[Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    if (nuevoCedula.isEmpty()) {
-                                    } else pro.cedula = Integer.parseInt(nuevoCedula);
-                                    if (nuevoArea.isEmpty()) {
-                                    } else pro.area = nuevoArea;
-                                    if (nuevoHoraInicio.isEmpty()) {
-                                    } else pro.horaInicio = nuevoHoraInicio;
-                                    if (nuevoHoraSalida.isEmpty()) {
-                                    } else pro.horaSalida = nuevoHoraSalida;
-                                case "N":
-                                    break;
-                            }
-
-                            return;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
+                break;
+            case "2":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    cedulaProfesionalGen.sort((comparadoresProfesional[1]));
+                    for (Profesional profesional : cedulaProfesionalGen) {
+                        i++;
+                        System.out.println(i + ". " + profesional);
                     }
-
-                }
-                return;
-
-            }
-
-//Codigo eliminar
-            else if(accion.equals("2")){
-                for (Profesional profesional : cedulaEx) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el profesional que desea eliminar: \n");
-                    eleccion = input.nextInt();
-                    pro = cedulaEx.get(eleccion - 1);
-
-                    while (true) {
-                        System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    break;
-                                case "N":
-                                    return;
-                            }
-                            break;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    cedulaProfesionalGen.sort(Collections.reverseOrder(comparadoresProfesional[1]));
+                    for (Profesional profesional : cedulaProfesionalGen) {
+                        i++;
+                        System.out.println(i + ". " + profesional);
                     }
-                    for (Zoologico zoologico : zoologicos) {
-                        Profesional finalpro = pro;
-                        zoologico.profesionales.removeIf(profesional1 -> profesional1.cedula == finalpro.cedula);
-                    }
-
-                    for (Bioma bioma : biomas) {
-                        Profesional finalpro = pro;
-                        bioma.profesionales.removeIf(profesional1 -> profesional1.cedula == finalpro.cedula);
-                    }
-
-                    profesionales.remove(pro);
-
-                    System.out.println("El profesional se ha eliminado correctamente");
+                } else {
+                    System.out.println("Opcion incorrecta");
                     return;
                 }
-
-            }
-            else return;
-        }else if(opcionValor==3){
-            //Menu editar - eliminar
-            String accion;
-            System.out.println("-----------------------------------------");
-            System.out.println("\nIndique la accion que desea realizar:\n");
-            System.out.println("1. Editar ");
-            System.out.println("2. Eliminar ");
-            System.out.println("0. Regresar al menú anterior" + "\n");
-            accion = input.next();
-            System.out.println("----------------------------------");
-
-//Codigo editar
-            if (accion.equals("1")) {
-                for (Profesional profesional : cedulaEx) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el profesional que desea editar: \n");
-                    eleccion = input.nextInt();
-                    pro = cedulaEx.get(eleccion - 1);
-
-                    input.nextLine();
-                    System.out.println("\nCedula: " + pro.cedula);
-                    String nuevoCedula = input.nextLine();
-
-                    System.out.println("Area : " + pro.area);
-                    String nuevoArea = input.nextLine();
-
-                    System.out.println("Hora Inicio: " + pro.horaInicio);
-                    String nuevoHoraInicio = input.nextLine();
-
-                    System.out.println("Hora Salida: " + pro.horaSalida);
-                    String nuevoHoraSalida = input.nextLine();
-
-                    while (true) {
-                        System.out.print("Desea guardar?:[Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    if (nuevoCedula.isEmpty()) {
-                                    } else pro.cedula = Integer.parseInt(nuevoCedula);
-                                    if (nuevoArea.isEmpty()) {
-                                    } else pro.area = nuevoArea;
-                                    if (nuevoHoraInicio.isEmpty()) {
-                                    } else pro.horaInicio = nuevoHoraInicio;
-                                    if (nuevoHoraSalida.isEmpty()) {
-                                    } else pro.horaSalida = nuevoHoraSalida;
-                                case "N":
-                                    break;
-                            }
-
-                            return;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
+                break;
+            case "3":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    cedulaProfesionalGen.sort((comparadoresProfesional[2]));
+                    for (Profesional profesional : cedulaProfesionalGen) {
+                        i++;
+                        System.out.println(i + ". " + profesional);
                     }
-
-                }
-                return;
-
-            }
-
-//Codigo eliminar
-            else if(accion.equals("2")){
-                for (Profesional profesional : cedulaEx) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el profesional que desea eliminar: \n");
-                    eleccion = input.nextInt();
-                    pro = cedulaEx.get(eleccion - 1);
-
-                    while (true) {
-                        System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    break;
-                                case "N":
-                                    return;
-                            }
-                            break;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    cedulaProfesionalGen.sort(Collections.reverseOrder(comparadoresProfesional[2]));
+                    for (Profesional profesional : cedulaProfesionalGen) {
+                        i++;
+                        System.out.println(i + ". " + profesional);
                     }
-                    for (Zoologico zoologico : zoologicos) {
-                        Profesional finalpro = pro;
-                        zoologico.profesionales.removeIf(profesional1 -> profesional1.cedula == finalpro.cedula);
-                    }
-
-                    for (Bioma bioma : biomas) {
-                        Profesional finalpro = pro;
-                        bioma.profesionales.removeIf(profesional1 -> profesional1.cedula == finalpro.cedula);
-                    }
-
-                    profesionales.remove(pro);
-
-                    System.out.println("El profesional se ha eliminado correctamente");
+                } else {
+                    System.out.println("Opcion incorrecta");
                     return;
                 }
-
-            }
-            else return;
-        }else{
-            //Menu editar - eliminar
-            String accion;
-            System.out.println("-----------------------------------------");
-            System.out.println("\nIndique la accion que desea realizar:\n");
-            System.out.println("1. Editar ");
-            System.out.println("2. Eliminar ");
-            System.out.println("0. Regresar al menú anterior" + "\n");
-            accion = input.next();
-            System.out.println("----------------------------------");
-
-//Codigo editar
-            if (accion.equals("1")) {
-                for (Profesional profesional : cedulaEx) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el profesional que desea editar: \n");
-                    eleccion = input.nextInt();
-                    pro = cedulaEx.get(eleccion - 1);
-
-                    input.nextLine();
-                    System.out.println("\nCedula: " + pro.cedula);
-                    String nuevoCedula = input.nextLine();
-
-                    System.out.println("Area : " + pro.area);
-                    String nuevoArea = input.nextLine();
-
-                    System.out.println("Hora Inicio: " + pro.horaInicio);
-                    String nuevoHoraInicio = input.nextLine();
-
-                    System.out.println("Hora Salida: " + pro.horaSalida);
-                    String nuevoHoraSalida = input.nextLine();
-
-                    while (true) {
-                        System.out.print("Desea guardar?:[Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    if (nuevoCedula.isEmpty()) {
-                                    } else pro.cedula = Integer.parseInt(nuevoCedula);
-                                    if (nuevoArea.isEmpty()) {
-                                    } else pro.area = nuevoArea;
-                                    if (nuevoHoraInicio.isEmpty()) {
-                                    } else pro.horaInicio = nuevoHoraInicio;
-                                    if (nuevoHoraSalida.isEmpty()) {
-                                    } else pro.horaSalida = nuevoHoraSalida;
-                                case "N":
-                                    break;
-                            }
-
-                            return;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
+                break;
+            case "4":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    cedulaProfesionalGen.sort((comparadoresProfesional[3]));
+                    for (Profesional profesional : cedulaProfesionalGen) {
+                        i++;
+                        System.out.println(i + ". " + profesional);
                     }
-
-                }
-                return;
-
-            }
-
-//Codigo eliminar
-            else if(accion.equals("2")){
-                for (Profesional profesional : cedulaEx) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el profesional que desea eliminar: \n");
-                    eleccion = input.nextInt();
-                    pro = cedulaEx.get(eleccion - 1);
-
-                    while (true) {
-                        System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    break;
-                                case "N":
-                                    return;
-                            }
-                            break;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    cedulaProfesionalGen.sort(Collections.reverseOrder(comparadoresProfesional[3]));
+                    for (Profesional profesional : cedulaProfesionalGen) {
+                        i++;
+                        System.out.println(i + ". " + profesional);
                     }
-                    for (Zoologico zoologico : zoologicos) {
-                        Profesional finalpro = pro;
-                        zoologico.profesionales.removeIf(profesional1 -> profesional1.cedula == finalpro.cedula);
-                    }
-
-                    for (Bioma bioma : biomas) {
-                        Profesional finalpro = pro;
-                        bioma.profesionales.removeIf(profesional1 -> profesional1.cedula == finalpro.cedula);
-                    }
-
-                    profesionales.remove(pro);
-
-                    System.out.println("El profesional se ha eliminado correctamente");
+                } else {
+                    System.out.println("Opcion incorrecta");
                     return;
                 }
+                break;
+            default:
+                return;
+        }
+        //Menu editar - eliminar
+        String accion;
+        System.out.println("-----------------------------------------");
+        System.out.println("\nIndique la accion que desea realizar:\n");
+        System.out.println("1. Editar ");
+        System.out.println("2. Eliminar ");
+        System.out.println("0. Regresar al menú anterior" + "\n");
+        accion = input.next();
+        System.out.println("----------------------------------");
 
+        for (Profesional profesional : cedulaProfesionalGen) {
+//Codigo editar
+            if (accion.equals("1")) {
+                int eleccion;
+                System.out.println("------------------------------------------");
+                System.out.println("Escoja el profesional que desea editar: \n");
+                eleccion = input.nextInt();
+                pro = cedulaProfesionalGen.get(eleccion - 1);
+
+                input.nextLine();
+                System.out.println("\nCedula: " + pro.cedula);
+                String nuevoCedula = input.nextLine();
+                int nuevoCedulaInt= Integer.parseInt(nuevoCedula);
+                if(nuevoCedulaInt==profesional.cedula){
+                    System.out.println("ERROR: La cedula ya se encuentra registrada");
+                }
+
+                System.out.println("Area : " + pro.area);
+                String nuevoArea = input.nextLine();
+
+                System.out.println("Hora Inicio: " + pro.horaInicio);
+                String nuevoHoraInicio = input.nextLine();
+
+                System.out.println("Hora Salida: " + pro.horaSalida);
+                String nuevoHoraSalida = input.nextLine();
+
+                while (true) {
+                    System.out.print("Desea guardar?:[Y/N] ");
+                    String optionE = input.next();
+                    if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                        switch (optionE.toUpperCase()) {
+                            case "Y":
+                                if (nuevoCedula.isEmpty()) {
+                                } else pro.cedula = Integer.parseInt(nuevoCedula);
+                                if (nuevoArea.isEmpty()) {
+                                } else pro.area = nuevoArea;
+                                if (nuevoHoraInicio.isEmpty()) {
+                                } else pro.horaInicio = nuevoHoraInicio;
+                                if (nuevoHoraSalida.isEmpty()) {
+                                } else pro.horaSalida = nuevoHoraSalida;
+                            case "N":
+                                break;
+                        }
+                        return;
+                    } else {
+                        System.out.println("Opcion invalida\n");
+                    }
+                }
             }
-            else return;
+            else if(accion.equals("2")){
+                int eleccion;
+                System.out.println("------------------------------------------");
+                System.out.println("Escoja el profesional que desea eliminar: \n");
+                eleccion = input.nextInt();
+                pro = cedulaProfesionalGen.get(eleccion - 1);
+
+                while (true) {
+                    System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+                    String optionE = input.next();
+                    if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                        switch (optionE.toUpperCase()) {
+                            case "Y":
+                                break;
+                            case "N":
+                                return;
+                        }
+                            break;
+                    } else {
+                        System.out.println("Opcion invalida\n");
+                    }
+                }
+                for (Zoologico zoologico : zoologicos) {
+                    zoologico.profesionales.removeIf(profesional1 -> profesional1.cedula == pro.cedula);
+                }
+
+                for (Bioma bioma : biomas) {
+                    bioma.profesionales.removeIf(profesional1 -> profesional1.cedula == pro.cedula);
+                }
+
+                profesionales.remove(pro);
+
+                System.out.println("El profesional se ha eliminado correctamente");
+                return;
+            }else return;
         }
     }
-    public static void areaProfesional(int opcionValor, String areaBus) {
-        Profesional pro = null;
+    public static void areaProfesional(String areaBus) {
+        Profesional pro;
         int i=0;
         ArrayList<Profesional> areaPro = new ArrayList<>();
         for (Profesional profesional : profesionales) {
@@ -11916,120 +8926,113 @@ public class SistemaZoologico {
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
-        if (option.equals("1")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(areaPro, (comparadoresProfesional[0]));
-                for (Profesional profesional : areaPro) {
-                    i++;
-                    System.out.println(i+". "+profesional);
+        switch (option) {
+            case "1":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    areaPro.sort((comparadoresProfesional[0]));
+                    for (Profesional profesional : areaPro) {
+                        i++;
+                        System.out.println(i + ". " + profesional);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    areaPro.sort(Collections.reverseOrder(comparadoresProfesional[0]));
+                    for (Profesional profesional : areaPro) {
+                        i++;
+                        System.out.println(i + ". " + profesional);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(areaPro, Collections.reverseOrder(comparadoresProfesional[0]));
-                for (Profesional profesional : areaPro) {
-                    i++;
-                    System.out.println(i+". "+profesional);
+                break;
+            case "2":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    areaPro.sort((comparadoresProfesional[1]));
+                    for (Profesional profesional : areaPro) {
+                        i++;
+                        System.out.println(i + ". " + profesional);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    areaPro.sort(Collections.reverseOrder(comparadoresProfesional[1]));
+                    for (Profesional profesional : areaPro) {
+                        i++;
+                        System.out.println(i + ". " + profesional);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            }
-            else {
-                System.out.println("Opcion incorrecta");
+                break;
+            case "3":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    areaPro.sort((comparadoresProfesional[2]));
+                    for (Profesional profesional : areaPro) {
+                        i++;
+                        System.out.println(i + ". " + profesional);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    areaPro.sort(Collections.reverseOrder(comparadoresProfesional[2]));
+                    for (Profesional profesional : areaPro) {
+                        i++;
+                        System.out.println(i + ". " + profesional);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
+                }
+                break;
+            case "4":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    areaPro.sort((comparadoresProfesional[3]));
+                    for (Profesional profesional : areaPro) {
+                        i++;
+                        System.out.println(i + ". " + profesional);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    areaPro.sort(Collections.reverseOrder(comparadoresProfesional[3]));
+                    for (Profesional profesional : areaPro) {
+                        i++;
+                        System.out.println(i + ". " + profesional);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
+                }
+                break;
+            default:
                 return;
-            }
-        }
-        else if (option.equals("2")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(areaPro, (comparadoresProfesional[1]));
-                for (Profesional profesional : areaPro) {
-                    i++;
-                    System.out.println(i+". "+profesional);
-                }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(areaPro, Collections.reverseOrder(comparadoresProfesional[1]));
-                for (Profesional profesional : areaPro) {
-                    i++;
-                    System.out.println(i+". "+profesional);
-                }
-            }
-            else {
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else if (option.equals("3")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(areaPro, (comparadoresProfesional[2]));
-                for (Profesional profesional : areaPro) {
-                    i++;
-                    System.out.println(i+". "+profesional);
-                }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(areaPro, Collections.reverseOrder(comparadoresProfesional[2]));
-                for (Profesional profesional : areaPro) {
-                    i++;
-                    System.out.println(i+". "+profesional);
-                }
-            }
-            else {
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else if (option.equals("4")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(areaPro, (comparadoresProfesional[3]));
-                for (Profesional profesional : areaPro) {
-                    i++;
-                    System.out.println(i+". "+profesional);
-                }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(areaPro, Collections.reverseOrder(comparadoresProfesional[3]));
-                for (Profesional profesional : areaPro) {
-                    i++;
-                    System.out.println(i+". "+profesional);
-                }
-            }
-            else {
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else {
-            return;
         }
         //Menu editar - eliminar
         String accion;
@@ -12041,9 +9044,9 @@ public class SistemaZoologico {
         accion = input.next();
         System.out.println("----------------------------------");
 
+        for (Profesional profesional : areaPro) {
 //Codigo editar
-        if (accion.equals("1")) {
-            for (Profesional profesional : areaPro) {
+            if (accion.equals("1")) {
                 int eleccion;
                 System.out.println("------------------------------------------");
                 System.out.println("Escoja el profesional que desea editar: \n");
@@ -12053,6 +9056,10 @@ public class SistemaZoologico {
                 input.nextLine();
                 System.out.println("\nCedula: " + pro.cedula);
                 String nuevoCedula = input.nextLine();
+                int nuevoCedulaInt= Integer.parseInt(nuevoCedula);
+                if(nuevoCedulaInt==profesional.cedula){
+                    System.out.println("ERROR: La cedula ya se encuentra registrada");
+                }
 
                 System.out.println("Area : " + pro.area);
                 String nuevoArea = input.nextLine();
@@ -12080,21 +9087,13 @@ public class SistemaZoologico {
                             case "N":
                                 break;
                         }
-
                         return;
                     } else {
                         System.out.println("Opcion invalida\n");
                     }
                 }
-
-            }
-            return;
-
-        }
-
-//Codigo eliminar
-        else if(accion.equals("2")){
-            for (Profesional profesional : areaPro) {
+            }//Codigo eliminar
+            else if (accion.equals("2")) {
                 int eleccion;
                 System.out.println("------------------------------------------");
                 System.out.println("Escoja el profesional que desea eliminar: \n");
@@ -12117,37 +9116,30 @@ public class SistemaZoologico {
                     }
                 }
                 for (Zoologico zoologico : zoologicos) {
-                    Profesional finalpro = pro;
-                    zoologico.profesionales.removeIf(profesional1 -> profesional1.cedula == finalpro.cedula);
+                    zoologico.profesionales.removeIf(profesional1 -> profesional1.cedula == pro.cedula);
                 }
 
                 for (Bioma bioma : biomas) {
-                    Profesional finalpro = pro;
-                    bioma.profesionales.removeIf(profesional1 -> profesional1.cedula == finalpro.cedula);
+                    bioma.profesionales.removeIf(profesional1 -> profesional1.cedula == pro.cedula);
                 }
 
                 profesionales.remove(pro);
 
                 System.out.println("El profesional se ha eliminado correctamente");
                 return;
-            }
-
+            } else return;
         }
-        else return;
     }
     public static void horaInicioProfesional(int opcionValor, String horaInicioBusMin, String horaInicioBusMax) {
-        Profesional pro  = null;
+        Profesional pro;
         int i=0;
-        ArrayList<Profesional> horaInicioEx = new ArrayList<>();
-        ArrayList<Profesional> horaInicioMax = new ArrayList<>();
-        ArrayList<Profesional> horaInicioMin = new ArrayList<>();
-        ArrayList<Profesional> horaInicioRan = new ArrayList<>();
+        ArrayList<Profesional> horaInicioProfecionalGen = new ArrayList<>();
         if (opcionValor == 1) {
             for (Profesional profesional : profesionales) {
                 int horaInicio = Integer.parseInt(profesional.horaInicio.replace(":", ""));
                 int horaInicioB = Integer.parseInt(horaInicioBusMin.replace(":", ""));
                 if (horaInicioB == horaInicio) {
-                    horaInicioEx.add(profesional);
+                    horaInicioProfecionalGen.add(profesional);
                 }
             }
         }
@@ -12156,7 +9148,7 @@ public class SistemaZoologico {
                 int horaInicio = Integer.parseInt(profesional.horaInicio.replace(":", ""));
                 int horaInicioB = Integer.parseInt(horaInicioBusMin.replace(":", ""));
                 if (horaInicioB >= horaInicio) {
-                    horaInicioMax.add(profesional);
+                    horaInicioProfecionalGen.add(profesional);
                 }
             }
         }
@@ -12165,7 +9157,7 @@ public class SistemaZoologico {
                 int horaInicio = Integer.parseInt(profesional.horaInicio.replace(":", ""));
                 int horaInicioB = Integer.parseInt(horaInicioBusMin.replace(":", ""));
                 if (horaInicioB <= horaInicio) {
-                    horaInicioMin.add(profesional);
+                    horaInicioProfecionalGen.add(profesional);
                 }
             }
         }
@@ -12175,7 +9167,7 @@ public class SistemaZoologico {
                 int horaInicioBMin = Integer.parseInt(horaInicioBusMin.replace(":", ""));
                 int horaInicioBMax = Integer.parseInt(horaInicioBusMax.replace(":", ""));
                 if (horaInicioBMin <= horaInicio && horaInicioBMax <= horaInicio) {
-                    horaInicioRan.add(profesional);
+                    horaInicioProfecionalGen.add(profesional);
                 }
             }
         }
@@ -12190,764 +9182,228 @@ public class SistemaZoologico {
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
-        if (option.equals("1")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                if (opcionValor == 1) {
+        switch (option) {
+            case "1":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
                     System.out.println("Ascendente");
-                    Collections.sort(horaInicioEx, (comparadoresProfesional[0]));
-                    for (Profesional profesional : horaInicioEx) {
+                    horaInicioProfecionalGen.sort((comparadoresProfesional[0]));
+                    for (Profesional profesional : horaInicioProfecionalGen) {
                         i++;
-                        System.out.println(i+". "+profesional);
+                        System.out.println(i + ". " + profesional);
                     }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaInicioMax, (comparadoresProfesional[0]));
-                    for (Profesional profesional : horaInicioMax) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaInicioMin, (comparadoresProfesional[0]));
-                    for (Profesional profesional : horaInicioMin) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaInicioRan, (comparadoresProfesional[0]));
-                    for (Profesional profesional : horaInicioRan) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-            }
-            else if (option2.equals("2")) {
-                if (opcionValor == 1) {
+                } else if (option2.equals("2")) {
                     System.out.println("Descendente");
-                    Collections.sort(horaInicioEx, Collections.reverseOrder(comparadoresProfesional[0]));
-                    for (Profesional profesional : horaInicioEx) {
+                    horaInicioProfecionalGen.sort(Collections.reverseOrder(comparadoresProfesional[0]));
+                    for (Profesional profesional : horaInicioProfecionalGen) {
                         i++;
-                        System.out.println(i+". "+profesional);
+                        System.out.println(i + ". " + profesional);
                     }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaInicioMax, Collections.reverseOrder(comparadoresProfesional[0]));
-                    for (Profesional profesional : horaInicioMax) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaInicioMin, Collections.reverseOrder(comparadoresProfesional[0]));
-                    for (Profesional profesional : horaInicioMin) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else {
-                    System.out.println("Descendente");
-                    Collections.sort(horaInicioRan, Collections.reverseOrder(comparadoresProfesional[0]));
-                    for (Profesional profesional : horaInicioRan) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-            }else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else if (option.equals("2")){
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                if (opcionValor == 1) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaInicioEx, (comparadoresProfesional[1]));
-                    for (Profesional profesional : horaInicioEx) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaInicioMax, (comparadoresProfesional[1]));
-                    for (Profesional profesional : horaInicioMax) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaInicioMin, (comparadoresProfesional[1]));
-                    for (Profesional profesional : horaInicioMin) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaInicioRan, (comparadoresProfesional[1]));
-                    for (Profesional profesional : horaInicioRan) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-            }
-            else if (option2.equals("2")) {
-                if (opcionValor == 1) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaInicioEx, Collections.reverseOrder(comparadoresProfesional[1]));
-                    for (Profesional profesional : horaInicioEx) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaInicioMax, Collections.reverseOrder(comparadoresProfesional[1]));
-                    for (Profesional profesional : horaInicioMax) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaInicioMin, Collections.reverseOrder(comparadoresProfesional[1]));
-                    for (Profesional profesional : horaInicioMin) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else {
-                    System.out.println("Descendente");
-                    Collections.sort(horaInicioRan, Collections.reverseOrder(comparadoresProfesional[1]));
-                    for (Profesional profesional : horaInicioRan) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-            }else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else if (option.equals("3")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                if (opcionValor == 1) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaInicioEx, (comparadoresProfesional[2]));
-                    for (Profesional profesional : horaInicioEx) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaInicioMax, (comparadoresProfesional[2]));
-                    for (Profesional profesional : horaInicioMax) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaInicioMin, (comparadoresProfesional[2]));
-                    for (Profesional profesional : horaInicioMin) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaInicioRan, (comparadoresProfesional[2]));
-                    for (Profesional profesional : horaInicioRan) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-            }
-            else if (option2.equals("2")) {
-                if (opcionValor == 1) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaInicioEx, Collections.reverseOrder(comparadoresProfesional[2]));
-                    for (Profesional profesional : horaInicioEx) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaInicioMax, Collections.reverseOrder(comparadoresProfesional[2]));
-                    for (Profesional profesional : horaInicioMax) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaInicioMin, Collections.reverseOrder(comparadoresProfesional[2]));
-                    for (Profesional profesional : horaInicioMin) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else {
-                    System.out.println("Descendente");
-                    Collections.sort(horaInicioRan, Collections.reverseOrder(comparadoresProfesional[2]));
-                    for (Profesional profesional : horaInicioRan) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-            }else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else if (option.equals("4")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                if (opcionValor == 1) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaInicioEx, (comparadoresProfesional[3]));
-                    for (Profesional profesional : horaInicioEx) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaInicioMax, (comparadoresProfesional[3]));
-                    for (Profesional profesional : horaInicioMax) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaInicioMin, (comparadoresProfesional[3]));
-                    for (Profesional profesional : horaInicioMin) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaInicioRan, (comparadoresProfesional[3]));
-                    for (Profesional profesional : horaInicioRan) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-            }
-            else if (option2.equals("2")) {
-                if (opcionValor == 1) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaInicioEx, Collections.reverseOrder(comparadoresProfesional[3]));
-                    for (Profesional profesional : horaInicioEx) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaInicioMax, Collections.reverseOrder(comparadoresProfesional[3]));
-                    for (Profesional profesional : horaInicioMax) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaInicioMin, Collections.reverseOrder(comparadoresProfesional[3]));
-                    for (Profesional profesional : horaInicioMin) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else {
-                    System.out.println("Descendente");
-                    Collections.sort(horaInicioRan, Collections.reverseOrder(comparadoresProfesional[3]));
-                    for (Profesional profesional : horaInicioRan) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-            }else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else {
-            return;
-        }if (opcionValor==1){
-            //Menu editar - eliminar
-            String accion;
-            System.out.println("-----------------------------------------");
-            System.out.println("\nIndique la accion que desea realizar:\n");
-            System.out.println("1. Editar ");
-            System.out.println("2. Eliminar ");
-            System.out.println("0. Regresar al menú anterior" + "\n");
-            accion = input.next();
-            System.out.println("----------------------------------");
-
-//Codigo editar
-            if (accion.equals("1")) {
-                for (Profesional profesional : horaInicioEx) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el profesional que desea editar: \n");
-                    eleccion = input.nextInt();
-                    pro = horaInicioEx.get(eleccion - 1);
-
-                    input.nextLine();
-                    System.out.println("\nCedula: " + pro.cedula);
-                    String nuevoCedula = input.nextLine();
-
-                    System.out.println("Area : " + pro.area);
-                    String nuevoArea = input.nextLine();
-
-                    System.out.println("Hora Inicio: " + pro.horaInicio);
-                    String nuevoHoraInicio = input.nextLine();
-
-                    System.out.println("Hora Salida: " + pro.horaSalida);
-                    String nuevoHoraSalida = input.nextLine();
-
-                    while (true) {
-                        System.out.print("Desea guardar?:[Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    if (nuevoCedula.isEmpty()) {
-                                    } else pro.cedula = Integer.parseInt(nuevoCedula);
-                                    if (nuevoArea.isEmpty()) {
-                                    } else pro.area = nuevoArea;
-                                    if (nuevoHoraInicio.isEmpty()) {
-                                    } else pro.horaInicio = nuevoHoraInicio;
-                                    if (nuevoHoraSalida.isEmpty()) {
-                                    } else pro.horaSalida = nuevoHoraSalida;
-                                case "N":
-                                    break;
-                            }
-
-                            return;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
-                    }
-
-                }
-                return;
-
-            }
-
-//Codigo eliminar
-            else if(accion.equals("2")){
-                for (Profesional profesional : horaInicioEx) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el profesional que desea eliminar: \n");
-                    eleccion = input.nextInt();
-                    pro = horaInicioEx.get(eleccion - 1);
-
-                    while (true) {
-                        System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    break;
-                                case "N":
-                                    return;
-                            }
-                            break;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
-                    }
-                    for (Zoologico zoologico : zoologicos) {
-                        Profesional finalpro = pro;
-                        zoologico.profesionales.removeIf(profesional1 -> profesional1.cedula == finalpro.cedula);
-                    }
-
-                    for (Bioma bioma : biomas) {
-                        Profesional finalpro = pro;
-                        bioma.profesionales.removeIf(profesional1 -> profesional1.cedula == finalpro.cedula);
-                    }
-
-                    profesionales.remove(pro);
-
-                    System.out.println("El profesional se ha eliminado correctamente");
+                } else {
+                    System.out.println("Opcion incorrecta");
                     return;
                 }
-
-            }
-            else return;
-        }else if(opcionValor==2){
-            //Menu editar - eliminar
-            String accion;
-            System.out.println("-----------------------------------------");
-            System.out.println("\nIndique la accion que desea realizar:\n");
-            System.out.println("1. Editar ");
-            System.out.println("2. Eliminar ");
-            System.out.println("0. Regresar al menú anterior" + "\n");
-            accion = input.next();
-            System.out.println("----------------------------------");
-
-//Codigo editar
-            if (accion.equals("1")) {
-                for (Profesional profesional : horaInicioEx) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el profesional que desea editar: \n");
-                    eleccion = input.nextInt();
-                    pro = horaInicioEx.get(eleccion - 1);
-
-                    input.nextLine();
-                    System.out.println("\nCedula: " + pro.cedula);
-                    String nuevoCedula = input.nextLine();
-
-                    System.out.println("Area : " + pro.area);
-                    String nuevoArea = input.nextLine();
-
-                    System.out.println("Hora Inicio: " + pro.horaInicio);
-                    String nuevoHoraInicio = input.nextLine();
-
-                    System.out.println("Hora Salida: " + pro.horaSalida);
-                    String nuevoHoraSalida = input.nextLine();
-
-                    while (true) {
-                        System.out.print("Desea guardar?:[Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    if (nuevoCedula.isEmpty()) {
-                                    } else pro.cedula = Integer.parseInt(nuevoCedula);
-                                    if (nuevoArea.isEmpty()) {
-                                    } else pro.area = nuevoArea;
-                                    if (nuevoHoraInicio.isEmpty()) {
-                                    } else pro.horaInicio = nuevoHoraInicio;
-                                    if (nuevoHoraSalida.isEmpty()) {
-                                    } else pro.horaSalida = nuevoHoraSalida;
-                                case "N":
-                                    break;
-                            }
-
-                            return;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
+                break;
+            case "2":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    horaInicioProfecionalGen.sort((comparadoresProfesional[1]));
+                    for (Profesional profesional : horaInicioProfecionalGen) {
+                        i++;
+                        System.out.println(i + ". " + profesional);
                     }
-
-                }
-                return;
-
-            }
-
-//Codigo eliminar
-            else if(accion.equals("2")){
-                for (Profesional profesional : horaInicioEx) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el profesional que desea eliminar: \n");
-                    eleccion = input.nextInt();
-                    pro = horaInicioEx.get(eleccion - 1);
-
-                    while (true) {
-                        System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    break;
-                                case "N":
-                                    return;
-                            }
-                            break;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    horaInicioProfecionalGen.sort(Collections.reverseOrder(comparadoresProfesional[1]));
+                    for (Profesional profesional : horaInicioProfecionalGen) {
+                        i++;
+                        System.out.println(i + ". " + profesional);
                     }
-                    for (Zoologico zoologico : zoologicos) {
-                        Profesional finalpro = pro;
-                        zoologico.profesionales.removeIf(profesional1 -> profesional1.cedula == finalpro.cedula);
-                    }
-
-                    for (Bioma bioma : biomas) {
-                        Profesional finalpro = pro;
-                        bioma.profesionales.removeIf(profesional1 -> profesional1.cedula == finalpro.cedula);
-                    }
-
-                    profesionales.remove(pro);
-
-                    System.out.println("El profesional se ha eliminado correctamente");
+                } else {
+                    System.out.println("Opcion incorrecta");
                     return;
                 }
-
-            }
-            else return;
-        }else if(opcionValor==3){
-            //Menu editar - eliminar
-            String accion;
-            System.out.println("-----------------------------------------");
-            System.out.println("\nIndique la accion que desea realizar:\n");
-            System.out.println("1. Editar ");
-            System.out.println("2. Eliminar ");
-            System.out.println("0. Regresar al menú anterior" + "\n");
-            accion = input.next();
-            System.out.println("----------------------------------");
-
-//Codigo editar
-            if (accion.equals("1")) {
-                for (Profesional profesional : horaInicioEx) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el profesional que desea editar: \n");
-                    eleccion = input.nextInt();
-                    pro = horaInicioEx.get(eleccion - 1);
-
-                    input.nextLine();
-                    System.out.println("\nCedula: " + pro.cedula);
-                    String nuevoCedula = input.nextLine();
-
-                    System.out.println("Area : " + pro.area);
-                    String nuevoArea = input.nextLine();
-
-                    System.out.println("Hora Inicio: " + pro.horaInicio);
-                    String nuevoHoraInicio = input.nextLine();
-
-                    System.out.println("Hora Salida: " + pro.horaSalida);
-                    String nuevoHoraSalida = input.nextLine();
-
-                    while (true) {
-                        System.out.print("Desea guardar?:[Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    if (nuevoCedula.isEmpty()) {
-                                    } else pro.cedula = Integer.parseInt(nuevoCedula);
-                                    if (nuevoArea.isEmpty()) {
-                                    } else pro.area = nuevoArea;
-                                    if (nuevoHoraInicio.isEmpty()) {
-                                    } else pro.horaInicio = nuevoHoraInicio;
-                                    if (nuevoHoraSalida.isEmpty()) {
-                                    } else pro.horaSalida = nuevoHoraSalida;
-                                case "N":
-                                    break;
-                            }
-
-                            return;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
+                break;
+            case "3":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    horaInicioProfecionalGen.sort((comparadoresProfesional[2]));
+                    for (Profesional profesional : horaInicioProfecionalGen) {
+                        i++;
+                        System.out.println(i + ". " + profesional);
                     }
-
-                }
-                return;
-
-            }
-
-//Codigo eliminar
-            else if(accion.equals("2")){
-                for (Profesional profesional : horaInicioEx) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el profesional que desea eliminar: \n");
-                    eleccion = input.nextInt();
-                    pro = horaInicioEx.get(eleccion - 1);
-
-                    while (true) {
-                        System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    break;
-                                case "N":
-                                    return;
-                            }
-                            break;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    horaInicioProfecionalGen.sort(Collections.reverseOrder(comparadoresProfesional[2]));
+                    for (Profesional profesional : horaInicioProfecionalGen) {
+                        i++;
+                        System.out.println(i + ". " + profesional);
                     }
-                    for (Zoologico zoologico : zoologicos) {
-                        Profesional finalpro = pro;
-                        zoologico.profesionales.removeIf(profesional1 -> profesional1.cedula == finalpro.cedula);
-                    }
-
-                    for (Bioma bioma : biomas) {
-                        Profesional finalpro = pro;
-                        bioma.profesionales.removeIf(profesional1 -> profesional1.cedula == finalpro.cedula);
-                    }
-
-                    profesionales.remove(pro);
-
-                    System.out.println("El profesional se ha eliminado correctamente");
+                } else {
+                    System.out.println("Opcion incorrecta");
                     return;
                 }
-
-            }
-            else return;
-        }else{
-            //Menu editar - eliminar
-            String accion;
-            System.out.println("-----------------------------------------");
-            System.out.println("\nIndique la accion que desea realizar:\n");
-            System.out.println("1. Editar ");
-            System.out.println("2. Eliminar ");
-            System.out.println("0. Regresar al menú anterior" + "\n");
-            accion = input.next();
-            System.out.println("----------------------------------");
-
-//Codigo editar
-            if (accion.equals("1")) {
-                for (Profesional profesional : horaInicioEx) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el profesional que desea editar: \n");
-                    eleccion = input.nextInt();
-                    pro = horaInicioEx.get(eleccion - 1);
-
-                    input.nextLine();
-                    System.out.println("\nCedula: " + pro.cedula);
-                    String nuevoCedula = input.nextLine();
-
-                    System.out.println("Area : " + pro.area);
-                    String nuevoArea = input.nextLine();
-
-                    System.out.println("Hora Inicio: " + pro.horaInicio);
-                    String nuevoHoraInicio = input.nextLine();
-
-                    System.out.println("Hora Salida: " + pro.horaSalida);
-                    String nuevoHoraSalida = input.nextLine();
-
-                    while (true) {
-                        System.out.print("Desea guardar?:[Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    if (nuevoCedula.isEmpty()) {
-                                    } else pro.cedula = Integer.parseInt(nuevoCedula);
-                                    if (nuevoArea.isEmpty()) {
-                                    } else pro.area = nuevoArea;
-                                    if (nuevoHoraInicio.isEmpty()) {
-                                    } else pro.horaInicio = nuevoHoraInicio;
-                                    if (nuevoHoraSalida.isEmpty()) {
-                                    } else pro.horaSalida = nuevoHoraSalida;
-                                case "N":
-                                    break;
-                            }
-
-                            return;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
+                break;
+            case "4":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    horaInicioProfecionalGen.sort((comparadoresProfesional[3]));
+                    for (Profesional profesional : horaInicioProfecionalGen) {
+                        i++;
+                        System.out.println(i + ". " + profesional);
                     }
-
-                }
-                return;
-
-            }
-
-//Codigo eliminar
-            else if(accion.equals("2")){
-                for (Profesional profesional : horaInicioEx) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el profesional que desea eliminar: \n");
-                    eleccion = input.nextInt();
-                    pro = horaInicioEx.get(eleccion - 1);
-
-                    while (true) {
-                        System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    break;
-                                case "N":
-                                    return;
-                            }
-                            break;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    horaInicioProfecionalGen.sort(Collections.reverseOrder(comparadoresProfesional[3]));
+                    for (Profesional profesional : horaInicioProfecionalGen) {
+                        i++;
+                        System.out.println(i + ". " + profesional);
                     }
-                    for (Zoologico zoologico : zoologicos) {
-                        Profesional finalpro = pro;
-                        zoologico.profesionales.removeIf(profesional1 -> profesional1.cedula == finalpro.cedula);
-                    }
-
-                    for (Bioma bioma : biomas) {
-                        Profesional finalpro = pro;
-                        bioma.profesionales.removeIf(profesional1 -> profesional1.cedula == finalpro.cedula);
-                    }
-
-                    profesionales.remove(pro);
-
-                    System.out.println("El profesional se ha eliminado correctamente");
+                } else {
+                    System.out.println("Opcion incorrecta");
                     return;
                 }
+                break;
+            default:
+                return;
+        }//Menu editar - eliminar
+        String accion;
+        System.out.println("-----------------------------------------");
+        System.out.println("\nIndique la accion que desea realizar:\n");
+        System.out.println("1. Editar ");
+        System.out.println("2. Eliminar ");
+        System.out.println("0. Regresar al menú anterior" + "\n");
+        accion = input.next();
+        System.out.println("----------------------------------");
 
-            }
-            else return;
+//Codigo editar
+        for (Profesional profesional : horaInicioProfecionalGen) {
+            if (accion.equals("1")) {
+                int eleccion;
+                System.out.println("------------------------------------------");
+                System.out.println("Escoja el profesional que desea editar: \n");
+                eleccion = input.nextInt();
+                pro = horaInicioProfecionalGen.get(eleccion - 1);
+
+                input.nextLine();
+                System.out.println("\nCedula: " + pro.cedula);
+                String nuevoCedula = input.nextLine();
+                int nuevoCedulaInt= Integer.parseInt(nuevoCedula);
+                if(nuevoCedulaInt==profesional.cedula){
+                    System.out.println("ERROR: La cedula ya se encuentra registrada");
+                }
+
+                System.out.println("Area : " + pro.area);
+                String nuevoArea = input.nextLine();
+
+                System.out.println("Hora Inicio: " + pro.horaInicio);
+                String nuevoHoraInicio = input.nextLine();
+
+                System.out.println("Hora Salida: " + pro.horaSalida);
+                String nuevoHoraSalida = input.nextLine();
+
+                while (true) {
+                    System.out.print("Desea guardar?:[Y/N] ");
+                    String optionE = input.next();
+                    if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                        switch (optionE.toUpperCase()) {
+                            case "Y":
+                                if (nuevoCedula.isEmpty()) {
+                                } else pro.cedula = Integer.parseInt(nuevoCedula);
+                                if (nuevoArea.isEmpty()) {
+                                } else pro.area = nuevoArea;
+                                if (nuevoHoraInicio.isEmpty()) {
+                                } else pro.horaInicio = nuevoHoraInicio;
+                                if (nuevoHoraSalida.isEmpty()) {
+                                } else pro.horaSalida = nuevoHoraSalida;
+                            case "N":
+                                break;
+                        }
+                        return;
+                    } else {
+                        System.out.println("Opcion invalida\n");
+                    }
+                }
+            }//Codigo eliminar
+            else if (accion.equals("2")) {
+                int eleccion;
+                System.out.println("------------------------------------------");
+                System.out.println("Escoja el profesional que desea eliminar: \n");
+                eleccion = input.nextInt();
+                pro = horaInicioProfecionalGen.get(eleccion - 1);
+
+                while (true) {
+                    System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+                    String optionE = input.next();
+                    if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                        switch (optionE.toUpperCase()) {
+                            case "Y":
+                                break;
+                            case "N":
+                                return;
+                        }
+                        break;
+                    } else {
+                        System.out.println("Opcion invalida\n");
+                    }
+                }
+                for (Zoologico zoologico : zoologicos) {
+                    zoologico.profesionales.removeIf(profesional1 -> profesional1.cedula == pro.cedula);
+                }
+
+                for (Bioma bioma : biomas) {
+                    bioma.profesionales.removeIf(profesional1 -> profesional1.cedula == pro.cedula);
+                }
+
+                profesionales.remove(pro);
+
+                System.out.println("El profesional se ha eliminado correctamente");
+                return;
+            } else return;
         }
     }
     public static void horaSalidaProfesional(int opcionValor, String horaSalidaBusMin, String horaInicioBusMax) {
-        Profesional pro = null;
+        Profesional pro;
         int i=0;
-        ArrayList<Profesional> horaSalidaEx = new ArrayList<>();
-        ArrayList<Profesional> horaSalidaMax = new ArrayList<>();
-        ArrayList<Profesional> horaSalidaMin = new ArrayList<>();
-        ArrayList<Profesional> horaSalidaRan = new ArrayList<>();
+        ArrayList<Profesional> horaSalidaProfecionalGen = new ArrayList<>();
         if (opcionValor == 1) {
             for (Profesional profesional : profesionales) {
                 int horaSalida = Integer.parseInt(profesional.horaSalida.replace(":", ""));
-                int horaSalidaB = Integer.parseInt(horaSalidaBusMin.replace(".", ""));
+                int horaSalidaB = Integer.parseInt(horaSalidaBusMin.replace(":", ""));
                 if (horaSalidaB == horaSalida) {
-                    horaSalidaEx.add(profesional);
+                    horaSalidaProfecionalGen.add(profesional);
                 }
             }
         }
         else if (opcionValor == 2) {
             for (Profesional profesional : profesionales) {
                 int horaSalida = Integer.parseInt(profesional.horaSalida.replace(":", ""));
-                int horaSalidaB = Integer.parseInt(horaSalidaBusMin.replace(".", ""));
+                int horaSalidaB = Integer.parseInt(horaSalidaBusMin.replace(":", ""));
                 if (horaSalidaB >= horaSalida) {
-                    horaSalidaMax.add(profesional);
+                    horaSalidaProfecionalGen.add(profesional);
                 }
             }
         }
@@ -12956,7 +9412,7 @@ public class SistemaZoologico {
                 int horaSalida = Integer.parseInt(profesional.horaSalida.replace(":", ""));
                 int horaSalidaB = Integer.parseInt(horaSalidaBusMin.replace(".", ""));
                 if (horaSalidaB <= horaSalida) {
-                    horaSalidaMin.add(profesional);
+                    horaSalidaProfecionalGen.add(profesional);
                 }
             }
         }
@@ -12966,7 +9422,7 @@ public class SistemaZoologico {
                 int horaSalidaBMin = Integer.parseInt(horaSalidaBusMin.replace(".", ""));
                 int horaSalidaBMax = Integer.parseInt(horaInicioBusMax.replace(".", ""));
                 if (horaSalidaBMin <= horaSalida && horaSalidaBMax <= horaSalida) {
-                    horaSalidaRan.add(profesional);
+                    horaSalidaProfecionalGen.add(profesional);
                 }
             }
         }
@@ -12981,736 +9437,211 @@ public class SistemaZoologico {
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
-        if (option.equals("1")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                if (opcionValor == 1) {
+        switch (option) {
+            case "1":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
                     System.out.println("Ascendente");
-                    Collections.sort(horaSalidaEx, (comparadoresProfesional[0]));
-                    for (Profesional profesional : horaSalidaEx) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaSalidaMax, (comparadoresProfesional[0]));
-                    for (Profesional profesional : horaSalidaMax) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaSalidaMin, (comparadoresProfesional[0]));
-                    for (Profesional profesional : horaSalidaMin) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaSalidaRan, (comparadoresProfesional[0]));
-                    for (Profesional profesional : horaSalidaRan) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-            }
-            else if (option2.equals("2")) {
-                if (opcionValor == 1) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaSalidaEx, Collections.reverseOrder(comparadoresProfesional[0]));
-                    for (Profesional profesional : horaSalidaEx) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaSalidaMax, Collections.reverseOrder(comparadoresProfesional[0]));
-                    for (Profesional profesional : horaSalidaMax) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaSalidaMin, Collections.reverseOrder(comparadoresProfesional[0]));
-                    for (Profesional profesional : horaSalidaMin) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else {
-                    System.out.println("Descendente");
-                    Collections.sort(horaSalidaRan, Collections.reverseOrder(comparadoresProfesional[0]));
-                    for (Profesional profesional : horaSalidaRan) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-            }else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else if (option.equals("2")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                if (opcionValor == 1) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaSalidaEx, (comparadoresProfesional[1]));
-                    for (Profesional profesional : horaSalidaEx) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaSalidaMax, (comparadoresProfesional[1]));
-                    for (Profesional profesional : horaSalidaMax) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaSalidaMin, (comparadoresProfesional[1]));
-                    for (Profesional profesional : horaSalidaMin) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaSalidaRan, (comparadoresProfesional[1]));
-                    for (Profesional profesional : horaSalidaRan) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-            }
-            else if (option2.equals("2")) {
-                if (opcionValor == 1) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaSalidaEx, Collections.reverseOrder(comparadoresProfesional[1]));
-                    for (Profesional profesional : horaSalidaEx) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaSalidaMax, Collections.reverseOrder(comparadoresProfesional[1]));
-                    for (Profesional profesional : horaSalidaMax) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaSalidaMin, Collections.reverseOrder(comparadoresProfesional[1]));
-                    for (Profesional profesional : horaSalidaMin) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else {
-                    System.out.println("Descendente");
-                    Collections.sort(horaSalidaRan, Collections.reverseOrder(comparadoresProfesional[1]));
-                    for (Profesional profesional : horaSalidaRan) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-            }else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else if (option.equals("3")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                if (opcionValor == 1) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaSalidaEx, (comparadoresProfesional[2]));
-                    for (Profesional profesional : horaSalidaEx) {
+                    horaSalidaProfecionalGen.sort((comparadoresProfesional[0]));
+                    for (Profesional profesional : horaSalidaProfecionalGen) {
                         i++;
                         System.out.println(i + ". " + profesional);
                     }
-                } else if (opcionValor == 2) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaSalidaMax, (comparadoresProfesional[2]));
-                    for (Profesional profesional : horaSalidaMax) {
-                        i++;
-                        System.out.println(i + ". " + profesional);
-                    }
-                } else if (opcionValor == 3) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaSalidaMin, (comparadoresProfesional[2]));
-                    for (Profesional profesional : horaSalidaMin) {
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    horaSalidaProfecionalGen.sort(Collections.reverseOrder(comparadoresProfesional[0]));
+                    for (Profesional profesional : horaSalidaProfecionalGen) {
                         i++;
                         System.out.println(i + ". " + profesional);
                     }
                 } else {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaSalidaRan, (comparadoresProfesional[2]));
-                    for (Profesional profesional : horaSalidaRan) {
-                        i++;
-                        System.out.println(i + ". " + profesional);
-                    }
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            } else if (option2.equals("2")) {
-                if (opcionValor == 1) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaSalidaEx, Collections.reverseOrder(comparadoresProfesional[2]));
-                    for (Profesional profesional : horaSalidaEx) {
+                break;
+            case "2":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    horaSalidaProfecionalGen.sort((comparadoresProfesional[1]));
+                    for (Profesional profesional : horaSalidaProfecionalGen) {
                         i++;
                         System.out.println(i + ". " + profesional);
                     }
-                } else if (opcionValor == 2) {
+                } else if (option2.equals("2")) {
                     System.out.println("Descendente");
-                    Collections.sort(horaSalidaMax, Collections.reverseOrder(comparadoresProfesional[2]));
-                    for (Profesional profesional : horaSalidaMax) {
-                        i++;
-                        System.out.println(i + ". " + profesional);
-                    }
-                } else if (opcionValor == 3) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaSalidaMin, Collections.reverseOrder(comparadoresProfesional[2]));
-                    for (Profesional profesional : horaSalidaMin) {
+                    horaSalidaProfecionalGen.sort(Collections.reverseOrder(comparadoresProfesional[1]));
+                    for (Profesional profesional : horaSalidaProfecionalGen) {
                         i++;
                         System.out.println(i + ". " + profesional);
                     }
                 } else {
-                    System.out.println("Descendente");
-                    Collections.sort(horaSalidaRan, Collections.reverseOrder(comparadoresProfesional[2]));
-                    for (Profesional profesional : horaSalidaRan) {
+                    System.out.println("Opcion incorrecta");
+                    return;
+                }
+                break;
+            case "3":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    horaSalidaProfecionalGen.sort((comparadoresProfesional[2]));
+                    for (Profesional profesional : horaSalidaProfecionalGen) {
                         i++;
                         System.out.println(i + ". " + profesional);
                     }
-                }
-            } else {
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }else if (option.equals("4")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                if (opcionValor == 1) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaSalidaEx, (comparadoresProfesional[3]));
-                    for (Profesional profesional : horaSalidaEx) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaSalidaMax, (comparadoresProfesional[3]));
-                    for (Profesional profesional : horaSalidaMax) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaSalidaMin, (comparadoresProfesional[3]));
-                    for (Profesional profesional : horaSalidaMin) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else {
-                    System.out.println("Ascendente");
-                    Collections.sort(horaSalidaRan, (comparadoresProfesional[3]));
-                    for (Profesional profesional : horaSalidaRan) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-            }
-            else if (option2.equals("2")) {
-                if (opcionValor == 1) {
+                } else if (option2.equals("2")) {
                     System.out.println("Descendente");
-                    Collections.sort(horaSalidaEx, Collections.reverseOrder(comparadoresProfesional[3]));
-                    for (Profesional profesional : horaSalidaEx) {
+                    horaSalidaProfecionalGen.sort(Collections.reverseOrder(comparadoresProfesional[2]));
+                    for (Profesional profesional : horaSalidaProfecionalGen) {
                         i++;
-                        System.out.println(i+". "+profesional);
+                        System.out.println(i + ". " + profesional);
                     }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaSalidaMax, Collections.reverseOrder(comparadoresProfesional[3]));
-                    for (Profesional profesional : horaSalidaMax) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Descendente");
-                    Collections.sort(horaSalidaMin, Collections.reverseOrder(comparadoresProfesional[3]));
-                    for (Profesional profesional : horaSalidaMin) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-                else {
-                    System.out.println("Descendente");
-                    Collections.sort(horaSalidaRan, Collections.reverseOrder(comparadoresProfesional[3]));
-                    for (Profesional profesional : horaSalidaRan) {
-                        i++;
-                        System.out.println(i+". "+profesional);
-                    }
-                }
-            }else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else {
-            return;
-        }if(opcionValor==1){
-            //Menu editar - eliminar
-            String accion;
-            System.out.println("-----------------------------------------");
-            System.out.println("\nIndique la accion que desea realizar:\n");
-            System.out.println("1. Editar ");
-            System.out.println("2. Eliminar ");
-            System.out.println("0. Regresar al menú anterior" + "\n");
-            accion = input.next();
-            System.out.println("----------------------------------");
-
-//Codigo editar
-            if (accion.equals("1")) {
-                for (Profesional profesional : horaSalidaMax) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el profesional que desea editar: \n");
-                    eleccion = input.nextInt();
-                    pro = horaSalidaMax.get(eleccion - 1);
-
-                    input.nextLine();
-                    System.out.println("\nCedula: " + pro.cedula);
-                    String nuevoCedula = input.nextLine();
-
-                    System.out.println("Area : " + pro.area);
-                    String nuevoArea = input.nextLine();
-
-                    System.out.println("Hora Inicio: " + pro.horaInicio);
-                    String nuevoHoraInicio = input.nextLine();
-
-                    System.out.println("Hora Salida: " + pro.horaSalida);
-                    String nuevoHoraSalida = input.nextLine();
-
-                    while (true) {
-                        System.out.print("Desea guardar?:[Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    if (nuevoCedula.isEmpty()) {
-                                    } else pro.cedula = Integer.parseInt(nuevoCedula);
-                                    if (nuevoArea.isEmpty()) {
-                                    } else pro.area = nuevoArea;
-                                    if (nuevoHoraInicio.isEmpty()) {
-                                    } else pro.horaInicio = nuevoHoraInicio;
-                                    if (nuevoHoraSalida.isEmpty()) {
-                                    } else pro.horaSalida = nuevoHoraSalida;
-                                case "N":
-                                    break;
-                            }
-
-                            return;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
-                    }
-
-                }
-                return;
-
-            }
-
-//Codigo eliminar
-            else if(accion.equals("2")){
-                for (Profesional profesional : horaSalidaMax) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el profesional que desea eliminar: \n");
-                    eleccion = input.nextInt();
-                    pro = horaSalidaMax.get(eleccion - 1);
-
-                    while (true) {
-                        System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    break;
-                                case "N":
-                                    return;
-                            }
-                            break;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
-                    }
-                    for (Zoologico zoologico : zoologicos) {
-                        Profesional finalpro = pro;
-                        zoologico.profesionales.removeIf(profesional1 -> profesional1.cedula == finalpro.cedula);
-                    }
-
-                    for (Bioma bioma : biomas) {
-                        Profesional finalpro = pro;
-                        bioma.profesionales.removeIf(profesional1 -> profesional1.cedula == finalpro.cedula);
-                    }
-
-                    profesionales.remove(pro);
-
-                    System.out.println("El profesional se ha eliminado correctamente");
+                } else {
+                    System.out.println("Opcion incorrecta");
                     return;
                 }
-
-            }
-            else return;
-        }else if(opcionValor==2){
-            //Menu editar - eliminar
-            String accion;
-            System.out.println("-----------------------------------------");
-            System.out.println("\nIndique la accion que desea realizar:\n");
-            System.out.println("1. Editar ");
-            System.out.println("2. Eliminar ");
-            System.out.println("0. Regresar al menú anterior" + "\n");
-            accion = input.next();
-            System.out.println("----------------------------------");
-
-//Codigo editar
-            if (accion.equals("1")) {
-                for (Profesional profesional : horaSalidaMax) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el profesional que desea editar: \n");
-                    eleccion = input.nextInt();
-                    pro = horaSalidaMax.get(eleccion - 1);
-
-                    input.nextLine();
-                    System.out.println("\nCedula: " + pro.cedula);
-                    String nuevoCedula = input.nextLine();
-
-                    System.out.println("Area : " + pro.area);
-                    String nuevoArea = input.nextLine();
-
-                    System.out.println("Hora Inicio: " + pro.horaInicio);
-                    String nuevoHoraInicio = input.nextLine();
-
-                    System.out.println("Hora Salida: " + pro.horaSalida);
-                    String nuevoHoraSalida = input.nextLine();
-
-                    while (true) {
-                        System.out.print("Desea guardar?:[Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    if (nuevoCedula.isEmpty()) {
-                                    } else pro.cedula = Integer.parseInt(nuevoCedula);
-                                    if (nuevoArea.isEmpty()) {
-                                    } else pro.area = nuevoArea;
-                                    if (nuevoHoraInicio.isEmpty()) {
-                                    } else pro.horaInicio = nuevoHoraInicio;
-                                    if (nuevoHoraSalida.isEmpty()) {
-                                    } else pro.horaSalida = nuevoHoraSalida;
-                                case "N":
-                                    break;
-                            }
-
-                            return;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
+                break;
+            case "4":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    horaSalidaProfecionalGen.sort((comparadoresProfesional[3]));
+                    for (Profesional profesional : horaSalidaProfecionalGen) {
+                        i++;
+                        System.out.println(i + ". " + profesional);
                     }
-
-                }
-                return;
-
-            }
-
-//Codigo eliminar
-            else if(accion.equals("2")){
-                for (Profesional profesional : horaSalidaMax) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el profesional que desea eliminar: \n");
-                    eleccion = input.nextInt();
-                    pro = horaSalidaMax.get(eleccion - 1);
-
-                    while (true) {
-                        System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    break;
-                                case "N":
-                                    return;
-                            }
-                            break;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    horaSalidaProfecionalGen.sort(Collections.reverseOrder(comparadoresProfesional[3]));
+                    for (Profesional profesional : horaSalidaProfecionalGen) {
+                        i++;
+                        System.out.println(i + ". " + profesional);
                     }
-                    for (Zoologico zoologico : zoologicos) {
-                        Profesional finalpro = pro;
-                        zoologico.profesionales.removeIf(profesional1 -> profesional1.cedula == finalpro.cedula);
-                    }
-
-                    for (Bioma bioma : biomas) {
-                        Profesional finalpro = pro;
-                        bioma.profesionales.removeIf(profesional1 -> profesional1.cedula == finalpro.cedula);
-                    }
-
-                    profesionales.remove(pro);
-
-                    System.out.println("El profesional se ha eliminado correctamente");
+                } else {
+                    System.out.println("Opcion incorrecta");
                     return;
                 }
-
-            }
-            else return;
-        }else if(opcionValor==3){
-            //Menu editar - eliminar
-            String accion;
-            System.out.println("-----------------------------------------");
-            System.out.println("\nIndique la accion que desea realizar:\n");
-            System.out.println("1. Editar ");
-            System.out.println("2. Eliminar ");
-            System.out.println("0. Regresar al menú anterior" + "\n");
-            accion = input.next();
-            System.out.println("----------------------------------");
+                break;
+            default:
+                return;
+        }//Menu editar - eliminar
+        String accion;
+        System.out.println("-----------------------------------------");
+        System.out.println("\nIndique la accion que desea realizar:\n");
+        System.out.println("1. Editar ");
+        System.out.println("2. Eliminar ");
+        System.out.println("0. Regresar al menú anterior" + "\n");
+        accion = input.next();
+        System.out.println("----------------------------------");
 
 //Codigo editar
+        for (Profesional profesional : horaSalidaProfecionalGen) {
             if (accion.equals("1")) {
-                for (Profesional profesional : horaSalidaMax) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el profesional que desea editar: \n");
-                    eleccion = input.nextInt();
-                    pro = horaSalidaMax.get(eleccion - 1);
+                int eleccion;
+                System.out.println("------------------------------------------");
+                System.out.println("Escoja el profesional que desea editar: \n");
+                eleccion = input.nextInt();
+                pro = horaSalidaProfecionalGen.get(eleccion - 1);
 
-                    input.nextLine();
-                    System.out.println("\nCedula: " + pro.cedula);
-                    String nuevoCedula = input.nextLine();
-
-                    System.out.println("Area : " + pro.area);
-                    String nuevoArea = input.nextLine();
-
-                    System.out.println("Hora Inicio: " + pro.horaInicio);
-                    String nuevoHoraInicio = input.nextLine();
-
-                    System.out.println("Hora Salida: " + pro.horaSalida);
-                    String nuevoHoraSalida = input.nextLine();
-
-                    while (true) {
-                        System.out.print("Desea guardar?:[Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    if (nuevoCedula.isEmpty()) {
-                                    } else pro.cedula = Integer.parseInt(nuevoCedula);
-                                    if (nuevoArea.isEmpty()) {
-                                    } else pro.area = nuevoArea;
-                                    if (nuevoHoraInicio.isEmpty()) {
-                                    } else pro.horaInicio = nuevoHoraInicio;
-                                    if (nuevoHoraSalida.isEmpty()) {
-                                    } else pro.horaSalida = nuevoHoraSalida;
-                                case "N":
-                                    break;
-                            }
-
-                            return;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
-                    }
-
+                input.nextLine();
+                System.out.println("\nCedula: " + pro.cedula);
+                String nuevoCedula = input.nextLine();
+                int nuevoCedulaInt= Integer.parseInt(nuevoCedula);
+                if(nuevoCedulaInt==profesional.cedula){
+                    System.out.println("ERROR: La cedula ya se encuentra registrada");
                 }
+
+                System.out.println("Area : " + pro.area);
+                String nuevoArea = input.nextLine();
+
+                System.out.println("Hora Inicio: " + pro.horaInicio);
+                String nuevoHoraInicio = input.nextLine();
+
+                System.out.println("Hora Salida: " + pro.horaSalida);
+                String nuevoHoraSalida = input.nextLine();
+
+                while (true) {
+                    System.out.print("Desea guardar?:[Y/N] ");
+                    String optionE = input.next();
+                    if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                        switch (optionE.toUpperCase()) {
+                            case "Y":
+                                if (nuevoCedula.isEmpty()) {
+                                } else pro.cedula = Integer.parseInt(nuevoCedula);
+                                if (nuevoArea.isEmpty()) {
+                                } else pro.area = nuevoArea;
+                                if (nuevoHoraInicio.isEmpty()) {
+                                } else pro.horaInicio = nuevoHoraInicio;
+                                if (nuevoHoraSalida.isEmpty()) {
+                                } else pro.horaSalida = nuevoHoraSalida;
+                            case "N":
+                                break;
+                        }
+                        return;
+                    } else {
+                        System.out.println("Opcion invalida\n");
+                    }
+                }
+            }//Codigo eliminar
+            else if (accion.equals("2")) {
+                int eleccion;
+                System.out.println("------------------------------------------");
+                System.out.println("Escoja el profesional que desea eliminar: \n");
+                eleccion = input.nextInt();
+                pro = horaSalidaProfecionalGen.get(eleccion - 1);
+
+                while (true) {
+                    System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+                    String optionE = input.next();
+                    if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                        switch (optionE.toUpperCase()) {
+                            case "Y":
+                                break;
+                            case "N":
+                                return;
+                        }
+                        break;
+                    } else {
+                        System.out.println("Opcion invalida\n");
+                    }
+                }
+                for (Zoologico zoologico : zoologicos) {
+                    zoologico.profesionales.removeIf(profesional1 -> profesional1.cedula == pro.cedula);
+                }
+
+                for (Bioma bioma : biomas) {
+                    bioma.profesionales.removeIf(profesional1 -> profesional1.cedula == pro.cedula);
+                }
+
+                profesionales.remove(pro);
+
+                System.out.println("El profesional se ha eliminado correctamente");
                 return;
-
-            }
-
-//Codigo eliminar
-            else if(accion.equals("2")){
-                for (Profesional profesional : horaSalidaMax) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el profesional que desea eliminar: \n");
-                    eleccion = input.nextInt();
-                    pro = horaSalidaMax.get(eleccion - 1);
-
-                    while (true) {
-                        System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    break;
-                                case "N":
-                                    return;
-                            }
-                            break;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
-                    }
-                    for (Zoologico zoologico : zoologicos) {
-                        Profesional finalpro = pro;
-                        zoologico.profesionales.removeIf(profesional1 -> profesional1.cedula == finalpro.cedula);
-                    }
-
-                    for (Bioma bioma : biomas) {
-                        Profesional finalpro = pro;
-                        bioma.profesionales.removeIf(profesional1 -> profesional1.cedula == finalpro.cedula);
-                    }
-
-                    profesionales.remove(pro);
-
-                    System.out.println("El profesional se ha eliminado correctamente");
-                    return;
-                }
-
-            }
-            else return;
-        }else{
-            //Menu editar - eliminar
-            String accion;
-            System.out.println("-----------------------------------------");
-            System.out.println("\nIndique la accion que desea realizar:\n");
-            System.out.println("1. Editar ");
-            System.out.println("2. Eliminar ");
-            System.out.println("0. Regresar al menú anterior" + "\n");
-            accion = input.next();
-            System.out.println("----------------------------------");
-
-//Codigo editar
-            if (accion.equals("1")) {
-                for (Profesional profesional : horaSalidaMax) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el profesional que desea editar: \n");
-                    eleccion = input.nextInt();
-                    pro = horaSalidaMax.get(eleccion - 1);
-
-                    input.nextLine();
-                    System.out.println("\nCedula: " + pro.cedula);
-                    String nuevoCedula = input.nextLine();
-
-                    System.out.println("Area : " + pro.area);
-                    String nuevoArea = input.nextLine();
-
-                    System.out.println("Hora Inicio: " + pro.horaInicio);
-                    String nuevoHoraInicio = input.nextLine();
-
-                    System.out.println("Hora Salida: " + pro.horaSalida);
-                    String nuevoHoraSalida = input.nextLine();
-
-                    while (true) {
-                        System.out.print("Desea guardar?:[Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    if (nuevoCedula.isEmpty()) {
-                                    } else pro.cedula = Integer.parseInt(nuevoCedula);
-                                    if (nuevoArea.isEmpty()) {
-                                    } else pro.area = nuevoArea;
-                                    if (nuevoHoraInicio.isEmpty()) {
-                                    } else pro.horaInicio = nuevoHoraInicio;
-                                    if (nuevoHoraSalida.isEmpty()) {
-                                    } else pro.horaSalida = nuevoHoraSalida;
-                                case "N":
-                                    break;
-                            }
-
-                            return;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
-                    }
-
-                }
-                return;
-
-            }
-
-//Codigo eliminar
-            else if(accion.equals("2")){
-                for (Profesional profesional : horaSalidaMax) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el profesional que desea eliminar: \n");
-                    eleccion = input.nextInt();
-                    pro = horaSalidaMax.get(eleccion - 1);
-
-                    while (true) {
-                        System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    break;
-                                case "N":
-                                    return;
-                            }
-                            break;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
-                    }
-                    for (Zoologico zoologico : zoologicos) {
-                        Profesional finalpro = pro;
-                        zoologico.profesionales.removeIf(profesional1 -> profesional1.cedula == finalpro.cedula);
-                    }
-
-                    for (Bioma bioma : biomas) {
-                        Profesional finalpro = pro;
-                        bioma.profesionales.removeIf(profesional1 -> profesional1.cedula == finalpro.cedula);
-                    }
-
-                    profesionales.remove(pro);
-
-                    System.out.println("El profesional se ha eliminado correctamente");
-                    return;
-                }
-
-            }
-            else return;
+            } else return;
         }
     }
     public static void mostrarTodosProfesionales(){
-        Profesional pro = null;
+        Profesional pro;
         int i=0;
         ArrayList<Profesional> copiaPro = new ArrayList<>(profesionales);
         String option;
@@ -13724,117 +9655,114 @@ public class SistemaZoologico {
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
-        if (option.equals("1")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(copiaPro, (comparadoresProfesional[0]));
-                for (Profesional profesional : copiaPro) {
-                    i++;
-                    System.out.println(i+". "+profesional);
+        switch (option) {
+            case "1":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    copiaPro.sort((comparadoresProfesional[0]));
+                    for (Profesional profesional : copiaPro) {
+                        i++;
+                        System.out.println(i + ". " + profesional);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    copiaPro.sort(Collections.reverseOrder(comparadoresProfesional[0]));
+                    for (Profesional profesional : copiaPro) {
+                        i++;
+                        System.out.println(i + ". " + profesional);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(copiaPro, Collections.reverseOrder(comparadoresProfesional[0]));
-                for (Profesional profesional : copiaPro) {
-                    i++;
-                    System.out.println(i+". "+profesional);
+                break;
+            case "2":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    copiaPro.sort((comparadoresProfesional[1]));
+                    for (Profesional profesional : copiaPro) {
+                        i++;
+                        System.out.println(i + ". " + profesional);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    copiaPro.sort(Collections.reverseOrder(comparadoresProfesional[1]));
+                    for (Profesional profesional : copiaPro) {
+                        i++;
+                        System.out.println(i + ". " + profesional);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            }
-            else{
-                System.out.println("Opcion incorrecta");
+                break;
+            case "3":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    copiaPro.sort((comparadoresProfesional[2]));
+                    for (Profesional profesional : copiaPro) {
+                        i++;
+                        System.out.println(i + ". " + profesional);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    copiaPro.sort(Collections.reverseOrder(comparadoresProfesional[2]));
+                    for (Profesional profesional : copiaPro) {
+                        i++;
+                        System.out.println(i + ". " + profesional);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
+                }
+                break;
+            case "4":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    copiaPro.sort((comparadoresProfesional[3]));
+                    for (Profesional profesional : copiaPro) {
+                        i++;
+                        System.out.println(i + ". " + profesional);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    copiaPro.sort(Collections.reverseOrder(comparadoresProfesional[3]));
+                    for (Profesional profesional : copiaPro) {
+                        i++;
+                        System.out.println(i + ". " + profesional);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
+                }
+                break;
+            default:
                 return;
-            }
         }
-        else if (option.equals("2")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(copiaPro, (comparadoresProfesional[1]));
-                for (Profesional profesional : copiaPro) {
-                    i++;
-                    System.out.println(i+". "+profesional);
-                }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(copiaPro, Collections.reverseOrder(comparadoresProfesional[1]));
-                for (Profesional profesional : copiaPro) {
-                    i++;
-                    System.out.println(i+". "+profesional);
-                }
-            }else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else if (option.equals("3")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(copiaPro, (comparadoresProfesional[2]));
-                for (Profesional profesional : copiaPro) {
-                    i++;
-                    System.out.println(i + ". " + profesional);
-                }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(copiaPro, Collections.reverseOrder(comparadoresProfesional[2]));
-                for (Profesional profesional : copiaPro) {
-                    i++;
-                    System.out.println(i+". "+profesional);
-                }
-            }else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else if (option.equals("4")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(copiaPro, (comparadoresProfesional[3]));
-                for (Profesional profesional : copiaPro) {
-                    i++;
-                    System.out.println(i+". "+profesional);
-                }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(copiaPro, Collections.reverseOrder(comparadoresProfesional[3]));
-                for (Profesional profesional : copiaPro) {
-                    i++;
-                    System.out.println(i+". "+profesional);
-                }
-            }else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        } else {
-            return;
-        }//Menu editar - eliminar
         String accion;
         System.out.println("-----------------------------------------");
         System.out.println("\nIndique la accion que desea realizar:\n");
@@ -13844,9 +9772,9 @@ public class SistemaZoologico {
         accion = input.next();
         System.out.println("----------------------------------");
 
-//Codigo editar
-        if (accion.equals("1")) {
-            for (Profesional profesional : copiaPro) {
+        for (Profesional profesional : copiaPro) {
+            //Codigo editar
+            if (accion.equals("1")) {
                 int eleccion;
                 System.out.println("------------------------------------------");
                 System.out.println("Escoja el profesional que desea editar: \n");
@@ -13856,6 +9784,10 @@ public class SistemaZoologico {
                 input.nextLine();
                 System.out.println("\nCedula: " + pro.cedula);
                 String nuevoCedula = input.nextLine();
+                int nuevoCedulaInt= Integer.parseInt(nuevoCedula);
+                if(nuevoCedulaInt==profesional.cedula){
+                    System.out.println("ERROR: La cedula ya se encuentra registrada");
+                }
 
                 System.out.println("Area : " + pro.area);
                 String nuevoArea = input.nextLine();
@@ -13883,21 +9815,13 @@ public class SistemaZoologico {
                             case "N":
                                 break;
                         }
-
                         return;
                     } else {
                         System.out.println("Opcion invalida\n");
                     }
                 }
-
-            }
-            return;
-
-        }
-
-//Codigo eliminar
-        else if(accion.equals("2")){
-            for (Profesional profesional : copiaPro) {
+            }//Codigo eliminar
+            else if (accion.equals("2")) {
                 int eleccion;
                 System.out.println("------------------------------------------");
                 System.out.println("Escoja el profesional que desea eliminar: \n");
@@ -13920,24 +9844,19 @@ public class SistemaZoologico {
                     }
                 }
                 for (Zoologico zoologico : zoologicos) {
-                    Profesional finalpro = pro;
-                    zoologico.profesionales.removeIf(profesional1 -> profesional1.cedula == finalpro.cedula);
+                    zoologico.profesionales.removeIf(profesional1 -> profesional1.cedula == pro.cedula);
                 }
 
                 for (Bioma bioma : biomas) {
-                    Profesional finalpro = pro;
-                    bioma.profesionales.removeIf(profesional1 -> profesional1.cedula == finalpro.cedula);
+                    bioma.profesionales.removeIf(profesional1 -> profesional1.cedula == pro.cedula);
                 }
 
                 profesionales.remove(pro);
 
                 System.out.println("El profesional se ha eliminado correctamente");
                 return;
-            }
-
+            } else return;
         }
-        else return;
-        return;
     }
 
     public static void busquedaZooamigo() {
@@ -14006,13 +9925,13 @@ public class SistemaZoologico {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String nombreBus = input.next();
-                        nombreZooAmigo(1, nombreBus);
+                        nombreZooAmigo(nombreBus);
                         break;
                     } else {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String nombreBus = input.next();
-                        nombreZooAmigo(2, nombreBus);
+                        nombreZooAmigo(nombreBus);
                         break;
                     }
                     break;
@@ -14064,34 +9983,31 @@ public class SistemaZoologico {
         }
     }
     public static void cedulaZooAmigo(int opcionValor, int cedulaBusMin, int cedulaBusMax) {
-        ZooAmigo zooA = null;
+        ZooAmigo zooA;
         int i = 0;
-        ArrayList<ZooAmigo> cedulaEx = new ArrayList<>();
-        ArrayList<ZooAmigo> cedulaMax = new ArrayList<>();
-        ArrayList<ZooAmigo> cedulaMin = new ArrayList<>();
-        ArrayList<ZooAmigo> cedulaRan = new ArrayList<>();
+        ArrayList<ZooAmigo> cedulaZooAmigoGen = new ArrayList<>();
         if (opcionValor == 1) {
             for (ZooAmigo zooAmigo : zooAmigos) {
                 if (cedulaBusMin == zooAmigo.cedula) {
-                    cedulaEx.add(zooAmigo);
+                    cedulaZooAmigoGen.add(zooAmigo);
                 }
             }
         } else if (opcionValor == 2) {
             for (ZooAmigo zooAmigo : zooAmigos) {
                 if (cedulaBusMin >= zooAmigo.cedula) {
-                    cedulaMax.add(zooAmigo);
+                    cedulaZooAmigoGen.add(zooAmigo);
                 }
             }
         } else if (opcionValor == 3) {
             for (ZooAmigo zooAmigo : zooAmigos) {
                 if (cedulaBusMin <= zooAmigo.cedula) {
-                    cedulaMin.add(zooAmigo);
+                    cedulaZooAmigoGen.add(zooAmigo);
                 }
             }
         } else {
             for (ZooAmigo zooAmigo : zooAmigos) {
                 if (cedulaBusMin <= zooAmigo.cedula && zooAmigo.cedula <= cedulaBusMax) {
-                    cedulaRan.add(zooAmigo);
+                    cedulaZooAmigoGen.add(zooAmigo);
                 }
             }
         }
@@ -14105,393 +10021,114 @@ public class SistemaZoologico {
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
-        if (option.equals("1")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                if (opcionValor == 1) {
+        switch (option) {
+            case "1":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
                     System.out.println("Ascendente");
-                    Collections.sort(cedulaEx, (comparadoresZooAmigo[0]));
-                    for (ZooAmigo zooAmigo : cedulaEx) {
+                    cedulaZooAmigoGen.sort((comparadoresZooAmigo[0]));
+                    for (ZooAmigo zooAmigo : cedulaZooAmigoGen) {
                         i++;
                         System.out.println(i + ". " + zooAmigo);
                     }
-                } else if (opcionValor == 2) {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaMax, (comparadoresZooAmigo[0]));
-                    for (ZooAmigo zooAmigo : cedulaMax) {
-                        i++;
-                        System.out.println(i + ". " + zooAmigo);
-                    }
-                } else if (opcionValor == 3) {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaMin, (comparadoresZooAmigo[0]));
-                    for (ZooAmigo zooAmigo : cedulaMin) {
+                }else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    cedulaZooAmigoGen.sort(Collections.reverseOrder(comparadoresZooAmigo[0]));
+                    for (ZooAmigo zooAmigo : cedulaZooAmigoGen) {
                         i++;
                         System.out.println(i + ". " + zooAmigo);
                     }
                 } else {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaRan, (comparadoresZooAmigo[0]));
-                    for (ZooAmigo zooAmigo : cedulaRan) {
-                        i++;
-                        System.out.println(i + ". " + zooAmigo);
-                    }
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            } else if (option2.equals("2")) {
-                if (opcionValor == 1) {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaEx, Collections.reverseOrder(comparadoresZooAmigo[0]));
-                    for (ZooAmigo zooAmigo : cedulaEx) {
+                break;
+            case "2":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    cedulaZooAmigoGen.sort((comparadoresZooAmigo[1]));
+                    for (ZooAmigo zooAmigo : cedulaZooAmigoGen) {
                         i++;
                         System.out.println(i + ". " + zooAmigo);
                     }
-                } else if (opcionValor == 2) {
+                } else if (option2.equals("2")) {
                     System.out.println("Descendente");
-                    Collections.sort(cedulaMax, Collections.reverseOrder(comparadoresZooAmigo[0]));
-                    for (ZooAmigo zooAmigo : cedulaMax) {
-                        i++;
-                        System.out.println(i + ". " + zooAmigo);
-                    }
-                } else if (opcionValor == 3) {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaMin, Collections.reverseOrder(comparadoresZooAmigo[0]));
-                    for (ZooAmigo zooAmigo : cedulaMin) {
+                    cedulaZooAmigoGen.sort(Collections.reverseOrder(comparadoresZooAmigo[1]));
+                    for (ZooAmigo zooAmigo : cedulaZooAmigoGen) {
                         i++;
                         System.out.println(i + ". " + zooAmigo);
                     }
                 } else {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaRan, Collections.reverseOrder(comparadoresZooAmigo[0]));
-                    for (ZooAmigo zooAmigo : cedulaRan) {
+                    System.out.println("Opcion incorrecta");
+                    return;
+                }
+                break;
+            case "3":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    cedulaZooAmigoGen.sort((comparadoresZooAmigo[2]));
+                    for (ZooAmigo zooAmigo : cedulaZooAmigoGen) {
                         i++;
                         System.out.println(i + ". " + zooAmigo);
                     }
+                }else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    cedulaZooAmigoGen.sort(Collections.reverseOrder(comparadoresZooAmigo[2]));
+                    for (ZooAmigo zooAmigo : cedulaZooAmigoGen) {
+                        i++;
+                        System.out.println(i + ". " + zooAmigo);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            } else {
-                System.out.println("Opcion incorrecta");
+                break;
+            case "4":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    cedulaZooAmigoGen.sort((comparadoresZooAmigo[3]));
+                    for (ZooAmigo zooAmigo : cedulaZooAmigoGen) {
+                        i++;
+                        System.out.println(i + ". " + zooAmigo);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    cedulaZooAmigoGen.sort(Collections.reverseOrder(comparadoresZooAmigo[3]));
+                    for (ZooAmigo zooAmigo : cedulaZooAmigoGen) {
+                        i++;
+                        System.out.println(i + ". " + zooAmigo);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
+                }
+                break;
+            default:
                 return;
-            }
-        } else if (option.equals("2")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                if (opcionValor == 1) {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaEx, (comparadoresZooAmigo[1]));
-                    for (ZooAmigo zooAmigo : cedulaEx) {
-                        i++;
-                        System.out.println(i + ". " + zooAmigo);
-                    }
-                } else if (opcionValor == 2) {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaMax, (comparadoresZooAmigo[1]));
-                    for (ZooAmigo zooAmigo : cedulaMax) {
-                        i++;
-                        System.out.println(i + ". " + zooAmigo);
-                    }
-                } else if (opcionValor == 3) {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaMin, (comparadoresZooAmigo[1]));
-                    for (ZooAmigo zooAmigo : cedulaMin) {
-                        i++;
-                        System.out.println(i + ". " + zooAmigo);
-                    }
-                } else {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaRan, (comparadoresZooAmigo[1]));
-                    for (ZooAmigo zooAmigo : cedulaRan) {
-                        i++;
-                        System.out.println(i + ". " + zooAmigo);
-                    }
-                }
-            } else if (option2.equals("2")) {
-                if (opcionValor == 1) {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaEx, Collections.reverseOrder(comparadoresZooAmigo[1]));
-                    for (ZooAmigo zooAmigo : cedulaEx) {
-                        i++;
-                        System.out.println(i + ". " + zooAmigo);
-                    }
-                } else if (opcionValor == 2) {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaMax, Collections.reverseOrder(comparadoresZooAmigo[1]));
-                    for (ZooAmigo zooAmigo : cedulaMax) {
-                        i++;
-                        System.out.println(i + ". " + zooAmigo);
-                    }
-                } else if (opcionValor == 3) {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaMin, Collections.reverseOrder(comparadoresZooAmigo[1]));
-                    for (ZooAmigo zooAmigo : cedulaMin) {
-                        i++;
-                        System.out.println(i + ". " + zooAmigo);
-                    }
-                } else {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaRan, Collections.reverseOrder(comparadoresZooAmigo[1]));
-                    for (ZooAmigo zooAmigo : cedulaRan) {
-                        i++;
-                        System.out.println(i + ". " + zooAmigo);
-                    }
-                }
-            } else {
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        } else if (option.equals("3")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                if (opcionValor == 1) {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaEx, (comparadoresZooAmigo[2]));
-                    for (ZooAmigo zooAmigo : cedulaEx) {
-                        i++;
-                        System.out.println(i + ". " + zooAmigo);
-                    }
-                } else if (opcionValor == 2) {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaMax, (comparadoresZooAmigo[2]));
-                    for (ZooAmigo zooAmigo : cedulaMax) {
-                        i++;
-                        System.out.println(i + ". " + zooAmigo);
-                    }
-                } else if (opcionValor == 3) {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaMin, (comparadoresZooAmigo[2]));
-                    for (ZooAmigo zooAmigo : cedulaMin) {
-                        i++;
-                        System.out.println(i + ". " + zooAmigo);
-                    }
-                } else {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaRan, (comparadoresZooAmigo[2]));
-                    for (ZooAmigo zooAmigo : cedulaRan) {
-                        i++;
-                        System.out.println(i + ". " + zooAmigo);
-                    }
-                }
-            } else if (option2.equals("2")) {
-                if (opcionValor == 1) {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaEx, Collections.reverseOrder(comparadoresZooAmigo[2]));
-                    for (ZooAmigo zooAmigo : cedulaEx) {
-                        i++;
-                        System.out.println(i + ". " + zooAmigo);
-                    }
-                } else if (opcionValor == 2) {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaMax, Collections.reverseOrder(comparadoresZooAmigo[2]));
-                    for (ZooAmigo zooAmigo : cedulaMax) {
-                        i++;
-                        System.out.println(i + ". " + zooAmigo);
-                    }
-                } else if (opcionValor == 3) {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaMin, Collections.reverseOrder(comparadoresZooAmigo[2]));
-                    for (ZooAmigo zooAmigo : cedulaMin) {
-                        i++;
-                        System.out.println(i + ". " + zooAmigo);
-                    }
-                } else {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaRan, Collections.reverseOrder(comparadoresZooAmigo[2]));
-                    for (ZooAmigo zooAmigo : cedulaRan) {
-                        i++;
-                        System.out.println(i + ". " + zooAmigo);
-                    }
-                }
-            } else {
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        } else if (option.equals("4")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                if (opcionValor == 1) {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaEx, (comparadoresZooAmigo[3]));
-                    for (ZooAmigo zooAmigo : cedulaEx) {
-                        i++;
-                        System.out.println(i + ". " + zooAmigo);
-                    }
-                } else if (opcionValor == 2) {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaMax, (comparadoresZooAmigo[3]));
-                    for (ZooAmigo zooAmigo : cedulaMax) {
-                        i++;
-                        System.out.println(i + ". " + zooAmigo);
-                    }
-                } else if (opcionValor == 3) {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaMin, (comparadoresZooAmigo[3]));
-                    for (ZooAmigo zooAmigo : cedulaMin) {
-                        i++;
-                        System.out.println(i + ". " + zooAmigo);
-                    }
-                } else {
-                    System.out.println("Ascendente");
-                    Collections.sort(cedulaRan, (comparadoresZooAmigo[3]));
-                    for (ZooAmigo zooAmigo : cedulaRan) {
-                        i++;
-                        System.out.println(i + ". " + zooAmigo);
-                    }
-                }
-            } else if (option2.equals("2")) {
-                if (opcionValor == 1) {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaEx, Collections.reverseOrder(comparadoresZooAmigo[3]));
-                    for (ZooAmigo zooAmigo : cedulaEx) {
-                        i++;
-                        System.out.println(i + ". " + zooAmigo);
-                    }
-                } else if (opcionValor == 2) {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaMax, Collections.reverseOrder(comparadoresZooAmigo[3]));
-                    for (ZooAmigo zooAmigo : cedulaMax) {
-                        i++;
-                        System.out.println(i + ". " + zooAmigo);
-                    }
-                } else if (opcionValor == 3) {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaMin, Collections.reverseOrder(comparadoresZooAmigo[3]));
-                    for (ZooAmigo zooAmigo : cedulaMin) {
-                        i++;
-                        System.out.println(i + ". " + zooAmigo);
-                    }
-                } else {
-                    System.out.println("Descendente");
-                    Collections.sort(cedulaRan, Collections.reverseOrder(comparadoresZooAmigo[3]));
-                    for (ZooAmigo zooAmigo : cedulaRan) {
-                        i++;
-                        System.out.println(i + ". " + zooAmigo);
-                    }
-                }
-            } else {
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        } else {
-            return;
         }
-        if (opcionValor == 1) {
-            //Menu editar - eliminar
-            String accion;
-            System.out.println("-----------------------------------------");
-            System.out.println("\nIndique la accion que desea realizar:\n");
-            System.out.println("1. Editar ");
-            System.out.println("2. Eliminar ");
-            System.out.println("0. Regresar al menú anterior" + "\n");
-            accion = input.next();
-            System.out.println("----------------------------------");
-
-//Codigo editar
-            if (accion.equals("1")) {
-                for (ZooAmigo zooAmigo : cedulaEx) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el zooAmigo que desea editar: \n");
-                    eleccion = input.nextInt();
-                    zooA = cedulaEx.get(eleccion - 1);
-
-                    input.nextLine();
-                    System.out.println("\nCedula: " + zooA.cedula);
-                    String nuevoCedula = input.nextLine();
-
-                    System.out.println("Nombre : " + zooA.nombre);
-                    String nuevoNombre = input.nextLine();
-
-                    System.out.println("Telefono : " + zooA.telefono);
-                    String nuevoTelefono = input.nextLine();
-
-                    while (true) {
-                        System.out.print("Desea guardar?:[Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    if (nuevoCedula.isEmpty()) {
-                                    } else zooA.cedula = Integer.parseInt(nuevoCedula);
-                                    if (nuevoNombre.isEmpty()) {
-                                    } else zooA.nombre = nuevoNombre;
-                                    if (nuevoTelefono.isEmpty()) {
-                                    } else zooA.telefono = nuevoTelefono;
-                                case "N":
-                                    break;
-                            }
-
-                            return;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
-                    }
-
-                }
-                return;
-            }
-
-
-//Codigo eliminar
-            else if (accion.equals("2")) {
-                for (ZooAmigo zooAmigo : cedulaEx) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el zooAmigo que desea eliminar: \n");
-                    eleccion = input.nextInt();
-                    zooA = cedulaEx.get(eleccion - 1);
-
-                    while (true) {
-                        System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    break;
-                                case "N":
-                                    return;
-                            }
-                            break;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
-                    }
-
-                    for (Animal animal : animales) {
-                        if (animal.zooAmigo != null && animal.zooAmigo.cedula == zooA.cedula) {
-                            animal.zooAmigo = null;
-                        }
-                    }
-
-                    for (Zoologico zoologico : zoologicos) {
-                        ZooAmigo finalZooA = zooA;
-                        ;
-                        zoologico.zooAmigos.removeIf(zooAmigo1 -> zooAmigo1.cedula == finalZooA.cedula);
-                    }
-
-                    zooAmigos.remove(zooA);
-
-                    System.out.println("El zooAmigo se ha eliminado correctamente");
-                }
-            } else return;
-        } else if (opcionValor == 2){
         //Menu editar - eliminar
         String accion;
         System.out.println("-----------------------------------------");
@@ -14502,18 +10139,22 @@ public class SistemaZoologico {
         accion = input.next();
         System.out.println("----------------------------------");
 
-//Codigo editar
-        if (accion.equals("1")) {
-            for (ZooAmigo zooAmigo : cedulaEx) {
+        for (ZooAmigo zooAmigo : cedulaZooAmigoGen) {
+        //Codigo editar
+            if (accion.equals("1")) {
                 int eleccion;
                 System.out.println("------------------------------------------");
                 System.out.println("Escoja el zooAmigo que desea editar: \n");
                 eleccion = input.nextInt();
-                zooA = cedulaEx.get(eleccion - 1);
+                zooA = cedulaZooAmigoGen.get(eleccion - 1);
 
                 input.nextLine();
                 System.out.println("\nCedula: " + zooA.cedula);
                 String nuevoCedula = input.nextLine();
+                int nuevoCedulaInt= Integer.parseInt(nuevoCedula);
+                if(nuevoCedulaInt==zooAmigo.cedula){
+                    System.out.println("ERROR: La cedula ya se encuentra registrada");
+                }
 
                 System.out.println("Nombre : " + zooA.nombre);
                 String nuevoNombre = input.nextLine();
@@ -14536,26 +10177,18 @@ public class SistemaZoologico {
                             case "N":
                                 break;
                         }
-
                         return;
                     } else {
                         System.out.println("Opcion invalida\n");
                     }
                 }
-
-            }
-            return;
-        }
-
-
-//Codigo eliminar
-        else if (accion.equals("2")) {
-            for (ZooAmigo zooAmigo : cedulaEx) {
+            }//Codigo eliminar
+            else if (accion.equals("2")) {
                 int eleccion;
                 System.out.println("------------------------------------------");
                 System.out.println("Escoja el zooAmigo que desea eliminar: \n");
                 eleccion = input.nextInt();
-                zooA = cedulaEx.get(eleccion - 1);
+                zooA = cedulaZooAmigoGen.get(eleccion - 1);
 
                 while (true) {
                     System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
@@ -14566,8 +10199,7 @@ public class SistemaZoologico {
                                 break;
                             case "N":
                                 return;
-                        }
-                        break;
+                        }break;
                     } else {
                         System.out.println("Opcion invalida\n");
                     }
@@ -14581,220 +10213,17 @@ public class SistemaZoologico {
 
                 for (Zoologico zoologico : zoologicos) {
                     ZooAmigo finalZooA = zooA;
-                    ;
                     zoologico.zooAmigos.removeIf(zooAmigo1 -> zooAmigo1.cedula == finalZooA.cedula);
                 }
 
                 zooAmigos.remove(zooA);
 
                 System.out.println("El zooAmigo se ha eliminado correctamente");
-            }
-            } else return;
-        }else if(opcionValor==3){
-            //Menu editar - eliminar
-            String accion;
-            System.out.println("-----------------------------------------");
-            System.out.println("\nIndique la accion que desea realizar:\n");
-            System.out.println("1. Editar ");
-            System.out.println("2. Eliminar ");
-            System.out.println("0. Regresar al menú anterior" + "\n");
-            accion = input.next();
-            System.out.println("----------------------------------");
-
-//Codigo editar
-            if (accion.equals("1")) {
-                for (ZooAmigo zooAmigo : cedulaEx) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el zooAmigo que desea editar: \n");
-                    eleccion = input.nextInt();
-                    zooA = cedulaEx.get(eleccion - 1);
-
-                    input.nextLine();
-                    System.out.println("\nCedula: " + zooA.cedula);
-                    String nuevoCedula = input.nextLine();
-
-                    System.out.println("Nombre : " + zooA.nombre);
-                    String nuevoNombre = input.nextLine();
-
-                    System.out.println("Telefono : " + zooA.telefono);
-                    String nuevoTelefono = input.nextLine();
-
-                    while (true) {
-                        System.out.print("Desea guardar?:[Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    if (nuevoCedula.isEmpty()) {
-                                    } else zooA.cedula = Integer.parseInt(nuevoCedula);
-                                    if (nuevoNombre.isEmpty()) {
-                                    } else zooA.nombre = nuevoNombre;
-                                    if (nuevoTelefono.isEmpty()) {
-                                    } else zooA.telefono = nuevoTelefono;
-                                case "N":
-                                    break;
-                            }
-
-                            return;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
-                    }
-
-                }
-                return;
-            }
-
-
-//Codigo eliminar
-            else if(accion.equals("2")) {
-                for (ZooAmigo zooAmigo : cedulaEx) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el zooAmigo que desea eliminar: \n");
-                    eleccion = input.nextInt();
-                    zooA = cedulaEx.get(eleccion - 1);
-
-                    while (true) {
-                        System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    break;
-                                case "N":
-                                    return;
-                            }
-                            break;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
-                    }
-
-                    for (Animal animal : animales) {
-                        if (animal.zooAmigo != null && animal.zooAmigo.cedula == zooA.cedula) {
-                            animal.zooAmigo = null;
-                        }
-                    }
-
-                    for (Zoologico zoologico : zoologicos) {
-                        ZooAmigo finalZooA = zooA;;
-                        zoologico.zooAmigos.removeIf(zooAmigo1 -> zooAmigo1.cedula == finalZooA.cedula);
-                    }
-
-                    zooAmigos.remove(zooA);
-
-                    System.out.println("El zooAmigo se ha eliminado correctamente");
-                }
-            }
-
-            else return;
-
-        }else{
-            //Menu editar - eliminar
-            String accion;
-            System.out.println("-----------------------------------------");
-            System.out.println("\nIndique la accion que desea realizar:\n");
-            System.out.println("1. Editar ");
-            System.out.println("2. Eliminar ");
-            System.out.println("0. Regresar al menú anterior" + "\n");
-            accion = input.next();
-            System.out.println("----------------------------------");
-
-//Codigo editar
-            if (accion.equals("1")) {
-                for (ZooAmigo zooAmigo : cedulaEx) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el zooAmigo que desea editar: \n");
-                    eleccion = input.nextInt();
-                    zooA = cedulaEx.get(eleccion - 1);
-
-                    input.nextLine();
-                    System.out.println("\nCedula: " + zooA.cedula);
-                    String nuevoCedula = input.nextLine();
-
-                    System.out.println("Nombre : " + zooA.nombre);
-                    String nuevoNombre = input.nextLine();
-
-                    System.out.println("Telefono : " + zooA.telefono);
-                    String nuevoTelefono = input.nextLine();
-
-                    while (true) {
-                        System.out.print("Desea guardar?:[Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    if (nuevoCedula.isEmpty()) {
-                                    } else zooA.cedula = Integer.parseInt(nuevoCedula);
-                                    if (nuevoNombre.isEmpty()) {
-                                    } else zooA.nombre = nuevoNombre;
-                                    if (nuevoTelefono.isEmpty()) {
-                                    } else zooA.telefono = nuevoTelefono;
-                                case "N":
-                                    break;
-                            }
-
-                            return;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
-                    }
-
-                }
-                return;
-            }
-
-
-//Codigo eliminar
-            else if(accion.equals("2")) {
-                for (ZooAmigo zooAmigo : cedulaEx) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el zooAmigo que desea eliminar: \n");
-                    eleccion = input.nextInt();
-                    zooA = cedulaEx.get(eleccion - 1);
-
-                    while (true) {
-                        System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    break;
-                                case "N":
-                                    return;
-                            }
-                            break;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
-                    }
-
-                    for (Animal animal : animales) {
-                        if (animal.zooAmigo != null && animal.zooAmigo.cedula == zooA.cedula) {
-                            animal.zooAmigo = null;
-                        }
-                    }
-
-                    for (Zoologico zoologico : zoologicos) {
-                        ZooAmigo finalZooA = zooA;;
-                        zoologico.zooAmigos.removeIf(zooAmigo1 -> zooAmigo1.cedula == finalZooA.cedula);
-                    }
-
-                    zooAmigos.remove(zooA);
-
-                    System.out.println("El zooAmigo se ha eliminado correctamente");
-                }
-            }
-
-            else return;
+            }else return;
         }
     }
-    public static void nombreZooAmigo(int opcionValor, String nombreBus) {
-        ZooAmigo zooA = null;
+    public static void nombreZooAmigo(String nombreBus) {
+        ZooAmigo zooA;
         int i=0;
         ArrayList<ZooAmigo> nombreZA = new ArrayList<>();
         for (ZooAmigo zooAmigo : zooAmigos) {
@@ -14820,7 +10249,7 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")) {
                 System.out.println("Ascendente");
-                Collections.sort(nombreZA, (comparadoresZooAmigo[0]));
+                nombreZA.sort((comparadoresZooAmigo[0]));
                 for (ZooAmigo zooAmigo : nombreZA) {
                     i++;
                     System.out.println(i+". "+zooAmigo);
@@ -14828,7 +10257,7 @@ public class SistemaZoologico {
             }
             else if (option2.equals("2")) {
                 System.out.println("Descendente");
-                Collections.sort(nombreZA, Collections.reverseOrder(comparadoresZooAmigo[0]));
+                nombreZA.sort(Collections.reverseOrder(comparadoresZooAmigo[0]));
                 for (ZooAmigo zooAmigo : nombreZA) {
                     i++;
                     System.out.println(i+". "+zooAmigo);
@@ -14848,7 +10277,7 @@ public class SistemaZoologico {
             System.out.println();
             if (option2.equals("1")) {
                 System.out.println("Ascendente");
-                Collections.sort(nombreZA, (comparadoresZooAmigo[3]));
+                nombreZA.sort((comparadoresZooAmigo[3]));
                 for (ZooAmigo zooAmigo : nombreZA) {
                     i++;
                     System.out.println(i+". "+zooAmigo);
@@ -14856,7 +10285,7 @@ public class SistemaZoologico {
             }
             else if (option2.equals("2")) {
                 System.out.println("Descendente");
-                Collections.sort(nombreZA, Collections.reverseOrder(comparadoresZooAmigo[3]));
+                nombreZA.sort(Collections.reverseOrder(comparadoresZooAmigo[3]));
                 for (ZooAmigo zooAmigo : nombreZA) {
                     i++;
                     System.out.println(i+". "+zooAmigo);
@@ -14879,9 +10308,9 @@ public class SistemaZoologico {
         accion = input.next();
         System.out.println("----------------------------------");
 
-//Codigo editar
-        if (accion.equals("1")) {
-            for (ZooAmigo zooAmigo : nombreZA) {
+        //Codigo editar
+        for (ZooAmigo zooAmigo : nombreZA) {
+            if (accion.equals("1")) {
                 int eleccion;
                 System.out.println("------------------------------------------");
                 System.out.println("Escoja el zooAmigo que desea editar: \n");
@@ -14891,6 +10320,10 @@ public class SistemaZoologico {
                 input.nextLine();
                 System.out.println("\nCedula: " + zooA.cedula);
                 String nuevoCedula = input.nextLine();
+                int nuevoCedulaInt= Integer.parseInt(nuevoCedula);
+                if(nuevoCedulaInt==zooAmigo.cedula){
+                    System.out.println("ERROR: La cedula ya se encuentra registrada");
+                }
 
                 System.out.println("Nombre : " + zooA.nombre);
                 String nuevoNombre = input.nextLine();
@@ -14913,21 +10346,13 @@ public class SistemaZoologico {
                             case "N":
                                 break;
                         }
-
                         return;
                     } else {
                         System.out.println("Opcion invalida\n");
                     }
                 }
-
-            }
-            return;
-        }
-
-
-//Codigo eliminar
-        else if(accion.equals("2")) {
-            for (ZooAmigo zooAmigo : nombreZA) {
+            }//Codigo eliminar
+            else if (accion.equals("2")) {
                 int eleccion;
                 System.out.println("------------------------------------------");
                 System.out.println("Escoja el zooAmigo que desea eliminar: \n");
@@ -14957,32 +10382,25 @@ public class SistemaZoologico {
                 }
 
                 for (Zoologico zoologico : zoologicos) {
-                    ZooAmigo finalZooA = zooA;;
-                    zoologico.zooAmigos.removeIf(zooAmigo1 -> zooAmigo1.cedula == finalZooA.cedula);
+                    zoologico.zooAmigos.removeIf(zooAmigo1 -> zooAmigo1.cedula == zooA.cedula);
                 }
 
                 zooAmigos.remove(zooA);
 
                 System.out.println("El zooAmigo se ha eliminado correctamente");
                 return;
-            }
+            } else return;
         }
-
-        else return;
     }
     public static void telefonoZooAmigo(int opcionValor, int telefonoBusMin, int telefonoBusMax) {
-        ArrayList<ZooAmigo> copiaZooAmigo = new ArrayList<>();
-        ZooAmigo zooA = null;
+        ZooAmigo zooA;
         int i=0;
-        ArrayList<ZooAmigo> telefonoEx = new ArrayList<>();
-        ArrayList<ZooAmigo> telefonoMax = new ArrayList<>();
-        ArrayList<ZooAmigo> telefonoMin = new ArrayList<>();
-        ArrayList<ZooAmigo> telefonoRan = new ArrayList<>();
+        ArrayList<ZooAmigo> telefonoZooAmigoGen = new ArrayList<>();
         if (opcionValor == 1) {
             for (ZooAmigo zooAmigo : zooAmigos) {
                 int telefono = Integer.parseInt(zooAmigo.telefono);
                 if (telefonoBusMin == telefono) {
-                    telefonoEx.add(zooAmigo);
+                    telefonoZooAmigoGen.add(zooAmigo);
                 }
             }
         }
@@ -14990,7 +10408,7 @@ public class SistemaZoologico {
             for (ZooAmigo zooAmigo : zooAmigos) {
                 int telefono = Integer.parseInt(zooAmigo.telefono);
                 if (telefonoBusMin >= telefono) {
-                    telefonoMax.add(zooAmigo);
+                    telefonoZooAmigoGen.add(zooAmigo);
                 }
             }
         }
@@ -14998,7 +10416,7 @@ public class SistemaZoologico {
             for (ZooAmigo zooAmigo : zooAmigos) {
                 int telefono = Integer.parseInt(zooAmigo.telefono);
                 if (telefonoBusMin <= telefono) {
-                    telefonoMin.add(zooAmigo);
+                    telefonoZooAmigoGen.add(zooAmigo);
                 }
             }
         }
@@ -15006,7 +10424,7 @@ public class SistemaZoologico {
             for (ZooAmigo zooAmigo : zooAmigos) {
                 int telefono = Integer.parseInt(zooAmigo.telefono);
                 if (telefonoBusMin <= telefono && telefono <= telefonoBusMax) {
-                    telefonoRan.add(zooAmigo);
+                    telefonoZooAmigoGen.add(zooAmigo);
                 }
             }
         }
@@ -15020,651 +10438,182 @@ public class SistemaZoologico {
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
-        if (option.equals("1")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                if (opcionValor == 1) {
+        switch (option) {
+            case "1":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
                     System.out.println("Ascendente");
-                    Collections.sort(telefonoEx, (comparadoresZooAmigo[0]));
-                    for (ZooAmigo zooAmigo : telefonoEx) {
-                        i++;
-                        System.out.println(i+". "+zooAmigo);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Ascendente");
-                    Collections.sort(telefonoMax, (comparadoresZooAmigo[0]));
-                    for (ZooAmigo zooAmigo : telefonoMax) {
-                        i++;
-                        System.out.println(i+". "+zooAmigo);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Ascendente");
-                    Collections.sort(telefonoMin, (comparadoresZooAmigo[0]));
-                    for (ZooAmigo zooAmigo : telefonoMin) {
-                        System.out.println(zooAmigo);
-                    }
-                }
-                else {
-                    System.out.println("Ascendente");
-                    Collections.sort(telefonoRan, (comparadoresZooAmigo[0]));
-                    for (ZooAmigo zooAmigo : telefonoRan) {
-                        i++;
-                        System.out.println(i+". "+zooAmigo);
-                    }
-                }
-            }
-            else if (option2.equals("2")) {
-                if (opcionValor == 1) {
-                    System.out.println("Descendente");
-                    Collections.sort(telefonoEx, Collections.reverseOrder(comparadoresZooAmigo[0]));
-                    for (ZooAmigo zooAmigo : telefonoEx) {
-                        i++;
-                        System.out.println(i+". "+zooAmigo);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Descendente");
-                    Collections.sort(telefonoMax, Collections.reverseOrder(comparadoresZooAmigo[0]));
-                    for (ZooAmigo zooAmigo : telefonoMax) {
-                        i++;
-                        System.out.println(i+". "+zooAmigo);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Descendente");
-                    Collections.sort(telefonoMin, Collections.reverseOrder(comparadoresZooAmigo[0]));
-                    for (ZooAmigo zooAmigo : telefonoMin) {
-                        i++;
-                        System.out.println(i+". "+zooAmigo);
-                    }
-                }
-                else {
-                    System.out.println("Descendente");
-                    Collections.sort(telefonoRan, Collections.reverseOrder(comparadoresZooAmigo[0]));
-                    for (ZooAmigo zooAmigo : telefonoRan) {
-                        i++;
-                        System.out.println(i+". "+zooAmigo);
-                    }
-                }
-            }else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else if (option.equals("2")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                if (opcionValor == 1) {
-                    System.out.println("Ascendente");
-                    Collections.sort(telefonoEx, (comparadoresZooAmigo[1]));
-                    for (ZooAmigo zooAmigo : telefonoEx) {
-                        i++;
-                        System.out.println(i+". "+zooAmigo);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Ascendente");
-                    Collections.sort(telefonoMax, (comparadoresZooAmigo[1]));
-                    for (ZooAmigo zooAmigo : telefonoMax) {
-                        i++;
-                        System.out.println(i+". "+zooAmigo);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Ascendente");
-                    Collections.sort(telefonoMin, (comparadoresZooAmigo[1]));
-                    for (ZooAmigo zooAmigo : telefonoMin) {
-                        System.out.println(zooAmigo);
-                    }
-                }
-                else {
-                    System.out.println("Ascendente");
-                    Collections.sort(telefonoRan, (comparadoresZooAmigo[1]));
-                    for (ZooAmigo zooAmigo : telefonoRan) {
-                        i++;
-                        System.out.println(i+". "+zooAmigo);
-                    }
-                }
-            }
-            else if (option2.equals("2")) {
-                if (opcionValor == 1) {
-                    System.out.println("Descendente");
-                    Collections.sort(telefonoEx, Collections.reverseOrder(comparadoresZooAmigo[1]));
-                    for (ZooAmigo zooAmigo : telefonoEx) {
-                        i++;
-                        System.out.println(i+". "+zooAmigo);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Descendente");
-                    Collections.sort(telefonoMax, Collections.reverseOrder(comparadoresZooAmigo[1]));
-                    for (ZooAmigo zooAmigo : telefonoMax) {
-                        i++;
-                        System.out.println(i+". "+zooAmigo);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Descendente");
-                    Collections.sort(telefonoMin, Collections.reverseOrder(comparadoresZooAmigo[1]));
-                    for (ZooAmigo zooAmigo : telefonoMin) {
-                        i++;
-                        System.out.println(i+". "+zooAmigo);
-                    }
-                }
-                else {
-                    System.out.println("Descendente");
-                    Collections.sort(telefonoRan, Collections.reverseOrder(comparadoresZooAmigo[1]));
-                    for (ZooAmigo zooAmigo : telefonoRan) {
-                        i++;
-                        System.out.println(i+". "+zooAmigo);
-                    }
-                }
-            }else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else if (option.equals("3")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                if (opcionValor == 1) {
-                    System.out.println("Ascendente");
-                    Collections.sort(telefonoEx, (comparadoresZooAmigo[2]));
-                    for (ZooAmigo zooAmigo : telefonoEx) {
-                        i++;
-                        System.out.println(i+". "+zooAmigo);
-                    }
-                }
-                else if (opcionValor == 2) {
-                    System.out.println("Ascendente");
-                    Collections.sort(telefonoMax, (comparadoresZooAmigo[2]));
-                    for (ZooAmigo zooAmigo : telefonoMax) {
-                        i++;
-                        System.out.println(i+". "+zooAmigo);
-                    }
-                }
-                else if (opcionValor == 3) {
-                    System.out.println("Ascendente");
-                    Collections.sort(telefonoMin, (comparadoresZooAmigo[2]));
-                    for (ZooAmigo zooAmigo : telefonoMin) {
-                        System.out.println(zooAmigo);
-                    }
-                }
-                else {
-                    System.out.println("Ascendente");
-                    Collections.sort(telefonoRan, (comparadoresZooAmigo[2]));
-                    for (ZooAmigo zooAmigo : telefonoRan) {
+                    telefonoZooAmigoGen.sort((comparadoresZooAmigo[0]));
+                    for (ZooAmigo zooAmigo : telefonoZooAmigoGen) {
                         i++;
                         System.out.println(i + ". " + zooAmigo);
                     }
-                }
-            }
-            else if (option2.equals("2")) {
-                if (opcionValor == 1) {
+                }else if (option2.equals("2")) {
                     System.out.println("Descendente");
-                    Collections.sort(telefonoEx, Collections.reverseOrder(comparadoresZooAmigo[2]));
-                    for (ZooAmigo zooAmigo : telefonoEx) {
+                    telefonoZooAmigoGen.sort(Collections.reverseOrder(comparadoresZooAmigo[0]));
+                    for (ZooAmigo zooAmigo : telefonoZooAmigoGen) {
                         i++;
-                        System.out.println(i+". "+zooAmigo);
+                        System.out.println(i + ". " + zooAmigo);
                     }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-                else if (opcionValor == 2) {
+                break;
+            case "2":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    telefonoZooAmigoGen.sort((comparadoresZooAmigo[1]));
+                    for (ZooAmigo zooAmigo : telefonoZooAmigoGen) {
+                        i++;
+                        System.out.println(i + ". " + zooAmigo);
+                    }
+                } else if (option2.equals("2")) {
                     System.out.println("Descendente");
-                    Collections.sort(telefonoMax, Collections.reverseOrder(comparadoresZooAmigo[2]));
-                    for (ZooAmigo zooAmigo : telefonoMax) {
-                        i++;
-                        System.out.println(i+". "+zooAmigo);
-                    }
+                    telefonoZooAmigoGen.sort(Collections.reverseOrder(comparadoresZooAmigo[1]));
+                    for (ZooAmigo zooAmigo : telefonoZooAmigoGen) {
+                            i++;
+                            System.out.println(i + ". " + zooAmigo);
+                        }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-                else if (opcionValor == 3) {
+                break;
+            case "3":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    telefonoZooAmigoGen.sort((comparadoresZooAmigo[2]));
+                    for (ZooAmigo zooAmigo : telefonoZooAmigoGen) {
+                        i++;
+                        System.out.println(i + ". " + zooAmigo);
+                    }
+                }else if (option2.equals("2")) {
                     System.out.println("Descendente");
-                    Collections.sort(telefonoMin, Collections.reverseOrder(comparadoresZooAmigo[2]));
-                    for (ZooAmigo zooAmigo : telefonoMin) {
+                    telefonoZooAmigoGen.sort(Collections.reverseOrder(comparadoresZooAmigo[2]));
+                    for (ZooAmigo zooAmigo : telefonoZooAmigoGen) {
                         i++;
-                        System.out.println(i+". "+zooAmigo);
+                        System.out.println(i + ". " + zooAmigo);
                     }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-                else {
-                    System.out.println("Descendente");
-                    Collections.sort(telefonoRan, Collections.reverseOrder(comparadoresZooAmigo[2]));
-                    for (ZooAmigo zooAmigo : telefonoRan) {
-                        i++;
-                        System.out.println(i+". "+zooAmigo);
-                    }
-                }
-            }else{
-                System.out.println("Opcion incorrecta");
+                break;
+            default:
                 return;
-            }
         }
-        else {
-            return;
-        }
-        if(opcionValor==1){
-            //Menu editar - eliminar
-            String accion;
-            System.out.println("-----------------------------------------");
-            System.out.println("\nIndique la accion que desea realizar:\n");
-            System.out.println("1. Editar ");
-            System.out.println("2. Eliminar ");
-            System.out.println("0. Regresar al menú anterior" + "\n");
-            accion = input.next();
-            System.out.println("----------------------------------");
+        //Menu editar - eliminar
+        String accion;
+        System.out.println("-----------------------------------------");
+        System.out.println("\nIndique la accion que desea realizar:\n");
+        System.out.println("1. Editar ");
+        System.out.println("2. Eliminar ");
+        System.out.println("0. Regresar al menú anterior" + "\n");
+        accion = input.next();
+        System.out.println("----------------------------------");
 
-//Codigo editar
+        for (ZooAmigo zooAmigo : telefonoZooAmigoGen) {
+        //Codigo editar
             if (accion.equals("1")) {
-                for (ZooAmigo zooAmigo : telefonoMax) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el zooAmigo que desea editar: \n");
-                    eleccion = input.nextInt();
-                    zooA = telefonoMax.get(eleccion - 1);
+                int eleccion;
+                System.out.println("------------------------------------------");
+                System.out.println("Escoja el zooAmigo que desea editar: \n");
+                eleccion = input.nextInt();
+                zooA = telefonoZooAmigoGen.get(eleccion - 1);
 
-                    input.nextLine();
-                    System.out.println("\nCedula: " + zooA.cedula);
-                    String nuevoCedula = input.nextLine();
-
-                    System.out.println("Nombre : " + zooA.nombre);
-                    String nuevoNombre = input.nextLine();
-
-                    System.out.println("Telefono : " + zooA.telefono);
-                    String nuevoTelefono = input.nextLine();
-
-                    while (true) {
-                        System.out.print("Desea guardar?:[Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    if (nuevoCedula.isEmpty()) {
-                                    } else zooA.cedula = Integer.parseInt(nuevoCedula);
-                                    if (nuevoNombre.isEmpty()) {
-                                    } else zooA.nombre = nuevoNombre;
-                                    if (nuevoTelefono.isEmpty()) {
-                                    } else zooA.telefono = nuevoTelefono;
-                                case "N":
-                                    break;
-                            }
-
-                            return;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
-                    }
-
+                input.nextLine();
+                System.out.println("\nCedula: " + zooA.cedula);
+                String nuevoCedula = input.nextLine();
+                int nuevoCedulaInt= Integer.parseInt(nuevoCedula);
+                if(nuevoCedulaInt==zooAmigo.cedula){
+                    System.out.println("ERROR: La cedula ya se encuentra registrada");
                 }
-                return;
-            }
 
+                System.out.println("Nombre : " + zooA.nombre);
+                String nuevoNombre = input.nextLine();
 
-//Codigo eliminar
+                System.out.println("Telefono : " + zooA.telefono);
+                String nuevoTelefono = input.nextLine();
+
+                while (true) {
+                    System.out.print("Desea guardar?:[Y/N] ");
+                    String optionE = input.next();
+                    if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                        switch (optionE.toUpperCase()) {
+                            case "Y":
+                                if (nuevoCedula.isEmpty()) {
+                                } else zooA.cedula = Integer.parseInt(nuevoCedula);
+                                if (nuevoNombre.isEmpty()) {
+                                } else zooA.nombre = nuevoNombre;
+                                if (nuevoTelefono.isEmpty()) {
+                                } else zooA.telefono = nuevoTelefono;
+                            case "N":
+                                break;
+                        }return;
+                    } else {
+                        System.out.println("Opcion invalida\n");
+                    }
+                }
+            }//Codigo eliminar
             else if(accion.equals("2")) {
-                for (ZooAmigo zooAmigo : telefonoMax) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el zooAmigo que desea eliminar: \n");
-                    eleccion = input.nextInt();
-                    zooA = telefonoMax.get(eleccion - 1);
+                int eleccion;
+                System.out.println("------------------------------------------");
+                System.out.println("Escoja el zooAmigo que desea eliminar: \n");
+                eleccion = input.nextInt();
+                zooA = telefonoZooAmigoGen.get(eleccion - 1);
 
-                    while (true) {
-                        System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    break;
-                                case "N":
-                                    return;
-                            }
-                            break;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
+                while (true) {
+                    System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+                    String optionE = input.next();
+                    if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                        switch (optionE.toUpperCase()) {
+                            case "Y":
+                                break;
+                            case "N":
+                                return;
+                        }break;
+                    } else {
+                        System.out.println("Opcion invalida\n");
                     }
-
-                    for (Animal animal : animales) {
-                        if (animal.zooAmigo != null && animal.zooAmigo.cedula == zooA.cedula) {
-                            animal.zooAmigo = null;
-                        }
-                    }
-
-                    for (Zoologico zoologico : zoologicos) {
-                        ZooAmigo finalZooA = zooA;;
-                        zoologico.zooAmigos.removeIf(zooAmigo1 -> zooAmigo1.cedula == finalZooA.cedula);
-                    }
-
-                    zooAmigos.remove(zooA);
-
-                    System.out.println("El zooAmigo se ha eliminado correctamente");
-                    return;
                 }
-            }
 
-            else return;
-        }else if(opcionValor==2){
-            //Menu editar - eliminar
-            String accion;
-            System.out.println("-----------------------------------------");
-            System.out.println("\nIndique la accion que desea realizar:\n");
-            System.out.println("1. Editar ");
-            System.out.println("2. Eliminar ");
-            System.out.println("0. Regresar al menú anterior" + "\n");
-            accion = input.next();
-            System.out.println("----------------------------------");
-
-//Codigo editar
-            if (accion.equals("1")) {
-                for (ZooAmigo zooAmigo : telefonoMax) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el zooAmigo que desea editar: \n");
-                    eleccion = input.nextInt();
-                    zooA = telefonoMax.get(eleccion - 1);
-
-                    input.nextLine();
-                    System.out.println("\nCedula: " + zooA.cedula);
-                    String nuevoCedula = input.nextLine();
-
-                    System.out.println("Nombre : " + zooA.nombre);
-                    String nuevoNombre = input.nextLine();
-
-                    System.out.println("Telefono : " + zooA.telefono);
-                    String nuevoTelefono = input.nextLine();
-
-                    while (true) {
-                        System.out.print("Desea guardar?:[Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    if (nuevoCedula.isEmpty()) {
-                                    } else zooA.cedula = Integer.parseInt(nuevoCedula);
-                                    if (nuevoNombre.isEmpty()) {
-                                    } else zooA.nombre = nuevoNombre;
-                                    if (nuevoTelefono.isEmpty()) {
-                                    } else zooA.telefono = nuevoTelefono;
-                                case "N":
-                                    break;
-                            }
-
-                            return;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
+                for (Animal animal : animales) {
+                    if (animal.zooAmigo != null && animal.zooAmigo.cedula == zooA.cedula) {
+                        animal.zooAmigo = null;
                     }
-
                 }
+
+                for (Zoologico zoologico : zoologicos) {
+                    zoologico.zooAmigos.removeIf(zooAmigo1 -> zooAmigo1.cedula == zooA.cedula);
+                }
+
+                zooAmigos.remove(zooA);
+
+                System.out.println("El zooAmigo se ha eliminado correctamente");
                 return;
             }
-
-
-//Codigo eliminar
-            else if(accion.equals("2")) {
-                for (ZooAmigo zooAmigo : telefonoMax) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el zooAmigo que desea eliminar: \n");
-                    eleccion = input.nextInt();
-                    zooA = telefonoMax.get(eleccion - 1);
-
-                    while (true) {
-                        System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    break;
-                                case "N":
-                                    return;
-                            }
-                            break;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
-                    }
-
-                    for (Animal animal : animales) {
-                        if (animal.zooAmigo != null && animal.zooAmigo.cedula == zooA.cedula) {
-                            animal.zooAmigo = null;
-                        }
-                    }
-
-                    for (Zoologico zoologico : zoologicos) {
-                        ZooAmigo finalZooA = zooA;;
-                        zoologico.zooAmigos.removeIf(zooAmigo1 -> zooAmigo1.cedula == finalZooA.cedula);
-                    }
-
-                    zooAmigos.remove(zooA);
-
-                    System.out.println("El zooAmigo se ha eliminado correctamente");
-                    return;
-                }
-            }
-
-            else return;
-        }else if(opcionValor==3) {
-            //Menu editar - eliminar
-            String accion;
-            System.out.println("-----------------------------------------");
-            System.out.println("\nIndique la accion que desea realizar:\n");
-            System.out.println("1. Editar ");
-            System.out.println("2. Eliminar ");
-            System.out.println("0. Regresar al menú anterior" + "\n");
-            accion = input.next();
-            System.out.println("----------------------------------");
-
-//Codigo editar
-            if (accion.equals("1")) {
-                for (ZooAmigo zooAmigo : telefonoMax) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el zooAmigo que desea editar: \n");
-                    eleccion = input.nextInt();
-                    zooA = telefonoMax.get(eleccion - 1);
-
-                    input.nextLine();
-                    System.out.println("\nCedula: " + zooA.cedula);
-                    String nuevoCedula = input.nextLine();
-
-                    System.out.println("Nombre : " + zooA.nombre);
-                    String nuevoNombre = input.nextLine();
-
-                    System.out.println("Telefono : " + zooA.telefono);
-                    String nuevoTelefono = input.nextLine();
-
-                    while (true) {
-                        System.out.print("Desea guardar?:[Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    if (nuevoCedula.isEmpty()) {
-                                    } else zooA.cedula = Integer.parseInt(nuevoCedula);
-                                    if (nuevoNombre.isEmpty()) {
-                                    } else zooA.nombre = nuevoNombre;
-                                    if (nuevoTelefono.isEmpty()) {
-                                    } else zooA.telefono = nuevoTelefono;
-                                case "N":
-                                    break;
-                            }
-
-                            return;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
-                    }
-
-                }
-                return;
-            }
-
-
-//Codigo eliminar
-            else if (accion.equals("2")) {
-                for (ZooAmigo zooAmigo : telefonoMax) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el zooAmigo que desea eliminar: \n");
-                    eleccion = input.nextInt();
-                    zooA = telefonoMax.get(eleccion - 1);
-
-                    while (true) {
-                        System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    break;
-                                case "N":
-                                    return;
-                            }
-                            break;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
-                    }
-
-                    for (Animal animal : animales) {
-                        if (animal.zooAmigo != null && animal.zooAmigo.cedula == zooA.cedula) {
-                            animal.zooAmigo = null;
-                        }
-                    }
-
-                    for (Zoologico zoologico : zoologicos) {
-                        ZooAmigo finalZooA = zooA;
-                        ;
-                        zoologico.zooAmigos.removeIf(zooAmigo1 -> zooAmigo1.cedula == finalZooA.cedula);
-                    }
-
-                    zooAmigos.remove(zooA);
-
-                    System.out.println("El zooAmigo se ha eliminado correctamente");
-                    return;
-                }
-            } else return;
-        }else{
-            //Menu editar - eliminar
-            String accion;
-            System.out.println("-----------------------------------------");
-            System.out.println("\nIndique la accion que desea realizar:\n");
-            System.out.println("1. Editar ");
-            System.out.println("2. Eliminar ");
-            System.out.println("0. Regresar al menú anterior" + "\n");
-            accion = input.next();
-            System.out.println("----------------------------------");
-
-//Codigo editar
-            if (accion.equals("1")) {
-                for (ZooAmigo zooAmigo : copiaZooAmigo) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el zooAmigo que desea editar: \n");
-                    eleccion = input.nextInt();
-                    zooA = copiaZooAmigo.get(eleccion - 1);
-
-                    input.nextLine();
-                    System.out.println("\nCedula: " + zooA.cedula);
-                    String nuevoCedula = input.nextLine();
-
-                    System.out.println("Nombre : " + zooA.nombre);
-                    String nuevoNombre = input.nextLine();
-
-                    System.out.println("Telefono : " + zooA.telefono);
-                    String nuevoTelefono = input.nextLine();
-
-                    while (true) {
-                        System.out.print("Desea guardar?:[Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    if (nuevoCedula.isEmpty()) {
-                                    } else zooA.cedula = Integer.parseInt(nuevoCedula);
-                                    if (nuevoNombre.isEmpty()) {
-                                    } else zooA.nombre = nuevoNombre;
-                                    if (nuevoTelefono.isEmpty()) {
-                                    } else zooA.telefono = nuevoTelefono;
-                                case "N":
-                                    break;
-                            }
-
-                            return;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
-                    }
-
-                }
-                return;
-            }
-
-
-//Codigo eliminar
-            else if(accion.equals("2")) {
-                for (ZooAmigo zooAmigo : copiaZooAmigo) {
-                    int eleccion;
-                    System.out.println("------------------------------------------");
-                    System.out.println("Escoja el zooAmigo que desea eliminar: \n");
-                    eleccion = input.nextInt();
-                    zooA = copiaZooAmigo.get(eleccion - 1);
-
-                    while (true) {
-                        System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
-                        String optionE = input.next();
-                        if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                            switch (optionE.toUpperCase()) {
-                                case "Y":
-                                    break;
-                                case "N":
-                                    return;
-                            }
-                            break;
-                        } else {
-                            System.out.println("Opcion invalida\n");
-                        }
-                    }
-
-                    for (Animal animal : animales) {
-                        if (animal.zooAmigo != null && animal.zooAmigo.cedula == zooA.cedula) {
-                            animal.zooAmigo = null;
-                        }
-                    }
-
-                    for (Zoologico zoologico : zoologicos) {
-                        ZooAmigo finalZooA = zooA;;
-                        zoologico.zooAmigos.removeIf(zooAmigo1 -> zooAmigo1.cedula == finalZooA.cedula);
-                    }
-
-                    zooAmigos.remove(zooA);
-
-                    System.out.println("El zooAmigo se ha eliminado correctamente");
-                    return;
-                }
-            }
-
-            else return;
-            return;
         }
     }
     public static void mostrarTodosZooAmigos() {
-        ZooAmigo zooA = null;
+        ZooAmigo zooA;
         int i=0;
         ArrayList<ZooAmigo> copiaZooAmigo = new ArrayList<>(zooAmigos);
         String option;
@@ -15677,92 +10626,88 @@ public class SistemaZoologico {
         System.out.println("0. Regresar al menu anterior.");
         option = input.next();
         System.out.println();
-        if (option.equals("1")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(copiaZooAmigo, (comparadoresZooAmigo[0]));
-                for (ZooAmigo zooAmigo : copiaZooAmigo) {
-                    i++;
-                    System.out.println(i+". "+zooAmigo);
+        switch (option) {
+            case "1":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    copiaZooAmigo.sort((comparadoresZooAmigo[0]));
+                    for (ZooAmigo zooAmigo : copiaZooAmigo) {
+                        i++;
+                        System.out.println(i + ". " + zooAmigo);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    copiaZooAmigo.sort(Collections.reverseOrder(comparadoresZooAmigo[0]));
+                    for (ZooAmigo zooAmigo : copiaZooAmigo) {
+                        i++;
+                        System.out.println(i + ". " + zooAmigo);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZooAmigo[0]));
-                for (ZooAmigo zooAmigo : copiaZooAmigo) {
-                    i++;
-                    System.out.println(i+". "+zooAmigo);
+                break;
+            case "2":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    copiaZooAmigo.sort((comparadoresZooAmigo[1]));
+                    for (ZooAmigo zooAmigo : copiaZooAmigo) {
+                        i++;
+                        System.out.println(i + ". " + zooAmigo);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    copiaZooAmigo.sort(Collections.reverseOrder(comparadoresZooAmigo[1]));
+                    for (ZooAmigo zooAmigo : copiaZooAmigo) {
+                        i++;
+                        System.out.println(i + ". " + zooAmigo);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
                 }
-            }
-            else{
-                System.out.println("Opcion incorrecta");
+                break;
+            case "3":
+                System.out.println("--------------------------------------------------");
+                System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
+                System.out.println("1. Ascendente.");
+                System.out.println("2. Descendente.");
+                option2 = input.next();
+                System.out.println();
+                if (option2.equals("1")) {
+                    System.out.println("Ascendente");
+                    copiaZooAmigo.sort((comparadoresZooAmigo[2]));
+                    for (ZooAmigo zooAmigo : copiaZooAmigo) {
+                        i++;
+                        System.out.println(i + ". " + zooAmigo);
+                    }
+                } else if (option2.equals("2")) {
+                    System.out.println("Descendente");
+                    copiaZooAmigo.sort(Collections.reverseOrder(comparadoresZooAmigo[2]));
+                    for (ZooAmigo zooAmigo : copiaZooAmigo) {
+                        i++;
+                        System.out.println(i + ". " + zooAmigo);
+                    }
+                } else {
+                    System.out.println("Opcion incorrecta");
+                    return;
+                }
+                break;
+            default:
                 return;
-            }
         }
-        else if (option.equals("2")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(copiaZooAmigo, (comparadoresZooAmigo[1]));
-                for (ZooAmigo zooAmigo : copiaZooAmigo) {
-                    i++;
-                    System.out.println(i+". "+zooAmigo);
-                }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZooAmigo[1]));
-                for (ZooAmigo zooAmigo : copiaZooAmigo) {
-                    i++;
-                    System.out.println(i+". "+zooAmigo);
-                }
-            }
-            else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        }
-        else if (option.equals("3")) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Por favor, seleccione la forma en la que lo desea ordenar: \n");
-            System.out.println("1. Ascendente.");
-            System.out.println("2. Descendente.");
-            option2 = input.next();
-            System.out.println();
-            if (option2.equals("1")) {
-                System.out.println("Ascendente");
-                Collections.sort(copiaZooAmigo, (comparadoresZooAmigo[2]));
-                for (ZooAmigo zooAmigo : copiaZooAmigo) {
-                    i++;
-                    System.out.println(i+". "+zooAmigo);
-                }
-            }
-            else if (option2.equals("2")) {
-                System.out.println("Descendente");
-                Collections.sort(copiaZooAmigo, Collections.reverseOrder(comparadoresZooAmigo[2]));
-                for (ZooAmigo zooAmigo : copiaZooAmigo) {
-                    i++;
-                    System.out.println(i+". "+zooAmigo);
-                }
-            }
-            else{
-                System.out.println("Opcion incorrecta");
-                return;
-            }
-        } else {
-            return;
-        }//Menu editar - eliminar
         String accion;
         System.out.println("-----------------------------------------");
         System.out.println("\nIndique la accion que desea realizar:\n");
@@ -15772,9 +10717,9 @@ public class SistemaZoologico {
         accion = input.next();
         System.out.println("----------------------------------");
 
-//Codigo editar
-        if (accion.equals("1")) {
-            for (ZooAmigo zooAmigo : copiaZooAmigo) {
+        for (ZooAmigo zooAmigo : copiaZooAmigo) {
+            //Codigo editar
+            if (accion.equals("1")) {
                 int eleccion;
                 System.out.println("------------------------------------------");
                 System.out.println("Escoja el zooAmigo que desea editar: \n");
@@ -15784,6 +10729,10 @@ public class SistemaZoologico {
                 input.nextLine();
                 System.out.println("\nCedula: " + zooA.cedula);
                 String nuevoCedula = input.nextLine();
+                int nuevoCedulaInt= Integer.parseInt(nuevoCedula);
+                if(nuevoCedulaInt==zooAmigo.cedula){
+                    System.out.println("ERROR: La cedula ya se encuentra registrada");
+                }
 
                 System.out.println("Nombre : " + zooA.nombre);
                 String nuevoNombre = input.nextLine();
@@ -15806,21 +10755,13 @@ public class SistemaZoologico {
                             case "N":
                                 break;
                         }
-
                         return;
                     } else {
                         System.out.println("Opcion invalida\n");
                     }
                 }
-
-            }
-            return;
-        }
-
-
-//Codigo eliminar
-        else if(accion.equals("2")) {
-            for (ZooAmigo zooAmigo : copiaZooAmigo) {
+            }//Codigo eliminar
+            else if (accion.equals("2")) {
                 int eleccion;
                 System.out.println("------------------------------------------");
                 System.out.println("Escoja el zooAmigo que desea eliminar: \n");
@@ -15850,19 +10791,15 @@ public class SistemaZoologico {
                 }
 
                 for (Zoologico zoologico : zoologicos) {
-                    ZooAmigo finalZooA = zooA;;
-                    zoologico.zooAmigos.removeIf(zooAmigo1 -> zooAmigo1.cedula == finalZooA.cedula);
+                    zoologico.zooAmigos.removeIf(zooAmigo1 -> zooAmigo1.cedula == zooA.cedula);
                 }
 
                 zooAmigos.remove(zooA);
 
                 System.out.println("El zooAmigo se ha eliminado correctamente");
                 return;
-            }
+            } else return;
         }
-
-        else return;
-        return;
     }
 
     public static void diagnosticoDeInconsistencias(){
@@ -15900,8 +10837,6 @@ public class SistemaZoologico {
             else System.out.println("Todos los biomas están relacionados como mínimo a un zoologico, un habitat y un profesional");
         }
         for(Habitat habitat : habitats){
-
-
             if(habitat.tecnicos.isEmpty()){
                 System.out.println("El siguiente habitat no tiene ningún técnico asociado: ");
                 System.out.println(habitat);
