@@ -26,7 +26,7 @@ public class SistemaZoologico {
 
     public static void main(String[] args) {
 
-         Zoologico zoo1 = new Zoologico("1", "aaaa", "bbbb", "pppp"); zoologicos.add(zoo1);
+        Zoologico zoo1 = new Zoologico("1", "aaaa", "bbbb", "pppp"); zoologicos.add(zoo1);
         Zoologico zoo2 = new Zoologico("2", "aaaa", "bbbb", "pppp"); zoologicos.add(zoo2);
         Zoologico zoo3 = new Zoologico("3", "baaa", "bbbb", "pppp"); zoologicos.add(zoo3);
         Habitat hab1 = new Habitat(10, "rrrr", "oooo", "wwww"); habitats.add(hab1);
@@ -3524,10 +3524,6 @@ public class SistemaZoologico {
             for (Bioma bioma : biomas) {
                 if (idBusMin == bioma.id) {
                     idBiomaGen.add(bioma);
-
-                }else{
-                    System.out.println("El ID no se encuentra registrado");
-                    return;
                 }
             }
         }
@@ -3536,9 +3532,6 @@ public class SistemaZoologico {
             for (Bioma bioma : biomas) {
                 if (idBusMin >= bioma.id) {
                     idBiomaGen.add(bioma);
-                }else{
-                    System.out.println("El ID no se encuentra registrado");
-                    return;
                 }
             }
         }
@@ -3547,9 +3540,6 @@ public class SistemaZoologico {
             for (Bioma bioma : biomas) {
                 if (idBusMin <= bioma.id) {
                     idBiomaGen.add(bioma);
-                }else{
-                    System.out.println("El ID no se encuentra registrado");
-                    return;
                 }
             }
         }
@@ -3558,9 +3548,6 @@ public class SistemaZoologico {
             for (Bioma bioma : biomas) {
                 if (idBusMin <= bioma.id && bioma.id <= idBusMax) {
                     idBiomaGen.add(bioma);
-                }else{
-                    System.out.println("El ID no se encuentra registrado");
-                    return;
                 }
             }
         }
@@ -3779,9 +3766,6 @@ public class SistemaZoologico {
             for (Bioma bioma : biomas) {
                 if (temperaturaBusMin == bioma.temperatura) {
                     tempBiomaGen.add(bioma);
-                }else{
-                    System.out.println("La temperatura no se encuentra registrada");
-                    return;
                 }
             }
         }
@@ -3790,9 +3774,6 @@ public class SistemaZoologico {
             for (Bioma bioma : biomas) {
                 if (temperaturaBusMin >= bioma.temperatura) {
                     tempBiomaGen.add(bioma);
-                }else{
-                    System.out.println("La temperatura no se encuentra registrada");
-                    return;
                 }
             }
         }
@@ -3801,9 +3782,6 @@ public class SistemaZoologico {
             for (Bioma bioma : biomas) {
                 if (temperaturaBusMin <= bioma.temperatura) {
                     tempBiomaGen.add(bioma);
-                }else{
-                    System.out.println("La temperatura no se encuentra registrada");
-                    return;
                 }
             }
         }
@@ -3812,9 +3790,6 @@ public class SistemaZoologico {
             for (Bioma bioma : biomas) {
                 if (temperaturaBusMin <= bioma.temperatura && bioma.temperatura <= temperaturaBusMax) {
                     tempBiomaGen.add(bioma);
-                }else{
-                    System.out.println("La temperatura no se encuentra registrada");
-                    return;
                 }
             }
         }
