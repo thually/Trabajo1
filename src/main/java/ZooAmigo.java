@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import org.json.simple.*;
-import sun.security.krb5.KerberosSecrets;
 
 public class ZooAmigo {
     int cedula;

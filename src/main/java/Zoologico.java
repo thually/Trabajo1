@@ -46,11 +46,11 @@ public class Zoologico {
     }
 
     public String getProfesionalesCedula(){
-        ArrayList<Integer> cedulaProfecional = new ArrayList<>();
+        ArrayList<Integer> cedulaProfesional = new ArrayList<>();
         for (Profesional profesional : profesionales) {
-            cedulaProfecional.add(profesional.cedula);
+            cedulaProfesional.add(profesional.cedula);
         }
-        return cedulaProfecional.toString();
+        return cedulaProfesional.toString();
     }
 
     public String getZooAmigoCedula(){
