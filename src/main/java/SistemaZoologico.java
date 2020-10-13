@@ -28,7 +28,7 @@ public class SistemaZoologico {
 
          Zoologico zoo1 = new Zoologico("1", "aaaa", "bbbb", "pppp"); zoologicos.add(zoo1);
         Zoologico zoo2 = new Zoologico("2", "aaaa", "bbbb", "pppp"); zoologicos.add(zoo2);
-        Zoologico zoo3 = new Zoologico("3", "aaaa", "bbbb", "pppp"); zoologicos.add(zoo3);
+        Zoologico zoo3 = new Zoologico("3", "baaa", "bbbb", "pppp"); zoologicos.add(zoo3);
         Habitat hab1 = new Habitat(10, "rrrr", "oooo", "wwww"); habitats.add(hab1);
         Habitat hab2 = new Habitat(11, "rrrr", "oooo", "wwww"); habitats.add(hab2);
         Habitat hab3 = new Habitat(12, "rrrr", "oooo", "wwww"); habitats.add(hab3);
@@ -2418,14 +2418,10 @@ public class SistemaZoologico {
         }
     }
     public static void nitZoologico(String nitBus) {
-        ArrayList<Zoologico> nitZoo = new ArrayList<>(zoologicos);
+        ArrayList<Zoologico> nitZoo = new ArrayList<>();
         for (Zoologico zoologico : zoologicos) {
             if (nitBus.equals(zoologico.nit) || nitBus.equals(zoologico.nit.replace(".",""))) {
                 nitZoo.add(zoologico);
-            }
-            else {
-                System.out.println("El nit no se encuentra registrado");
-                return;
             }
         }
 
@@ -2435,7 +2431,8 @@ public class SistemaZoologico {
             if (nitBus.equals(zoologico.nit)) {
                 i++;
                 System.out.println(i + ". " + zoologico);
-            }//Menu para editar o eliminar
+            }
+            //Menu para editar o eliminar
             String accion;
             System.out.println("-----------------------------------------");
             System.out.println("\nIndique la accion que desea realizar:\n");
@@ -2553,9 +2550,6 @@ public class SistemaZoologico {
         for (Zoologico zoologico : zoologicos) {
             if (nombreBus.equals(zoologico.nombre) || nombreBus.equals(zoologico.nombre.toLowerCase())) {
                 nombreZoo.add(zoologico);
-            }else{
-                System.out.println("El nombre no se encuentra registrado");
-                return;
             }
         }
         Zoologico zoo;
@@ -2782,9 +2776,6 @@ public class SistemaZoologico {
         for (Zoologico zoologico : zoologicos) {
             if (siglasBus.equals(zoologico.siglas) || siglasBus.equals(zoologico.siglas.toLowerCase())) {
                 siglasZoo.add(zoologico);
-            }else{
-                System.out.println("Las siglas no se encuentran registradas");
-                return;
             }
         }
         Zoologico zoo;
@@ -2912,9 +2903,6 @@ public class SistemaZoologico {
         for (Zoologico zoologico : zoologicos) {
             if (ciudadBus.equals(zoologico.ciudad) || ciudadBus.equals(zoologico.ciudad.toLowerCase())) {
                 ciudadZoo.add(zoologico);
-            }else{
-                System.out.println("La ciudad no se encuentra registrada");
-                return;
             }
         }
         Zoologico zoo;
