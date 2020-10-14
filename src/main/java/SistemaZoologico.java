@@ -4386,93 +4386,93 @@ public class SistemaZoologico {
         accion = input.next();
         System.out.println("----------------------------------");
 
-        for (Bioma bioma : tempBiomaGen) {
-            //Codigo editar
-            if (accion.equals("1")) {
-                int eleccion;
-                System.out.println("------------------------------------------");
-                System.out.println("Escoja el bioma que desea editar: \n");
-                eleccion = input.nextInt();
-                bio = tempBiomaGen.get(eleccion - 1);
-                input.nextLine();
+        //Codigo editar
+        if (accion.equals("1")) {
+            int eleccion;
+            System.out.println("------------------------------------------");
+            System.out.println("Escoja el bioma que desea editar: \n");
+            eleccion = input.nextInt();
+            bio = tempBiomaGen.get(eleccion - 1);
+            input.nextLine();
 
-                System.out.println("\nID: " + bio.id);
-                String nuevoID1 = input.nextLine();
+            System.out.println("\nID: " + bio.id);
+            String nuevoID1 = input.nextLine();
+            for (Bioma bioma : biomas) {
                 if (nuevoID1.equals(Integer.toString(bioma.id))) {
                     System.out.println("ERROR: Ya existe un bioma registrado con este ID.");
                     return;
                 }
-                System.out.println("Temperatura: " + bio.temperatura);
-                String nuevaTemp1 = input.nextLine();
-                System.out.println("Humedad: " + bio.humedad);
-                String nuevoHume = input.nextLine();
+            }
+            System.out.println("Temperatura: " + bio.temperatura);
+            String nuevaTemp1 = input.nextLine();
+            System.out.println("Humedad: " + bio.humedad);
+            String nuevoHume = input.nextLine();
 
-                System.out.println("Tipo: " + bio.tipo);
-                String nuevoTipo = input.nextLine();
+            System.out.println("Tipo: " + bio.tipo);
+            String nuevoTipo = input.nextLine();
 
-                while (true) {
-                    System.out.print("Desea guardar?:[Y/N] ");
-                    String optionE = input.next();
-                    if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                        switch (optionE.toUpperCase()) {
-                            case "Y":
-                                if (nuevoID1.isEmpty()) {
-                                } else {bio.id = Integer.parseInt(nuevoID1);
-                                }if (nuevaTemp1.isEmpty()) {
-                                } else {bio.temperatura = Double.parseDouble(nuevaTemp1);
-                                }if (nuevoHume.isEmpty()) {
-                                } else bio.humedad = nuevoHume;
-                                if (nuevoTipo.isEmpty()) {
-                                } else bio.tipo = nuevoTipo;
-                            case "N":
-                                break;
-                        }
-                        return;
-                    } else {
-                        System.out.println("Opcion invalida\n");
+            while (true) {
+                System.out.print("Desea guardar?:[Y/N] ");
+                String optionE = input.next();
+                if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                    switch (optionE.toUpperCase()) {
+                        case "Y":
+                            if (nuevoID1.isEmpty()) {
+                            } else {bio.id = Integer.parseInt(nuevoID1);
+                            }if (nuevaTemp1.isEmpty()) {
+                            } else {bio.temperatura = Double.parseDouble(nuevaTemp1);
+                            }if (nuevoHume.isEmpty()) {
+                            } else bio.humedad = nuevoHume;
+                            if (nuevoTipo.isEmpty()) {
+                            } else bio.tipo = nuevoTipo;
+                        case "N":
+                            break;
                     }
+                    return;
+                } else {
+                    System.out.println("Opcion invalida\n");
                 }
-            }//Codigo eliminar
-            else if(accion.equals("2")){
-                int eleccion;
-                System.out.println("------------------------------------------");
-                System.out.println("Escoja el bioma que desea eliminar: \n");
-                eleccion = input.nextInt();
-                bio = tempBiomaGen.get(eleccion - 1);
+            }
+        }//Codigo eliminar
+        else if(accion.equals("2")){
+            int eleccion;
+            System.out.println("------------------------------------------");
+            System.out.println("Escoja el bioma que desea eliminar: \n");
+            eleccion = input.nextInt();
+            bio = tempBiomaGen.get(eleccion - 1);
 
-                while (true) {
-                    System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
-                    String optionE = input.next();
-                    if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
-                        switch (optionE.toUpperCase()) {
-                            case "Y":
-                                break;
-                            case "N":
-                                return;
-                        }
-                        break;
-                    }else {
-                        System.out.println("Opcion invalida\n");
+            while (true) {
+                System.out.print("Esta seguro que desea eliminar?: [Y/N] ");
+                String optionE = input.next();
+                if (optionE.equalsIgnoreCase("Y") || optionE.equalsIgnoreCase("N")) {
+                    switch (optionE.toUpperCase()) {
+                        case "Y":
+                            break;
+                        case "N":
+                            return;
                     }
+                    break;
+                }else {
+                    System.out.println("Opcion invalida\n");
                 }
+            }
 
-                for (Zoologico zoologico : zoologicos) {
-                    zoologico.biomas.removeIf(bioma1 -> bioma1.id == bio.id);
+            for (Zoologico zoologico : zoologicos) {
+                zoologico.biomas.removeIf(bioma1 -> bioma1.id == bio.id);
+            }
+            for (Profesional profesional : profesionales) {
+                profesional.biomas.removeIf(bioma1 -> bioma1.id == bio.id);
+            }
+            for (Habitat habitat : habitats) {
+                if (habitat.bioma != null && habitat.bioma.id == bio.id) {
+                    habitat.bioma = null;
                 }
-                for (Profesional profesional : profesionales) {
-                    profesional.biomas.removeIf(bioma1 -> bioma1.id == bioma.id);
-                }
-                for (Habitat habitat : habitats) {
-                    if (habitat.bioma != null && habitat.bioma.id == bioma.id) {
-                        habitat.bioma = null;
-                    }
-                }
-                biomas.remove(bio);
+            }
+            biomas.remove(bio);
 
-                System.out.println("El bioma se ha eliminado correctamente");
-                return;
-            }else return;
-        }
+            System.out.println("El bioma se ha eliminado correctamente");
+            return;
+        }else return;
     }
     public static void humedadBioma(String humedadBus) {
         Bioma bio;
