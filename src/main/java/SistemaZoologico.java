@@ -2776,13 +2776,7 @@ public class SistemaZoologico {
                     option1 = input.next();
                     if (!option1.equals("1") && !option1.equals("2")) {
                         System.out.println("Opcion incorrecta");
-                    } else if (option1.equals("1")) {
-                        System.out.println("--------------------------------------------------");
-                        System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String nitBus = input.next();
-                        nitZoologico(nitBus);
-                        break;
-                    } else {
+                    }else {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String nitBus = input.next();
@@ -2799,13 +2793,7 @@ public class SistemaZoologico {
                     option2 = input.next();
                     if (!option2.equals("1") && !option2.equals("2")) {
                         System.out.println("Opcion incorrecta");
-                    } else if (option2.equals("1")) {
-                        System.out.println("--------------------------------------------------");
-                        System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String nombreBus = input.next();
-                        nombreZoologico(nombreBus);
-                        break;
-                    } else {
+                    }else {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String nombreBus = input.next();
@@ -2822,13 +2810,7 @@ public class SistemaZoologico {
                     option3 = input.next();
                     if (!option3.equals("1") && !option3.equals("2")) {
                         System.out.println("Opcion incorrecta");
-                    } else if (option3.equals("1")) {
-                        System.out.println("--------------------------------------------------");
-                        System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String siglasBus = input.next();
-                        siglasZoologico(siglasBus);
-                        break;
-                    } else {
+                    }else {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String siglasBus = input.next();
@@ -2845,13 +2827,7 @@ public class SistemaZoologico {
                     option4 = input.next();
                     if (!option4.equals("1") && !option4.equals("2")) {
                         System.out.println("Opcion incorrecta");
-                    } else if (option4.equals("1")) {
-                        System.out.println("--------------------------------------------------");
-                        System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String ciudadBus = input.next();
-                        ciudadZoologico(ciudadBus);
-                        break;
-                    } else {
+                    }else {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
                         String ciudadBus = input.next();
@@ -2875,11 +2851,10 @@ public class SistemaZoologico {
                 nitZoo.add(zoologico);
             }
         }
-
         Zoologico zoo;
         int i = 0;
         for (Zoologico zoologico : nitZoo) {
-            if (nitBus.equals(zoologico.nit)) {
+            if (nitBus.equals(zoologico.nit) || nitBus.equals(zoologico.nit.replace(".",""))) {
                 i++;
                 System.out.println(i + ". " + zoologico);
             }
@@ -3232,7 +3207,7 @@ public class SistemaZoologico {
         Zoologico zoo;
         int i = 0;
         for (Zoologico zoologico : siglasZoo) {
-            if (siglasBus.equals(zoologico.siglas)) {
+            if (siglasBus.equalsIgnoreCase(zoologico.siglas)) {
                 i++;
                 System.out.println(i + ". " + zoologico);
             }//Menu editar - eliminar
@@ -3918,12 +3893,6 @@ public class SistemaZoologico {
                     option3 = input.next();
                     if (!option3.equals("1") && !option3.equals("2")) {
                         System.out.println("Opcion incorrecta");
-                    } else if (option3.equals("1")) {
-                        System.out.println("--------------------------------------------------");
-                        System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String humedadBus = input.next();
-                        humedadBioma(humedadBus);
-                        break;
                     } else {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
@@ -3941,12 +3910,6 @@ public class SistemaZoologico {
                     option4 = input.next();
                     if (!option4.equals("1") && !option4.equals("2")) {
                         System.out.println("Opcion incorrecta");
-                    } else if (option4.equals("1")) {
-                        System.out.println("--------------------------------------------------");
-                        System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String tipoBus = input.next();
-                        tipoBioma(tipoBus);
-                        break;
                     } else {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
@@ -5161,12 +5124,6 @@ public class SistemaZoologico {
                     option2 = input.next();
                     if (!option2.equals("1") && !option2.equals("2")) {
                         System.out.println("Opcion incorrecta");
-                    } else if (option2.equals("1")) {
-                        System.out.println("--------------------------------------------------");
-                        System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String tipoSueloBus = input.next();
-                        tipoSueloHabitat(tipoSueloBus);
-                        break;
                     } else {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
@@ -5184,12 +5141,6 @@ public class SistemaZoologico {
                     option3 = input.next();
                     if (!option3.equals("1") && !option3.equals("2")) {
                         System.out.println("Opcion incorrecta");
-                    } else if (option3.equals("1")) {
-                        System.out.println("--------------------------------------------------");
-                        System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String vegetacionBus = input.next();
-                        vegetacionHabitat(vegetacionBus);
-                        break;
                     } else {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
@@ -5207,12 +5158,6 @@ public class SistemaZoologico {
                     option4 = input.next();
                     if (!option4.equals("1") && !option4.equals("2")) {
                         System.out.println("Opcion incorrecta");
-                    } else if (option4.equals("1")) {
-                        System.out.println("--------------------------------------------------");
-                        System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String tipoJaulaBus = input.next();
-                        tipoSueloHabitat(tipoJaulaBus);
-                        break;
                     } else {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
@@ -6375,12 +6320,6 @@ public class SistemaZoologico {
                     option2 = input.next();
                     if (!option2.equals("1") && !option2.equals("2")) {
                         System.out.println("Opcion incorrecta");
-                    } else if (option2.equals("1")) {
-                        System.out.println("--------------------------------------------------");
-                        System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String especieBus = input.next();
-                        especieAnimal(especieBus);
-                        break;
                     } else {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
@@ -6437,12 +6376,6 @@ public class SistemaZoologico {
                     option4 = input.next();
                     if (!option4.equals("1") && !option4.equals("2")) {
                         System.out.println("Opcion incorrecta");
-                    } else if (option4.equals("1")) {
-                        System.out.println("--------------------------------------------------");
-                        System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String alimentacionBus = input.next();
-                        alimentacionAnimal(alimentacionBus);
-                        break;
                     } else {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
@@ -7627,12 +7560,6 @@ public class SistemaZoologico {
                     option2 = input.next();
                     if (!option2.equals("1") && !option2.equals("2")) {
                         System.out.println("Opcion incorrecta");
-                    } else if (option2.equals("1")) {
-                        System.out.println("--------------------------------------------------");
-                        System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String areaBus = input.next();
-                        areaTecnico(areaBus);
-                        break;
                     } else {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
@@ -8196,7 +8123,7 @@ public class SistemaZoologico {
                 int horaInicio = Integer.parseInt(tecnico.horaInicio.replace(":", ""));
                 int horaInicioBMin = Integer.parseInt(horaInicioBusMin.replace(":", ""));
                 int horaInicioBMax = Integer.parseInt(horaInicioBusMax.replace(":", ""));
-                if (horaInicioBMin <= horaInicio && horaInicioBMax <= horaInicio) {
+                if (horaInicioBMin <= horaInicio && horaInicioBMax >= horaInicio) {
                     horaInicioTecnicoGen.add(tecnico);
                 }
             }
@@ -8444,7 +8371,7 @@ public class SistemaZoologico {
                 int horaSalida = Integer.parseInt(tecnico.horaSalida.replace(":", ""));
                 int horaSalidaBMin = Integer.parseInt(horaSalidaBusMin.replace(":", ""));
                 int horaSalidaBMax = Integer.parseInt(horaInicioBusMax.replace(":", ""));
-                if (horaSalidaBMin <= horaSalida && horaSalidaBMax <= horaSalida) {
+                if (horaSalidaBMin <= horaSalida && horaSalidaBMax >= horaSalida) {
                     horaSalidaGen.add(tecnico);
                 }
             }
@@ -8929,12 +8856,6 @@ public class SistemaZoologico {
                     option2 = input.next();
                     if (!option2.equals("1") && !option2.equals("2")) {
                         System.out.println("Opcion incorrecta");
-                    } else if (option2.equals("1")) {
-                        System.out.println("--------------------------------------------------");
-                        System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String areaBus = input.next();
-                        areaProfesional(areaBus);
-                        break;
                     } else {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
@@ -9534,7 +9455,7 @@ public class SistemaZoologico {
                 int horaInicio = Integer.parseInt(profesional.horaInicio.replace(":", ""));
                 int horaInicioBMin = Integer.parseInt(horaInicioBusMin.replace(":", ""));
                 int horaInicioBMax = Integer.parseInt(horaInicioBusMax.replace(":", ""));
-                if (horaInicioBMin <= horaInicio && horaInicioBMax <= horaInicio) {
+                if (horaInicioBMin <= horaInicio && horaInicioBMax >= horaInicio) {
                     horaInicioProfecionalGen.add(profesional);
                 }
             }
@@ -9788,7 +9709,7 @@ public class SistemaZoologico {
                 int horaSalida = Integer.parseInt(profesional.horaSalida.replace(":", ""));
                 int horaSalidaBMin = Integer.parseInt(horaSalidaBusMin.replace(".", ""));
                 int horaSalidaBMax = Integer.parseInt(horaInicioBusMax.replace(".", ""));
-                if (horaSalidaBMin <= horaSalida && horaSalidaBMax <= horaSalida) {
+                if (horaSalidaBMin <= horaSalida && horaSalidaBMax >= horaSalida) {
                     horaSalidaProfecionalGen.add(profesional);
                 }
             }
@@ -10286,12 +10207,6 @@ public class SistemaZoologico {
                     option2 = input.next();
                     if (!option2.equals("1") && !option2.equals("2")) {
                         System.out.println("Opcion incorrecta");
-                    } else if (option2.equals("1")) {
-                        System.out.println("--------------------------------------------------");
-                        System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String nombreBus = input.next();
-                        nombreZooAmigo(nombreBus);
-                        break;
                     } else {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
