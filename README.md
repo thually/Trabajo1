@@ -1,3 +1,7 @@
-# Trabajo1
-Repositorio para primer trabajo de Estructura de Datos 2020-2
-Hola, esta es mi actualización
+## Trabajo1
+Participantes:
+Alejandro Salazar Mejía - Correo: alsalazarm@unal.edu.co
+Beatriz Valentina Gómez Valencia - Correo: begomezv@unal.edu.co
+Pablo Pérez García - Correo: pperezg@unal.edu.co
+Sebastián Sucerquia Tapias - Correo: ssucerquia@unal.edu.co
+
