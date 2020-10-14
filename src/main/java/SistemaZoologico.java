@@ -3230,9 +3230,11 @@ public class SistemaZoologico {
 
                 System.out.println("NIT: " + zoo.nit);
                 String nuevoNIT = input.nextLine();
-                if (zoologico.nit.replace(".", "").equals(nuevoNIT)) {
-                    System.out.println("ERROR: Ya existe un zoologico registrado con este NIT.");
-                    return;
+                for (Zoologico zoo1 : zoologicos) {
+                    if (zoo1.nit.replace(".", "").equals(nuevoNIT)) {
+                        System.out.println("ERROR: Ya existe un zoologico registrado con este NIT.");
+                        return;
+                    }
                 }
                 System.out.println("Nombre: " + zoo.nombre);
                 String nuevoNombre = input.nextLine();
@@ -4435,7 +4437,7 @@ public class SistemaZoologico {
 
             System.out.println("El bioma se ha eliminado correctamente");
             return;
-        }else return;
+        }
     }
     public static void humedadBioma(String humedadBus) {
         Bioma bio;
@@ -4548,7 +4550,7 @@ public class SistemaZoologico {
         accion = input.next();
         System.out.println("----------------------------------");
 
-        for (Bioma bioma : humedadBio) {
+        for (Bioma bioma2 : humedadBio) {
             //Codigo editar
             if (accion.equals("1")) {
                 int eleccion;
@@ -4560,9 +4562,11 @@ public class SistemaZoologico {
                 input.nextLine();
                 System.out.println("\nID: " + bio.id);
                 String nuevoID = input.nextLine();
-                if (nuevoID.equals(Integer.toString(bioma.id))) {
-                    System.out.println("ERROR: Ya existe un bioma registrado con este ID.");
-                    return;
+                for (Bioma bioma : biomas) {
+                    if (nuevoID.equals(Integer.toString(bioma.id))) {
+                        System.out.println("ERROR: Ya existe un bioma registrado con este ID.");
+                        return;
+                    }
                 }
 
                 System.out.println("Temperatura: " + bio.temperatura);
@@ -4625,11 +4629,11 @@ public class SistemaZoologico {
                 }
 
                 for (Profesional profesional : profesionales) {
-                    profesional.biomas.removeIf(bioma1 -> bioma1.id == bioma.id);
+                    profesional.biomas.removeIf(bioma1 -> bioma1.id == bio.id);
                 }
 
                 for (Habitat habitat : habitats) {
-                    if (habitat.bioma != null && habitat.bioma.id == bioma.id) {
+                    if (habitat.bioma != null && habitat.bioma.id == bio.id) {
                         habitat.bioma = null;
                     }
                 }
