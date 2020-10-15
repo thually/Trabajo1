@@ -3455,18 +3455,22 @@ public class SistemaZoologico {
                 input.nextLine();
                 System.out.println("\nNIT: " + zoo.nit);
                 String nuevoNIT = input.nextLine();
-                if (zoologico.nit.replace(".", "").equals(nuevoNIT)) {
-                    System.out.println("ERROR: Ya existe un zoologico registrado con este NIT.");
-                    return;
+                for (Zoologico zoologico1 : zoologicos) {
+                    if (zoologico1.nit.replace(".", "").equals(nuevoNIT)) {
+                        System.out.println("ERROR: Ya existe un zoologico registrado con este NIT.");
+                        return;
+                    }
                 }
                 System.out.println("Nombre: " + zoo.nombre);
                 String nuevoNombre = input.nextLine();
 
                 System.out.println("Siglas: " + zoo.siglas);
                 String nuevoSiglas = input.nextLine();
-                if (zoologico.siglas.equalsIgnoreCase(nuevoSiglas)) {
-                    System.out.println("ERROR: Ya existe un zoologico registrado con estas siglas.");
-                    return;
+                for (Zoologico zoologico1 : zoologicos) {
+                    if (zoologico1.siglas.equalsIgnoreCase(nuevoSiglas)) {
+                        System.out.println("ERROR: Ya existe un zoologico registrado con estas siglas.");
+                        return;
+                    }
                 }
                 System.out.println("Ciudad: " + zoo.ciudad);
                 String nuevoCiudad = input.nextLine();
@@ -3706,9 +3710,11 @@ public class SistemaZoologico {
                 input.nextLine();
                 System.out.println("NIT: " + zoo.nit);
                 String nuevoNIT = input.nextLine();
-                if (zoologico.nit.replace(".", "").equals(nuevoNIT)) {
-                    System.out.println("ERROR: Ya existe un zoologico registrado con este NIT.");
-                    return;
+                for (Zoologico zoologico1 : zoologicos) {
+                    if (zoologico1.nit.replace(".", "").equals(nuevoNIT)) {
+                        System.out.println("ERROR: Ya existe un zoologico registrado con este NIT.");
+                        return;
+                    }
                 }
 
                 System.out.println("Nombre: " + zoo.nombre);
@@ -3716,9 +3722,11 @@ public class SistemaZoologico {
 
                 System.out.println("Siglas: " + zoo.siglas);
                 String nuevoSiglas = input.nextLine();
-                if (zoologico.siglas.equalsIgnoreCase(nuevoSiglas)) {
-                    System.out.println("ERROR: Ya existe un zoologico registrado con estas siglas.");
-                    return;
+                for (Zoologico zoologico1 : zoologicos) {
+                    if (zoologico1.siglas.equalsIgnoreCase(nuevoSiglas)) {
+                        System.out.println("ERROR: Ya existe un zoologico registrado con estas siglas.");
+                        return;
+                    }
                 }
 
                 System.out.println("Ciudad: " + zoo.ciudad);
@@ -4093,9 +4101,11 @@ public class SistemaZoologico {
                 input.nextLine();
                 System.out.println("\nID: " + bio.id);
                 String nuevoID = input.nextLine();
-                if (nuevoID.equals(Integer.toString(bioma.id))){
-                    System.out.println("ERROR: Ya existe un bioma registrado con este ID.");
-                    return;
+                for (Bioma bioma1 :biomas) {
+                    if (nuevoID.equals(Integer.toString(bioma1.id))){
+                        System.out.println("ERROR: Ya existe un bioma registrado con este ID.");
+                        return;
+                    }
                 }
 
                 System.out.println("Temperatura: " + bio.temperatura);
@@ -4160,7 +4170,7 @@ public class SistemaZoologico {
                     profesional.biomas.removeIf(bioma1 -> bioma1.id == bio.id);
                 }
                 for (Habitat habitat : habitats) {
-                    if (habitat.bioma != null && habitat.bioma.id == bioma.id) {
+                    if (habitat.bioma != null && habitat.bioma.id == bio.id) {
                         habitat.bioma = null;
                     }
                 }
@@ -4767,9 +4777,11 @@ public class SistemaZoologico {
                 input.nextLine();
                 System.out.println("\nID: " + bio.id);
                 String nuevoID1 = input.nextLine();
-                if (nuevoID1.equals(Integer.toString(bioma.id))) {
-                    System.out.println("ERROR: Ya existe un bioma registrado con este ID.");
-                    return;
+                for (Bioma bioma1 :biomas) {
+                    if (nuevoID1.equals(Integer.toString(bioma1.id))) {
+                        System.out.println("ERROR: Ya existe un bioma registrado con este ID.");
+                        return;
+                    }
                 }
 
                 System.out.println("Temperatura: " + bio.temperatura);
@@ -4829,10 +4841,10 @@ public class SistemaZoologico {
                     zoologico.biomas.removeIf(bioma1 -> bioma1.id == bio.id);
                 }
                 for (Profesional profesional : profesionales) {
-                    profesional.biomas.removeIf(bioma1 -> bioma1.id == bioma.id);
+                    profesional.biomas.removeIf(bioma1 -> bioma1.id == bio.id);
                 }
                 for (Habitat habitat : habitats) {
-                    if (habitat.bioma != null && habitat.bioma.id == bioma.id) {
+                    if (habitat.bioma != null && habitat.bioma.id == bio.id) {
                         habitat.bioma = null;
                     }
                 }
@@ -4988,9 +5000,11 @@ public class SistemaZoologico {
                 input.nextLine();
                 System.out.println("\nID: " + bio.id);
                 String nuevoID1 = input.nextLine();
-                if (nuevoID1.equals(Integer.toString(bioma.id))) {
-                    System.out.println("ERROR: Ya existe un bioma registrado con este ID.");
-                    return;
+                for (Bioma bioma1 : biomas) {
+                    if (nuevoID1.equals(Integer.toString(bioma1.id))) {
+                        System.out.println("ERROR: Ya existe un bioma registrado con este ID.");
+                        return;
+                    }
                 }
                 System.out.println("Temperatura: " + bio.temperatura);
                 String nuevaTemp1 = input.nextLine();
@@ -5050,10 +5064,10 @@ public class SistemaZoologico {
                     zoologico.biomas.removeIf(bioma1 -> bioma1.id == bio.id);
                 }
                 for (Profesional profesional : profesionales) {
-                    profesional.biomas.removeIf(bioma1 -> bioma1.id == bioma.id);
+                    profesional.biomas.removeIf(bioma1 -> bioma1.id == bio.id);
                 }
                 for (Habitat habitat : habitats) {
-                    if (habitat.bioma != null && habitat.bioma.id == bioma.id) {
+                    if (habitat.bioma != null && habitat.bioma.id == bio.id) {
                         habitat.bioma = null;
                     }
                 }
