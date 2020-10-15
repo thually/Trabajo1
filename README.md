@@ -10,11 +10,19 @@ Alejandro Salazar Mejía - Correo: alsalazarm@unal.edu.co
 Sebastián Sucerquia Tapias - Correo: ssucerquia@unal.edu.co
 
 #### Datos para ingresar:
+##### Profesor
 Correo: sromanf 
 
 Documento: 1
 
 Contraseña: covidmalo
+
+##### Monitor
+Correo: jcendaless
+
+Documento: 1901305747
+
+Contraseña: covidmalo2
 
 
 El dominio elegido es sobre zoológicos. Cada zoológico está dividido en biomas (acuático, sabana, trópico, etc.), cada bioma contiene diferentes hábitats (por ejemplo, en el bioma de la sabana existe un hábitat para los carnívoros y otro para los herbívoros) y dentro de cada hábitat residen diferentes especies de animales.
