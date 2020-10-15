@@ -17,11 +17,11 @@ public class SistemaZoologico {
     public static ArrayList<ZooAmigo> zooAmigos = new ArrayList<>();
     public static ArrayList<Zoologico> zoologicos = new ArrayList<>();
     public static Comparator<Zoologico>[] comparadoresZoologico = new Comparator[4];
-    public static Comparator<Bioma>[] comparadoresBioma = new Comparator[6];
-    public static Comparator<Habitat>[] comparadoresHabitat = new Comparator[6];
-    public static Comparator<Animal>[] comparadoresAnimal = new Comparator[6];
-    public static Comparator<Tecnico>[] comparadoresTecnico = new Comparator[5];
-    public static Comparator<Profesional>[] comparadoresProfesional = new Comparator[6];
+    public static Comparator<Bioma>[] comparadoresBioma = new Comparator[4];
+    public static Comparator<Habitat>[] comparadoresHabitat = new Comparator[4];
+    public static Comparator<Animal>[] comparadoresAnimal = new Comparator[4];
+    public static Comparator<Tecnico>[] comparadoresTecnico = new Comparator[4];
+    public static Comparator<Profesional>[] comparadoresProfesional = new Comparator[4];
     public static Comparator<ZooAmigo>[] comparadoresZooAmigo = new Comparator[3];
 
     public static void main(String[] args) {
@@ -2794,9 +2794,10 @@ public class SistemaZoologico {
                     if (!option2.equals("1") && !option2.equals("2")) {
                         System.out.println("Opcion incorrecta");
                     }else {
+                        input.nextLine();
                         System.out.println("--------------------------------------------------");
                         System.out.println("Por favor, ingrese el valor que desea buscar: \n");
-                        String nombreBus = input.next();
+                        String nombreBus = input.nextLine();
                         nombreZoologico(nombreBus);
                         break;
                     }
