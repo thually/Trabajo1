@@ -75,11 +75,29 @@ public class editarHabitatController implements Initializable {
         String vegetacion = vegetacionTextField.getText().trim();
 
         if (idTextField.getText().trim().isEmpty()){}
-        else habitatEditado.id = id;
+        else {
+            Habitat.habitatsPorID.remove(habitatEditado.id);
+            habitatEditado.id = id;
+            Habitat.habitatsPorID.put(id, habitatEditado);
+        }
         if (temperaturaTextField.getText().trim().isEmpty()){}
-        else habitatEditado.temperatura = temperatura;
+        else {
+            Habitat.habitatsPorTemperatura.get(habitatEditado.temperatura).remove(habitatEditado);
+            habitatEditado.temperatura = temperatura;
+            if (!Habitat.habitatsPorTemperatura.containsKey(temperatura)) {
+                Habitat.habitatsPorTemperatura.put(temperatura, new LinkedList<>());
+            }
+            Habitat.habitatsPorTemperatura.get(temperatura).add(habitatEditado);
+        }
         if (tipoSuelo.isEmpty()){}
-        else habitatEditado.tipoSuelo = tipoSuelo;
+        else {
+            Habitat.habitatsPorSuelo.get(habitatEditado.tipoSuelo).remove(habitatEditado);
+            habitatEditado.tipoSuelo = tipoSuelo;
+            if (!Habitat.habitatsPorSuelo.containsKey(tipoSuelo)) {
+                Habitat.habitatsPorSuelo.put(tipoSuelo, new LinkedList<>());
+            }
+            Habitat.habitatsPorSuelo.get(tipoSuelo).add(habitatEditado);
+        }
         if (vegetacion.isEmpty()){}
         else habitatEditado.vegetacion = vegetacion;
         if (tipoJaula.isEmpty()){}
@@ -93,6 +111,7 @@ public class editarHabitatController implements Initializable {
         vegetacionTextField.setText("");
         temperaturaTextField.setText("");
         idHabitatsDisp.setValue(null);
+        idHabitatsDisp.setItems(FXCollections.observableList(new ArrayList<>(Habitat.habitatsPorID.keySet())));
 
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -105,6 +124,11 @@ public class editarHabitatController implements Initializable {
     @FXML
     private void volver(ActionEvent event) throws IOException {
         App.setRoot("administrarHabitat");
+    }
+
+    @FXML
+    private void rutaEditarRelaciones(ActionEvent event) throws IOException {
+        App.setRoot("editarRelaciones");
     }
 
     @Override
