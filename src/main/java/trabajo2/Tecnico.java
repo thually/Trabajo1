@@ -25,11 +25,12 @@ public class Tecnico {
 
     @Override
     public String toString() {
-        return "Tecnico{" +
-                "cedula=" + cedula +
-                ", area='" + area + '\'' +
-                ", horaInicio='" + horaInicio + '\'' +
-                ", horaSalida='" + horaSalida + '\'' +
+        return "Tecnico { " +
+                "cedula: " + cedula +
+                ", área: '" + area + '\'' +
+                ", Sueldo: " + sueldo + '\'' +
+                ", Hora de inicio: '" + horaInicio + '\'' +
+                ", Hora de Salida: '" + horaSalida + '\'' +
                 '}';
     }
 }

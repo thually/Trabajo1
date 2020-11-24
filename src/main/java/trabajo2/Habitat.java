@@ -27,6 +27,7 @@ public class Habitat {
     public String toString() {
         return "Habitat { " +
                 "ID: " + id +
+                ", Temperatura: '" + temperatura + '\'' +
                 ", Tipo de suelo: '" + tipoSuelo + '\'' +
                 ", vegetación: '" + vegetacion + '\'' +
                 ", Tipo de jaula: '" + tipoJaula + '\'' +

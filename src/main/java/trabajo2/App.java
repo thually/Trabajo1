@@ -92,6 +92,13 @@ public class App extends Application {
         sistemaZoo.addVertex(tecnico2);
         sistemaZoo.addVertex(tecnico3);
 
+        sistemaZoo.addEdge(habitat1, animal1);
+        sistemaZoo.addEdge(habitat1, animal2);
+        sistemaZoo.addEdge(habitat1, tecnico1);
+        sistemaZoo.addEdge(habitat2, animal3);
+        sistemaZoo.addEdge(habitat2, tecnico2);
+        sistemaZoo.addEdge(habitat2, tecnico3);
+        sistemaZoo.addEdge(habitat2, tecnico1);
 
         Usuario usuario1 = new Usuario("123", "Alejo", "Salazar", "alsalazarm", "hola");
         usuarios.add(usuario1);
