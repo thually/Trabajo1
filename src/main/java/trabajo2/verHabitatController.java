@@ -4,10 +4,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
+import org.jgrapht.Graphs;
 import org.jgrapht.graph.DefaultEdge;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.Set;
 
@@ -32,8 +34,9 @@ public class verHabitatController implements Initializable {
                 if (relaciones.isEmpty()){
                     info = info + "No tiene relaciones registradas\n";
                 } else {
-                    for (DefaultEdge edge : relaciones){
-                        info = info + App.sistemaZoo.getEdgeTarget(edge).toString() + "\n";
+                    ArrayList<Object> objAdyacentes = new ArrayList<>(Graphs.neighborListOf(App.sistemaZoo, aux));
+                    for (Object object : objAdyacentes){
+                        info = info + object.toString()+ "\n";
                     }
                 }
                 habitats.getItems().add(info);

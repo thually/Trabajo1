@@ -48,8 +48,8 @@ public class App extends Application {
         Animal animal2 = new Animal(102,"mapache", 7, "carnivoro");
         Animal animal3 = new Animal(103,"león", 8, "carnivoro");
         Animal.animalesPorID.put(animal1.id, animal1);
-        Animal.animalesPorID.put(animal2.id, animal1);
-        Animal.animalesPorID.put(animal3.id, animal1);
+        Animal.animalesPorID.put(animal2.id, animal2);
+        Animal.animalesPorID.put(animal3.id, animal3);
         Animal.animalesPorAgresividad.put(animal1.nivelAgresividad, new LinkedList<>()); Animal.animalesPorAgresividad.get(animal1.nivelAgresividad).add(animal1);
         Animal.animalesPorAgresividad.put(animal2.nivelAgresividad, new LinkedList<>()); Animal.animalesPorAgresividad.get(animal2.nivelAgresividad).add(animal2);
         Animal.animalesPorAgresividad.put(animal3.nivelAgresividad, new LinkedList<>()); Animal.animalesPorAgresividad.get(animal3.nivelAgresividad).add(animal3);

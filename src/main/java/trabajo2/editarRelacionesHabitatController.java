@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import org.jgrapht.Graphs;
 import org.jgrapht.graph.DefaultEdge;
 
 import java.io.IOException;
@@ -15,12 +16,14 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
-import java.util.Set;
 
 public class editarRelacionesHabitatController implements Initializable {
 
     @FXML
     private Label eliminarLabel;
+
+    @FXML
+    private Label crearLabel;
 
     @FXML
     private Label warning;
@@ -44,7 +47,7 @@ public class editarRelacionesHabitatController implements Initializable {
     private Button eliminarRelacion;
 
     @FXML
-    private ChoiceBox<Integer> idAnimalesDisp;
+    private Button crearRelacion;
 
     @FXML
     private void volver(ActionEvent event) throws IOException {
@@ -58,10 +61,17 @@ public class editarRelacionesHabitatController implements Initializable {
         }
 
         if (accion.getValue().equals("Eliminar")){
+            crearLabel.setVisible(false);
+            AnimalOTecnico.setValue(null);
+            idParaEliminarDisp.setVisible(false);
+            warning.setText(" ");
+            Label1.setText(" ");
+            crearRelacion.setVisible(false);
+            warning.setText(" ");
             Eliminar();
         } else if (accion.getValue().equals("Crear")){
+            AnimalOTecnico.setValue(null);
             eliminarLabel.setVisible(false);
-            AnimalOTecnico.setVisible(false);
             idParaEliminarDisp.setVisible(false);
             warning.setText(" ");
             Label1.setText(" ");
@@ -83,30 +93,72 @@ public class editarRelacionesHabitatController implements Initializable {
     @FXML
     private void AccionTecnicoOAnimal(ActionEvent event) throws IOException {
         warning.setText(" ");
+        if (AnimalOTecnico.getValue() == null){
+            return;
+        }
 
-        if (AnimalOTecnico.getValue().equals("Animal")){
-            ArrayList<Integer> IDDispParaEliminar = IDParaEliminarDisponibles("Animal");
-            if (IDDispParaEliminar.isEmpty()){
-                warning.setText("MENSAJE: Este Habitat no tiene relaciones existentes con ningún Animal.");
-                return;
+        if (accion.getValue().equals("Eliminar")) {
+            if (AnimalOTecnico.getValue().equals("Animal")){
+                ArrayList<Integer> IDDispParaEliminar = IDParaEliminarDisponibles("Animal");
+                if (IDDispParaEliminar.isEmpty()){
+                    warning.setText("MENSAJE: Este Habitat no tiene relaciones existentes con ningún Animal.");
+                    return;
+                }
+                idParaEliminarDisp.setItems(FXCollections.observableList(IDDispParaEliminar));
+                idParaEliminarDisp.setVisible(true);
+                Label1.setText("Finalmente, elija el ID del Animal con el cual existe la relación que desea eliminar:");
+                eliminarRelacion.setVisible(true);
+
+
+            } else if (AnimalOTecnico.getValue().equals("Tecnico")){
+                ArrayList<Integer> IDDispParaEliminar = IDParaEliminarDisponibles("Tecnico");
+                if (IDDispParaEliminar.isEmpty()){
+                    warning.setText("MENSAJE: Este Habitat no tiene relaciones existentes con ningún Tecnico.");
+                    return;
+                }
+                idParaEliminarDisp.setItems(FXCollections.observableList(IDDispParaEliminar));
+                idParaEliminarDisp.setVisible(true);
+                Label1.setText("Finalmente, elija la cédula del Tecnico con el cual existe la relación que desea eliminar:");
+                eliminarRelacion.setVisible(true);
+
             }
-            idParaEliminarDisp.setItems(FXCollections.observableList(IDDispParaEliminar));
-            idParaEliminarDisp.setVisible(true);
-            Label1.setText("Finalmente, elija el ID del Animal con el cual existe la relación que desea eliminar:");
-            eliminarRelacion.setVisible(true);
+        } else if (accion.getValue().equals("Crear")){
+            if (AnimalOTecnico.getValue().equals("Animal")){
+                ArrayList<Integer> IDDispParaEliminar = IDParaEliminarDisponibles("Animal");
+                ArrayList<Integer> IDDispParaCrear = new ArrayList<>();
+                for (int idDis : Animal.animalesPorID.keySet()){
+                    if (!IDDispParaEliminar.contains(idDis)){
+                        IDDispParaCrear.add(idDis);
+                    }
+                }
+                if (IDDispParaCrear.isEmpty()){
+                    warning.setText("MENSAJE: No hay Animales disponibles para crear esta nueva relación.");
+                    return;
+                }
+                idParaEliminarDisp.setItems(FXCollections.observableList(IDDispParaCrear));
+                idParaEliminarDisp.setVisible(true);
+                Label1.setText("Finalmente, elija el ID del Animal con el cual quiere crear la relación:");
+                crearRelacion.setVisible(true);
 
 
-        } else if (AnimalOTecnico.getValue().equals("Tecnico")){
-            ArrayList<Integer> IDDispParaEliminar = IDParaEliminarDisponibles("Tecnico");
-            if (IDDispParaEliminar.isEmpty()){
-                warning.setText("MENSAJE: Este Habitat no tiene relaciones existentes con ningún Tecnico.");
-                return;
+            } else if (AnimalOTecnico.getValue().equals("Tecnico")){
+                ArrayList<Integer> IDDispParaEliminar = IDParaEliminarDisponibles("Tecnico");
+                ArrayList<Integer> IDDispParaCrear = new ArrayList<>();
+                for (int idDis : Tecnico.tecnicosPorID.keySet()){
+                    if (!IDDispParaEliminar.contains(idDis)){
+                        IDDispParaCrear.add(idDis);
+                    }
+                }
+                if (IDDispParaCrear.isEmpty()){
+                    warning.setText("MENSAJE: No hay Tecnicos disponibles para crear esta nueva relación.");
+                    return;
+                }
+                idParaEliminarDisp.setItems(FXCollections.observableList(IDDispParaCrear));
+                idParaEliminarDisp.setVisible(true);
+                Label1.setText("Finalmente, elija el ID del Tecnico con el cual quiere crear la relación:");
+                crearRelacion.setVisible(true);
+
             }
-            idParaEliminarDisp.setItems(FXCollections.observableList(IDDispParaEliminar));
-            idParaEliminarDisp.setVisible(true);
-            Label1.setText("Finalmente, elija la cédula del Tecnico con el cual existe la relación que desea eliminar:");
-            eliminarRelacion.setVisible(true);
-
         }
     }
 
@@ -117,15 +169,15 @@ public class editarRelacionesHabitatController implements Initializable {
             return;
         }
         if (AnimalOTecnico.getValue().equals("Animal")){
-            int idAnimal = idParaEliminarDisp.getValue();
-            Animal animal = Animal.animalesPorID.get(idAnimal);
-            Habitat habitadEditado = Habitat.habitatsPorID.get(idHabitatsDisp.getValue());
+            int idAnimal = idParaEliminarDisp.getValue(); System.out.println(idAnimal);
+            Animal animal = Animal.animalesPorID.get(idAnimal); System.out.println(animal);
+            Habitat habitadEditado = Habitat.habitatsPorID.get(idHabitatsDisp.getValue()); System.out.println(habitadEditado);
             App.sistemaZoo.removeEdge(animal, habitadEditado);
 
         } else if (AnimalOTecnico.getValue().equals("Tecnico")){
-            int idTecnico = idParaEliminarDisp.getValue();
-            Tecnico tecnico = Tecnico.tecnicosPorID.get(idTecnico);
-            Habitat habitadEditado = Habitat.habitatsPorID.get(idHabitatsDisp.getValue());
+            int idTecnico = idParaEliminarDisp.getValue(); System.out.println(idTecnico);
+            Tecnico tecnico = Tecnico.tecnicosPorID.get(idTecnico); System.out.println(tecnico);
+            Habitat habitadEditado = Habitat.habitatsPorID.get(idHabitatsDisp.getValue()); System.out.println(habitadEditado);
             App.sistemaZoo.removeEdge(tecnico, habitadEditado);
         }
 
@@ -136,21 +188,46 @@ public class editarRelacionesHabitatController implements Initializable {
         App.setRoot("editarHabitat");
     }
 
+    @FXML
+    private void AccionCrearRelacion(ActionEvent event) throws IOException {
+        if (idParaEliminarDisp.getValue() == null){
+            warning.setText("MENSAJE: Último campo vacío.");
+            return;
+        }
+        if (AnimalOTecnico.getValue().equals("Animal")){
+            int idAnimal = idParaEliminarDisp.getValue();
+            Animal animal = Animal.animalesPorID.get(idAnimal);
+            Habitat habitadEditado = Habitat.habitatsPorID.get(idHabitatsDisp.getValue());
+            System.out.println(App.sistemaZoo.addEdge(habitadEditado, animal));
+
+        } else if (AnimalOTecnico.getValue().equals("Tecnico")){
+            int idTecnico = idParaEliminarDisp.getValue();
+            Tecnico tecnico = Tecnico.tecnicosPorID.get(idTecnico);
+            Habitat habitadEditado = Habitat.habitatsPorID.get(idHabitatsDisp.getValue());
+            System.out.println(App.sistemaZoo.addEdge(habitadEditado, tecnico));
+        }
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText("Creación satisfactoria");
+        alert.setContentText("Se ha creado la nueva relación con el Habitat satisfactoriamente:\n");
+        alert.showAndWait();
+        App.setRoot("editarHabitat");
+    }
+
     private ArrayList<Integer> IDParaEliminarDisponibles (String AnimalOTecnico){
         ArrayList<Integer> IDparaEliminar = new ArrayList<>();
         Habitat habitadEditado = Habitat.habitatsPorID.get(idHabitatsDisp.getValue());
-        Set<DefaultEdge> relaciones = App.sistemaZoo.edgesOf(habitadEditado);
+        ArrayList<Object> objAdyacentes = new ArrayList<>(Graphs.neighborListOf(App.sistemaZoo, habitadEditado));
+
         if (AnimalOTecnico.equals("Animal")) {
-            for (DefaultEdge edge : relaciones){
-                Object currObj = App.sistemaZoo.getEdgeTarget(edge);
+            for (Object currObj : objAdyacentes){
                 if (currObj instanceof Animal){
                     Animal currAni = (Animal) currObj;
                     IDparaEliminar.add(currAni.id);
                 }
             }
         } else if (AnimalOTecnico.equals("Tecnico")){
-            for (DefaultEdge edge : relaciones){
-                Object currObj = App.sistemaZoo.getEdgeTarget(edge);
+            for (Object currObj : objAdyacentes){
                 if (currObj instanceof Tecnico){
                     Tecnico currTec = (Tecnico) currObj;
                     IDparaEliminar.add(currTec.cedula);
@@ -162,21 +239,15 @@ public class editarRelacionesHabitatController implements Initializable {
     }
 
     private void Crear(){
+        crearLabel.setVisible(true);
+        AnimalOTecnico.setVisible(true);
     }
 
     @FXML
     private void setAccionIDHab(ActionEvent event) throws IOException {
-        Habitat habitadEditado = Habitat.habitatsPorID.get(idHabitatsDisp.getValue());
-        Set<DefaultEdge> relaciones = App.sistemaZoo.edgesOf(habitadEditado);
         clean();
-
-        if (relaciones.isEmpty()){
-            warning.setText("MENSAJE: Este Habitat no tiene relaciones existentes.");
-
-        } else {
-            accion.setItems(FXCollections.observableList(new ArrayList<>(Arrays.asList("Crear", "Eliminar"))));
-            warning.setText("");
-        }
+        accion.setItems(FXCollections.observableList(new ArrayList<>(Arrays.asList("Crear", "Eliminar"))));
+        warning.setText("");
     }
 
     @Override
@@ -190,10 +261,12 @@ public class editarRelacionesHabitatController implements Initializable {
         accion.setValue(null);
         accion.setItems(FXCollections.observableList(new ArrayList<>()));
         eliminarLabel.setVisible(false);
+        crearLabel.setVisible(false);
         AnimalOTecnico.setVisible(false);
         Label1.setText("");
         idParaEliminarDisp.setVisible(false);
         eliminarRelacion.setVisible(false);
+        crearRelacion.setVisible(false);
         warning.setText(" ");
 
     }
