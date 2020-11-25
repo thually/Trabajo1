@@ -41,8 +41,8 @@
                 <Label text="Cédula:" />
                 <Label text="Sueldo ($):" GridPane.rowIndex="1" />
                 <Label prefHeight="37.0" prefWidth="155.0" text="Área de Trabajo:" wrapText="true" GridPane.rowIndex="2" />
-                <Label text="Hora de Inicio:" GridPane.rowIndex="3" />
-                <Label text="Hora de Salida:" GridPane.rowIndex="4" />
+                <Label text="Hora de Inicio (24h):" GridPane.rowIndex="3" />
+                <Label text="Hora de Salida (24h):" GridPane.rowIndex="4" />
             <ChoiceBox fx:id="areaTrabajoCB" prefHeight="25.0" prefWidth="183.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" text=":" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <GridPane.margin>
