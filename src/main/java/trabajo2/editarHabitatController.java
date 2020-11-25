@@ -128,7 +128,7 @@ public class editarHabitatController implements Initializable {
 
     @FXML
     private void rutaEditarRelaciones(ActionEvent event) throws IOException {
-        App.setRoot("editarRelaciones");
+        App.setRoot("editarRelacionesHabitat");
     }
 
     @Override
