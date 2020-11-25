@@ -9,7 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import org.jgrapht.Graphs;
-import org.jgrapht.graph.DefaultEdge;
 
 import java.io.IOException;
 import java.net.URL;
@@ -169,15 +168,15 @@ public class editarRelacionesHabitatController implements Initializable {
             return;
         }
         if (AnimalOTecnico.getValue().equals("Animal")){
-            int idAnimal = idParaEliminarDisp.getValue(); System.out.println(idAnimal);
-            Animal animal = Animal.animalesPorID.get(idAnimal); System.out.println(animal);
-            Habitat habitadEditado = Habitat.habitatsPorID.get(idHabitatsDisp.getValue()); System.out.println(habitadEditado);
+            int idAnimal = idParaEliminarDisp.getValue();
+            Animal animal = Animal.animalesPorID.get(idAnimal);
+            Habitat habitadEditado = Habitat.habitatsPorID.get(idHabitatsDisp.getValue());
             App.sistemaZoo.removeEdge(animal, habitadEditado);
 
         } else if (AnimalOTecnico.getValue().equals("Tecnico")){
-            int idTecnico = idParaEliminarDisp.getValue(); System.out.println(idTecnico);
-            Tecnico tecnico = Tecnico.tecnicosPorID.get(idTecnico); System.out.println(tecnico);
-            Habitat habitadEditado = Habitat.habitatsPorID.get(idHabitatsDisp.getValue()); System.out.println(habitadEditado);
+            int idTecnico = idParaEliminarDisp.getValue();
+            Tecnico tecnico = Tecnico.tecnicosPorID.get(idTecnico);
+            Habitat habitadEditado = Habitat.habitatsPorID.get(idHabitatsDisp.getValue());
             App.sistemaZoo.removeEdge(tecnico, habitadEditado);
         }
 
@@ -198,13 +197,22 @@ public class editarRelacionesHabitatController implements Initializable {
             int idAnimal = idParaEliminarDisp.getValue();
             Animal animal = Animal.animalesPorID.get(idAnimal);
             Habitat habitadEditado = Habitat.habitatsPorID.get(idHabitatsDisp.getValue());
-            System.out.println(App.sistemaZoo.addEdge(habitadEditado, animal));
+
+            // El siguiente for es para asegurarnos que un animal solo puede estar relacionado con un habitat
+            for (Habitat hab : Habitat.habitatsPorID.values()){
+                if (App.sistemaZoo.containsEdge(animal, hab)){
+                    App.sistemaZoo.removeEdge(animal, hab);
+                }
+            }
+
+            App.sistemaZoo.addEdge(habitadEditado, animal);
+
 
         } else if (AnimalOTecnico.getValue().equals("Tecnico")){
             int idTecnico = idParaEliminarDisp.getValue();
             Tecnico tecnico = Tecnico.tecnicosPorID.get(idTecnico);
             Habitat habitadEditado = Habitat.habitatsPorID.get(idHabitatsDisp.getValue());
-            System.out.println(App.sistemaZoo.addEdge(habitadEditado, tecnico));
+            App.sistemaZoo.addEdge(habitadEditado, tecnico);
         }
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
