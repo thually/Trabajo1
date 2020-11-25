@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trabajo2.CrearTecnicoController">
+    <children>
+        <Button layoutX="448.0" layoutY="296.0" mnemonicParsing="false" onAction="#volver" text="Volver" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" />
+        <Label layoutX="233.0" layoutY="27.0" text="Crear Tecnico">
+            <font>
+                <Font name="System Bold" size="21.0" />
+            </font>
+        </Label>
+        <Label layoutX="87.0" layoutY="58.0" prefHeight="31.0" prefWidth="439.0" text="Complete los siguientes campos con la información relacionada al nuevo Tecnico." textAlignment="CENTER" wrapText="true" />
+        <Label layoutX="22.0" layoutY="335.0" prefHeight="40.0" prefWidth="285.0" text="Nota: Si desea fijar las relaciones del nuevo Tecnico, debe ingresar a la opcion 'Editar' del menu anterior." wrapText="true" />
+        <GridPane layoutX="136.0" layoutY="96.0" prefHeight="188.0" prefWidth="302.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="159.0" minWidth="10.0" prefWidth="135.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.0" minWidth="10.0" prefWidth="167.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <TextField fx:id="cedulaTextField" GridPane.columnIndex="1" />
+                <TextField fx:id="sueldoTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <TextField fx:id="HoraInicioTextField" maxWidth="-Infinity" prefHeight="25.0" prefWidth="53.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin></TextField>
+                <TextField fx:id="HoraSalidaTextField" maxWidth="-Infinity" prefHeight="25.0" prefWidth="53.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin></TextField>
+                <Label text="Cédula:" />
+                <Label text="Sueldo ($):" GridPane.rowIndex="1" />
+                <Label prefHeight="37.0" prefWidth="155.0" text="Área de Trabajo:" wrapText="true" GridPane.rowIndex="2" />
+                <Label text="Hora de Inicio:" GridPane.rowIndex="3" />
+                <Label text="Hora de Salida:" GridPane.rowIndex="4" />
+            <ChoiceBox fx:id="areaTrabajoCB" prefHeight="25.0" prefWidth="183.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" text=":" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets left="60.0" />
+               </GridPane.margin></Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="227.0" layoutY="134.0" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" text=":" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets left="60.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="MinInicioTextField" layoutX="145.0" layoutY="130.0" maxWidth="-Infinity" prefHeight="25.0" prefWidth="53.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets left="70.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="MinSalidaTextField" layoutX="215.0" layoutY="130.0" maxWidth="-Infinity" prefHeight="25.0" prefWidth="53.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets left="70.0" />
+               </GridPane.margin>
+            </TextField>
+            </children>
+        </GridPane>
+        <Button layoutX="474.0" layoutY="355.0" mnemonicParsing="false" onAction="#crear" text="Crear" />
+        <Label fx:id="warning" alignment="CENTER" layoutX="32.0" layoutY="283.0" prefHeight="40.0" prefWidth="536.0" textAlignment="CENTER" textFill="RED" wrapText="true" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="32.0" />
+    </children>
+</AnchorPane>

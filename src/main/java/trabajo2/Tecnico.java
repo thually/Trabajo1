@@ -11,7 +11,7 @@ public class Tecnico {
 
     int cedula;
     double sueldo;
-    String area; //Tipo de trabajo, Guarda, Aseo, etc
+    String area; //Tipo de trabajo, Guardia, Aseo, etc
     String horaInicio;
     String horaSalida;
 
