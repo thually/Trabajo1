@@ -18,7 +18,11 @@
       <Label layoutX="153.0" layoutY="135.0" prefHeight="17.0" prefWidth="141.0" text="ID Habitats disponibles:" />
       <ChoiceBox fx:id="accion" layoutX="225.0" layoutY="194.0" onAction="#elegirEliminarEditar" prefWidth="150.0" />
       <Label layoutX="94.0" layoutY="170.0" text="Ahora, elija entre eliminar una relación existente o crear una relación nueva:" />
-      <Label fx:id="warning" alignment="CENTER" layoutX="29.0" layoutY="343.0" prefHeight="25.0" prefWidth="475.0" textAlignment="CENTER" textFill="RED" wrapText="true" />
-      <Label fx:id="eliminarLabel" layoutX="112.0" layoutY="241.0" text="Selecciones si desea eliminar una relación con un Tecnico o un Animal: " visible="false" />
+      <Label fx:id="warning" alignment="CENTER" layoutX="21.0" layoutY="366.0" prefHeight="25.0" prefWidth="475.0" textAlignment="CENTER" textFill="RED" wrapText="true" />
+      <Label fx:id="eliminarLabel" layoutX="112.0" layoutY="241.0" text="Seleccione si desea eliminar una relación con un Tecnico o un Animal: " visible="false" />
+      <ChoiceBox fx:id="AnimalOTecnico" layoutX="226.0" layoutY="266.0" onAction="#AccionTecnicoOAnimal" prefWidth="150.0" visible="false" />
+      <Label fx:id="Label1" alignment="CENTER" layoutX="228.0" layoutY="304.0" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="32.0" />
+      <ChoiceBox fx:id="idParaEliminarDisp" layoutX="133.0" layoutY="330.0" prefWidth="150.0" visible="false" />
+      <Button fx:id="eliminarRelacion" layoutX="332.0" layoutY="330.0" mnemonicParsing="false" onAction="#AccionEliminarRelacion" text="Eliminar Relación" visible="false" />
    </children>
 </AnchorPane>
