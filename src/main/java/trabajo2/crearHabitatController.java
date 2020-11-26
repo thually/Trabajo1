@@ -48,9 +48,9 @@ public class crearHabitatController {
             warning.setText("Valor ingresado como temperatura no permitido.");
             return;
         }
-        String tipoSuelo = tipoSueloTextField.getText().trim();
-        String tipoJaula = tipoJaulaTextField.getText().trim();
-        String vegetacion = vegetacionTextField.getText().trim();
+        String tipoSuelo = tipoSueloTextField.getText().trim().toLowerCase();
+        String tipoJaula = tipoJaulaTextField.getText().trim().toLowerCase();
+        String vegetacion = vegetacionTextField.getText().trim().toLowerCase();
 
         Habitat nuevoHabitat = new Habitat(id,temperatura, tipoSuelo, vegetacion, tipoJaula);
         App.sistemaZoo.addVertex(nuevoHabitat);
