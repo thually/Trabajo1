@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="trabajo2.EditarRelacionesTecnicoController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trabajo2.EditarRelacionesTecnicoController">
+    <children>
+        <Button layoutX="448.0" layoutY="296.0" mnemonicParsing="false" onAction="#volver" text="Volver" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" />
+        <Label layoutX="167.0" layoutY="67.0" text="Editar Relaciones - Tecnico">
+            <font>
+                <Font name="System Bold" size="21.0" />
+            </font>
+        </Label>
+        <Label layoutX="54.0" layoutY="105.0" text="A continuación se permite editar una relación a la vez, de un Tecnico y Habitat especificados." />
+        <Label layoutX="118.0" layoutY="131.0" text="Escoga la cédula del Tecnico al cual se le modificarán sus relaciones:" />
+        <ChoiceBox fx:id="idTecnicosDisp" layoutX="298.0" layoutY="162.0" onAction="#setAccionIDTec" prefWidth="150.0" />
+        <Label layoutX="122.0" layoutY="166.0" prefHeight="17.0" prefWidth="170.0" text="Cédulas tecnicos disponibles:" />
+        <ChoiceBox fx:id="accion" layoutX="223.0" layoutY="225.0" onAction="#elegirEliminarEditar" prefWidth="150.0" />
+        <Label layoutX="92.0" layoutY="201.0" text="Ahora, elija entre eliminar una relación existente o crear una relación nueva:" />
+        <Label fx:id="warning" alignment="CENTER" layoutX="21.0" layoutY="341.0" prefHeight="50.0" prefWidth="475.0" textAlignment="CENTER" textFill="RED" wrapText="true" />
+        <Label fx:id="Label1" alignment="CENTER" layoutX="32.0" layoutY="266.0" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="32.0" />
+        <ChoiceBox fx:id="idParaEditarDisp" layoutX="132.0" layoutY="296.0" prefWidth="150.0" visible="false" />
+        <Button fx:id="eliminarRelacion" layoutX="330.0" layoutY="296.0" mnemonicParsing="false" onAction="#AccionEliminarRelacion" text="Eliminar Relación" visible="false" />
+        <Button fx:id="crearRelacion" layoutX="337.0" layoutY="296.0" mnemonicParsing="false" onAction="#AccionCrearRelacion" text="Crear Relación" visible="false" />
+    </children>
 </AnchorPane>
