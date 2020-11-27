@@ -33,8 +33,10 @@ public class busquedaAgresividadController {
 
         if(Animal.animalesPorAgresividad.containsKey(Integer.parseInt(agresividadTextField.getText()))){
             textResult.setText("\n"+Animal.animalesPorAgresividad.get(Integer.parseInt(agresividadTextField.getText())));
+            return;
         }else{
             textResult.setText("¡No se encontro el animal!");
+            return;
         }
     }
 

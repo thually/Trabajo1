@@ -20,7 +20,6 @@ public class atributosHabitatController {
         if (Habitat.habitatsPorTemperatura.isEmpty()) {
             warning.setText("MENSAJE: Aún no se encuentran habitats registrados");
         } else {
-            warning.setText("");
             App.setRoot("busquedaTemperatura");
         }
     }

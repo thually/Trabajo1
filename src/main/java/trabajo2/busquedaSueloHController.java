@@ -33,8 +33,10 @@ public class busquedaSueloHController{
 
         if(Habitat.habitatsPorSuelo.containsKey(sueloHTextField.getText())){
             textResult.setText("\n"+Habitat.habitatsPorSuelo.get(sueloHTextField.getText()));
+            return;
         }else{
             textResult.setText("¡No se encontro el resultado!");
+            return;
         }
     }
 

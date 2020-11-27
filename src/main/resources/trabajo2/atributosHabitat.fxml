@@ -18,12 +18,12 @@
             <Font size="14.0" />
          </font>
       </Label>
-        <RadioButton layoutX="101.0" layoutY="168.0" mnemonicParsing="false" text="Temperatura">
+        <RadioButton layoutX="101.0" layoutY="168.0" mnemonicParsing="false" onAction="#rutaBuscarTemperatura" text="Temperatura">
             <font>
                 <Font size="14.0" />
             </font>
         </RadioButton>
-      <RadioButton layoutX="101.0" layoutY="200.0" mnemonicParsing="false" text="Tipo de suelo">
+      <RadioButton layoutX="101.0" layoutY="200.0" mnemonicParsing="false" onAction="#rutaBuscarSueloH" text="Tipo de suelo">
          <font>
             <Font size="14.0" />
          </font>

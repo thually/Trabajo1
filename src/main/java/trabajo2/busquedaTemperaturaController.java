@@ -23,6 +23,7 @@ public class busquedaTemperaturaController {
     @FXML
     public Label textResult;
 
+    @FXML
     private void buscar(ActionEvent event) throws IOException {
         warning.setText("");
         if(temperaturaTextField.getText().equals("")){
@@ -30,7 +31,7 @@ public class busquedaTemperaturaController {
             return;
         }
         try {
-            Integer.parseInt(temperaturaTextField.getText().trim());
+            Double.parseDouble(temperaturaTextField.getText().trim());
         } catch (Exception e){
             warning.setText("La temperatura debe ser un número");
             return;
@@ -38,9 +39,12 @@ public class busquedaTemperaturaController {
 
         if(Habitat.habitatsPorTemperatura.containsKey(Double.parseDouble(temperaturaTextField.getText()))){
             textResult.setText("\n"+Habitat.habitatsPorTemperatura.get(Double.parseDouble(temperaturaTextField.getText())));
+            return;
         }else{
             textResult.setText("¡No se encontro el resultado!");
+
         }
+
     }
     @FXML
     private void volver() throws IOException {

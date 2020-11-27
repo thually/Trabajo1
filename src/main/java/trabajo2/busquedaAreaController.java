@@ -25,9 +25,10 @@ public class busquedaAreaController{
 
         if(Tecnico.tecnicosPorArea.containsKey(areaTextField.getText())){
             textResult.setText("\n"+Tecnico.tecnicosPorArea.get(areaTextField.getText()));
-
+return;
         }else{
             textResult.setText("¡No se encontro el resultado!");
+            return;
         }
     }
 
