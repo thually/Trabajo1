@@ -24,7 +24,7 @@ public class busquedaSueldoController {
         }
 
         try{
-            Integer.parseInt(sueldoTextField.getText().trim());
+            Double.parseDouble(sueldoTextField.getText().trim());
         }catch (Exception e){
             warningMessageGeneral.setText("El sueldo tiene que ser un numero");
             return;
@@ -33,8 +33,11 @@ public class busquedaSueldoController {
 
         if(Tecnico.tecnicosPorSueldo.containsKey(Double.parseDouble(sueldoTextField.getText()))){
             textResult.setText("\n"+Tecnico.tecnicosPorSueldo.get(Double.parseDouble(sueldoTextField.getText())));
-        }else{
+            return;
+        }
+        else{
             textResult.setText("¡No se encontro el tecnico!");
+            return;
         }
     }
 

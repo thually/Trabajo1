@@ -33,11 +33,10 @@ public class busquedaEspecieController{
 
         if(Animal.animalesPorEspecie.containsKey(especieTextField.getText())){
             textResult.setText("\n"+Animal.animalesPorEspecie.get(especieTextField.getText()));
-            return;
         }else{
             textResult.setText("¡No se encontro el resultado!");
-            return;
         }
+        return;
     }
 
     @FXML
