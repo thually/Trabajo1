@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trabajo2.editarRelacionesHabitatController">
+   <children>
+       <Button layoutX="448.0" layoutY="296.0" mnemonicParsing="false" onAction="#volver" text="Volver" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" />
+       <Label layoutX="169.0" layoutY="36.0" text="Editar Relaciones - Habitat">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="84.0" layoutY="74.0" text="A continuación se permite editar una relación a la vez, de un Habitat especificado." />
+      <Label layoutX="133.0" layoutY="98.0" text="Escoga el ID del Habitat al cual se le modificarán sus relaciones:" />
+      <ChoiceBox fx:id="idHabitatsDisp" layoutX="300.0" layoutY="131.0" onAction="#setAccionIDHab" prefWidth="150.0" />
+      <Label layoutX="153.0" layoutY="135.0" prefHeight="17.0" prefWidth="141.0" text="ID Habitats disponibles:" />
+      <ChoiceBox fx:id="accion" layoutX="225.0" layoutY="194.0" onAction="#elegirEliminarEditar" prefWidth="150.0" />
+      <Label layoutX="94.0" layoutY="170.0" text="Ahora, elija entre eliminar una relación existente o crear una relación nueva:" />
+      <Label fx:id="warning" alignment="CENTER" layoutX="29.0" layoutY="343.0" prefHeight="25.0" prefWidth="475.0" textAlignment="CENTER" textFill="RED" wrapText="true" />
+      <Label fx:id="eliminarLabel" layoutX="112.0" layoutY="241.0" text="Selecciones si desea eliminar una relación con un Tecnico o un Animal: " visible="false" />
+   </children>
+</AnchorPane>
