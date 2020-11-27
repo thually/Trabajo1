@@ -17,34 +17,34 @@ import java.util.Set;
 
 public class busquedaTemperaturaController {
     @FXML
-    private RadioButton radioButtonAtributo;
-    @FXML
-    private ListView<String> habitats;
-    @FXML
-    private TextField tipoSueloTextField;
-    @FXML
     private TextField temperaturaTextField;
     @FXML
     private Label warning;
     @FXML
     public Label textResult;
 
-    private void rutaBuscarHabitat(ActionEvent event) throws IOException {
+    private void buscar(ActionEvent event) throws IOException {
         warning.setText("");
         if(temperaturaTextField.getText().equals("")){
             warning.setText("El atributo no puede estar vacio");
             return;
         }
         try {
-            Integer.parseInt(tipoSueloTextField.getText().trim());
+            Integer.parseInt(temperaturaTextField.getText().trim());
         } catch (Exception e){
-            warning.setText("El tipo de suelo debe ser una palabra");
+            warning.setText("La temperatura debe ser un número");
             return;
         }
 
-        if(Habitat.habitatsPorTemperatura.containsKey(tipoSueloTextField.getText())){
-
+        if(Habitat.habitatsPorTemperatura.containsKey(Double.parseDouble(temperaturaTextField.getText()))){
+            textResult.setText("\n"+Habitat.habitatsPorTemperatura.get(Double.parseDouble(temperaturaTextField.getText())));
+        }else{
+            textResult.setText("¡No se encontro el resultado!");
         }
+    }
+    @FXML
+    private void volver() throws IOException {
+        App.setRoot("atributosHabitat");
     }
 
 }
