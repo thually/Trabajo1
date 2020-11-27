@@ -11,16 +11,16 @@ public class busquedaController {
         App.setRoot("menuPrincipal");
     }
     @FXML
-    private void rutaBuscarAnilar(ActionEvent event) throws IOException {
-        App.setRoot("buscarAnimal");
+    private void rutaBuscarAnimal(ActionEvent event) throws IOException {
+        App.setRoot("atributosAnimal");
     }
     @FXML
-    private void rutaAdministrarHabitat(ActionEvent event) throws IOException {
-        App.setRoot("administrHabitat");
+    private void rutaBuscarHabitat(ActionEvent event) throws IOException {
+        App.setRoot("atributosHabitat");
     }
     @FXML
-    private void rutaAdministrarTecnico(ActionEvent event) throws IOException {
-        App.setRoot("administrarTecnico");
+    private void rutaBuscarTecnico(ActionEvent event) throws IOException {
+        App.setRoot("atributosTecnico");
     }
 
 }

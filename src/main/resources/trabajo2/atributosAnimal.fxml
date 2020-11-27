@@ -3,7 +3,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -14,28 +13,21 @@
             <Font name="System Bold" size="21.0" />
          </font>
       </Label>
-      <RadioButton layoutX="104.0" layoutY="103.0" mnemonicParsing="false" text="Especie">
+      <RadioButton layoutX="101.0" layoutY="171.0" mnemonicParsing="false" onAction="#rutaBusquedaEspecie" text="Especie">
          <font>
             <Font size="14.0" />
          </font>
       </RadioButton>
-      <RadioButton layoutX="100.0" layoutY="150.0" mnemonicParsing="false" text="Nivel de agresividad">
+      <RadioButton layoutX="101.0" layoutY="209.0" mnemonicParsing="false" onAction="#rutaBusquedaAgresividad" text="Nivel de agresividad">
          <font>
             <Font size="14.0" />
          </font>
       </RadioButton>
-      <Label layoutX="100.0" layoutY="210.0" text="Ingrese el valor a buscar: ">
+      <Button layoutX="501.0" layoutY="347.0" mnemonicParsing="false" onAction="#volver" prefHeight="25.0" prefWidth="51.0" text="Volver" />
+      <Label layoutX="31.0" layoutY="121.0" prefHeight="20.0" prefWidth="517.0" text="Por favor seleccione el atributo por el que desea realizar la búsqueda:">
          <font>
-            <Font size="16.0" />
+            <Font size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="300.0" layoutY="210.0" prefHeight="25.0" prefWidth="159.0" />
-      <Label layoutX="165.0" layoutY="280.0" text="ERROR: Valor no encontrado" textFill="#c30404">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Button layoutX="501.0" layoutY="347.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="51.0" text="Volver" />
-      <Button layoutX="434.0" layoutY="347.0" mnemonicParsing="false" text="Buscar" />
    </children>
 </AnchorPane>

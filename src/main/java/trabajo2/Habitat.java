@@ -25,12 +25,12 @@ public class Habitat {
 
     @Override
     public String toString() {
-        return "Habitat { " +
+        return "Habitat:" + "\n" +
                 "ID: " + id +
                 ", Temperatura: '" + temperatura + '\'' +
                 ", Tipo de suelo: '" + tipoSuelo + '\'' +
                 ", vegetación: '" + vegetacion + '\'' +
                 ", Tipo de jaula: '" + tipoJaula + '\'' +
-                " }";
+                "";
     }
 }
