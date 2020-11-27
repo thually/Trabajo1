@@ -25,12 +25,12 @@ public class Animal {
 
     @Override
     public String toString() {
-        return "Animal { " +
+        return "Animal:  " + "\n" +
                 "ID: " + id +
                 ", especie: '" + especie + '\'' +
                 ", Nivel de Agresividad: " + nivelAgresividad +
                 ", alimentación: '" + alimentacion + '\'' +
-                " }";
+                " ";
     }
 
 }
