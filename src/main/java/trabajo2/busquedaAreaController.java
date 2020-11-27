@@ -33,6 +33,6 @@ public class busquedaAreaController{
 
     @FXML
     private void volver() throws IOException {
-        App.setRoot("atributosAnimal");
+        App.setRoot("atributosTecnico");
     }
 }
