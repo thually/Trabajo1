@@ -17,26 +17,27 @@ public class busquedaSueloHController{
     private Label warningMessageGeneral;
     @FXML
     private void buscar(ActionEvent event) throws IOException {
+        textResult.setText("");
         warningMessageGeneral.setText("");
         if(sueloHTextField.getText().equals("")){
             warningMessageGeneral.setText("No puede estar vacio el tipo de suelo");
             return;
         }
 
+        textResult.setText("");
         try{
-            sueloHTextField.getText();
-        }catch (Exception e){
-            warningMessageGeneral.setText("El tipo de suelo no puede ser un número");
+            Integer.parseInt(sueloHTextField.getText().trim());
+            warningMessageGeneral.setText("La especie del animal no puede ser un número");
             return;
         }
+        catch (Exception e){
+        }
 
-
+        textResult.setText("");
         if(Habitat.habitatsPorSuelo.containsKey(sueloHTextField.getText())){
             textResult.setText("\n"+Habitat.habitatsPorSuelo.get(sueloHTextField.getText()));
-            return;
         }else{
             textResult.setText("¡No se encontro el resultado!");
-            return;
         }
     }
 

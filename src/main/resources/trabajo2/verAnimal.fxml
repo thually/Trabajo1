@@ -15,7 +15,7 @@
         <Label layoutX="67.0" layoutY="59.0" prefHeight="25.0" prefWidth="467.0" text="A continuación se muestran los Animales registrados y sus relaciones con los Habitats: " textAlignment="CENTER" />
         <ScrollPane layoutX="42.0" layoutY="96.0" prefHeight="241.0" prefWidth="526.0" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="42.0">
             <content>
-                <ListView fx:id="habitats" prefHeight="238.0" prefWidth="513.0" />
+                <ListView fx:id="animales" prefHeight="238.0" prefWidth="513.0" />
             </content>
         </ScrollPane>
     </children>

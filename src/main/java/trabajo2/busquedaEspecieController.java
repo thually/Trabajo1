@@ -17,26 +17,31 @@ public class busquedaEspecieController{
     private Label warningMessageGeneral;
     @FXML
     private void buscar(ActionEvent event) throws IOException {
+        textResult.setText("");
         warningMessageGeneral.setText("");
         if(especieTextField.getText().equals("")){
             warningMessageGeneral.setText("No puede estar vacio el tipo de especie");
             return;
         }
-
+        textResult.setText("");
         try{
-            especieTextField.getText();
-        }catch (Exception e){
+            Integer.parseInt(especieTextField.getText().trim());
             warningMessageGeneral.setText("La especie del animal no puede ser un número");
             return;
         }
+        catch (Exception e){
+        }
 
-
+        textResult.setText("");
         if(Animal.animalesPorEspecie.containsKey(especieTextField.getText())){
             textResult.setText("\n"+Animal.animalesPorEspecie.get(especieTextField.getText()));
+
         }else{
             textResult.setText("¡No se encontro el resultado!");
         }
-        return;
+
+
+
     }
 
     @FXML

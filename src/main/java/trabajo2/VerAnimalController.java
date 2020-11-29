@@ -16,7 +16,7 @@ import java.util.Set;
 public class VerAnimalController implements Initializable {
 
     @FXML
-    private ListView<String> habitats;
+    private ListView<String> animales;
 
     @FXML
     private void volver(ActionEvent event) throws IOException {
@@ -39,7 +39,7 @@ public class VerAnimalController implements Initializable {
                         info = info + object.toString()+ "\n";
                     }
                 }
-                habitats.getItems().add(info);
+                animales.getItems().add(info);
             }
         }
     }

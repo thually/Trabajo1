@@ -17,12 +17,22 @@ public class busquedaAreaController{
     private Label warningMessageGeneral;
     @FXML
     private void buscar(ActionEvent event) throws IOException {
+        textResult.setText("");
         warningMessageGeneral.setText("");
         if(areaTextField.getText().equals("")){
             warningMessageGeneral.setText("No puede estar vacio el tipo de especie");
             return;
         }
+        textResult.setText("");
+        try{
+            Integer.parseInt(areaTextField.getText().trim());
+            warningMessageGeneral.setText("La especie del animal no puede ser un número");
+            return;
+        }
+        catch (Exception e){
+        }
 
+        textResult.setText("");
         if(Tecnico.tecnicosPorArea.containsKey(areaTextField.getText())){
             textResult.setText("\n"+Tecnico.tecnicosPorArea.get(areaTextField.getText()));
 return;

@@ -30,7 +30,7 @@ public class busquedaAgresividadController {
             return;
         }
 
-
+        warningMessageGeneral.setText("");
         if(Animal.animalesPorAgresividad.containsKey(Integer.parseInt(agresividadTextField.getText()))){
             textResult.setText("\n"+Animal.animalesPorAgresividad.get(Integer.parseInt(agresividadTextField.getText())));
             return;

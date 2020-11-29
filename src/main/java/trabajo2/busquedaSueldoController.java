@@ -17,12 +17,13 @@ public class busquedaSueldoController {
     private Label warningMessageGeneral;
     @FXML
     private void buscar(ActionEvent event) throws IOException {
+        textResult.setText("");
         warningMessageGeneral.setText("");
         if(sueldoTextField.getText().equals("")){
             warningMessageGeneral.setText("No puede estar vacio el sueldo");
             return;
         }
-
+        textResult.setText("");
         try{
             Double.parseDouble(sueldoTextField.getText().trim());
         }catch (Exception e){
@@ -30,14 +31,12 @@ public class busquedaSueldoController {
             return;
         }
 
-
+        textResult.setText("");
         if(Tecnico.tecnicosPorSueldo.containsKey(Double.parseDouble(sueldoTextField.getText()))){
             textResult.setText("\n"+Tecnico.tecnicosPorSueldo.get(Double.parseDouble(sueldoTextField.getText())));
-            return;
         }
         else{
             textResult.setText("¡No se encontro el tecnico!");
-            return;
         }
     }
 

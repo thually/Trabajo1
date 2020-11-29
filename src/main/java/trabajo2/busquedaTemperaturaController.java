@@ -25,18 +25,20 @@ public class busquedaTemperaturaController {
 
     @FXML
     private void buscar(ActionEvent event) throws IOException {
+        textResult.setText("");
         warning.setText("");
         if(temperaturaTextField.getText().equals("")){
             warning.setText("El atributo no puede estar vacio");
             return;
         }
+        textResult.setText("");
         try {
             Double.parseDouble(temperaturaTextField.getText().trim());
         } catch (Exception e){
             warning.setText("La temperatura debe ser un número");
             return;
         }
-
+        textResult.setText("");
         if(Habitat.habitatsPorTemperatura.containsKey(Double.parseDouble(temperaturaTextField.getText()))){
             textResult.setText("\n"+Habitat.habitatsPorTemperatura.get(Double.parseDouble(temperaturaTextField.getText())));
             return;
