@@ -7,8 +7,6 @@ Pablo Pérez García - Correo: pperezg@unal.edu.co
 
 Alejandro Salazar Mejía - Correo: alsalazarm@unal.edu.co
 
-Sebastián Sucerquia Tapias - Correo: ssucerquia@unal.edu.co
-
 #### Datos para ingresar:
 ##### Profesor
 Correo: sromanf 
