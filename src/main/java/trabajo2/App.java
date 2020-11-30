@@ -99,7 +99,7 @@ public class App extends Application {
         sistemaZoo.addEdge(habitat2, tecnico3);
         sistemaZoo.addEdge(habitat2, tecnico1);
 
-        Usuario usuario1 = new Usuario("1", "Alejo", "Salazar", "alsalazarm", "1");
+        Usuario usuario1 = new Usuario("1", "Santiago", "Roman", "sromanf@unal.edu.co", "1");
         usuarios.add(usuario1);
 
     }
